@@ -1,0 +1,46 @@
+package com.example.assignment1;
+
+public class Bean {
+	private int numOfBeans ;
+	private String color;
+	private String name;
+	
+	Bean(){
+		this.numOfBeans = 10;
+	}
+	
+	//getters and setters
+	public int getNumOfBeans() {
+		return numOfBeans;
+	}
+	public void setNumOfBeans(int numOfBeans) {
+		this.numOfBeans = numOfBeans;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public static void info() {
+		System.out.println("this is  a bean");
+	}
+	
+	public void amountOfBeanObjs(int...a) {
+		System.out.println("Number of bean objects: " + a.length);
+	}
+	
+	public int numOfBeans(int numOfBeans) {
+		return numOfBeans;
+	}
+	public String toString(){//overriding the toString() method  
+		  return "This is bean" + name;
+		 } 
+}

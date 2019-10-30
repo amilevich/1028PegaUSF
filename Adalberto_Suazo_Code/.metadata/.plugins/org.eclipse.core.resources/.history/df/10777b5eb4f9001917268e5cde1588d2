@@ -1,0 +1,23 @@
+package com.example.helloworld;
+
+public class MyClass {
+	//naming convenctions
+	/*
+	 * multi line comment
+	 * 
+	 * Class - TitleCase
+	 * packages - lowercase
+	 * variables - camelCase, pascalCase
+	 * interfaces - TitleCase, named after adjectives
+	 * methods - camelCase, usually a verb
+	 * 
+	 * (Note: java is case sensitive)
+	 * */
+	
+	public static void main(String[] args) {
+		// the main method is the entry point of your program
+		// it is the method from which the JVM can run your program
+		
+		System.out.println("Hello World!");
+	}
+}

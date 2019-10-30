@@ -1,0 +1,16 @@
+package com.example.arrays;
+
+public class MyClass {
+	/*
+	 * array - collection of elements of the same type and a fixed size
+	 * 
+	 * */
+	
+	public static void main(String[] tuesday) {
+		
+		int[] tempOne = {1,2,3,4};
+		//System.out.println(tempOne[0]);
+		tempOne[2] = 8;
+		System.out.println(tempOne[2]);
+	}
+}

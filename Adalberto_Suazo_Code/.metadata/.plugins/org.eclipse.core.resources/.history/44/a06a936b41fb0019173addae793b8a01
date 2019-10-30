@@ -1,0 +1,5 @@
+package com.example.abstractclass;
+
+public abstract class Person {
+
+}

@@ -1,0 +1,30 @@
+package com.example.assignment1;
+
+public class MyClass {
+	
+	public static void main(String[] args) {
+		Bean bean1 = new Bean();
+		bean1.setColor("red");
+		bean1.setName("bean1");
+		System.out.println(bean1.toString());
+		bean1.setNumOfBeans(15);
+		
+		Bean bean2 = new Bean();
+		bean2.setColor("brown");
+		bean2.setName("bean2");
+		bean2.setNumOfBeans(20);
+		
+		Bean bean3 = new Bean();
+		bean3.setColor("pink");
+		bean3.setName("bean3");
+		bean3.setNumOfBeans(25);
+		
+		Bean[] beanArray = new Bean[3];
+		
+		for(int i = 0; i<beanArray.length; i++) {
+//			beanArray[i] = new Bean();
+			System.out.println(beanArray[i].toString());
+			
+		}
+	}
+}

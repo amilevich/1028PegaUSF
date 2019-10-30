@@ -1,0 +1,42 @@
+package com.example.assignment;
+
+public class Bean {
+	
+	private int amount;
+	private String color;
+	private boolean isFood;
+	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	public boolean isFood() {
+		return isFood;
+	}
+	public void setFood(boolean isFood) {
+		this.isFood = isFood;
+	}
+	//three custom methods
+	public static void BeanSize(String size) {
+		System.out.println("String: " + size);
+	}
+	public void YellOut(int...a) {
+		System.out.println("Number of arguments: " + a.length);
+	}
+	public void BeanFun() {
+		BeanSize("large");
+		System.out.println("i am a fun bean");
+	}
+	
+	
+	
+}
