@@ -1,0 +1,10 @@
+Git commands:
+
+(Prerequisites):
+Copy the folder/file you want to save onto your local git repisitory (in my case it's Git Folder on C:)
+
+1)git checkout Ben_Arayathel
+2)git add .
+3)git commit -m "message regarding the file you submitted"
+4)git push 
+
