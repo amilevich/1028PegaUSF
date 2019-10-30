@@ -16,7 +16,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 		int[] june = {123,-34,24,30,85,40,31,22,33,26,28,29};
-		Bean[] beans = {new Bean("BeanyBaby", 7), new Bean("JellyBean", 8), new Bean("Mr.Bean", 9)};
+		Bean[] beans = {new Bean("BeanyBaby", 7), new Bean("JellyBean", 8), new Bean("Mr.Bean", 9)}; 
 		for(int i = 0; i < beans.length; i++) {
 			beans[i].growBean(june);
 		}

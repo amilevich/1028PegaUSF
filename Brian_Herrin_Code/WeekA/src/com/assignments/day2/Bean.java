@@ -10,7 +10,7 @@ public class Bean {
 
 	// In celsius. All beans are assumed to be in the same field and affected
 	// equally by the weather
-	static int currentTemperature;
+	public static int currentTemperature;
 	private int numOfDaysTilMaturity;
 	private int score;
 
