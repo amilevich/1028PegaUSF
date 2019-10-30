@@ -29,7 +29,16 @@ public class States {
 		System.out.println("Hello Wrold!");
 	}
 	
-	public String peopleInterested(int ...a) {
+	//constructors using source
+	public States(int population, String name, double percentStudents) {
+		super();
+		this.population = population;
+		this.name = name;
+		this.percentStudents = percentStudents;
+	}
+	
+	//methods
+	public String peopleInterested(int ...a) { //VarArgs method
 		System.out.println("There are " + a.length + " people interested in going to school here.");
 		for(int i = 0; i < a.length; i++) {
 		System.out.println(" With interest levels form 0-100: " + a[i] );
@@ -37,13 +46,13 @@ public class States {
 	return "Yay";
 	}
 	
-	public void temperature() {
+	public void temperature() { //method
 		System.out.println("It's all under 30 degrees celsius!");
 	}
 	
 	
 	@Override
-	public String toString() {
+	public String toString() { //toString to print as default 
 		String info = "The state "  + name + " has a population of " + population + " whose percentage of students = " + percentStudents; 
 		return info;
 	}
