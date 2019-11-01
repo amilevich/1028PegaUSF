@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 public class Giraffe {
 
+	
 	boolean hasNeck = true; // variable declaration
 	// whenever you give a value to a variable - initialization
 	int numOfSpots = 202_124;

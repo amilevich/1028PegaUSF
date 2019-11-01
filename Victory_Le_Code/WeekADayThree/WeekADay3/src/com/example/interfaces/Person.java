@@ -2,10 +2,11 @@ package com.example.interfaces;
 
 public interface Person {
 
+		public static final int b = 8;
+		
 		int a = 4;
 		//implicitly always public static final
 		
-		public static final int b = 8;
 		
 		public abstract void walk();
 		
