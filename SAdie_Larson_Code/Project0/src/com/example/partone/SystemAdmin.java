@@ -1,6 +1,13 @@
 package com.example.partone;
 
+import java.util.HashMap;
+
 public class SystemAdmin extends Employee { // should be able to view and edit everything
+
+	public SystemAdmin(HashMap<Integer, SystemAdmin> bankAccounts) {
+		super(bankAccounts);
+		// TODO Auto-generated constructor stub
+	}
 
 	// from employee
 	/*

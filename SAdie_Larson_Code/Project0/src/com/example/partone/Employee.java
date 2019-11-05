@@ -1,6 +1,13 @@
 package com.example.partone;
 
+import java.util.HashMap;
+
 public class Employee extends Client {
+
+	public Employee(HashMap<Integer, SystemAdmin> bankAccounts) {
+		super(bankAccounts);
+		// TODO Auto-generated constructor stub
+	}
 
 	void viewApp() {
 		if (!this.accountHolder) {

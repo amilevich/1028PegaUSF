@@ -1,7 +1,6 @@
 package com.example.partone;
 
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Map.Entry;
 
@@ -14,15 +13,21 @@ public class Account {
 	private int birthM;
 	private int birthD;
 	private int birthY;
-	protected String accountType; // Single, Joint
-	private int userType; //client = 0, employee = 1, system admin = 2
+	protected static String accountType; // Single, Joint
+	private int userType; // client = 0, employee = 1, system admin = 2
 	public String names;
 	public int date;
-	
+	public static int accountKey;
+	protected  boolean accountExists = false;
+
+
 	public boolean validInput;
 	Scanner sc = new Scanner(System.in);
 	public String yn; // use as yes or no option in scanner
 
+	////////////////////////////////////////////////////////
+	////getters and setters ////// /////////////////////////
+	///////////////////////////////////////////////////////
 	public String getUsername() {
 		return username;
 	}
@@ -44,102 +49,8 @@ public class Account {
 	}
 
 	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+		Account.accountType = accountType;
 	}
-	
-
-	public void createAccount() { // using this as constructor but might want to change into main driver?
-		System.out.println("Please enter a username below");
-		while (!validInput) {
-			username = sc.nextLine();
-			if (true) { // change to check that username is NOT taken
-				break;
-			} else {
-				System.out.println("Invalid. Username already exists");
-			}
-		}
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		///// setting up password
-		////////////////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("Please enter a password below");
-		while (!validInput) {
-			password = sc.nextLine();
-			if (true) { // change to verify password meets specs
-				break;
-			} else {
-				System.out.println("Invalid. errors occurred in creating a password");
-			}
-		}
-		setUsername(username);
-		setPassword(password);
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		///// setting up account
-		////////////////////////////////////////////////////////////////////////////////////////////// information//////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("Please enter your first name below");
-		while (!validInput) {
-			names = sc.nextLine();
-			if(names == " ") {
-				System.out.println("Please enter at least one character");
-			}
-			else {
-				break;
-			}
-		}
-		setfName(names);
-		
-		System.out.println("Please enter your last name below");
-		while (!validInput) {
-			names = sc.nextLine();
-			if(names == " ") {
-				System.out.println("Please enter at least one character");
-			}
-			else {
-				break;
-			}			
-		}
-		setlName(names);
-
-		System.out.println("Please enter your birth month");
-		while (!validInput) {
-			date = sc.nextInt();
-			if((date <  1) || date > 12) {
-				System.out.println("Months fall between 1-12");
-			}
-			else {
-				break;
-			}	
-		}
-		setBirthM(date);
-		
-		System.out.println("Please enter your birth day");
-		while (!validInput) {
-			date = sc.nextInt();
-			if((date <  1) || date > 31) {
-				System.out.println("DAtes fall between 1-31");
-			}
-			else {
-				break;
-			}	
-		}
-		setBirthD(date);
-		
-		System.out.println("Please enter your birth year");
-		while (!validInput) {
-			date = sc.nextInt();
-			if((date <  1923) || date > 2019) {
-				System.out.println("DAtes fall between 1-31");
-			}
-			else {
-				break;
-			}	
-		
-		}
-		setBirthY(sc.nextInt());
-
-	}
-
 	public String getlName() {
 		return lName;
 	}
@@ -186,6 +97,107 @@ public class Account {
 
 	public void setUserType(int userType) {
 		this.userType = userType;
+	}
+	
+	////////////////////////////////////////////////////////
+	////creating an actual account /////////////////////////
+	///////////////////////////////////////////////////////
+	public void createAccount(HashMap<Integer, SystemAdmin> bankAccounts) { // using this as constructor but might want
+																			// to change into main driver?
+		System.out.println("Please enter a username below");
+		while (!validInput) {
+			username = sc.nextLine();
+			for (Entry<Integer, SystemAdmin> en : bankAccounts.entrySet()) { // iterate through all members in
+				if (username == en.getValue().getUsername()) {
+					accountExists = true;;
+					break;
+				}
+			}
+			if(accountExists) {
+				System.out.println("Invalid. Usenrame already exists");
+			}
+			else if (username.length() < 1) { // change to check that username is NOT taken
+				System.out.println("Invalid. Username needs to have at least one character");
+			} else {
+				break;
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		///// setting up password
+		////////////////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		System.out.println("Please enter a password below");
+		while (!validInput) {
+			password = sc.nextLine();
+			if (password.length() < 1) { // change to verify password meets specs
+				System.out.println("Invalid. errors occurred in creating a password");
+			} else {
+				break;
+			}
+		}
+		setUsername(username);
+		setPassword(password);
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		///// setting up account
+		////////////////////////////////////////////////////////////////////////////////////////////// information//////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////
+		System.out.println("Please enter your first name below");
+		while (!validInput) {
+			names = sc.nextLine();
+			if (names == " ") {
+				System.out.println("Please enter at least one character");
+			} else {
+				break;
+			}
+		}
+		setfName(names);
+
+		System.out.println("Please enter your last name below");
+		while (!validInput) {
+			names = sc.nextLine();
+			if (names == " ") {
+				System.out.println("Please enter at least one character");
+			} else {
+				break;
+			}
+		}
+		setlName(names);
+
+		System.out.println("Please enter your birth month");
+		while (!validInput) {
+			date = sc.nextInt();
+			if ((date < 1) || date > 12) {
+				System.out.println("Months fall between 1-12");
+			} else {
+				break;
+			}
+		}
+		setBirthM(date);
+
+		System.out.println("Please enter your birth day");
+		while (!validInput) {
+			date = sc.nextInt();
+			if ((date < 1) || date > 31) {
+				System.out.println("Dates fall between 1-31");
+			} else {
+				break;
+			}
+		}
+		setBirthD(date);
+
+		System.out.println("Please enter your birth year");
+		while (!validInput) {
+			date = sc.nextInt();
+			if ((date < 1923) || date > 2001) {
+				System.out.println("Years fall between 1923-2001");
+			} else {
+				break;
+			}
+
+		}
+		setBirthY(date);
+
+		System.out.println("Awesome, your account is in pending. Log in after employee approval has been confirmed");
 	}
 
 }
