@@ -303,8 +303,8 @@ public class Account {
 	public void viewInformation() {
 		System.out.println("Name: " + getfName() + " " + getlName());
 		System.out.println("Account Staus: " + applicationStatus);
-		System.out.println("Open accounts: " +accounts);
-		
+		System.out.println("Open accounts: " + accounts);
+
 	}
 
 	public int withdraw() {
@@ -411,7 +411,7 @@ public class Account {
 			}
 		}
 	}
-
+	/////////////////////////////////////////////////////////////////
 	// employee
 
 	void viewApp() {
@@ -445,21 +445,30 @@ public class Account {
 		if (yn == 1) {
 			this.applicationStatus = 1; // approved
 			this.accountHolder = true;
+			System.out.println("The account is now approved");
 
 		} else if (yn == 2) {
 			applicationStatus = 2; // denied
+			System.out.println("The account is now denied");
+
 		}
 	}
 
-	void viewAccount() {
+	void viewAccount(HashMap<Integer, Account> bankAccounts) {
 		System.out.println("Please enter account username to view");
 		while (!validInput) {
 			accountCur = sc.nextLine();
-
+			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
+				if (accountCur.equals(en.getValue().getUsername()))
+					accountExists = true;
+				break;
+			}
 			// if account not an option
-			System.out.println("Please enter a valid account");
-			// else
-			break;
+			if (!accountExists) {
+				System.out.println("Please enter a valid account");
+			} else {
+				break;
+			}
 		}
 		validInput = false;
 		// show all attributes of account
@@ -468,6 +477,7 @@ public class Account {
 		System.out.println("Name: " + this.getfName() + " " + this.getlName());
 		System.out.println("Birth date: " + this.getBirthM() + "/" + this.getBirthD() + "/" + this.getBirthY());
 		System.out.println("List of accounts and their amount" + accounts);
+
 	}
 
 	// system admin
