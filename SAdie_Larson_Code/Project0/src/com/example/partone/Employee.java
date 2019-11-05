@@ -4,6 +4,11 @@ import java.util.HashMap;
 
 public class Employee extends Client {
 
+	public Employee(HashMap<Integer, Account> bankAccounts) {
+		super(bankAccounts);
+		// TODO Auto-generated constructor stub
+	}
+/*
 	public Employee(HashMap<Integer, SystemAdmin> bankAccounts) {
 		super(bankAccounts);
 		// TODO Auto-generated constructor stub
@@ -62,5 +67,5 @@ public class Employee extends Client {
 		System.out.println("Birth date: " + this.getBirthM() + "/" + this.getBirthD() + "/" + this.getBirthY());
 		System.out.println("List of accounts and their amount" + accounts);
 	}
-
+*/
 }

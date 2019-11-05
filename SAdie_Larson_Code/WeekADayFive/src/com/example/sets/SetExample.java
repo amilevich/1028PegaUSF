@@ -1,6 +1,8 @@
 package com.example.sets;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -39,11 +41,29 @@ public class SetExample {
 		s.add(35);
 		s.add(7);
 		s.add(35);
-		s.add(null); // can be added for a set but when applied to treeSet cannot sort
+		//s.add(null); // can be added for a set but when applied to treeSet cannot sort
 		System.out.println(s);
 		
 		Set<Integer> tSet = new TreeSet<Integer>(); //will order form least to greatest
 		tSet.addAll(s);
 		System.out.println(tSet); 
+		
+		Set<String> seasons = new TreeSet<String>();
+		seasons.add("Winter");
+		seasons.add("Summer");
+		seasons.add("Fall");
+		seasons.add("Spring");
+		seasons.add("Winter");
+		seasons.add("Winter");
+		System.out.println(seasons);
+		Set<String> seas = new HashSet<String>();
+		seas.addAll(seasons);
+		System.out.println(seas);
+		
+		//Notice how when adding a set to a list that the duplicates are not sent over to list
+		List<String> seasonsO = new ArrayList<String>();
+		seasonsO.addAll(seasons);
+		System.out.println(seasonsO);
+		
 	}
 }

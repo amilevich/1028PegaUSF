@@ -11,7 +11,7 @@ public class Tiger {
 		System.out.println("in a no arg constructor");
 	}
 
-	public Tiger(String name, int numberOfLegs) { // parametrized constructor with two parameters
+	public Tiger(String name, int numberOfLegs) { // parameterized constructor with two parameters
 
 		super(); // refers to the parent's class constructor
 		this.name = name; // "this" is a reference variable that refers to the current object
@@ -25,7 +25,7 @@ public class Tiger {
 		this.stripes = stripes;
 		this.numberOfLegs = numberOfLegs;
 		this.name = name;
-		System.out.println("in a constructor with gour parameters");
+		System.out.println("in a constructor with four parameters");
 	}
 
 	public boolean isHasEye() {

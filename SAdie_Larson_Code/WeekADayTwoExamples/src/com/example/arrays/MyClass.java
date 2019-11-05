@@ -54,6 +54,8 @@ public class MyClass {
 		int tempSix[][] = new int[10][12];
 		tempSix[5][8] = 80; // sixth row, ninth column
 		System.out.println(tempSix[5][8]);
+		
+		int[][] tempSeven = new int[7][9]; //note how the square brackets can go at the type or the name
 
 	}
 }

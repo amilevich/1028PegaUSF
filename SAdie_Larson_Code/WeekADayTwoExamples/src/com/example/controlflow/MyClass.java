@@ -74,7 +74,7 @@ public class MyClass {
 		// case "turkey":
 		// System.out.println("Turkey");
 		// break;
-		// case "dominician republic":
+		// case "Dominican republic":
 		// System.out.println("DR");
 		// break;
 		// default:

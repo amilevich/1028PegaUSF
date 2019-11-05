@@ -38,5 +38,10 @@ public class MainDriver {
 		Parent par = new GrandChild(); //this is more of an inheritance case -- will go over day four
 		par.talk(); 
 		par.scold();
+		//par.jump(); // cannot access since of parent type
+		
+		GrandChild gc = new GrandChild();
+		gc.talk();
+		gc.jump();
 	}
 }

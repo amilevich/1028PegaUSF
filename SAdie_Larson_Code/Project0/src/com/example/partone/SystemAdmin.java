@@ -2,9 +2,15 @@ package com.example.partone;
 
 import java.util.HashMap;
 
-public class SystemAdmin extends Employee { // should be able to view and edit everything
+public class SystemAdmin extends Employee { 
+	public SystemAdmin(HashMap<Integer, Account> bankAccounts) {
+		super(bankAccounts);
+		// TODO Auto-generated constructor stub
+	}
 
-	public SystemAdmin(HashMap<Integer, SystemAdmin> bankAccounts) {
+// should be able to view and edit everything
+
+	/*public SystemAdmin(HashMap<Integer, SystemAdmin> bankAccounts) {
 		super(bankAccounts);
 		// TODO Auto-generated constructor stub
 	}
@@ -12,7 +18,7 @@ public class SystemAdmin extends Employee { // should be able to view and edit e
 	// from employee
 	/*
 	 * view account approve account
-	 */
+
 	@Override
 	public void viewApp() {
 		if (!this.accountHolder) {
@@ -78,6 +84,7 @@ public class SystemAdmin extends Employee { // should be able to view and edit e
 			System.out.println("Error occurred. AccountHolder cna only be true or false");
 		}
 	}
+	*/
 
 	// from account
 	/*

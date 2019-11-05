@@ -12,7 +12,7 @@ public class Color {
 		System.out.println("inside no arg constructor");
 	}
 
-	public Color(int saturation, String baseColor) {
+	private Color(int saturation, String baseColor) {
 		this(5, true, "blue", true); // constructor chaining - calling a constructor from another constructor
 		System.out.println("inside constructor with two arguments");
 	}
@@ -42,7 +42,7 @@ public class Color {
 	public static void main(String[] args) {
 		
 		Color blue = new Color(); // will go to this of the two parameters which goes to the four paremeters --> then follows back
-		
+		Color red = new Color(10, "orange");
 		
 		
 	}

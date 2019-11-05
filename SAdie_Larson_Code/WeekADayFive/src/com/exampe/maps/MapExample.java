@@ -13,7 +13,7 @@ public class MapExample {
 		hMap.put(14, "Leaf");
 		hMap.put(21, "Drinking Age");
 		hMap.put(7, "Days");
-		hMap.put(42, "Answer to the life nad universe and everything");
+		hMap.put(42, "Answer to the life and universe and everything");
 		hMap.put(1, "pizza");
 		hMap.put(null, "empty"); // maps allow null as key
 		hMap.put(14, "Ball");

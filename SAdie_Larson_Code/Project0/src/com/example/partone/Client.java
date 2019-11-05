@@ -6,7 +6,12 @@ import java.util.Map.Entry;
 
 public class Client extends Account {
 
-	protected boolean accountHolder; // check to see status of account
+	public Client(HashMap<Integer, Account> bankAccounts) {
+		super(bankAccounts, 1);
+		// TODO Auto-generated constructor stub
+	}
+
+	/*protected boolean accountHolder; // check to see status of account
 	protected int accountBalance = 0;
 	protected int applicationStatus; // 0: applied, 1: approved, 2: denied
 
@@ -18,6 +23,7 @@ public class Client extends Account {
 	public Client(HashMap<Integer, SystemAdmin> bankAccounts) {
 		createAccount(bankAccounts);
 		apply(bankAccounts);
+		System.out.println("done constructing");
 	}
 
 	public void createAccounts() { // note difference between account(user) and accounts (types of accounts a user
@@ -70,19 +76,19 @@ public class Client extends Account {
 	}
 
 	public void apply(HashMap<Integer, SystemAdmin> bankAccounts) { // need to implement creating a joint account
-		System.out.println("What type of account would you like to create? Single or Joint");
+		System.out.println("What type of account would you like to create? 1: Single or  2: Joint");
 		while (!validInput) {
-			accountType = sc.nextLine();
+			accountType = sc.nextInt();
 			System.out.println(accountType);
-			if ((accountType != "Single")) { // (accountType == "Joint")) { //keeps getting frozen here for some reason
-				System.out.println("Invalid input. Please enter either Single or Joint");
-
-			} else {
+			if ((accountType == 1) || (accountType == 2)) { //keeps getting frozen here for some reason
 				break;
+			} else {
+				System.out.println("Invalid input. Please enter either 1 or 2");
+
 			}
 		}
 
-		if (accountType == "Joint") {
+		if (accountType == 2) {
 			System.out.println("You chose to make a joint account.");
 			System.out.println("If you are joining an account please enter the account key below");
 			while (!validInput) {
@@ -98,9 +104,8 @@ public class Client extends Account {
 				}
 				break;
 			}
-		} else {
-			System.out.println("Fantastic, your account is pending employee approval");
 		}
+			System.out.println("Fantastic, your account is pending employee approval. Log in after employee approval has been confirmed");
 	}
 
 	public void viewInformation() {
@@ -212,5 +217,5 @@ public class Client extends Account {
 			}
 		}
 	}
-
+*/
 }

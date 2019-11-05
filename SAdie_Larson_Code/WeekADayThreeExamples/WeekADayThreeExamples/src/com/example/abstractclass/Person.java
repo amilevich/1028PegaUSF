@@ -1,6 +1,6 @@
 package com.example.abstractclass;
 
-public abstract class Person {
+ abstract class Person {
 
 	public static final int a = 2;
 	

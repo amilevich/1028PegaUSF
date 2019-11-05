@@ -20,6 +20,17 @@ public class MyClass {
 		System.out.println("Number of arguments: " + a.length);
 	}
 	
+	
+	//note just to see that constructor for current class can be created 
+	String name = "Tom";
+	int age = 1;
+	public MyClass() {
+		super();
+		this.name = name;
+		this.age = age;
+		System.out.println(name + age);
+	}
+	
 	public static void main(String[] args) {
 		fun();
 		fun(1, 2, 3, 100, 856, 4);
@@ -28,5 +39,21 @@ public class MyClass {
 		fun2("Hello", 10, 90, 14);
 		fun2("Bye");
 		fun2("Eat", 7);
+		
+		MyClass me = new MyClass();
+		Sadie me2 = new Sadie();
+		
 	}
+}
+
+ class Sadie extends MyClass{
+	String name = "Sadie";
+	int age = 21;
+	public Sadie() {
+		super();
+		this.name = name;
+		this.age = age;
+		System.out.println(name + age);
+	}
+	
 }

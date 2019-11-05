@@ -1,6 +1,6 @@
 package com.example.interfaces;
 
-public interface Person {
+ public interface Person {
 
 	int a = 4;
 	//implicitly this is always public static final

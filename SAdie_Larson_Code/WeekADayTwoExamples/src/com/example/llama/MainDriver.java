@@ -23,5 +23,8 @@ public class MainDriver {
 		System.out.println(frank.getName() + "'s Height is " + frank.getHeight());
 		System.out.println(frank.getName() + "'s Weight is " + frank.getWeight());
 		
+		Animal tim = new Lllama();
+		
+		
 	}
 }
