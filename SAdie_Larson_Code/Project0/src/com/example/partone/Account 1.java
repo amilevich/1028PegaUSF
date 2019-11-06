@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
 
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
 public class Account {
 
 	private String username;
@@ -22,8 +20,8 @@ public class Account {
 	public int date;
 	public static int accountKey;
 	protected boolean accountExists = false;
-	private int joint = 0; // will fill in with populated key
-	public boolean validInput = false;
+
+	public boolean validInput;
 	Scanner sc = new Scanner(System.in);
 	public int yn; // use as yes or no option in scanner
 
@@ -102,19 +100,14 @@ public class Account {
 		this.userType = userType;
 	}
 
-	public int getJoint() {
-		return joint;
-	}
-
-	public void setJoint(int joint) {
-		this.joint = joint;
-	}
-
 	////////////////////////////////////////////////////////
 	//// creating an actual account /////////////////////////
 	///////////////////////////////////////////////////////
 	public Account(HashMap<Integer, Account> bankAccounts, int choice) {
 		createAccount(bankAccounts, choice);
+		if (choice == 1) { // client
+			apply(bankAccounts);
+		}
 		System.out.println("done constructing");
 	}
 
@@ -215,8 +208,8 @@ public class Account {
 		this.applicationStatus = applicationStatus;
 	}
 
-	public String accountCur; // checking, savings, whatever they call it
-	public int amount;
+	String accountCur; // checking, savings, whatever they call it
+	int amount;
 
 	Map<String, Integer> accounts = new HashMap<String, Integer>();
 
@@ -229,15 +222,12 @@ public class Account {
 					"Enter the name of the account you want to create. Ex: Checkin, Savings, Leo's Checking, etc.");
 			while (!validInput) {
 				accountCur = sc.nextLine();
-				accountExists = false;
-				System.out.println("entered into create accounts going to wiat for user iput");
 				for (Entry<String, Integer> en : accounts.entrySet()) { // iterate through all members
 					// in
 					// accounts map // check if accountKey is in map
-					if (accountCur.equals(en.getKey())) {
+					if (accountCur == en.getKey()) {
 						System.out.println("Invalid. Accounts name already exists");
 						accountExists = true;
-						break;
 					}
 				}
 				if (!accountExists) {
@@ -249,31 +239,19 @@ public class Account {
 	}
 
 	public void accessAccounts(int choice) {
-		sc.nextLine(); // putting because would read past the account cur
-		if (accounts.isEmpty()) {
-			System.out.println("You need to name your first account");
-			createAccounts();
-		}
-
 		System.out.println("Which account do you want to look at");
-		System.out.println(accounts);
 		while (!validInput) {
-			accountExists = false;
 			accountCur = sc.nextLine();
 			for (Entry<String, Integer> en : accounts.entrySet()) { // iterate through all members
 				// in
 				// accounts map // check if accountKey is in map
-				if (accountCur.equals(en.getKey())) {
-					System.out.println("account exists");
+				if (accountCur == en.getKey()) {
+					System.out.println("Invalid. Accounts name already exists");
 					accountExists = true;
-					break;
 				}
 			}
 			if (accountExists) {
 				break;
-			} else {
-				System.out.println("Invalid. Class Account does not exist. YOur accounts are: ");
-				System.out.println(accounts);
 			}
 		}
 		if (choice == 2) {
@@ -288,13 +266,12 @@ public class Account {
 
 	}
 
-	public void apply(HashMap<Integer, Account> bankAccounts, int accountKeyPassed) { // need to implement creating a
-																						// joint account
+	public void apply(HashMap<Integer, Account> bankAccounts) { // need to implement creating a joint account
 		System.out.println("What type of account would you like to create? 1: Single or  2: Joint");
 		while (!validInput) {
 			accountType = sc.nextInt();
 			System.out.println(accountType);
-			if ((accountType == 1) || (accountType == 2)) {
+			if ((accountType == 1) || (accountType == 2)) { // keeps getting frozen here for some reason
 				break;
 			} else {
 				System.out.println("Invalid input. Please enter either 1 or 2");
@@ -306,24 +283,18 @@ public class Account {
 			System.out.println("You chose to make a joint account.");
 			System.out.println("If you are joining an account please enter the account key below");
 			while (!validInput) {
-				boolean keyFound = false;
-				joint = sc.nextInt();
+				accountKey = sc.nextInt();
 				for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
 																				// accounts map
-					if (joint == en.getKey()) { // check if accountKey is in map
+					if (accountKey == en.getKey()) { // check if accountKey is in map
 						System.out.println("entered a joint acount key");
-						keyFound = true;
 						break;
 					} else { // accountKey does not match
 						System.out.println("accountKey does nto match a current open account");
 					}
 				}
-				if (keyFound) {
-					break;
-				}
+				break;
 			}
-			System.out.println("Accountkey being passed to joint " + accountKey);
-			bankAccounts.get(joint).setJoint(accountKeyPassed);
 		}
 		System.out.println(
 				"Fantastic, your account is pending employee approval. Log in after employee approval has been confirmed");
@@ -332,9 +303,8 @@ public class Account {
 	public void viewInformation() {
 		System.out.println("Name: " + getfName() + " " + getlName());
 		System.out.println("Account Staus: " + applicationStatus);
-		System.out.println("Open accounts: " + accounts);
-		System.out.println("Joint status: " + joint);
-
+		System.out.println("Open accounts: " +accounts);
+		
 	}
 
 	public int withdraw() {
@@ -352,12 +322,11 @@ public class Account {
 					System.out.println("You can NOT enter a negative value");
 					System.out.println("Please re-enter withdraw amount");
 				} else {
-					break;
+					validInput = true;
 				}
 			}
-			System.out.println("Your new account balance is: " + (accountBalance - amount));
-			accountBalance -= amount;
-			return (accountBalance);
+			validInput = false;
+			return (accountBalance - amount);
 		}
 	}
 
@@ -366,21 +335,16 @@ public class Account {
 			System.out.println("You do not have an account at this time");
 			return 0;
 		} else {
-
 			System.out.println("Please enter amount you wish to deposit");
 			while (!validInput) {
 				amount = sc.nextInt();
 				if (amount < 0) { // checks if non-negative value used
 					System.out.println("You can NOT enter a negative value");
 					System.out.println("Please re-enter deposit amount");
-				} else { // positive value was entered
-					break;
 				}
 			}
-
-			System.out.println("Your new account balance is: " + (accountBalance + amount));
-			accountBalance += amount;
-			return (accountBalance);
+			validInput = false;
+			return (accountBalance + amount);
 		}
 	}
 
@@ -392,7 +356,7 @@ public class Account {
 			System.out.println(accounts);
 			String accountOn = null;
 			while (!validInput) {
-				accountExists = false;
+				boolean accountExists = false;
 				accountCur = sc.nextLine();
 
 				// check if account exists in the list
@@ -447,7 +411,7 @@ public class Account {
 			}
 		}
 	}
-	/////////////////////////////////////////////////////////////////
+
 	// employee
 
 	void viewApp() {
@@ -481,41 +445,29 @@ public class Account {
 		if (yn == 1) {
 			this.applicationStatus = 1; // approved
 			this.accountHolder = true;
-			System.out.println("The account is now approved");
 
 		} else if (yn == 2) {
 			applicationStatus = 2; // denied
-			System.out.println("The account is now denied");
-
 		}
 	}
 
-	void viewAccount(HashMap<Integer, Account> bankAccounts) {
+	void viewAccount() {
 		System.out.println("Please enter account username to view");
 		while (!validInput) {
 			accountCur = sc.nextLine();
-			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
-				if (accountCur.equals(en.getValue().getUsername())) {
-					accountExists = true;
-					break;
-				}
 
-			}
 			// if account not an option
-			if (!accountExists) {
-				System.out.println("Please enter a valid account");
-			} else {
-				break;
-			}
+			System.out.println("Please enter a valid account");
+			// else
+			break;
 		}
-		accountExists = false;
+		validInput = false;
 		// show all attributes of account
 		System.out.println("Username: " + this.getUsername());
 		System.out.println("Password: " + this.getPassword());
 		System.out.println("Name: " + this.getfName() + " " + this.getlName());
 		System.out.println("Birth date: " + this.getBirthM() + "/" + this.getBirthD() + "/" + this.getBirthY());
 		System.out.println("List of accounts and their amount" + accounts);
-
 	}
 
 	// system admin
@@ -572,16 +524,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		String info = null;
-		if (joint > 0) {
-
-			info = "Account [username=" + username + ", password=" + password + ", accountAccessType=" + userType
-					+ ", Joint Account= " + joint + "]";
-		} else {
-			info = "Account [username=" + username + ", password=" + password + ", accountAccessType=" + userType
-					+ ", Single Account]";
-		}
-		return info;
+		return "Account [username=" + username + ", password=" + password + ", accountAccessType=" + userType + "]";
 	}
 
 }
