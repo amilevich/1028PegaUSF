@@ -1,6 +1,7 @@
 package com.example.partone;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
@@ -210,6 +211,7 @@ public class Account {
 		userPass.put(bankAccounts.get(accountKey).getUsername(), bankAccounts.get(accountKey).getPassword());
 		userPass.put(bankAccounts.get(temp).getUsername(), bankAccounts.get(temp).getPassword());
 		accounts.put("Shared checking", (float) 0);
+		userType = 1; //client
 	}
 
 	// client account
@@ -239,7 +241,12 @@ public class Account {
 			System.out.println(
 					"Enter the name of the account you want to create. Ex: Checkin, Savings, Leo's Checking, etc.");
 			while (!validInput) {
-				accountCur = sc.nextLine();
+				try{
+					accountCur = sc.nextLine();
+				} catch(InputMismatchException e) {
+					//e.printStackTrace();
+					System.err.println("Entered value is not an integer");
+				}
 				accountExists = false;
 				System.out.println("entered into create accounts going to wiat for user iput");
 				for (Entry<String, Float> en : accounts.entrySet()) { // iterate through all members
@@ -314,7 +321,7 @@ public class Account {
 					if (accountExists) {
 						break;
 					} else {
-						System.out.println("Invalid. Class Account does not exist. YOur accounts are: ");
+						System.out.println("Invalid. Class Account does not exist. Your accounts are: ");
 						System.out.println(accounts);
 					}
 				}
@@ -325,9 +332,10 @@ public class Account {
 				}
 			}
 
-		} else {
+		} else { //accessing single account 
 			if (accounts.isEmpty()) {
 				System.out.println("You need to name your first account");
+				sc.nextLine();
 				createAccounts();
 			}
 
@@ -605,15 +613,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		String info = null;
-		if (joint > 0) {
-
-			info = "Account [username=" + username + ", password=" + password + ", accountAccessType=" + userType
-					+ ", Joint Account= " + joint + "]";
-		} else {
-			info = "Account [username=" + username + ", password=" + password + ", accountAccessType=" + userType
-					+ ", Single Account]";
-		}
+		String 	info = "Account [" + userPass +  "accountAccessType=" + userType + ", Joint Account= " + joint + "]";
 		return info;
 	}
 
