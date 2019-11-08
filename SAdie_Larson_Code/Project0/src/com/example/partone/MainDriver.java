@@ -1,4 +1,4 @@
-package com.example.partone; //change this outside of the same package as the others is that main driver cannot edit protected variables
+package com.example.partone;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -14,17 +14,15 @@ public class MainDriver {
 	static boolean userExists = false;
 	static int currKey = 0;
 	static int accountKey = 0;
-	static int choice = 0;
+	static String choice = null;
 	static Random r = new Random();
 	static HashMap<Integer, Account> bankAccounts = new HashMap<Integer, Account>();
-	
 
 	public static void main(String[] args) {
 		String userP = null;
 		boolean start = true;
 
 		while (start) { // will constantly run program
-			System.out.println("started program");
 			while (repeatMain) {
 				System.out.println(bankAccounts.toString());
 				repeatMain = false;
@@ -34,26 +32,22 @@ public class MainDriver {
 				System.out.println("Do you want to 1: Log in or 2: Create an acocunt");
 				System.out.println("Enter 1 or 2:");
 				while (!validInput) {
-					choice = sc.nextInt();
-					if ((choice == 1) || (choice == 2)) {
+					choice = sc.nextLine();
+					if ((choice.equals("1")) || (choice.equals("2"))) {
 						break;
 					} else {
 						System.out.println("Invalid input. Please enter 1 or 2");
 					}
 				}
-				//////////////////////////////////////////////////////////////////////////////////////////
-				////// logging in to
-				////////////////////////////////////////////////////////////////////////////////////////// account//////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				if (choice == 1) {
+				// ******************************************************//
+				// *************Logging in to Account *******************//
+				// ******************************************************//
+
+				if (choice.equals("1")) {
 					System.out.println("Please Log in");
 					System.out.println("Username:");
-					sc.nextLine();
 					checkUser();
-					if(repeatMain) {
+					if (repeatMain) {
 						System.out.println("entered exit mode");
 						break;
 					}
@@ -67,21 +61,22 @@ public class MainDriver {
 							break;
 						}
 					}
-					/////////////////////////////////////////////////////////////////////////
-					///// Checking userType/////////////////////////////////////////////////
-					if (bankAccounts.get(currKey).getUserType() == 1) { // client
+					// ******************************************************//
+					// ******************Client Account ********************//
+					// ******************************************************//
+					if (bankAccounts.get(currKey).getUserType() == 1) { 
 						while (repeatOptions) {
 							System.out.println(
 									"Welcome " + bankAccounts.get(currKey).getfName() + "! What would you like to do?");
 							String options = "1: Check Information 2: Access Accounts 3: Return to main";
 							System.out.println(options);
-							System.out.println("Enter 1, 2, 3, 4, or 5");
+							System.out.println("Enter 1, 2, or 3");
 							// implement options
 							while (!validInput) {
-								choice = sc.nextInt();
-								if ((choice == 1) || (choice == 2)) {
+								choice = sc.nextLine();
+								if ((choice.equals("1")) || (choice.equals("2"))) {
 									break;
-								} else if (choice == 3) {
+								} else if (choice.equals("3")) {
 									repeatMain = true;
 									break;
 								} else {
@@ -93,21 +88,23 @@ public class MainDriver {
 								break;
 							}
 
-							if (choice == 1) {
+							if (choice.equals("1")) {
 								// check balance of account and other information
 								System.out.println("AccountKey: " + currKey);
 								bankAccounts.get(currKey).viewInformation();
 								menuOption();
-							} else if ((choice == 2)) {
+							} else if (choice.equals("2")) {
 								// sends to client to go through accounts names
-								//if (bankAccounts.get(currKey).getApplicationStatus() == 1) { // application approved
-									bankAccounts.get(currKey).accessAccounts(bankAccounts);
-								//} else if (bankAccounts.get(currKey).getApplicationStatus() == 0) { // application
-																									// status pending
-								//	System.out.println("Access Denied. Your account is still pending.");
-								//} else {
-								//	System.out.println("Access Denied. Your account has been denied.");
-								//}
+								// if (bankAccounts.get(currKey).getApplicationStatus() == 1) { // application
+								// approved
+								bankAccounts.get(currKey).accessAccounts(bankAccounts, currKey);
+								// } else if (bankAccounts.get(currKey).getApplicationStatus() == 0) { //
+								// application
+								// status pending
+								// System.out.println("Access Denied. Your account is still pending.");
+								// } else {
+								// System.out.println("Access Denied. Your account has been denied.");
+								// }
 								// access accounts allows to access specific account to manipulate
 							} else {
 								System.out.println("Error in choice between looking at account options");
@@ -120,8 +117,11 @@ public class MainDriver {
 					} else if (repeatMain) { // should break out of repeat loop and restart
 						break;
 					}
-					/////////////////////////////////////////////////////////////////////////
-					else if (bankAccounts.get(currKey).getUserType() == 2) { // employee
+
+					// ******************************************************//
+					// ******************Employee Account *******************//
+					// ******************************************************//
+					else if (bankAccounts.get(currKey).getUserType() == 2) {
 						while (repeatOptions) {
 							System.out.println("Welcome employee: " + bankAccounts.get(currKey).getfName());
 							System.out.println("What would you like to do?");
@@ -130,36 +130,34 @@ public class MainDriver {
 							System.out.println("Enter 1, 2, or 3");
 							// implement options
 							while (!validInput) {
-								choice = sc.nextInt();
-								if ((choice == 1) || (choice == 2) || (choice == 3)) {
+								choice = sc.nextLine();
+								if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 									break;
 								} else {
 									System.out.println("Invalid input. Please enter 1, 2, or 3");
 								}
 							}
 							switch (choice) {
-							case 1:
+							case "1":
 								// check account application status
 								System.out.println("Enter the username of the acocunt you wish to review");
-								sc.nextLine();
 								checkUser();
-								if(repeatMain) {
+								if (repeatMain) {
 									break;
 								}
 								bankAccounts.get(currKey).setAccountStatus();
 								menuOption();
 								break;
-							case 2: // view information
+							case "2": // view information
 								System.out.println("Please enter username of of the user you want to look at");
-								sc.nextLine();
 								checkUser();
-								if(repeatMain) {
+								if (repeatMain) {
 									break;
 								}
 								bankAccounts.get(currKey).viewAccount();
 								menuOption();
 								break;
-							case 3:
+							case "3":
 								repeatMain = true;
 								break;
 							default:
@@ -172,53 +170,60 @@ public class MainDriver {
 								break;
 							}
 						}
-						/////////////////////////////////////////////////////////////////////////
-					} else if (repeatMain) { // should break out of repeat loop and restart
+						// ******************************************************//
+						// *************Chance to loop back to start ************//
+						// ******************************************************//
+
+					} else if (repeatMain) {
 						break;
-					} else if (bankAccounts.get(currKey).getUserType() == 3) { // system admin
+					}
+
+					// ******************************************************//
+					// *****************Sys Admin Account *******************//
+					// ******************************************************//
+					else if (bankAccounts.get(currKey).getUserType() == 3) {
 						while (repeatOptions) {
 							System.out.println("Welcome system administrator: " + bankAccounts.get(currKey).getfName());
 							System.out.println("What would you like to do?");
 							String options = "1: Check Application Status/Cancel Account 2: Check Account Information 3: Change a user's password 4: Access Client Account 5: Change Password 6: Return to Main Menu";
 							System.out.println(options);
-							System.out.println("Enter 1, 2, 3, or 4");
+							System.out.println("Enter 1, 2, 3, 4, 5, or 6");
 							// implement options
 							while (!validInput) {
-								choice = sc.nextInt();
-								if ((choice == 1) || (choice == 2) || (choice == 3) || (choice == 4) || (choice == 5) || (choice == 6)) {
+								choice = sc.nextLine();
+								if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4")
+										|| choice.equals("5") || choice.equals("6")) {
 									break;
 								} else {
 									System.out.println("Invalid input. Please enter 1, 2, 3, 4, 5, or 6");
 								}
 							}
-							sc.nextLine();
 							switch (choice) {
-							case 1:
+							case "1":
 								// check account application status
 								System.out.println("Enter the username of the acocunt you wish to review");
 								checkUser();
 								System.out.println(repeatMain);
-								if(repeatMain) {
+								if (repeatMain) {
 									break;
-								}
-								else {
-								bankAccounts.get(currKey).setAccountStatusAd();
-								menuOption();
+								} else {
+									bankAccounts.get(currKey).setAccountStatusAd();
+									menuOption();
 								}
 								break;
-							case 2: // view information
+							case "2": // view information
 								System.out.println("Please enter username of of the user you want to look at");
 								checkUser();
-								if(repeatMain) {
+								if (repeatMain) {
 									break;
 								}
 								bankAccounts.get(currKey).viewAccount();
 								menuOption();
 								break;
-							case 3: // change user's password
+							case "3": // change user's password
 								System.out.println("Please enter username of of the user");
 								checkUser();
-								if(repeatMain) {
+								if (repeatMain) {
 									break;
 								}
 								System.out.println("Enter new Password: ");
@@ -228,16 +233,17 @@ public class MainDriver {
 										bankAccounts.get(currKey).getUsername() + "'s password successfully updated ");
 								menuOption();
 								break;
-							case 4: 
+							case "4":
 								System.out.println("Please enter username of of the user you want to look at");
+								accountKey = currKey;
 								checkUser();
-								if(repeatMain) {
+								if (repeatMain) {
 									break;
 								}
-								bankAccounts.get(currKey).accessAccounts(bankAccounts);
+								bankAccounts.get(accountKey).accessAccounts(bankAccounts, currKey);
 								menuOption();
 								break;
-							case 5:
+							case "5":
 								System.out.println("Enter new Password: ");
 								userP = sc.nextLine();
 								bankAccounts.get(currKey).setPassword(userP);
@@ -245,7 +251,7 @@ public class MainDriver {
 										bankAccounts.get(currKey).getUsername() + "'s password successfully updated ");
 								menuOption();
 								break;
-							case 6:
+							case "6":
 								repeatMain = true;
 								break;
 							default:
@@ -256,7 +262,6 @@ public class MainDriver {
 							if (repeatMain) {
 								repeatOptions = false;
 							}
-
 						}
 					} else {
 						System.out.println(
@@ -264,32 +269,24 @@ public class MainDriver {
 					}
 				}
 
-				//////////////////////////////////////////////////////////////////////////////////////////
-				////// creating an
-				////////////////////////////////////////////////////////////////////////////////////////// account///////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				else if (choice == 2) {
-					// implement creating an account
-					/*
-					 * use a map of type objects with either client, employee, or system admin
-					 * access
-					 * 
-					 */
+				// ******************************************************//
+				// ******************Creating Account *******************//
+				// ******************************************************//
+				else if (choice.equals("2")) {
 					System.out.println(
 							"Please enter what account type you are opening 1: Client 2: Employee or 3: System Admin");
 					System.out.println("Please enter 1, 2, or 3");
 					while (!validInput) {
-						choice = sc.nextInt();
-						if ((choice == 1) || (choice == 2) || (choice == 3)) {
+						choice = sc.nextLine();
+						if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 							break;
 						} else {
 							System.out.println("Invalid choice. Please enter 1, 2 or 3");
 						}
+
 					}
 					switch (choice) {
-					case 1:
+					case "1":
 						Account cl = new Account(bankAccounts, choice);
 						createKey();
 						bankAccounts.put(accountKey, cl);
@@ -297,7 +294,7 @@ public class MainDriver {
 						temp = cl.apply(bankAccounts, accountKey);
 						System.out.println(temp);
 						int temp2 = accountKey;
-						if(temp > 0) {
+						if (temp > 0) {
 							Account jo = new Account(bankAccounts, accountKey, temp);
 							createKey();
 							bankAccounts.put(accountKey, jo);
@@ -305,12 +302,12 @@ public class MainDriver {
 							bankAccounts.get(temp).setJoint(accountKey);
 						}
 						break;
-					case 2:
+					case "2":
 						Account em = new Account(bankAccounts, choice);
 						createKey();
 						bankAccounts.put(accountKey, em);
 						break;
-					case 3:
+					case "3":
 						Account sa = new Account(bankAccounts, choice);
 						createKey();
 						bankAccounts.put(accountKey, sa);
@@ -324,7 +321,6 @@ public class MainDriver {
 					System.out.println("Exiting to main menu now");
 					repeatMain = true;
 				}
-				//////////////////////////////////////////////////////////////////////////////////////////
 				else {
 					System.out.println("error has occurred with choosing whether to open an account or log in");
 				}
@@ -332,15 +328,19 @@ public class MainDriver {
 		} // end of repeat start
 	} // end of main method
 
+	
+	// ******************************************************//
+	// ****************** Functions to use ******************//
+	// ******************************************************//
 	static void menuOption() {
 		System.out.println("Do you want to reurn to 1: main menu or 2: options screen");
 		System.out.println();
 		while (!validInput) {
-			choice = sc.nextInt();
-			if (choice == 1) {
+			choice = sc.nextLine();
+			if (choice.equals("1")) {
 				repeatMain = true;
 				break;
-			} else if (choice == 2) {
+			} else if (choice.equals("2")) {
 				repeatOptions = true;
 				break;
 			} else {
@@ -350,7 +350,6 @@ public class MainDriver {
 	}
 
 	static void checkUser() {
-		//userN = sc.nextLine();
 		while (!validInput) {
 			userN = sc.nextLine();
 			if (userN.equals("exit")) {
@@ -360,21 +359,16 @@ public class MainDriver {
 			}
 			System.out.println(bankAccounts.toString());
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
-																			// in`
-				// accounts map
-				// String temp = en.getValue().getUsername();
-				// System.out.println(temp);
 				// check if accountKey is in map
 				if (userN.equals(en.getValue().getUsername())) {
 					currKey = en.getKey();
 					userExists = true;
-				//	System.out.println(currKey); 
 					break;
 				}
 			}
 			if (!userExists) {
 				System.out.println("The username does not exist!");
-				System.out.println("Please re-enter username"); // can add the ability to search by accountkey instead
+				System.out.println("Please re-enter username"); // TODO: can add the ability to search by accountkey instead? yes or no?
 			} else {
 				break;
 			}
@@ -384,9 +378,7 @@ public class MainDriver {
 	static void createKey() {
 		while (!validInput) {
 			accountKey = r.nextInt(9999);
-			// System.out.println(accountKey);
-			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
-				// accounts map
+			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members 
 				if (accountKey == en.getKey()) { // check if accountKey is in map
 					continue;
 				} else { // accountKey is unique
