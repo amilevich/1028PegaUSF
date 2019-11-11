@@ -8,7 +8,7 @@ public class Customer extends Food{
 	public static void custy() {
 
 		Queue<Integer> hd = new LinkedList<Integer>();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 1; i < 4; i++) {
 			hd.add(i);
 			Food.menu();
 			System.out.println("customer number is " +i);
@@ -17,6 +17,6 @@ public class Customer extends Food{
 			System.out.println("what do you want?");
 
 		}
-
+		custy();
 	}
 }
