@@ -10,7 +10,7 @@ public class MyClass {
 		System.out.println("Red" + i + i); // Red300300
 		//when red + i will convert to string and then another 
 		
-		System.out.println("Red" + i + i/2); // Red300150
+		System.out.println(i + i/2); // Red300150
 		System.out.println("Green" + (i + i)); // Red600
 		
 		
