@@ -491,13 +491,13 @@ public class Account implements Client, Employee, SystemAdmin {
 		exceptionCaught = true;
 		while (!validInput && exceptionCaught) {
 			exceptionCaught = false;
+			String amountTemp = sc.nextLine();
 			try {
-				amount = sc.nextInt();
-				sc.nextLine();
+				amount = Double.valueOf(amountTemp);
 			} catch (Exception e) {
 				System.out.println("Invalid. Input must be an number");
 				exceptionCaught = true;
-				sc.nextLine();
+				continue;
 			}
 			if (amount < 0) { // checks if non-negative value used
 				System.out.println("You can NOT enter a negative value");
@@ -521,16 +521,14 @@ public class Account implements Client, Employee, SystemAdmin {
 
 			while (!validInput && exceptionCaught) {
 				exceptionCaught = false;
+				String amountTemp = sc.nextLine();
 				try {
-					amount = sc.nextInt();
-					sc.nextLine();
+					amount = Double.valueOf(amountTemp);
 				} catch (Exception e) {
 					System.out.println("Invalid. Input must be an number");
 					exceptionCaught = true;
-					sc.nextLine();
-
+					continue;
 				}
-
 				if (amount > accountBalance) { // checks if enough in account
 					System.out.println("Invalid! Your acocunt only has: " + accountBalance);
 					System.out.println("Please re-enter withdraw amount");
@@ -540,7 +538,6 @@ public class Account implements Client, Employee, SystemAdmin {
 					System.out.println("Please re-enter withdraw amount");
 					exceptionCaught = true;
 				} else {
-					System.out.println("hello");
 					break;
 				}
 			}
@@ -614,13 +611,13 @@ public class Account implements Client, Employee, SystemAdmin {
 		exceptionCaught = true;
 		while (!validInput && exceptionCaught) {
 			exceptionCaught = false;
+			String amountTemp = sc.nextLine();
 			try {
-				amount = sc.nextInt();
-				sc.nextLine();
+				amount = Double.valueOf(amountTemp);
 			} catch (Exception e) {
 				System.out.println("Invalid. Input must be an number");
 				exceptionCaught = true;
-				sc.nextLine();
+				continue;
 			}
 			if ((amount > 0) && (amount < accounts2.get(accountOn))) { // valid entry
 				break;
