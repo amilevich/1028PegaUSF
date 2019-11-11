@@ -7,7 +7,7 @@ package com.example.core;
  */
 import java.util.ArrayList;
 
-public class EnhancedFor {
+public class Q12 {
 
 	public static void main(String[] args) {
 

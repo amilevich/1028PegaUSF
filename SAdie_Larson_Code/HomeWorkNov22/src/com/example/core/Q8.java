@@ -8,7 +8,7 @@ import java.util.ArrayList;
 “karan”, “madam”, ”tom”, “civic”, “radar”, “sexes”, “jimmy”,
  “kayak”, “john”,  “refer”, “billy”, “did”
  */
-public class ArrayListsQ8 {
+public class Q8 {
 
 	public static ArrayList<String> notPalindrome = new ArrayList<String>();
 	public static ArrayList<String> palindrome = new ArrayList<String>();

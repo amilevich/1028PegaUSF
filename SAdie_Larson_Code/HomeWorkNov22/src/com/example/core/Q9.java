@@ -8,7 +8,7 @@ package com.example.core;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class PrimeQ9 {
+public class Q9 {
 
 	public static void main(String[] args) {
 

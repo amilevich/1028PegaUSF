@@ -3,7 +3,7 @@ package com.example.core;
 /*
  * Find the minimum of two numbers using ternary operators
  */
-public class TernaryQ10 {
+public class Q10 {
 
 	public static void main(String[] args) {
 		int a = 10, b = 20;

@@ -10,7 +10,7 @@ Interest = Principal* Rate* Time
 
  */
 //TO DO: double check
-public class SimpleInt {
+public class Q17 {
 public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {

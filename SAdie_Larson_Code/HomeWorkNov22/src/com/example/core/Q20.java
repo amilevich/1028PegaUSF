@@ -24,29 +24,29 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class NotepadQ20 extends ObjectOutputStream {
+public class Q20 extends ObjectOutputStream {
 
-	protected NotepadQ20() throws IOException, SecurityException {
+	protected Q20() throws IOException, SecurityException {
 		super();
 	}
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		FileOutputStream fo = new FileOutputStream("Data.txt");
 		ObjectOutputStream ob = new ObjectOutputStream(fo);
-		NotepadC m = new NotepadC("Mickey", "Mouse", 25, "Arizona");
+		Q20NotepadC m = new Q20NotepadC("Mickey", "Mouse", 25, "Arizona");
 		ob.writeObject(m);
-		NotepadC h = new NotepadC("Hulk", "Hogan", 50, "Virginia");
+		Q20NotepadC h = new Q20NotepadC("Hulk", "Hogan", 50, "Virginia");
 		ob.writeObject(h);
-		NotepadC r = new NotepadC("Roger", "Rabbit", 22, "California");
+		Q20NotepadC r = new Q20NotepadC("Roger", "Rabbit", 22, "California");
 		ob.writeObject(r);
-		NotepadC w = new NotepadC("Wonder", "Woman", 18, "Montana");
+		Q20NotepadC w = new Q20NotepadC("Wonder", "Woman", 18, "Montana");
 		ob.writeObject(w);
 		ob.close();
 
 		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("Data.txt"));
 
-		ArrayList<NotepadC> obI = new ArrayList<NotepadC>(); 
-		NotepadC re = (NotepadC) objectInputStream.readObject();
+		ArrayList<Q20NotepadC> obI = new ArrayList<Q20NotepadC>(); 
+		Q20NotepadC re = (Q20NotepadC) objectInputStream.readObject();
 		
 		objectInputStream.close();
 		System.out.println("Name: " + re.name + " " + re.type);

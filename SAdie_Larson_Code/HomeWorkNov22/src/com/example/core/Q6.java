@@ -5,7 +5,7 @@ package com.example.core;
  *  is even without using the modulus operator (%)
  */
 //check if 0 is neutral meaning not even
-public class EvenCheckQ6 {
+public class Q6 {
 
 	public static void main(String[] args) {
 

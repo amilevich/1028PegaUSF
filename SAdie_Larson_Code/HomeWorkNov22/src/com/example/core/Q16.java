@@ -8,12 +8,16 @@ import java.util.Scanner;
  * using (String [ ] args).
  */
 //TO DO: double check question requirement 
-public class StringLenQ16 {
+public class Q16 {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		String temp = sc.next();
-		System.out.println(temp.length());
+		int characters = 0;
+		if (args.length > 0) {
+			for (String i : args) {
+				characters++;
+			}
+		}
+		System.out.println("There are " + characters + " characters in the string passed in");
 	}
 
 }

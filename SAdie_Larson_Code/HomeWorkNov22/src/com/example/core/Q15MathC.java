@@ -1,24 +1,24 @@
 package com.example.core;
 
-public class MathC implements MathI {
+public class Q15MathC implements Q15MathI {
 
 	@Override
-	public int addition(int x, int y) {
+	public double addition(double x, double y) {
 		return x+y;
 	}
 
 	@Override
-	public int division(int x, int y) {
+	public double division(double x, double y) {
 		return x/y;
 	}
 
 	@Override
-	public int subtraction(int x, int y) {
+	public double subtraction(double x, double y) {
 		return x-y;
 	}
 
 	@Override
-	public int multiplication(int x, int y) {
+	public double multiplication(double x, double y) {
 		return x*y;
 	}
 	

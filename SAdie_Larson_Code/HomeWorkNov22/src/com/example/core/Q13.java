@@ -11,7 +11,7 @@ package com.example.core;
  */
 import java.util.ArrayList;
 
-public class TriangleQ13 {
+public class Q13 {
 
 	public static void main(String[] args) {
 		int x = 4;

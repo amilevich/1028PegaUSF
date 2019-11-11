@@ -5,7 +5,7 @@ package com.example.core;
  * Do NOT use reverse() in the StringBuffer or the StringBuilder APIs.
  * 
  */
-public class ReverseQ3 {
+public class Q3 {
 
 	public static void main(String[] args) {
 		String stringIn = "Hello";

@@ -4,7 +4,7 @@ package com.example.core;
 /*
  * Write a program to display the first 25 Fibonacci numbers beginning at 0. 
  */
-public class FibonacciQ2 {
+public class Q2 {
 	/*
 	 * Recursion
 	 */

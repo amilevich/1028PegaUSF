@@ -7,7 +7,7 @@ package com.example.core;
  * existing substring methods in the String, StringBuilder, 
  * or StringBuffer APIs
  */
-public class SubstringQ5 {
+public class Q5 {
 
 	public static void main(String[] args) {
 

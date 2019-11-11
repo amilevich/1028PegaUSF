@@ -2,6 +2,7 @@ package com.example.core;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -14,7 +15,7 @@ Case 3: Split the following string and store it in a string array.
  */
 //CHECK does she mean char array?
 //like literally November 22 or using some access?
-public class SwitchQ14 {
+public class Q14 {
 
 	public static void main(String[] args) {
 
@@ -33,10 +34,20 @@ public class SwitchQ14 {
 				break;
 			case 3:
 				String str = "I am learning Core Java";
-				char arr[] = str.toCharArray();
-				for (char i : arr) {
-					System.out.println(i);
+//				char arr[] = str.toCharArray();
+//				for (char i : arr) {
+//					System.out.println(i);
+//				}
+				ArrayList<String> arr = new ArrayList();
+				int temp = 0;
+				for(int i = 0; i < str.length(); i++) {
+					if(str.charAt(i) == ' '){
+						arr.add(str.substring(temp, (i)));
+						temp = i+1;
+						}
 				}
+				arr.add(str.substring(temp, str.length()));
+				System.out.println(arr);
 				break;
 			}
 			cases--;

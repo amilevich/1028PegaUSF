@@ -1,4 +1,4 @@
-package com.example.Q18;
+package com.example.core;
 //DONE
 /*
  * Create an ArrayList and insert integers 1 through 10. 
@@ -10,7 +10,7 @@ package com.example.Q18;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class ArrListQ19 {
+public class Q19 {
 
 	public static ArrayList<Integer> arr = new ArrayList<Integer>();
 	public static ArrayList<Integer> evenArr = new ArrayList<Integer>();

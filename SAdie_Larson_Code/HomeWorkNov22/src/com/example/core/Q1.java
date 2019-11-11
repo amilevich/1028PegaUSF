@@ -4,7 +4,7 @@ package com.example.core;
  * Perform a bubble sort on the following 
  * integer array:  1,0,5,6,3,2,3,7,9,8,4
  */
-public class BubbleSortQ1 {
+public class Q1 {
 
 	public static void main(String[] args) {
 		int[] intArray = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };

@@ -1,11 +1,11 @@
 package com.example.core;
 
-public interface MathI {
+public interface Q15MathI {
 
-	public int addition(int x, int y);
-	public int division(int x, int y);
-	public int subtraction(int x, int y);
-	public int multiplication(int x, int y);
+	public double addition(double x, double y);
+	public double division(double x, double y);
+	public double subtraction(double x, double y);
+	public double multiplication(double x, double y);
 	
 	
 }

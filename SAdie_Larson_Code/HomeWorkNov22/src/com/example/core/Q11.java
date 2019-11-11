@@ -7,7 +7,7 @@ package com.example.core;
  */
 import com.example.b.FloatVar;
 
-public class AccessFloatQ11 extends FloatVar {
+public class Q11 extends FloatVar {
 
 	public static void main(String[] args) {
 

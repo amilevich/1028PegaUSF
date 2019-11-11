@@ -5,7 +5,7 @@ package com.example.core;
  */
 
 //CHECK: if negative 1 is complex and verify 0 is 1
-public class FactorialQ4 {
+public class Q4 {
 //DONE
 	public static int evenOdd = 2;
 
