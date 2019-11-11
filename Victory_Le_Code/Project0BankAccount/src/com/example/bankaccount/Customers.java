@@ -48,7 +48,7 @@ public class Customers {
 					String lastName = sc.nextLine();
 					setUsername(lastName);
 					
-					//Set Usernßame
+					//Set Username
 					System.out.println("Create Username: ");
 					String userName = sc.nextLine();
 					setUsername(userName);
