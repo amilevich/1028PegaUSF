@@ -168,6 +168,9 @@ public class MenuOrder {
 			
 			System.out.println("|      Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                     |");
 			System.out.println("***********************************************************************************************");
+			orderList.clear();
+			food.setZero();
+			drink.setZero();
 			menu();
 		}
 	}
@@ -178,14 +181,18 @@ public class MenuOrder {
 	 class Food{
 		public String foodType;
 		public double bagelPrice = 1.0;
-		public double creamCheesePrice = .50;
+		public double creamCheesePrice = .5;
 		public double cakePrice = 2.0;
-		public double totalPrice;
+		public double totalPrice = 0.0;
 		public String bagel = "Plain Bagel";
 		public String creamCheese = "Cream Cheese";
 		public String icedLemonLoafCake = " Iced Lemon Loaf Cake";
 		
 		
+		
+		public void setZero() {
+			totalPrice = 0;
+		}
 		
 		// Food Getters and Setters 
 		public String getFoodType() {
@@ -233,7 +240,7 @@ public class MenuOrder {
 			return totalPrice;
 		}
 		public void setTotalPrice(double totalPrice) {
-			this.totalPrice = totalPrice;
+			this.totalPrice += totalPrice;
 		}
 		
 		
@@ -249,13 +256,15 @@ public class MenuOrder {
 		public double wCMPrice = 4.0;
 		public double iCoffeePrice = 3.0;
 		public double waterPrice = 100.0;
-		public double totalPrice;
+		public double totalPrice = 0.0;
 		public String whiteChocolateMocha = "White Chocolate Mocha";
 		public String icedCoffee = "Iced Coffee";
 		public String water = "Water";
 		
 		
-		
+		public void setZero() {
+			totalPrice = 0;
+		}
 		
 		
 		// Drinks Getter and Setter
@@ -300,7 +309,7 @@ public class MenuOrder {
 			return totalPrice;
 		}
 		public void setTotalPrice(double totalPrice) {
-			this.totalPrice = totalPrice;
+			this.totalPrice += totalPrice;
 		}
 		
 		
