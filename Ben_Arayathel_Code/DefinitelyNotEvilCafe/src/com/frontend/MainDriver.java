@@ -1,10 +1,8 @@
 package com.frontend;
 import com.kitchen.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -32,8 +30,10 @@ public class MainDriver {
 	}
 
 	public static void outputMenu(List<MenuItem> menu) {
+		int j = 0;
 		for (MenuItem i : menu) {
-			System.out.println(i.getName() + "(" + "£" + i.getPrice() + ")");
+			System.out.println("[" + j + "]" + i.getName() + "(" + "£" + i.getPrice() + ")");
+			j++;
 		}
 	}
 
@@ -99,11 +99,13 @@ public class MainDriver {
 	}
 
 	public static void finalOrders(Queue<List<MenuItem>> customerOrders) {
-
+		System.out.println("\n");
 		System.out.println("All orders have been completed");
+		
 		int k = 1;
 		for (List<MenuItem> j : customerOrders) {
-			System.out.println("Customer " + k + ", your order has been completed." + "\n");
+			System.out.println("Customer " + k + ", your order has been completed:");
+			System.out.println("Your order consists of:");
 			outputFinalOrder(j);
 			k++;
 		}
@@ -128,7 +130,7 @@ public class MainDriver {
 		System.out.println("Are you the last person in the queue?");
 		String lastPerson = in.nextLine();
 		if (lastPerson.equals("yes")) {
-			System.out.println("Congrajulations for being the last.");
+			System.out.println("Congratulations for being the last.");
 			System.out.println("You get the prize of being last.");
 			customerOrdering = false;
 
