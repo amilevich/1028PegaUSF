@@ -6,25 +6,27 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Restaurantmenu{
-	public static void main(String[] args) {
+	public static void main(String[] name, FoodOrder Drink) {
+		
 
 		Scanner sc = new Scanner(System.in);
-		//List of items to pick from to drink
-		//LinkedList<String> drink = new LinkedList<String>();
-		String drink1 = ("Cinnamon Brew");
-		String drink2 =("Hot Chocolate");
-		String drink3 =("Black Coffee");
-		String drink4 =("Vanilla Iced Coffee");
-		String drink5 =("Cookies n Cream");
 		
-		System.out.println("Choose primary food item"+ sc);
-		
-		System.out.println("\n");
-		
-System.out.println("What would you like to drink: ");
-		
-		String name = sc.nextLine();
-//		System.out.println("Coming up" + drink1);
+//		
+//		LinkedList<String> drink = new LinkedList<String>();
+//		drink.add("Cinnamon Brew");
+//		drink.add("Hot Chocolate");
+//		drink.add("Black Coffee");
+//		drink.add("Vanilla Iced Coffee");
+//		drink.add("Cookies n Cream");
+//		
+//		System.out.println("Choose primary food item"+ drink);
+//		
+//		System.out.println("\n");
+//		
+//System.out.println("What would you like to drink: ");
+//		
+//		String name = sc.nextLine();
+//		System.out.println("Coming up" + drink);
 		
 		//Scanner sa = new Scanner(System.in);
 		
