@@ -9,7 +9,8 @@ import com.example.main.Drink;
 
 public class OrderScreen {
 
-	// Create a queue to store Order objects
+	// Create a queue of linked list type to store Order objects and
+	// gain the built in methods of a linked list
 	static Queue<Order> orderList = new LinkedList<Order>();
 
 	// Create an array list to store food name, price, and description
