@@ -1,19 +1,19 @@
 package com.example.main;
 
 public class Food {
-
-	private String foodName;
-	private double foodPrice;
-	private String foodDescription;
 	
-	public Food(String foodName, int foodPrice, String foodDescription) {
+	// Declare variables
+	private String foodName;
+	private int foodPrice;
+
+	// Define a constructor to instantiate Food objects	
+	public Food(String foodName, int foodPrice) {
 		super();
 		this.foodName = foodName;
 		this.foodPrice = foodPrice;
-		this.foodDescription = foodDescription;
 	}
 
-
+	// Getters and setters for food variables
 	public String getFoodName() {
 		return foodName;
 	}
@@ -26,18 +26,14 @@ public class Food {
 		return foodPrice;
 	}
 
-	public void setFoodPrice(double foodPrice) {
+	public void setFoodPrice(int foodPrice) {
 		this.foodPrice = foodPrice;
 	}
-	
-	public String getFoodDescription() {
-		return foodDescription;
+
+	// Override to string to format the food output
+	@Override
+	public String toString() {
+		return "Food: " + foodName + ". Food Price: " + foodPrice + ".";
 	}
 
-	public void setFoodDescription(String foodDescription) {
-		this.foodDescription = foodDescription;
-	}
-
-
-	
 }
