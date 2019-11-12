@@ -54,7 +54,7 @@ public class Customer {
 		String choice = "";
 		FoodOrder f = new FoodOrder();
 		System.out.println("Please enter the number of the food item you want");
-		while (!MainDriver.validInput) {
+		while (true) {
 			temp = MainDriver.sc.nextLine();
 			if (temp.equals("1") || temp.equals("2")) {
 				break;
@@ -74,7 +74,7 @@ public class Customer {
 		}
 
 		int tempNum = 0;
-		while (!MainDriver.validInput) {
+		while (true) {
 			System.out.println("Please enter the quantity of the food item you want. Limit 5 of each item");
 			temp = MainDriver.sc.nextLine();
 			int tempAlready = 0;
@@ -92,7 +92,6 @@ public class Customer {
 				for (int i = 0; i < foods.size(); i++) {
 					if (tempAlready == 0) { // accounting for first time you ordered the same food
 						if (foods.elementAt(i).getFood() == choice) { // meaning it is in the stack
-							System.out.println("debugging 1: " + foods.elementAt(i).getQuantity());
 							tempNum = Integer.valueOf(temp) + (foods.elementAt(i).getQuantity());
 							tempAlready = foods.elementAt(i).getQuantity();
 						}
@@ -100,7 +99,6 @@ public class Customer {
 						if (foods.elementAt(i).getFood() == choice) { // meaning it is in the stack
 							tempNum = tempNum + (foods.elementAt(i).getQuantity());
 							System.out.println(tempNum);
-							System.out.println("debugging 2: " + (foods.elementAt(i).getQuantity()));
 							tempAlready = tempAlready + foods.elementAt(i).getQuantity();
 						}
 					}
@@ -126,7 +124,7 @@ public class Customer {
 		String choice = "";
 		DrinkOrder d = new DrinkOrder();
 		System.out.println("Please enter the number of the drink item you want");
-		while (!MainDriver.validInput) {
+		while (true) {
 			temp = MainDriver.sc.nextLine();
 			if (temp.equals("1") || temp.equals("2")) {
 				break;
@@ -146,7 +144,7 @@ public class Customer {
 		}
 
 		int tempNum = 0;
-		while (!MainDriver.validInput) {
+		while (true) {
 			System.out.println("Please enter the quantity of the drink item you want. Limit 5 of each item");
 			temp = MainDriver.sc.nextLine();
 			int tempAlready = 0;
@@ -164,7 +162,6 @@ public class Customer {
 				for (int i = 0; i < drinks.size(); i++) {
 					if (tempAlready == 0) { // accounting for first time you ordered the same food
 						if (drinks.elementAt(i).getDrink() == choice) { // meaning it is in the stack
-							System.out.println("debugging 1: " + drinks.elementAt(i).getQuantity());
 							tempNum = Integer.valueOf(temp) + (drinks.elementAt(i).getQuantity());
 							tempAlready = drinks.elementAt(i).getQuantity();
 						}
@@ -172,7 +169,6 @@ public class Customer {
 						if (drinks.elementAt(i).getDrink() == choice) { // meaning it is in the stack
 							tempNum = tempNum + (drinks.elementAt(i).getQuantity());
 							System.out.println(tempNum);
-							System.out.println("debugging 2: " + (drinks.elementAt(i).getQuantity()));
 							tempAlready = tempAlready + drinks.elementAt(i).getQuantity();
 						}
 					}

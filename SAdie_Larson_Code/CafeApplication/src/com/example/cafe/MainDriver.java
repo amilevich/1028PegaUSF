@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class MainDriver {
 
-	public static final boolean validInput = false;
 	public static Scanner sc = new Scanner(System.in);
 	public static String yn;
 
@@ -52,8 +51,8 @@ public class MainDriver {
 					System.out.println("Please enter your name for the order");
 					c.setName(sc.nextLine());
 					cl.add(c);
-					System.out.println("Your order was: " + c.foods);
-					System.out.println("Your order was: " + c.drinks);
+					System.out.println("Your food order was: " + c.foods);
+					System.out.println("Your drink order was: " + c.drinks);
 					System.out.println("Thank you for your order " + c.getName() + ". Your number is " + customerNum);
 					System.out.println("Your name and number will be called after 1-2 customers");
 					customerNum++;
@@ -68,7 +67,7 @@ public class MainDriver {
 	}
 
 	private static void checkYN() {
-		while (!validInput) {
+		while (true) {
 			yn = sc.nextLine();
 			if (yn.equals("1") || yn.equals("2")) {
 				break;
