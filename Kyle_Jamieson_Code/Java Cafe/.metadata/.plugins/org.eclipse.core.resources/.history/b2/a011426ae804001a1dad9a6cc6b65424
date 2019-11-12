@@ -1,0 +1,23 @@
+package com.cafe;
+
+public class Customer 
+{
+	private DrinkOrder drink;
+	private FoodOrder food;
+	
+	public Customer(String _food, String _drink)
+	{
+		food.setFood(_food);
+		drink.setDrink(_drink);
+	}
+	
+	public void setDrink(String _drink)
+	{
+		drink.setDrink(_drink);
+	}
+	
+	public String toString()
+	{
+		return "Customer given " + food.getFood() + " and " + drink.getDrink();
+	}
+}

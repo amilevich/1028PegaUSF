@@ -1,0 +1,44 @@
+package com.cafe;
+
+public class Cafe 
+{
+	private String food[] = {"Turkey sandwich", 
+							 "House Salad", 
+							 "Soup of the Day", 
+							 "Grilled salmon", 
+							 "Pulled Pork sandwich",
+							 "Wings",
+					 		 "Double bacon cheeseburger"}; 
+
+	private String drink[] = {"Orange Juice",
+							  "Coffee",
+							  "Green Tea",	
+							  "Hot Chocolate",
+							  "Strawberry Lemonaid",
+							  "Ice Water"};
+	
+	
+	int cafeMenu()
+	{
+		// Print out food
+		System.out.print("FOOD\n");
+		for (int i = 0; i < food.length; i++)
+		{
+			System.out.print(i+1 + ") " + food[i] + '\n');
+		}
+
+		//Get selection
+
+		
+		System.out.print("DRINKS\n");
+		for (int i = 0; i < drink.length; i++)
+		{
+			System.out.print(i+1 + ") " + drink[i] + '\n');
+		}
+
+
+		
+		
+		return 0;
+	}
+}

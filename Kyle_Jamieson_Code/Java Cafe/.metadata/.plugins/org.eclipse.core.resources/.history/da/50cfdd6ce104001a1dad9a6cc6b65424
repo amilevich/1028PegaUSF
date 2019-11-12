@@ -1,0 +1,17 @@
+package com.cafe;
+
+public class FoodOrder 
+{
+	private String food;
+	
+	String getDrink()
+	{
+		return food;
+	}
+	
+	void setDrink(String _food)
+	{
+		food = _food;
+	}
+
+}
