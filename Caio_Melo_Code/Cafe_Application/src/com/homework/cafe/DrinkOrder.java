@@ -1,13 +1,12 @@
 package com.homework.cafe;
 
-import java.util.HashMap;
+
 import java.util.LinkedList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.Queue;
 
 public class DrinkOrder {
 
-	LinkedList<String> drinksList = new LinkedList<String>();
+	Queue<String> drinksList = new LinkedList<String>();
 	private String coffee = "coffee";
 	private String decafeCoffee = "decafCoffee";
 	private String espresso = "espresso";
@@ -24,11 +23,11 @@ public class DrinkOrder {
 
 	}
 
-	public LinkedList<String> getDrinks() {
+	public Queue<String> getDrinks() {
 		return drinksList;
 	}
 
-	public void setDrinks(LinkedList<String> drinks) {
+	public void setDrinks(Queue<String> drinks) {
 		this.drinksList = drinks;
 	}
 

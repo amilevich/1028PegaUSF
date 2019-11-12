@@ -1,10 +1,14 @@
 package com.homework.cafe;
 
+/*
+ * Class that holds String's of menu items in LinkedList.
+ */
 import java.util.LinkedList;
+import java.util.Queue;
 
-public class FoodOrder {
+public class FoodOrder { 
 	
-	LinkedList<String> foodList = new LinkedList<String>();
+	Queue<String> foodList = new LinkedList<String>();
 	
 	private String subSandwhich = "Sub Sandwhich";
 	private String soup = "Soup";
@@ -17,13 +21,16 @@ public class FoodOrder {
 	public FoodOrder() {
 		
 	}
+	public Queue<String> getDrinks() {
+		return foodList;
+	}
 
 	public String getSubSandwhich() {
 		return subSandwhich;
 	}
 
 	public void setSubSandwhich(String subSandwhich) {
-		subSandwhich = subSandwhich;
+		this.subSandwhich = subSandwhich;
 	}
 
 	public String getSoup() {
@@ -31,7 +38,7 @@ public class FoodOrder {
 	}
 
 	public void setSoup(String soup) {
-		soup = soup;
+		this.soup = soup;
 	}
 
 	public String getChickenSandwhich() {

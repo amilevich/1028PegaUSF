@@ -5,15 +5,16 @@ import java.util.Scanner;
 public class Order {
 
 	
-	
+	//Holds Customer name, and DrinkOrder/FoodOrder object which each have LinkedList full of items ordered. 
 	private String name;
 	protected DrinkOrder drinks = new DrinkOrder();
-	private FoodOrder foods = new FoodOrder();
+	protected FoodOrder foods = new FoodOrder();
 	
 	public Order() {
-		
+			
 	}
 
+	
 	public void orderDrink() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please make a selection:");
@@ -31,11 +32,11 @@ public class Order {
 		System.out.println("[0]Go Back");
 		int input = sc.nextInt();
 
-		switch (input) {
+		switch (input) { //Statement for each menu item
 		case 0:
 			MainDriver.prompt(this);
 		case 1:
-			drinks.drinksList.add(drinks.getCoffee());
+			drinks.drinksList.add(drinks.getCoffee());  //Switch case to add menu items to each class's Queue.(Drinks)
 			System.out.println("Coffee added to order!");
 			break;
 		case 2:
@@ -84,12 +85,12 @@ public class Order {
 
 		}
 	
-		rePrompt();
+		rePrompt(); //Prompt to add another item.
 
 	}
 	
 	public void orderFood() {
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in); 
 		System.out.println("Please make a selection:");
 		System.out.println("[1]Sub Sandwhich");
 		System.out.println("[2]Soup");
@@ -103,7 +104,7 @@ public class Order {
 
 		switch (input) {
 		case 0:
-			MainDriver.prompt(this);
+			MainDriver.prompt(this); //Option to go back.
 		case 1:
 			foods.foodList.add(foods.getSubSandwhich());
 			System.out.println("Sub Sandwhich added to order!");
@@ -149,10 +150,10 @@ public class Order {
 		int input = sc.nextInt();
 	
 		switch(input) {
-		case 1: MainDriver.prompt(this);
+		case 1: MainDriver.prompt(this); //Call second prompt 
 			break;
 		case 2:	
-			System.out.println(this.toString());
+			System.out.println(this.toString()); //Summary of order 
 			
 			break;
 		}

@@ -1,10 +1,12 @@
 package com.homework.cafe;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
-public class CustQueue {
+public class CustQueue { //holds a linkedList and has a toSring();
+	
 
-	LinkedList<Order> customerQueue = new LinkedList<Order>();
+	Queue<Order> customerQueue = new LinkedList<Order>();
 	
 	public String toString() {
 		String z = "";
