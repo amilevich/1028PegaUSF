@@ -13,8 +13,10 @@ public class Q16 {
 	public static void main(String[] args) {
 		int characters = 0;
 		if (args.length > 0) {
-			for (String i : args) {
-				characters++;
+			for (int i = 0; i < args.length; i++) {
+				for (int j = 0; j < args[i].length(); j++) {
+					characters++;
+				}
 			}
 		}
 		System.out.println("There are " + characters + " characters in the string passed in");

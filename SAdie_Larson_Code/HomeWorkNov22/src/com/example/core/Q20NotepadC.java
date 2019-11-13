@@ -19,5 +19,16 @@ public class Q20NotepadC implements Serializable{
 		this.state = state;
 	}
 	
+	public Q20NotepadC(){
+		super();
+		//does nothing
+	}
+
+	@Override
+	public String toString() {
+		return "Name: " + name + " "+ type + "\n" + "Age: " + age + " years" + "\n" + "State: " + state + " State";
+	}
+	
+	
 	
 }

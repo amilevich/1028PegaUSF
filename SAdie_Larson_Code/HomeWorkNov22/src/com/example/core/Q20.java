@@ -1,5 +1,7 @@
 package com.example.core;
 
+import java.io.EOFException;
+
 /*
  * Mickey:Mouse:35:Arizona
 Hulk:Hogan:50:Virginia
@@ -16,7 +18,7 @@ State: Arizona State
  */
 
 //TO DO: double check
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,24 +37,36 @@ public class Q20 extends ObjectOutputStream {
 		ObjectOutputStream ob = new ObjectOutputStream(fo);
 		Q20NotepadC m = new Q20NotepadC("Mickey", "Mouse", 25, "Arizona");
 		ob.writeObject(m);
+		ob.flush();
+
 		Q20NotepadC h = new Q20NotepadC("Hulk", "Hogan", 50, "Virginia");
 		ob.writeObject(h);
+		ob.flush();
+
 		Q20NotepadC r = new Q20NotepadC("Roger", "Rabbit", 22, "California");
 		ob.writeObject(r);
+		ob.flush();
+
 		Q20NotepadC w = new Q20NotepadC("Wonder", "Woman", 18, "Montana");
 		ob.writeObject(w);
+		ob.flush();
+
 		ob.close();
 
-		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("Data.txt"));
+		ObjectInputStream obi = new ObjectInputStream(new FileInputStream("Data.txt"));
 
-		ArrayList<Q20NotepadC> obI = new ArrayList<Q20NotepadC>(); 
-		Q20NotepadC re = (Q20NotepadC) objectInputStream.readObject();
-		
-		objectInputStream.close();
-		System.out.println("Name: " + re.name + " " + re.type);
-		System.out.println("Age: " + re.age + " years");
-		System.out.println("State: " + re.state + " State");
+		ArrayList<Q20NotepadC> obiList = new ArrayList<Q20NotepadC>();
+		obiList.add((Q20NotepadC) obi.readObject());
 
+		/* To implement adding all of the objects in the file
+		 * Q20NotepadC temp = new Q20NotepadC(); 
+		 * try { while ((temp = (Q20NotepadC)
+		 * obi.readObject()) != null) { obiList.add(temp); //
+		 * System.out.println(obiList); } } catch(EOFException e) { //output expected }
+		 */
+		obi.close();
+
+		System.out.println(obiList);
 	}
 
 }

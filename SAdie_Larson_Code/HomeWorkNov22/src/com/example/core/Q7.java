@@ -7,7 +7,7 @@ package com.example.core;
  */
 import java.util.Comparator;
 
-public class Q7 implements Comparator {
+public class Q7 {
 
 	private String name;
 	private String department;
@@ -51,11 +51,11 @@ public class Q7 implements Comparator {
 		e1.department = "Sales";
 
 		e2.name = "Avery";
-		e2.age = 21;
-		e1.department = "HR";
+		e2.age = 72;
+		e2.department = "HR";
 
 		System.out.println("Sorted by name: ");
-		if (e1.compare(e1.name, e2.name) > 0) {
+		if (Q7.nameComp.compare(e1, e2) > 0) {
 			System.out.println("1. " + e1.toString());
 			System.out.println("2. " + e2.toString());
 		} else {
@@ -64,7 +64,7 @@ public class Q7 implements Comparator {
 		}
 
 		System.out.println("Sorted by department name: ");
-		if (e1.compare(e1.department, e2.department) > 0) {
+		if (Q7.departmentComp.compare(e1, e2) > 0) {
 			System.out.println("1. " + e1.toString());
 			System.out.println("2. " + e2.toString());
 		} else {
@@ -73,7 +73,7 @@ public class Q7 implements Comparator {
 		}
 
 		System.out.println("Sorted by age: ");
-		if (e1.compare(e1.age, e2.age) > 0) {
+		if (Q7.ageComp.compare(e1, e2) > 0) {
 			System.out.println("1. " + e1.toString());
 			System.out.println("2. " + e2.toString());
 		} else {
@@ -82,11 +82,27 @@ public class Q7 implements Comparator {
 		}
 	}
 
-	@Override
-	public int compare(Object o1, Object o2) {
-		/*if (o2 > o1) {
-			return 1;
-		}*/
-		return 0;
-	}
+	public static final Comparator<Q7> nameComp = new Comparator<Q7>() {
+
+		@Override
+		public int compare(Q7 arg0, Q7 arg1) {
+			return (arg1.name).compareTo(arg0.name);
+		}
+	};
+	public static final Comparator<Q7> departmentComp = new Comparator<Q7>() {
+
+		@Override
+		public int compare(Q7 arg0, Q7 arg1) {
+			return (arg1.department).compareTo(arg0.department);
+		}
+	};
+
+	public static final Comparator<Q7> ageComp = new Comparator<Q7>() {
+
+		@Override
+		public int compare(Q7 arg0, Q7 arg1) {
+			// TODO Auto-generated method stub
+			return (arg1.age) - (arg0.age);
+		}
+	};
 }

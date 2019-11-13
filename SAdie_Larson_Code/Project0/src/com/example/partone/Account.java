@@ -138,6 +138,9 @@ public class Account implements Client, Employee, SystemAdmin {
 	// ******************************************************//
 	// ******* creating an actual account *******************//
 	// ******************************************************//
+	public Account() {
+		//needed for adding from file
+	}
 	public Account(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
 		createJAccount(bankAccounts, accountKey, temp);
 		// System.out.println("done constructing joint account");
