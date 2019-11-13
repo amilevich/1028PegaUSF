@@ -1,13 +1,19 @@
 package com.example.partone;
 
+import java.io.Serializable;
 //work on going in and making sure bankAccounts.get(joint) is getting the right joint
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
 
-public class Account implements Client, Employee, SystemAdmin {
+public class Account implements Client, Employee, SystemAdmin, Serializable {
 
+	/**
+	 * @author Sadie Larson
+	 */
+	private static final long serialVersionUID = -8539840413648934849L;
+	private int hashKey;
 	HashMap<String, String> userPass = new HashMap<String, String>();
 	private String username;
 	private String password;
@@ -25,7 +31,6 @@ public class Account implements Client, Employee, SystemAdmin {
 	// ******************************************************//
 	// ******** used for user input checking *******************//
 	// ******************************************************//
-	public static boolean validInput = false;
 	public static boolean exceptionCaught = false;
 	public static String choice = null;
 	static Scanner sc = new Scanner(System.in);
@@ -36,6 +41,14 @@ public class Account implements Client, Employee, SystemAdmin {
 	// ******************************************************//
 	// ******** public getter and setters *******************//
 	// ******************************************************//
+	public int getHashKey() {
+		return hashKey;
+	}
+
+	public void setHashKey(int hashKey) {
+		this.hashKey = hashKey;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -43,6 +56,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 
 	public String getPassword() {
 		return password;
@@ -164,7 +178,7 @@ public class Account implements Client, Employee, SystemAdmin {
 			break;
 		}
 		System.out.println("Please enter a username below");
-		while (!validInput) {
+		while (true) {
 			username = sc.nextLine();
 			username.toLowerCase();
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
@@ -185,7 +199,7 @@ public class Account implements Client, Employee, SystemAdmin {
 
 		// ************ setting up a password *******************//
 		System.out.println("Please enter a password below");
-		while (!validInput) {
+		while (true) {
 			password = sc.nextLine();
 			password.toLowerCase();
 			if (password.length() < 1) { // change to verify password meets specs
@@ -202,27 +216,27 @@ public class Account implements Client, Employee, SystemAdmin {
 		// ******Setting up account information *******************//
 
 		/*
-		 * System.out.println("Please enter your first name below"); while (!validInput)
+		 * System.out.println("Please enter your first name below"); while (true)
 		 * { names = sc.nextLine(); if (names.equals(" ")) {
 		 * System.out.println("Please enter at least one character"); } else { break; }
 		 * } setfName(names);
 		 * 
-		 * System.out.println("Please enter your last name below"); while (!validInput)
+		 * System.out.println("Please enter your last name below"); while (true)
 		 * { names = sc.nextLine(); if (names.equals(" ")) {
 		 * System.out.println("Please enter at least one character"); } else { break; }
 		 * } setlName(names);
 		 * 
-		 * System.out.println("Please enter your birth month"); while (!validInput) {
+		 * System.out.println("Please enter your birth month"); while (true) {
 		 * date = sc.nextInt(); if ((date < 1) || date > 12) {
 		 * System.out.println("Months fall between 1-12"); } else { break; } }
 		 * setBirthM(date);
 		 * 
-		 * System.out.println("Please enter your birth day"); while (!validInput) { date
+		 * System.out.println("Please enter your birth day"); while (true) { date
 		 * = sc.nextInt(); if ((date < 1) || date > 31) {
 		 * System.out.println("Dates fall between 1-31"); } else { break; } }
 		 * setBirthD(date);
 		 * 
-		 * System.out.println("Please enter your birth year"); while (!validInput) {
+		 * System.out.println("Please enter your birth year"); while (true) {
 		 * date = sc.nextInt(); if ((date < 1923) || date > 2001) {
 		 * System.out.println("Years fall between 1923-2001"); } else { break; }
 		 * 
@@ -268,7 +282,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		} else {
 			System.out.println(
 					"Enter the name of the account you want to create. Ex: Checkin, Savings, Leo's Checking, etc.");
-			while (!validInput) {
+			while (true) {
 				accountCur = sc.nextLine();
 				accountExists = false;
 				System.out.println("entered into create accounts going to wiat for user iput");
@@ -295,7 +309,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		if (userType == 3) {
 			if (bankAccounts.get(accountKeyAccess).getJoint() > 0) {
 				System.out.println("Do you want to access their 1: Joint or 2: Single account");
-				while (!validInput) {
+				while (true) {
 					yn = sc.nextLine();
 					if ((yn.equals("1")) || (yn.equals("2"))) {
 						break;
@@ -319,7 +333,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		else {
 			if (joint > 0) {
 				System.out.println("Do you want to access your 1: Joint or 2: Single account");
-				while (!validInput) {
+				while (true) {
 					yn = sc.nextLine();
 					if ((yn.equals("1")) || (yn.equals("2"))) {
 						break;
@@ -349,7 +363,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 		System.out.println("Which account do you want to look at");
 		System.out.println(accounts);
-		while (!validInput) {
+		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
 			accountCur.toLowerCase();
@@ -385,7 +399,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		System.out.println("Which account do you want to look at");
 		System.out.println("If you want to make a new account please enter 'Create'");
 		System.out.println(bankAccounts.get(joint).accounts);
-		while (!validInput) {
+		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
 			accountCur.toLowerCase();
@@ -422,7 +436,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	@Override
 	public int apply(HashMap<Integer, Account> bankAccounts, int accountKeyPassed) {
 		System.out.println("What type of account would you like to create? 1: Single or  2: Joint");
-		while (!validInput) {
+		while (true) {
 			accountType = sc.nextLine();
 			System.out.println(accountType);
 			if ((accountType.equals("1")) || (accountType.equals("2"))) {
@@ -440,7 +454,7 @@ public class Account implements Client, Employee, SystemAdmin {
 				System.out.println("You chose to make a joint account.");
 				System.out.println("If you are joining an account please enter the account key below");
 				String temp = null;
-				while (!validInput) {
+				while (true) {
 					boolean keyFound = false;
 					boolean notClient = false;
 					temp = sc.nextLine();
@@ -492,7 +506,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	public double deposit() {
 		System.out.println("Please enter amount you wish to deposit");
 		exceptionCaught = true;
-		while (!validInput && exceptionCaught) {
+		while (true && exceptionCaught) {
 			exceptionCaught = false;
 			String amountTemp = sc.nextLine();
 			try {
@@ -522,7 +536,7 @@ public class Account implements Client, Employee, SystemAdmin {
 			System.out.println("Please enter amount you wish to withdraw:");
 			exceptionCaught = true;
 
-			while (!validInput && exceptionCaught) {
+			while (true && exceptionCaught) {
 				exceptionCaught = false;
 				String amountTemp = sc.nextLine();
 				try {
@@ -561,7 +575,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		System.out.println("Please enter account you want to transfer from");
 		System.out.println(accounts2);
 		String accountOn = null;
-		while (!validInput) {
+		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
 			accountCur.toLowerCase();
@@ -590,7 +604,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 
 		System.out.println("Please enter account you wish to transfer to");
-		while (!validInput) {
+		while (true) {
 			accountCur = sc.nextLine();
 			accountCur.toLowerCase();
 			// check if account exists in the list
@@ -612,7 +626,7 @@ public class Account implements Client, Employee, SystemAdmin {
 
 		System.out.println("Please enter amount you wish to transfer");
 		exceptionCaught = true;
-		while (!validInput && exceptionCaught) {
+		while (true && exceptionCaught) {
 			exceptionCaught = false;
 			String amountTemp = sc.nextLine();
 			try {
@@ -732,7 +746,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	// **************************************************//
 	private void checkYN() {
 		System.out.println("Please enter 1: Yes or 2: No");
-		while (!validInput) {
+		while (true) {
 			yn = sc.nextLine();
 			if ((yn.equals("1")) || (yn.equals("2"))) {
 				break;
@@ -744,7 +758,7 @@ public class Account implements Client, Employee, SystemAdmin {
 
 	private void checkClientAction() {
 		System.out.println("Would you like to 1: Deposit 2: Withdraw 3: Transfer");
-		while (!validInput) {
+		while (true) {
 			choice = sc.nextLine();
 			if ((choice.equals("1")) || (choice.equals("2")) || (choice.equals("3"))) {
 				break;

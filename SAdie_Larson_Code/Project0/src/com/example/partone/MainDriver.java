@@ -15,7 +15,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class MainDriver {
-	static boolean validInput = false;
 	static boolean repeatMain = true;
 	static boolean repeatOptions = true;
 	static Scanner sc = new Scanner(System.in);
@@ -27,22 +26,9 @@ public class MainDriver {
 	static Random r = new Random();
 	static HashMap<Integer, Account> bankAccounts = new HashMap<Integer, Account>();
 
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		FileOutputStream fo = new FileOutputStream("BankUsers.txt");
-		ObjectOutputStream ob = new ObjectOutputStream(fo);
-		ObjectInputStream obi = new ObjectInputStream(new FileInputStream("BankUsers.txt"));
-	
-	/*	try {
-			while ((bankAccounts =  obi.readObject()) != null) {
-				bankAccounts = temp; //
-				System.out.println(bankAccounts);
-			}
-		} catch (EOFException e) {
-			// output expected
-		}
-		*/
-		obi.close();
-
+	public static void main(String[] args) {
+		String filename = "./bankUsers.txt";
+	//	readObject(filename);
 		// working on reading in accounts
 		// *********************************************************//
 		String userP = null;
@@ -56,7 +42,7 @@ public class MainDriver {
 			System.out.println("Hello, welcome to Revature Banking.");
 			System.out.println("Do you want to 1: Log in or 2: Create an acocunt");
 			System.out.println("Enter 1 or 2:");
-			while (!validInput) {
+			while (true) {
 				choice = sc.nextLine();
 				if ((choice.equals("1")) || (choice.equals("2"))) {
 					break;
@@ -73,10 +59,10 @@ public class MainDriver {
 				System.out.println("Username:");
 				checkUser();
 				if (repeatMain) {
-					System.out.println("entered exit mode");
+					// System.out.println("entered exit mode");
 					break;
 				}
-				while (!validInput) { // check password corresponds with Username
+				while (true) { // check password corresponds with Username
 					System.out.println("Password:");
 					userP = sc.nextLine();
 					userP.toLowerCase();
@@ -100,7 +86,7 @@ public class MainDriver {
 							System.out.println(options);
 							System.out.println("Enter 1, 2, or 3");
 							// implement options
-							while (!validInput) {
+							while (true) {
 								choice = sc.nextLine();
 								if ((choice.equals("1")) || (choice.equals("2"))) {
 									break;
@@ -160,7 +146,7 @@ public class MainDriver {
 						System.out.println(options);
 						System.out.println("Enter 1, 2, or 3");
 						// implement options
-						while (!validInput) {
+						while (true) {
 							choice = sc.nextLine();
 							if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 								break;
@@ -221,7 +207,7 @@ public class MainDriver {
 						System.out.println(options);
 						System.out.println("Enter 1, 2, 3, 4, 5, or 6");
 						// implement options
-						while (!validInput) {
+						while (true) {
 							choice = sc.nextLine();
 							if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4")
 									|| choice.equals("5") || choice.equals("6")) {
@@ -306,7 +292,7 @@ public class MainDriver {
 				System.out.println(
 						"Please enter what account type you are opening 1: Client 2: Employee or 3: System Admin");
 				System.out.println("Please enter 1, 2, or 3");
-				while (!validInput) {
+				while (true) {
 					choice = sc.nextLine();
 					if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 						break;
@@ -319,6 +305,7 @@ public class MainDriver {
 				case "1":
 					Account cl = new Account(bankAccounts, choice);
 					createKey();
+					cl.setHashKey(accountKey);
 					bankAccounts.put(accountKey, cl);
 					int temp = 0;
 					temp = cl.apply(bankAccounts, accountKey);
@@ -331,21 +318,20 @@ public class MainDriver {
 						bankAccounts.get(temp2).setJoint(accountKey);
 						bankAccounts.get(temp).setJoint(accountKey);
 					}
-					ob.writeObject(cl);
 					repeatMain = false;
 					break;
 				case "2":
 					Account em = new Account(bankAccounts, choice);
 					createKey();
+					em.setHashKey(accountKey);
 					bankAccounts.put(accountKey, em);
-					ob.writeObject(em);
 					repeatMain = false;
 					break;
 				case "3":
 					Account sa = new Account(bankAccounts, choice);
 					createKey();
+					sa.setHashKey(accountKey);
 					bankAccounts.put(accountKey, sa);
-					ob.writeObject(sa);
 					repeatMain = false;
 					break;
 				default:
@@ -353,14 +339,27 @@ public class MainDriver {
 							"Error in choice betweenw hat type of account creating 0 =client, 1 =employee, 2 = sys ad");
 					break;
 				}
-				ob.close();
 				// System.out.println("Exiting to main menu now");
 				// repeatMain = true;
 			} else {
 				System.out.println("error has occurred with choosing whether to open an account or log in");
 			}
 		} // end of repeat main method
-			// } // end of repeat start
+
+		// *************************Adding Account information to Serialized
+		// File***********//
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+			for (Entry<Integer, Account> en : bankAccounts.entrySet()) {
+				System.out.println("yo");
+				oos.writeObject(en);
+			}
+		} catch (IOException io) {
+			System.out.println("Goodbye!");
+			// io.printStackTrace();
+		}
+		
+		readObject(filename);
+		System.out.println("Not printing anything from read Object :( - issue is not serilaizeable");
 	} // end of main method
 
 	// ******************************************************//
@@ -369,7 +368,7 @@ public class MainDriver {
 	static void menuOption() {
 		System.out.println("Do you want to reurn to 1: main menu or 2: options screen");
 		System.out.println();
-		while (!validInput) {
+		while (true) {
 			choice = sc.nextLine();
 			if (choice.equals("1")) {
 				repeatMain = true;
@@ -384,7 +383,7 @@ public class MainDriver {
 	}
 
 	static void checkUser() {
-		while (!validInput) {
+		while (true) {
 			userN = sc.nextLine();
 			userN.toLowerCase();
 			if (userN.equals("exit")) {
@@ -414,7 +413,7 @@ public class MainDriver {
 	}
 
 	static void createKey() {
-		while (!validInput) {
+		while (true) {
 			accountKey = r.nextInt(9999);
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
 				if (accountKey == en.getKey()) { // check if accountKey is in map
@@ -428,7 +427,7 @@ public class MainDriver {
 	}
 
 	static void verifyClient() {
-		while (!validInput) {
+		while (true) {
 			System.out.println("Enter the username of the acocunt you wish to review");
 			checkUser();
 			if (bankAccounts.get(currKey).getUserType() == 1) {
@@ -436,6 +435,28 @@ public class MainDriver {
 			} else {
 				System.out.println("Not valid. Only Clients can be accessed.");
 			}
+		}
+	}
+
+	public static void readObject(String filename) {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+			while (true) {
+				Account obj;
+				try {
+					obj = (Account) ois.readObject();
+					System.out.println("the obj" + obj);
+							
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("In exception right away");
+					break;
+				}
+				System.out.println("the obj" + obj);
+				bankAccounts.put(obj.getHashKey(), obj);
+			}
+		} catch (IOException e) {
+			// e.printStackTrace();
+			System.out.println("Done passing in bankAccounts data");
 		}
 	}
 }
