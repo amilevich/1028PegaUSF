@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class Q20NotepadC implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 8434728043945598184L;
 	public  String name;
 	public String type;
 	public int age;
