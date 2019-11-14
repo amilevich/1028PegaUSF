@@ -365,7 +365,7 @@ public class MainDriver {
 	// ******************************************************//
 	// ****************** Functions to use ******************//
 	// ******************************************************//
-	static void menuOption() {
+	static void menuOption() { //returns user to main menu
 		System.out.println("Do you want to reurn to 1: main menu or 2: options screen");
 		System.out.println();
 		while (true) {
@@ -382,7 +382,7 @@ public class MainDriver {
 		}
 	}
 
-	static void checkUser() {
+	static void checkUser() { //checks if the user exists
 		while (true) {
 			userN = sc.nextLine();
 			userN.toLowerCase();
@@ -412,7 +412,7 @@ public class MainDriver {
 		}
 	}
 
-	static void createKey() {
+	static void createKey() { //creates a special key from 0-9999
 		while (true) {
 			accountKey = r.nextInt(9999);
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
@@ -426,7 +426,7 @@ public class MainDriver {
 		}
 	}
 
-	static void verifyClient() {
+	static void verifyClient() { // checks if client exists
 		while (true) {
 			System.out.println("Enter the username of the acocunt you wish to review");
 			checkUser();
@@ -438,7 +438,7 @@ public class MainDriver {
 		}
 	}
 
-	public static void readObject(String filename) {
+	public static void readObject(String filename) { //this method will read all of the objects from file (database)
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
 			while (true) {
 				Account obj;

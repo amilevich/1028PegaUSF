@@ -12,9 +12,12 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 	/**
 	 * @author Sadie Larson
 	 */
+
 	private static final long serialVersionUID = -8539840413648934849L;
 	private int hashKey;
-	HashMap<String, String> userPass = new HashMap<String, String>();
+	// HashMap<String, String> userPass = new HashMap<String, String>();
+	private static String[] userPass = { "", "", "", "" };
+	private String[] accountss = { "Checking", "", "Saving", "" };
 	private String username;
 	private String password;
 	private String fName;
@@ -55,8 +58,8 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+		userPass[0] = username;
 	}
-	
 
 	public String getPassword() {
 		return password;
@@ -64,9 +67,29 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-		userPass.put(this.username, password);
+		userPass[1] = password;
 	}
 
+	// ************************Joint
+	// private static String getUsernameJ() {
+	// return userPass[0] + " " + userPass[2];
+	// }
+
+	private static void setUsernameJ(String username1, String username2) {
+		userPass[0] = username1;
+		userPass[2] = username1;
+	}
+
+	// private static String getPasswordJ() {
+	// return userPass[1] + " " + userPass[3];
+	// }
+
+	private static void setPasswordJ(String password1, String password2) {
+		userPass[1] = password1;
+		userPass[3] = password2;
+	}
+
+	// ****************************************
 	public String getAccountType() {
 		return accountType;
 	}
@@ -136,11 +159,17 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 		String info = null;
 		if (userType == 1) {
 			if (joint > 0) {
-				info = "Account [Username=Password: " + userPass + ", accountAccessType: client" + ", Accounts: "
-						+ accounts + ", Joint Account Key: " + joint + "]";
+				StringBuffer userPassString = new StringBuffer("");
+				for (int i = 0; i < userPass.length; i++) {
+					userPassString.append(userPass[i] + " ");
+				}
+				info = "Account [Username,Password: " + userPassString + ", accountAccessType: client" + ", Account: Checking"
+						+ accountBalanceC + ", Account: Savings" + accountBalanceS + ", Joint Account Key: " + joint
+						+ "]";
+			} else { // not a joint account
+				info = "Account [ Username, Password: " + username + ", " + password + ", accountAccessType: client"
+						+ ", Account: Checking" + accountBalanceC + ", Account: Savings" + accountBalanceS + "]";
 			}
-			info = "Account [ Username=Password: " + userPass + ", accountAccessType: client" + ", Accounts (name=$): "
-					+ accounts + "]";
 		} else if (userType == 2) { // employee
 			info = "Account [ Username=Password: " + userPass + ", accountAccessType: Employee" + "]";
 		} else { // sys ad
@@ -153,14 +182,16 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 	// ******* creating an actual account *******************//
 	// ******************************************************//
 	public Account() {
-		//needed for adding from file
+		// needed for adding from file
 	}
+
 	public Account(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
 		createJAccount(bankAccounts, accountKey, temp);
 		// System.out.println("done constructing joint account");
 	}
 
 	public Account(HashMap<Integer, Account> bankAccounts, String choice) {
+
 		createAccount(bankAccounts, choice);
 		// System.out.println("done constructing");
 	}
@@ -211,33 +242,33 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 
 		setUsername(username);
 		setPassword(password);
-		userPass.put(this.getUsername(), this.getPassword());
+		// userPass.put(this.getUsername(), this.getPassword());
 
 		// ******Setting up account information *******************//
 
 		/*
-		 * System.out.println("Please enter your first name below"); while (true)
-		 * { names = sc.nextLine(); if (names.equals(" ")) {
+		 * System.out.println("Please enter your first name below"); while (true) {
+		 * names = sc.nextLine(); if (names.equals(" ")) {
 		 * System.out.println("Please enter at least one character"); } else { break; }
 		 * } setfName(names);
 		 * 
-		 * System.out.println("Please enter your last name below"); while (true)
-		 * { names = sc.nextLine(); if (names.equals(" ")) {
+		 * System.out.println("Please enter your last name below"); while (true) { names
+		 * = sc.nextLine(); if (names.equals(" ")) {
 		 * System.out.println("Please enter at least one character"); } else { break; }
 		 * } setlName(names);
 		 * 
-		 * System.out.println("Please enter your birth month"); while (true) {
-		 * date = sc.nextInt(); if ((date < 1) || date > 12) {
+		 * System.out.println("Please enter your birth month"); while (true) { date =
+		 * sc.nextInt(); if ((date < 1) || date > 12) {
 		 * System.out.println("Months fall between 1-12"); } else { break; } }
 		 * setBirthM(date);
 		 * 
-		 * System.out.println("Please enter your birth day"); while (true) { date
-		 * = sc.nextInt(); if ((date < 1) || date > 31) {
+		 * System.out.println("Please enter your birth day"); while (true) { date =
+		 * sc.nextInt(); if ((date < 1) || date > 31) {
 		 * System.out.println("Dates fall between 1-31"); } else { break; } }
 		 * setBirthD(date);
 		 * 
-		 * System.out.println("Please enter your birth year"); while (true) {
-		 * date = sc.nextInt(); if ((date < 1923) || date > 2001) {
+		 * System.out.println("Please enter your birth year"); while (true) { date =
+		 * sc.nextInt(); if ((date < 1923) || date > 2001) {
 		 * System.out.println("Years fall between 1923-2001"); } else { break; }
 		 * 
 		 * } setBirthY(date);
@@ -246,10 +277,14 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 		// employee approval has been confirmed");
 	}
 
-	public void createJAccount(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
-		userPass.put(bankAccounts.get(accountKey).getUsername(), bankAccounts.get(accountKey).getPassword());
-		userPass.put(bankAccounts.get(temp).getUsername(), bankAccounts.get(temp).getPassword());
-		accounts.put("shared checking", 0.0);
+	private void createJAccount(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
+		setUsernameJ(bankAccounts.get(accountKey).getUsername(), bankAccounts.get(temp).getUsername());
+		setPasswordJ(bankAccounts.get(accountKey).getPassword(), bankAccounts.get(temp).getPassword());
+		// userPass.put(bankAccounts.get(accountKey).getUsername(),
+		// bankAccounts.get(accountKey).getPassword());
+		// userPass.put(bankAccounts.get(temp).getUsername(),
+		// bankAccounts.get(temp).getPassword());
+		// accounts.put("shared checking", 0.0);
 		userType = 1; // client
 	}
 
@@ -258,7 +293,8 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 	// ******************************************************//
 
 	protected boolean accountHolder; // check to see status of account
-	protected double accountBalance = 0.0;
+	protected double accountBalanceC = 0.0;
+	protected double accountBalanceS = 0.0;
 	private int applicationStatus; // 0: applied, 1: approved, 2: denied
 
 	public int getApplicationStatus() {
@@ -272,7 +308,7 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 	public String accountCur; // checking, savings, whatever they call it
 	public double amount;
 
-	Map<String, Double> accounts = new HashMap<String, Double>();
+	// Map<String, Double> accounts = new HashMap<String, Double>();
 
 	@Override
 	public void createAccounts(Map<String, Double> accounts2) { // note difference between account(user) and accounts
@@ -352,84 +388,123 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 				accessSingleAccount();
 			}
 		}
-
 	}
+
+	private int checkAccount;
 
 	@Override
 	public void accessSingleAccount() {
-		if (accounts.isEmpty()) {
-			System.out.println("Single Account Holder currently. You need to name the first account");
-			createAccounts(accounts);
-		}
-		System.out.println("Which account do you want to look at");
-		System.out.println(accounts);
+		// ************************* Commented out to serialize Account object without
+		// the hashmap
+		// if (accounts.isEmpty()) {
+		// System.out.println("Single Account Holder currently. You need to name the
+		// first account");
+		// createAccounts(accounts);
+		// }
+		// System.out.println("Which account do you want to look at");
+		// System.out.println(accounts);
+		// while (true) {
+		// accountExists = false;
+		// accountCur = sc.nextLine();
+		// accountCur.toLowerCase();
+		// for (Entry<String, Double> en : accounts.entrySet()) { //
+		// // check if accountKey is in map
+		// if (accountCur.equals(en.getKey())) {
+		// System.out.println("account exists");
+		// accountExists = true;
+		// break;
+		// }
+		// }
+		// if (accountExists) {
+		// break;
+		// } else {
+		// System.out.println("Invalid. Class Account does not exist. YOur accounts are:
+		// ");
+		// System.out.println(accounts);
+		// }
+		// }
+		System.out.println("Do you want to lok at your 1: Checking of 2: Saving");
+		System.out.println("Please enter 1 or 2");
 		while (true) {
-			accountExists = false;
-			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
-			for (Entry<String, Double> en : accounts.entrySet()) { //
-				// check if accountKey is in map
-				if (accountCur.equals(en.getKey())) {
-					System.out.println("account exists");
-					accountExists = true;
-					break;
-				}
-			}
-			if (accountExists) {
+			yn = sc.nextLine();
+			if ((yn.equals("1")) || (yn.equals("2"))) {
 				break;
 			} else {
-				System.out.println("Invalid. Class Account does not exist. YOur accounts are: ");
-				System.out.println(accounts);
+				System.out.println("Invalid input. Please enter 1 or 2");
 			}
 		}
 
 		checkClientAction();
+		checkAccount = Integer.valueOf(yn);
+		if (checkAccount == 2) {
+			checkAccount = 3;
+		}
 		if (choice.equals("1")) {
-			accounts.put(accountCur, deposit());
+			// accounts.put(accountCur, deposit());
+			accountss[checkAccount] = String.valueOf(deposit());
 		} else if (choice.equals("2")) {
-			accounts.put(accountCur, withdraw());
+			// accounts.put(accountCur, withdraw());
+			accountss[checkAccount] = String.valueOf(withdraw());
 		}
 		if (choice.equals("3")) {
-			transfer(accounts);
+			// transfer(accounts);
+			transfer();
 		}
 	}
 
 	@Override
 	public void accessJoint(HashMap<Integer, Account> bankAccounts) {
-		System.out.println("Which account do you want to look at");
-		System.out.println("If you want to make a new account please enter 'Create'");
-		System.out.println(bankAccounts.get(joint).accounts);
+		// System.out.println("Which account do you want to look at");
+		// System.out.println("If you want to make a new account please enter
+		// 'Create'");
+		// System.out.println(bankAccounts.get(joint).accounts);
+		// while (true) {
+		// accountExists = false;
+		// accountCur = sc.nextLine();
+		// accountCur.toLowerCase();
+		// if (accountCur.equals("create")) {
+		// createAccounts(bankAccounts.get(joint).accounts);
+		// System.out.println(bankAccounts.get(joint).accounts);
+		// }
+		// for (Entry<String, Double> en : bankAccounts.get(joint).accounts.entrySet())
+		// {
+		// // check if accountKey is in map
+		// if (accountCur.equals(en.getKey())) {
+		// System.out.println("account exists");
+		// accountExists = true;
+		// break;
+		// }
+		// }
+		// if (accountExists) {
+		// break;
+		// } else {
+		// System.out.println("Invalid. Class Account does not exist. Your accounts are:
+		// ");
+		// System.out.println(bankAccounts.get(joint).accounts);
+		// }
+		// }
+		System.out.println("Do you want to lok at your 1: Checking of 2: Saving");
+		System.out.println("Please enter 1 or 2");
 		while (true) {
-			accountExists = false;
-			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
-			if (accountCur.equals("create")) {
-				createAccounts(bankAccounts.get(joint).accounts);
-				System.out.println(bankAccounts.get(joint).accounts);
-			}
-			for (Entry<String, Double> en : bankAccounts.get(joint).accounts.entrySet()) {
-				// check if accountKey is in map
-				if (accountCur.equals(en.getKey())) {
-					System.out.println("account exists");
-					accountExists = true;
-					break;
-				}
-			}
-			if (accountExists) {
+			yn = sc.nextLine();
+			if ((yn.equals("1")) || (yn.equals("2"))) {
 				break;
 			} else {
-				System.out.println("Invalid. Class Account does not exist. Your accounts are: ");
-				System.out.println(bankAccounts.get(joint).accounts);
+				System.out.println("Invalid input. Please enter 1 or 2");
 			}
 		}
 		checkClientAction();
 		if (choice.equals("1")) {
-			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).deposit());
+			bankAccounts.get(joint).deposit();
+			// (bankAccounts.get(joint).accounts).put(accountCur,
+			// bankAccounts.get(joint).deposit());
 		} else if (choice.equals("2")) {
-			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).withdraw());
+			bankAccounts.get(joint).withdraw();
+			// (bankAccounts.get(joint).accounts).put(accountCur,
+			// bankAccounts.get(joint).withdraw());
 		}
 		if (choice.equals("3")) {
-			transfer(bankAccounts.get(joint).accounts);
+			bankAccounts.get(joint).transfer();
 		}
 	}
 
@@ -498,7 +573,7 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 	public void viewInformation() {
 		System.out.println("Name: " + getfName() + " " + getlName());
 		System.out.println("Account Staus: " + applicationStatus);
-		System.out.println("Open accounts: " + accounts);
+		System.out.println("Open accounts: Checking=" + accountBalanceC + "Savings=" + accountBalanceS);
 		System.out.println("Joint status: " + joint);
 	}
 
@@ -525,17 +600,160 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 			}
 
 		}
-		System.out.println("Your new account balance is: " + (accountBalance + amount));
-		accountBalance += amount;
-		return (accountBalance);
+		if (checkAccount == 1) {
+			System.out.println("Your new account balance is: " + (accountBalanceC + amount));
+			accountBalanceC += amount;
+			return (accountBalanceC);
+		} else {
+			System.out.println("Your new account balance is: " + (accountBalanceS + amount));
+			accountBalanceS += amount;
+			return (accountBalanceS);
+		}
 	}
 
 	@Override
 	public double withdraw() {
-		if (accountBalance > 0) {
-			System.out.println("Please enter amount you wish to withdraw:");
-			exceptionCaught = true;
+		if (checkAccount == 1) {
+			if (accountBalanceC > 0) {
+				System.out.println("Please enter amount you wish to withdraw:");
+				exceptionCaught = true;
 
+				while (true && exceptionCaught) {
+					exceptionCaught = false;
+					String amountTemp = sc.nextLine();
+					try {
+						amount = Double.valueOf(amountTemp);
+					} catch (Exception e) {
+						System.out.println("Invalid. Input must be an number");
+						exceptionCaught = true;
+						continue;
+					}
+					if (amount > accountBalanceC) { // checks if enough in account
+						System.out.println("Invalid! Your acocunt only has: " + accountBalanceC);
+						System.out.println("Please re-enter withdraw amount");
+						exceptionCaught = true;
+					} else if (amount < 0) { // checks if non-negative value used
+						System.out.println("You can NOT enter a negative value");
+						System.out.println("Please re-enter withdraw amount");
+						exceptionCaught = true;
+					} else {
+						break;
+					}
+				}
+				System.out.println("Your new account balance is: " + (accountBalanceC - amount));
+				accountBalanceC -= amount;
+				return (accountBalanceC);
+			} else {
+				System.out.println("You only have $0 in your account");
+			}
+			return (accountBalanceC);
+		} else {// looking at savings account
+			if (accountBalanceS > 0) {
+				System.out.println("Please enter amount you wish to withdraw:");
+				exceptionCaught = true;
+
+				while (true && exceptionCaught) {
+					exceptionCaught = false;
+					String amountTemp = sc.nextLine();
+					try {
+						amount = Double.valueOf(amountTemp);
+					} catch (Exception e) {
+						System.out.println("Invalid. Input must be an number");
+						exceptionCaught = true;
+						continue;
+					}
+					if (amount > accountBalanceS) { // checks if enough in account
+						System.out.println("Invalid! Your acocunt only has: " + accountBalanceS);
+						System.out.println("Please re-enter withdraw amount");
+						exceptionCaught = true;
+					} else if (amount < 0) { // checks if non-negative value used
+						System.out.println("You can NOT enter a negative value");
+						System.out.println("Please re-enter withdraw amount");
+						exceptionCaught = true;
+					} else {
+						break;
+					}
+				}
+				System.out.println("Your new account balance is: " + (accountBalanceS - amount));
+				accountBalanceS -= amount;
+				return (accountBalanceS);
+			} else {
+				System.out.println("You only have $0 in your account");
+			}
+			return (accountBalanceS);
+		}
+	}
+
+	@Override
+	// ********************Commented out in order to serialize object wihtout the
+	// hashmaps
+	// public void transfer(Map<String, Double> accounts2) {
+	// if (accounts2.size() < 2) {
+	// createAccounts(accounts2);
+	// }
+	// System.out.println("Please enter account you want to transfer from");
+	// System.out.println(accounts2);
+	// String accountOn = "";
+	// while (true) {
+	// accountExists = false;
+	// accountCur = sc.nextLine();
+	// accountCur.toLowerCase();
+	// // check if account exists in the list
+	// for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through
+	// all members
+	// // in
+	// // accounts map // check if accountKey is in map
+	// if (accountCur.equals(en.getKey())) {
+	// accountExists = true;
+	// accountOn = accountCur;
+	// System.out.println("account found to exist");
+	// break; // breaks out of for loop
+	// }
+	// }
+	// if (accountExists && accounts.get(accountCur) <= 0) {
+	// System.out.println("Your acocunt has 0 funds in it");
+	// accountExists = false;
+	// }
+	// if (accountExists) {
+	// break;
+	// } else {
+	// System.out.println("Invalid. Please choose an exisiting account to transfer
+	// from.");
+	// System.out.println(accounts);
+	// }
+	// }
+	//
+	// System.out.println("Please enter account you wish to transfer to");
+	// while (true) {
+	// accountCur = sc.nextLine();
+	// accountCur.toLowerCase();
+	// // check if account exists in the list
+	// for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through
+	// all members
+	// if (accountCur.equals(en.getKey())) {
+	// accountExists = true;
+	// break;
+	// }
+	// }
+	// if (accountExists && (accountOn != accountCur)) { // makes sure not to
+	// transfer from same
+	// break;
+	// } else if (accountOn.equals(accountCur)) {
+	// System.out.println(
+	// "Invalid. Please choose a different account to transfer to. Has to be
+	// different than the one you are transferring from.");
+	// } else { // meaning account does not exist
+	// System.out.println("Invalid. Please choose an exisiting account to transfer
+	// to.");
+	// }
+	// }
+	public void transfer() {
+		String temp;
+		if (checkAccount == 1) { // means you chose checking
+			temp = "Savings";
+			System.out
+					.println("Please enter amount you wish to transfer from your " + checkAccount + " to your " + temp);
+			exceptionCaught = true;
 			while (true && exceptionCaught) {
 				exceptionCaught = false;
 				String amountTemp = sc.nextLine();
@@ -546,106 +764,59 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 					exceptionCaught = true;
 					continue;
 				}
-				if (amount > accountBalance) { // checks if enough in account
-					System.out.println("Invalid! Your acocunt only has: " + accountBalance);
-					System.out.println("Please re-enter withdraw amount");
-					exceptionCaught = true;
-				} else if (amount < 0) { // checks if non-negative value used
-					System.out.println("You can NOT enter a negative value");
-					System.out.println("Please re-enter withdraw amount");
-					exceptionCaught = true;
+				if ((amount > 0) && (amount < accountBalanceC)) { // valid entry
+					break;
 				} else {
-					break;
+					System.out.println("Invalid. Amount must be between 0 and " + accountBalanceC);
+					exceptionCaught = true;
 				}
 			}
-			System.out.println("Your new account balance is: " + (accountBalance - amount));
-			accountBalance -= amount;
-			return (accountBalance);
+			accountBalanceS += amount;
+			accountBalanceC -= amount;
+			for (int i = 0; i < accountss.length; i++) {
+				System.out.print(accountss[i] + " ");
+			}
+
 		} else {
-			System.out.println("You only have $0 in your account");
-		}
-		return (accountBalance);
-	}
-
-	@Override
-	public void transfer(Map<String, Double> accounts2) {
-		if (accounts2.size() < 2) {
-			createAccounts(accounts2);
-		}
-		System.out.println("Please enter account you want to transfer from");
-		System.out.println(accounts2);
-		String accountOn = null;
-		while (true) {
-			accountExists = false;
-			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
-			// check if account exists in the list
-			for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through all members
-				// in
-				// accounts map // check if accountKey is in map
-				if (accountCur.equals(en.getKey())) {
-					accountExists = true;
-					accountOn = accountCur;
-					System.out.println("account found to exist");
-					break; // breaks out of for loop
+			temp = "Chekcing";
+			System.out
+					.println("Please enter amount you wish to transfer from your " + checkAccount + " to your " + temp);
+			exceptionCaught = true;
+			while (true && exceptionCaught) {
+				exceptionCaught = false;
+				String amountTemp = sc.nextLine();
+				try {
+					amount = Double.valueOf(amountTemp);
+				} catch (Exception e) {
+					System.out.println("Invalid. Input must be an number");
+					exceptionCaught = true;
+					continue;
 				}
-			}
-			if(accountExists && accounts.get(accountCur) <= 0) {
-				System.out.println("Your acocunt has 0 funds in it");
-				accountExists = false;
-			}
-			if (accountExists) {
-				break;
-			}
-			else {
-				System.out.println("Invalid. Please choose an exisiting account to transfer from.");
-				System.out.println(accounts);
-			}
-		}
-
-		System.out.println("Please enter account you wish to transfer to");
-		while (true) {
-			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
-			// check if account exists in the list
-			for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through all members
-				if (accountCur.equals(en.getKey())) {
-					accountExists = true;
+				if ((amount > 0) && (amount < accountBalanceS)) { // valid entry
 					break;
+				} else {
+					System.out.println("Invalid. Amount must be between 0 and " + accountBalanceS);
+					exceptionCaught = true;
 				}
 			}
-			if (accountExists && (accountOn != accountCur)) { // makes sure not to transfer from same
-				break;
-			} else if (accountOn.equals(accountCur)) {
-				System.out.println(
-						"Invalid. Please choose a different account to transfer to. Has to be different than the one you are transferring from.");
-			} else { // meaning account does not exist
-				System.out.println("Invalid. Please choose an exisiting account to transfer to.");
+			accountBalanceC += amount;
+			accountBalanceS -= amount;
+			for (int i = 0; i < accountss.length; i++) {
+				System.out.print(accountss[i] + " ");
 			}
 		}
 
-		System.out.println("Please enter amount you wish to transfer");
-		exceptionCaught = true;
-		while (true && exceptionCaught) {
-			exceptionCaught = false;
-			String amountTemp = sc.nextLine();
-			try {
-				amount = Double.valueOf(amountTemp);
-			} catch (Exception e) {
-				System.out.println("Invalid. Input must be an number");
-				exceptionCaught = true;
-				continue;
-			}
-			if ((amount > 0) && (amount < accounts2.get(accountOn))) { // valid entry
-				break;
-			} else {
-				System.out.println("Invalid. Amount must be between 0 and " + accounts.get(accountOn));
-				exceptionCaught = true;
-			}
-		}
-		accounts.put(accountCur, (amount + accounts2.get(accountCur)));
-		accounts.put(accountOn, (accounts2.get(accountOn)) - amount);
-		System.out.println(accounts);
+		// if ((amount > 0) && (amount < accounts2.get(accountOn))) { // valid entry
+		// break;
+		// } else {
+		// System.out.println("Invalid. Amount must be between 0 and " +
+		// accounts.get(accountOn));
+		// exceptionCaught = true;
+		// }
+		// }
+		// accounts.put(accountCur, (amount + accounts2.get(accountCur)));
+		// accounts.put(accountOn, (accounts2.get(accountOn)) - amount);
+		// System.out.println(accounts);
 	}
 
 	// ******************************************************//
@@ -694,7 +865,8 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 		System.out.println("Password: " + getPassword());
 		System.out.println("Name: " + getfName() + " " + getlName());
 		System.out.println("Birth date: " + getBirthM() + "/" + getBirthD() + "/" + getBirthY());
-		System.out.println("List of accounts and their amount" + accounts);
+		// System.out.println("List of accounts and their amount" + accounts);
+		System.out.println("Open accounts: Checking=" + accountBalanceC + "Savings=" + accountBalanceS);
 	}
 
 	// ******************************************************//

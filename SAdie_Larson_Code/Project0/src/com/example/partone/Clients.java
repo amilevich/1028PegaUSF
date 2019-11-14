@@ -10,6 +10,7 @@ public abstract class Clients implements Client {
 	public abstract void viewInformation();
 	public abstract double deposit();
 	public abstract double withdraw();
-	public abstract void transfer(Map<String, Double> accounts2);
+//	public abstract void transfer(Map<String, Double> accounts2);
+	public abstract void transfer();
 
 }
