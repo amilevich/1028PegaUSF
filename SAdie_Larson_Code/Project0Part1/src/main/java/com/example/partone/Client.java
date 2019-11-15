@@ -16,10 +16,12 @@ public interface Client {
 
 	public abstract double withdraw();
 
-	public abstract void transfer(Map<String, Double> accounts2);
+	public abstract void transfer(int key, int otherKey,  HashMap<Integer, Account> bankAccounts);
+	
+	public abstract void transferBetween(int key, int otherKey, HashMap<Integer, Account> bankAccounts);
 
-	public void accessJoint(HashMap<Integer, Account> bankAccounts);
+	public void accessJoint(HashMap<Integer, Account> bankAccounts, int Hashkey);
 
-	public void accessSingleAccount();
+	public void accessSingleAccount(HashMap<Integer, Account> bankAccounts, int hashKey);
 
 }

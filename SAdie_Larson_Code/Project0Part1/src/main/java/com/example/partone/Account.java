@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import org.apache.log4j.Logger;
 
 public class Account implements Client, Employee, SystemAdmin {
-	
+
 	/**
 	 * @author Sadie Larson
 	 */
@@ -138,10 +138,10 @@ public class Account implements Client, Employee, SystemAdmin {
 		if (userType == 1) {
 			if (joint > 0) {
 				info = "Account [Username=Password: " + userPass + ", accountAccessType: client" + ", Account: "
-						+ accounts + ", Joint Key: " +joint + "]";
+						+ accounts + ", Joint Key: " + joint + "]";
 			} else { // not a joint account
-				info = "Account [Username=Password: " + userPass  +", accountAccessType: client"
-						+ ", Account: " + accounts + "]";
+				info = "Account [Username=Password: " + userPass + ", accountAccessType: client" + ", Account: "
+						+ accounts + "]";
 			}
 		} else if (userType == 2) { // employee
 			info = "Account [ Username=Password: " + userPass + ", accountAccessType: Employee" + "]";
@@ -314,21 +314,18 @@ public class Account implements Client, Employee, SystemAdmin {
 			if (bankAccounts.get(accountKeyAccess).getJoint() > 0) {
 				System.out.println("Do you want to access their 1: Joint or 2: Single account");
 				while (true) {
-					yn = sc.nextLine();
 					if ((yn.equals("1")) || (yn.equals("2"))) {
 						break;
 					} else {
 						System.out.println("Invalid input. Please enter 1 or 2");
 					}
 				}
-				// debugging line
-				// below******************************************************************************
 				System.out.println("Joint value is" + bankAccounts.get(accountKeyAccess).getJoint());
 				if (yn.equals("1")) { // Joint account viewing
-					bankAccounts.get(accountKeyAccess).accessJoint(bankAccounts);
+					bankAccounts.get(accountKeyAccess).accessJoint(bankAccounts, accountKeyAccess);
 				} else { // accessing single account
 					System.out.println("sys ad chose 2");
-					bankAccounts.get(accountKeyAccess).accessSingleAccount();
+					bankAccounts.get(accountKeyAccess).accessSingleAccount(bankAccounts, accountKeyAccess);
 				}
 			}
 		}
@@ -346,14 +343,14 @@ public class Account implements Client, Employee, SystemAdmin {
 					}
 				}
 				if (yn.equals("1")) { // Joint account viewing
-					accessJoint(bankAccounts);
+					accessJoint(bankAccounts, accountKeyAccess);
 				} else {
-					accessSingleAccount();
+					accessSingleAccount(bankAccounts, accountKeyAccess);
 				}
 			}
 
 			else { // accessing single account
-				accessSingleAccount();
+				accessSingleAccount(bankAccounts, accountKeyAccess);
 			}
 		}
 	}
@@ -361,8 +358,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	private int checkAccount;
 
 	@Override
-	public void accessSingleAccount() {
-		// ************************* Commented out to serialize Account object without
+	public void accessSingleAccount(HashMap<Integer, Account> bankAccounts, int hashKey) {
 		// the hashmap
 		if (accounts.isEmpty()) {
 			System.out.println("Single Account Holder currently. You need to name the first account");
@@ -401,13 +397,15 @@ public class Account implements Client, Employee, SystemAdmin {
 			accounts.put(accountCur, withdraw());
 		}
 		if (choice.equals("3")) {
-			transfer(accounts);
+			System.out.println(hashKey);
+			System.out.println(joint);
+			transfer(hashKey, joint, bankAccounts);
 
 		}
 	}
 
 	@Override
-	public void accessJoint(HashMap<Integer, Account> bankAccounts) {
+	public void accessJoint(HashMap<Integer, Account> bankAccounts, int HashKey) {
 		System.out.println("Which account do you want to look at");
 		System.out.println("If you want to make a new account please enter 'Create'");
 		System.out.println(bankAccounts.get(joint).accounts);
@@ -441,7 +439,7 @@ public class Account implements Client, Employee, SystemAdmin {
 			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).withdraw());
 		}
 		if (choice.equals("3")) {
-			bankAccounts.get(joint).transfer(accounts);
+			bankAccounts.get(joint).transfer(joint, hashKey, bankAccounts);
 		}
 	}
 
@@ -498,8 +496,8 @@ public class Account implements Client, Employee, SystemAdmin {
 					System.out.println("Accountkey being passed to joint " + joint);
 					bankAccounts.get(joint).setJoint(accountKeyPassed);
 				}
-//				loggy.info(username + " made a joint account with " + bankAccounts.get(temp).getUsername());
-				
+				// loggy.info(username + " made a joint account with " +
+				// bankAccounts.get(temp).getUsername());
 			}
 			System.out.println(
 					"Fantastic, your account is pending employee approval. Log in after employee approval has been confirmed");
@@ -540,7 +538,7 @@ public class Account implements Client, Employee, SystemAdmin {
 
 		}
 		loggy.info(username + " made a deposit of" + amount);
-		
+
 		System.out.println("Your new account balance is: " + (accountBalance + amount));
 		accountBalance += amount;
 		return (accountBalance);
@@ -577,7 +575,7 @@ public class Account implements Client, Employee, SystemAdmin {
 				}
 			}
 			loggy.info(username + " made a withdraw of" + amount);
-			
+
 			System.out.println("Your new account balance is: " + (accountBalance - amount));
 			accountBalance -= amount;
 			return (accountBalance);
@@ -589,47 +587,187 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	@Override
-	public void transfer(Map<String, Double> accounts2) {
-		if (accounts2.size() < 2) {
-			createAccounts(accounts2);
+	public void transfer(int key, int otherKey, HashMap<Integer, Account> bankAccounts) {
+
+		if (joint > 0) {
+			System.out.println(
+					"Would you like to 1: Transfer between your personal and joint account or 2: Your personal accounts");
+			while (true) {
+				yn = sc.nextLine();
+				if ((yn.equals("1")) || (yn.equals("2"))) {
+					break;
+				} else {
+					System.out.println("Invalid input. Please enter 1 or 2");
+				}
+			}
+		} else {
+			yn = "2";
 		}
-		System.out.println("Please enter account you want to transfer from");
-		System.out.println(accounts2);
+		if (yn.equals("1")) {
+			System.out.println("Please enter account you want to transfer from");
+			System.out.println(bankAccounts.get(key).accounts);
+			System.out.println(bankAccounts.get(otherKey).accounts);
+			transferBetween(key, otherKey, bankAccounts);
+		} else {
+			System.out.println(key);
+			System.out.println(bankAccounts.get(key).accounts.size());
+			if (bankAccounts.get(key).accounts.size() < 2) {
+				createAccounts(bankAccounts.get(key).accounts);
+			}
+			System.out.println("Please enter account you want to transfer from");
+			System.out.println(bankAccounts.get(key).accounts);
+			String accountOn = "";
+			while (true) {
+				accountExists = false;
+				accountCur = sc.nextLine();
+				accountCur.toLowerCase();
+				// check if account exists in the list
+				for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all
+																								// members
+					// in
+					// accounts map // check if accountKey is in map
+					if (accountCur.equals(en.getKey())) {
+						accountExists = true;
+						accountOn = accountCur;
+						System.out.println("account found to exist");
+						break; // breaks out of for loop
+					}
+				}
+				if (accountExists && accounts.get(accountCur) <= 0) {
+					System.out.println("Your acocunt has 0 funds in it");
+					accountExists = false;
+				}
+				if (accountExists) {
+					break;
+				} else {
+					System.out.println("Invalid. Please choose an exisiting account to transfer from.");
+					System.out.println(bankAccounts.get(key).accounts);
+				}
+			}
+
+			System.out.println("Please enter account you wish to transfer to");
+			while (true) {
+				accountCur = sc.nextLine();
+				accountCur.toLowerCase();
+				// check if account exists in the list
+				for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all
+																								// members
+					if (accountCur.equals(en.getKey())) {
+						accountExists = true;
+						break;
+					}
+				}
+				if (accountExists && (!accountOn.equals(accountCur))) { // makes sure not to transfer from same
+					break;
+				} else if (accountOn.equals(accountCur)) {
+					System.out.println(
+							"Invalid. Please choose a different account to transfer to. Has to be different than the one you are transferring from.");
+				} else { // meaning account does not exist
+					System.out.println("Invalid. Please choose an exisiting account to transfer to.");
+				}
+			}
+
+			System.out.println("Please enter amount you wish to transfer");
+			exceptionCaught = true;
+			while (true && exceptionCaught) {
+				exceptionCaught = false;
+				String amountTemp = sc.nextLine();
+				try {
+					amount = Double.valueOf(amountTemp);
+				} catch (Exception e) {
+					System.out.println("Invalid. Amount must be an integer value.");
+					exceptionCaught = true;
+					continue;
+				}
+				if (amount > accounts.get(accountOn)) { // checks if enough in account
+					System.out.println("Invalid! Your acocunt only has: " + accounts.get(accountOn));
+					System.out.println("Please re-enter withdraw amount");
+					exceptionCaught = true;
+				} else if (amount < 0) { // checks if non-negative value used
+					System.out.println("You can NOT enter a negative value");
+					System.out.println("Please re-enter withdraw amount");
+					exceptionCaught = true;
+				} else {
+					break;
+				}
+			}
+			loggy.info(username + " made a transfer of" + amount + "from their " + accountOn + " account to their "
+					+ accountCur + " account.");
+			bankAccounts.get(key).accounts.put(accountCur, (amount + bankAccounts.get(key).accounts.get(accountCur)));
+			bankAccounts.get(key).accounts.put(accountOn, (bankAccounts.get(key).accounts.get(accountOn)) - amount);
+			System.out.println(bankAccounts.get(key).accounts);
+		}
+	}
+
+	@Override // need to do
+	public void transferBetween(int key, int otherKey, HashMap<Integer, Account> bankAccounts) {
 		String accountOn = "";
+		int jOrR = 0; // will be 1 if accountsCur is in key, 2 if accountsCur is in otherKey
 		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
 			accountCur.toLowerCase();
 			// check if account exists in the list
-			for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through all members
+			for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all members
 				// in
 				// accounts map // check if accountKey is in map
 				if (accountCur.equals(en.getKey())) {
 					accountExists = true;
 					accountOn = accountCur;
+					jOrR = 1;
 					System.out.println("account found to exist");
 					break; // breaks out of for loop
 				}
 			}
-			if (accountExists && accounts.get(accountCur) <= 0) {
-				System.out.println("Your acocunt has 0 funds in it");
-				accountExists = false;
+			for (Entry<String, Double> en : bankAccounts.get(otherKey).accounts.entrySet()) { // iterate through all
+																								// members
+				// in
+				// accounts map // check if accountKey is in map
+				if (accountCur.equals(en.getKey())) {
+					accountExists = true;
+					accountOn = accountCur;
+					jOrR = 2;
+					System.out.println("account found to exist");
+					break; // breaks out of for loop
+				}
 			}
+			if (jOrR == 1) {
+				if (accountExists && bankAccounts.get(key).accounts.get(accountCur) <= 0) {
+					System.out.println("Your acocunt has 0 funds in it");
+					accountExists = false;
+					continue;
+				}
+			} else {
+				if (accountExists && bankAccounts.get(otherKey).accounts.get(accountCur) <= 0) {
+					System.out.println("Your acocunt has 0 funds in it");
+					accountExists = false;
+					continue;
+				}
+			}
+
 			if (accountExists) {
 				break;
 			} else {
 				System.out.println("Invalid. Please choose an exisiting account to transfer from.");
-				System.out.println(accounts);
+				System.out.println(bankAccounts.get(key).accounts);
+				System.out.println(bankAccounts.get(otherKey).accounts);
 			}
 		}
 
 		System.out.println("Please enter account you wish to transfer to");
 		while (true) {
-			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
+			accountOn = sc.nextLine();
+			accountOn.toLowerCase();
 			// check if account exists in the list
-			for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through all members
-				if (accountCur.equals(en.getKey())) {
+			for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all members
+				if (accountOn.equals(en.getKey())) {
+					accountExists = true;
+					break;
+				}
+			}
+			for (Entry<String, Double> en : bankAccounts.get(otherKey).accounts.entrySet()) { // iterate through all
+																								// members
+				if (accountOn.equals(en.getKey())) {
 					accountExists = true;
 					break;
 				}
@@ -641,6 +779,8 @@ public class Account implements Client, Employee, SystemAdmin {
 						"Invalid. Please choose a different account to transfer to. Has to be different than the one you are transferring from.");
 			} else { // meaning account does not exist
 				System.out.println("Invalid. Please choose an exisiting account to transfer to.");
+				System.out.println(bankAccounts.get(key).accounts);
+				System.out.println(bankAccounts.get(otherKey).accounts);
 			}
 		}
 
@@ -650,17 +790,32 @@ public class Account implements Client, Employee, SystemAdmin {
 			exceptionCaught = false;
 			String amountTemp = sc.nextLine();
 			try {
-				amount = Double.valueOf(amountTemp);	
+				amount = Double.valueOf(amountTemp);
 			} catch (Exception e) {
 				System.out.println("Invalid. Amount must be an integer value.");
 				exceptionCaught = true;
 				continue;
 			}
-			if (amount > accounts.get(accountOn)) { // checks if enough in account
-				System.out.println("Invalid! Your acocunt only has: " + accounts.get(accountOn));
-				System.out.println("Please re-enter withdraw amount");
-				exceptionCaught = true;
-			} else if (amount < 0) { // checks if non-negative value used
+			if (jOrR == 1) {
+				if (amount > bankAccounts.get(key).accounts.get(accountCur)) { // checks if enough in account
+					System.out.println(
+							"Invalid! Your acocunt only has: " + bankAccounts.get(key).accounts.get(accountCur));
+					System.out.println("Please re-enter withdraw amount");
+					exceptionCaught = true;
+					continue;
+				}
+
+			} else {
+				if (amount > bankAccounts.get(otherKey).accounts.get(accountCur)) { // checks if enough in account
+					System.out.println(
+							"Invalid! Your acocunt only has: " + bankAccounts.get(otherKey).accounts.get(accountCur));
+					System.out.println("Please re-enter withdraw amount");
+					exceptionCaught = true;
+					continue;
+				}
+			}
+			if (amount < 0) { // checks if non-negative value used
+
 				System.out.println("You can NOT enter a negative value");
 				System.out.println("Please re-enter withdraw amount");
 				exceptionCaught = true;
@@ -668,10 +823,18 @@ public class Account implements Client, Employee, SystemAdmin {
 				break;
 			}
 		}
-		loggy.info(username + " made a transfer of" + amount + "from their " + accountOn + " account to their " + accountCur + " account.");
-		accounts.put(accountCur, (amount + accounts2.get(accountCur)));
-		accounts.put(accountOn, (accounts2.get(accountOn)) - amount);
-		System.out.println(accounts);
+		loggy.info(username + " made a transfer of" + amount + "from their " + accountOn + " account to their "
+				+ accountCur + " account.");
+		if (jOrR == 1) {
+			bankAccounts.get(otherKey).accounts.put(accountOn, (amount + bankAccounts.get(otherKey).accounts.get(accountOn)));
+			bankAccounts.get(key).accounts.put(accountCur, (bankAccounts.get(key).accounts.get(accountCur)) - amount);
+		} else {
+			bankAccounts.get(key).accounts.put(accountOn,
+					(amount + bankAccounts.get(key).accounts.get(accountOn)));
+			bankAccounts.get(otherKey).accounts.put(accountCur, (bankAccounts.get(otherKey).accounts.get(accountCur)) - amount);
+		}
+		System.out.println(bankAccounts.get(key).accounts);
+		System.out.println(bankAccounts.get(otherKey).accounts);
 
 	}
 

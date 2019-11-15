@@ -1,57 +1,14 @@
-2019-11-14 15:32:32 INFO  MainDriver:316 - 1 Creted an Account
-2019-11-14 15:32:41 INFO  MainDriver:336 - 2 Creted an Account
-2019-11-14 15:32:45 INFO  MainDriver:146 - 2 Logged in
-2019-11-14 15:47:44 INFO  MainDriver:331 - sadie Creted an Account
-2019-11-14 15:47:57 INFO  MainDriver:351 - lop Creted an Account
-2019-11-14 15:48:03 INFO  MainDriver:146 - lop Logged in
-2019-11-14 15:48:17 INFO  MainDriver:172 - lop Approved sadie's account
-2019-11-14 15:53:57 INFO  MainDriver:331 - 1 Creted an Account
-2019-11-14 15:54:05 INFO  MainDriver:351 - lop Creted an Account
-2019-11-14 15:54:12 INFO  MainDriver:135 - 1 Tried to log in but account is not active
-2019-11-14 15:54:45 INFO  MainDriver:331 - 1 Creted an Account
-2019-11-14 15:54:51 INFO  MainDriver:351 - d Creted an Account
-2019-11-14 15:54:55 INFO  MainDriver:146 - d Logged in
-2019-11-14 15:54:59 INFO  MainDriver:172 - d Approved 1's account
-2019-11-14 15:56:32 INFO  MainDriver:331 - sadie Creted an Account
-2019-11-14 15:56:40 INFO  MainDriver:351 - linda Creted an Account
-2019-11-14 15:58:32 INFO  MainDriver:331 - 1 Creted an Account
-2019-11-14 15:58:41 INFO  MainDriver:351 - l Creted an Account
-2019-11-14 15:59:24 INFO  MainDriver:331 - sa Creted an Account
-2019-11-14 15:59:31 INFO  MainDriver:135 - sa Tried to log in but account is not active
-2019-11-14 15:59:41 INFO  MainDriver:351 - gh Creted an Account
-2019-11-14 16:02:10 INFO  MainDriver:331 - sad Creted an Account
-2019-11-14 16:02:19 INFO  MainDriver:351 - em Creted an Account
-2019-11-14 16:03:42 INFO  MainDriver:331 - cl Creted an Account
-2019-11-14 16:03:48 INFO  MainDriver:351 - em Creted an Account
-2019-11-14 16:06:52 INFO  MainDriver:333 - jl Creted an Account
-2019-11-14 16:06:59 INFO  MainDriver:354 - kl Creted an Account
-2019-11-14 16:10:20 INFO  MainDriver:333 - cl Creted an Account
-2019-11-14 16:10:29 INFO  MainDriver:354 - em Creted an Account
-2019-11-14 16:10:53 INFO  MainDriver:333 - c Creted an Account
-2019-11-14 16:10:58 INFO  MainDriver:354 - e Creted an Account
-2019-11-14 16:11:01 INFO  MainDriver:147 - e Logged in
-2019-11-14 16:11:07 INFO  MainDriver:173 - e Approved c's account
-2019-11-14 16:11:14 INFO  MainDriver:84 - c Logged in
-2019-11-14 23:16:02 INFO  MainDriver:161 - e Logged in
-2019-11-14 23:16:08 INFO  MainDriver:189 - e Approved c's account
-2019-11-14 23:16:40 INFO  MainDriver:161 - e Logged in
-2019-11-14 23:16:46 INFO  MainDriver:189 - e Approved c's account
-2019-11-14 23:18:53 INFO  MainDriver:363 - sadie Creted an Account
-2019-11-14 23:19:07 INFO  MainDriver:363 - aaa Creted an Account
-2019-11-14 23:20:31 INFO  MainDriver:363 - aaa Creted an Account
-2019-11-14 23:20:41 INFO  MainDriver:372 - aaa Creted an Joint Account with aaa
-2019-11-14 23:20:57 INFO  MainDriver:363 - f Creted an Account
-2019-11-14 23:21:27 INFO  MainDriver:372 - f Creted an Joint Account with f
-2019-11-14 23:26:20 INFO  MainDriver:87 - c Logged in
-2019-11-14 23:29:31 INFO  MainDriver:363 - h Creted an Account
-2019-11-14 23:29:48 INFO  MainDriver:363 - j Creted an Account
-2019-11-14 23:31:14 INFO  MainDriver:363 - Sadie Creted an Account
-2019-11-14 23:31:34 INFO  MainDriver:385 - emp Creted an Account
-2019-11-14 23:31:45 INFO  MainDriver:363 - cl Creted an Account
-2019-11-14 23:31:55 INFO  MainDriver:372 - cl Creted an Joint Account with cl
-2019-11-14 23:44:27 INFO  MainDriver:161 - emp Logged in
-2019-11-14 23:44:38 INFO  MainDriver:189 - emp Approved Sadie's account
-2019-11-14 23:45:40 INFO  MainDriver:87 - Sadie Logged in
-2019-11-14 23:47:46 INFO  MainDriver:87 - Sadie Logged in
-2019-11-14 23:48:00 INFO  Account:542 - Sadie made a deposit of100000.0
-2019-11-14 23:48:19 INFO  Account:542 - cl made a deposit of10000.0
+2019-11-15 10:49:12 INFO  MainDriver:360 - Rev Creted an Account
+2019-11-15 10:49:29 INFO  MainDriver:382 - Em Creted an Account
+2019-11-15 10:49:38 INFO  MainDriver:390 - Sys Creted an Account
+2019-11-15 10:49:49 INFO  MainDriver:158 - Em Logged in
+2019-11-15 10:49:59 INFO  MainDriver:186 - Em Approved Rev's account
+2019-11-15 10:50:12 INFO  MainDriver:240 - Sys Logged in
+2019-11-15 10:50:19 INFO  MainDriver:271 - Sys Denied/Cancelled Rev's account
+2019-11-15 10:50:28 INFO  MainDriver:268 - Sys Approved Rev's account
+2019-11-15 10:50:42 INFO  MainDriver:296 - Sys changed Rev's password
+2019-11-15 10:50:54 INFO  MainDriver:316 - Sys Changed their password
+2019-11-15 10:51:07 INFO  MainDriver:87 - Rev Logged in
+2019-11-15 10:51:23 INFO  Account:540 - Rev made a deposit of1000.0
+2019-11-15 10:51:40 INFO  Account:577 - Rev made a withdraw of523.0
+2019-11-15 10:52:26 INFO  MainDriver:87 - Rev Logged in
