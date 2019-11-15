@@ -32,3 +32,26 @@
 2019-11-14 16:11:01 INFO  MainDriver:147 - e Logged in
 2019-11-14 16:11:07 INFO  MainDriver:173 - e Approved c's account
 2019-11-14 16:11:14 INFO  MainDriver:84 - c Logged in
+2019-11-14 23:16:02 INFO  MainDriver:161 - e Logged in
+2019-11-14 23:16:08 INFO  MainDriver:189 - e Approved c's account
+2019-11-14 23:16:40 INFO  MainDriver:161 - e Logged in
+2019-11-14 23:16:46 INFO  MainDriver:189 - e Approved c's account
+2019-11-14 23:18:53 INFO  MainDriver:363 - sadie Creted an Account
+2019-11-14 23:19:07 INFO  MainDriver:363 - aaa Creted an Account
+2019-11-14 23:20:31 INFO  MainDriver:363 - aaa Creted an Account
+2019-11-14 23:20:41 INFO  MainDriver:372 - aaa Creted an Joint Account with aaa
+2019-11-14 23:20:57 INFO  MainDriver:363 - f Creted an Account
+2019-11-14 23:21:27 INFO  MainDriver:372 - f Creted an Joint Account with f
+2019-11-14 23:26:20 INFO  MainDriver:87 - c Logged in
+2019-11-14 23:29:31 INFO  MainDriver:363 - h Creted an Account
+2019-11-14 23:29:48 INFO  MainDriver:363 - j Creted an Account
+2019-11-14 23:31:14 INFO  MainDriver:363 - Sadie Creted an Account
+2019-11-14 23:31:34 INFO  MainDriver:385 - emp Creted an Account
+2019-11-14 23:31:45 INFO  MainDriver:363 - cl Creted an Account
+2019-11-14 23:31:55 INFO  MainDriver:372 - cl Creted an Joint Account with cl
+2019-11-14 23:44:27 INFO  MainDriver:161 - emp Logged in
+2019-11-14 23:44:38 INFO  MainDriver:189 - emp Approved Sadie's account
+2019-11-14 23:45:40 INFO  MainDriver:87 - Sadie Logged in
+2019-11-14 23:47:46 INFO  MainDriver:87 - Sadie Logged in
+2019-11-14 23:48:00 INFO  Account:542 - Sadie made a deposit of100000.0
+2019-11-14 23:48:19 INFO  Account:542 - cl made a deposit of10000.0

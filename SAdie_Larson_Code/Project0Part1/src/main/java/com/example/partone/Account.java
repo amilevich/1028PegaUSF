@@ -7,13 +7,14 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
 
-public class Account implements Client, Employee, SystemAdmin, Serializable {
+import org.apache.log4j.Logger;
 
+public class Account implements Client, Employee, SystemAdmin {
+	
 	/**
 	 * @author Sadie Larson
 	 */
-
-	private static final long serialVersionUID = -8539840413648934849L;
+	final static Logger loggy = Logger.getLogger(Account.class);
 	private int hashKey;
 	HashMap<String, String> userPass = new HashMap<String, String>();
 	private String username;
@@ -137,7 +138,7 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 		if (userType == 1) {
 			if (joint > 0) {
 				info = "Account [Username=Password: " + userPass + ", accountAccessType: client" + ", Account: "
-						+ accounts + "Joint Key: " + +joint + "]";
+						+ accounts + ", Joint Key: " +joint + "]";
 			} else { // not a joint account
 				info = "Account [Username=Password: " + userPass  +", accountAccessType: client"
 						+ ", Account: " + accounts + "]";
@@ -497,6 +498,8 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 					System.out.println("Accountkey being passed to joint " + joint);
 					bankAccounts.get(joint).setJoint(accountKeyPassed);
 				}
+//				loggy.info(username + " made a joint account with " + bankAccounts.get(temp).getUsername());
+				
 			}
 			System.out.println(
 					"Fantastic, your account is pending employee approval. Log in after employee approval has been confirmed");
@@ -536,6 +539,8 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 			}
 
 		}
+		loggy.info(username + " made a deposit of" + amount);
+		
 		System.out.println("Your new account balance is: " + (accountBalance + amount));
 		accountBalance += amount;
 		return (accountBalance);
@@ -571,6 +576,8 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 					break;
 				}
 			}
+			loggy.info(username + " made a withdraw of" + amount);
+			
 			System.out.println("Your new account balance is: " + (accountBalance - amount));
 			accountBalance -= amount;
 			return (accountBalance);
@@ -661,6 +668,7 @@ public class Account implements Client, Employee, SystemAdmin, Serializable {
 				break;
 			}
 		}
+		loggy.info(username + " made a transfer of" + amount + "from their " + accountOn + " account to their " + accountCur + " account.");
 		accounts.put(accountCur, (amount + accounts2.get(accountCur)));
 		accounts.put(accountOn, (accounts2.get(accountOn)) - amount);
 		System.out.println(accounts);

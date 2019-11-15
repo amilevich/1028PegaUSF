@@ -18,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class MainDriver {
+	// Static variables used in main method, functions, and the account class
 	static boolean repeatMain = true;
 	static boolean repeatOptions = true;
 	static Scanner sc = new Scanner(System.in);
@@ -32,11 +33,12 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 		String filename = "./bankUsers.txt";
-		// readObject(filename);
-		// working on reading in accounts
-		// *********************************************************//
+		readObject(filename); // Reads in past bank accounts created and adds to hashmap to parse through data
+		// function created around line 505
+		// **************************Variables Used******************************//
 		String userP = null;
-		while (repeatMain) {
+		while (repeatMain) { // will repeat continuously unless user wants to end completely
+			System.out.println("These are the bank Accounts made");
 			System.out.println(bankAccounts.toString());
 			repeatMain = false;
 			repeatOptions = true;
@@ -59,9 +61,10 @@ public class MainDriver {
 			if (choice.equals("1")) {
 				System.out.println("Please Log in");
 				System.out.println("Username:");
-				checkUser();
+				checkUser(); // function made to check if user exists with username
+				// created around line 452
 				if (repeatMain) {
-					// System.out.println("entered exit mode");
+					System.out.println("entered exit mode");
 					break;
 				}
 				while (true) { // check password corresponds with Username
@@ -84,46 +87,54 @@ public class MainDriver {
 						loggy.info(bankAccounts.get(currKey).getUsername() + " Logged in");
 						while (repeatOptions) {
 							System.out.println(
-									"Welcome " + bankAccounts.get(currKey).getfName() + "! What would you like to do?");
-							String options = "1: Check Information 2: Access Accounts 3: Return to main";
+									"Welcome " + bankAccounts.get(currKey).getUsername() + "! What would you like to do?");
+							String options = "1: Check Information 2: Access Accounts 3: Change Passswrod 4: Return to main";
 							System.out.println(options);
 							System.out.println("Enter 1, 2, or 3");
 							// implement options
 							while (true) {
 								choice = sc.nextLine();
-								if ((choice.equals("1")) || (choice.equals("2"))) {
-									break;
-								} else if (choice.equals("3")) {
-									repeatMain = true;
+								if ((choice.equals("1")) || (choice.equals("2")) || choice.equals("3")|| choice.equals("4")) {
 									break;
 								} else {
-									System.out.println("Invalid input. Please enter 1, 2, or 3");
+									System.out.println("Invalid input. Please enter 1, 2, 3, or 4");
 								}
 							}
 
 							if (repeatMain) { // should break out of repeat loop and restart
 								break;
 							}
-
-							if (choice.equals("1")) {
+							switch (choice) {
+							case "1":
 								// check balance of account and other information
 								System.out.println("AccountKey: " + currKey);
 								bankAccounts.get(currKey).viewInformation();
 								menuOption();
-							} else if (choice.equals("2")) {
+								break;
+							case "2":
 								// sends to client to go through accounts names
 								// if (bankAccounts.get(currKey).getApplicationStatus() == 1) { // application
 								// approved
 								bankAccounts.get(currKey).accessAccounts(bankAccounts, currKey);
-								// } else if (bankAccounts.get(currKey).getApplicationStatus() == 0) { //
-								// application
-								// status pending
-								// System.out.println("Access Denied. Your account is still pending.");
-								// } else {
-								// System.out.println("Access Denied. Your account has been denied.");
-								// }
-								// access accounts allows to access specific account to manipulate
-							} else {
+								menuOption();
+								break;
+
+							case "3":
+								// change password
+								System.out.println("Enter new Password: ");
+								userP = sc.nextLine();
+								userP.toLowerCase();
+								bankAccounts.get(currKey).setPassword(userP);
+								System.out.println(
+										bankAccounts.get(currKey).getUsername() + "'s password successfully updated ");
+								loggy.info(bankAccounts.get(currKey).getUsername() + " Changed their password");
+								menuOption();
+								break;
+							case "4":
+								// return to main menu
+								repeatMain = true;
+								break;
+							default:
 								System.out.println("Error in choice between looking at account options");
 							}
 							if (repeatMain) {
@@ -146,7 +157,7 @@ public class MainDriver {
 				else if (bankAccounts.get(currKey).getUserType() == 2) {
 					loggy.info(bankAccounts.get(currKey).getUsername() + " Logged in");
 					while (repeatOptions) {
-						System.out.println("Welcome employee: " + bankAccounts.get(currKey).getfName());
+						System.out.println("Welcome employee: " + bankAccounts.get(currKey).getUsername());
 						System.out.println("What would you like to do?");
 						String options = "1: Check Account Application Status, 2: Check Account Information, 3: Return to main";
 						System.out.println(options);
@@ -154,17 +165,19 @@ public class MainDriver {
 						// implement options
 						while (true) {
 							choice = sc.nextLine();
-							if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
+							if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4")) {
 								break;
 							} else {
-								System.out.println("Invalid input. Please enter 1, 2, or 3");
+								System.out.println("Invalid input. Please enter 1, 2, 3, or 4");
 							}
 						}
 						switch (choice) {
 						case "1":
 							// check account application status
 							String temp = bankAccounts.get(currKey).getUsername();
-							verifyClient();
+							verifyClient(); // calls the checkUser function and verifies that account employee is trying
+											// to access is a client only
+							// function created around line 496
 							if (repeatMain) {
 								break;
 							}
@@ -188,6 +201,17 @@ public class MainDriver {
 							menuOption();
 							break;
 						case "3":
+							// change password
+							System.out.println("Enter new Password: ");
+							userP = sc.nextLine();
+							userP.toLowerCase();
+							bankAccounts.get(currKey).setPassword(userP);
+							System.out.println(
+									bankAccounts.get(currKey).getUsername() + "'s password successfully updated ");
+							loggy.info(bankAccounts.get(currKey).getUsername() + " Changed their password");
+							menuOption();
+							break;
+						case "4":
 							repeatMain = true;
 							break;
 						default:
@@ -216,7 +240,7 @@ public class MainDriver {
 					loggy.info(tempU + " Logged in");
 					int temp = currKey;
 					while (repeatOptions) {
-						System.out.println("Welcome system administrator: " + bankAccounts.get(currKey).getfName());
+						System.out.println("Welcome system administrator: " + bankAccounts.get(currKey).getUsername());
 						System.out.println("What would you like to do?");
 						String options = "1: Check Application Status/Cancel Account 2: Check Account Information 3: Change a user's password 4: Access Client Account 5: Change Password 6: Return to Main Menu";
 						System.out.println(options);
@@ -244,7 +268,7 @@ public class MainDriver {
 									loggy.info(tempU + " Approved " + bankAccounts.get(currKey).getUsername()
 											+ "'s account");
 								} else if (bankAccounts.get(currKey).getApplicationStatus() == 2) {
-									loggy.info(tempU + " Denied " + bankAccounts.get(currKey).getUsername()
+									loggy.info(tempU + " Denied/Cancelled " + bankAccounts.get(currKey).getUsername()
 											+ "'s account");
 								}
 								menuOption();
@@ -269,6 +293,8 @@ public class MainDriver {
 							bankAccounts.get(currKey).setPassword(userP);
 							System.out.println(
 									bankAccounts.get(currKey).getUsername() + "'s password successfully updated ");
+							loggy.info(bankAccounts.get(temp).getUsername() + " changed "
+									+ bankAccounts.get(currKey).getUsername() + "'s password");
 							menuOption();
 							break;
 						case "4":
@@ -287,6 +313,7 @@ public class MainDriver {
 							bankAccounts.get(temp).setPassword(userP);
 							System.out.println(
 									bankAccounts.get(temp).getUsername() + "'s password successfully updated ");
+							loggy.info(bankAccounts.get(temp).getUsername() + " Changed their password");
 							menuOption();
 							break;
 						case "6":
@@ -343,6 +370,7 @@ public class MainDriver {
 								+ bankAccounts.get(temp2).getUsername());
 						bankAccounts.get(temp2).setJoint(accountKey);
 						bankAccounts.get(temp).setJoint(accountKey);
+						jo.setHashKey(accountKey);
 					}
 					repeatMain = false;
 					break;
@@ -393,8 +421,7 @@ public class MainDriver {
 		// HashMap<Integer, ArrayList> accountsObj = new HashMap<Integer, ArrayList>();
 		for (Entry<Integer, Account> en : bankAccounts.entrySet()) {
 			arrObj.add(en.getValue().getHashKey()); // int
-			arrObj.add(en.getValue().getUsername()); // string
-			arrObj.add(en.getValue().getPassword()); // string
+			arrObj.add(en.getValue().userPass);
 			arrObj.add(en.getValue().getApplicationStatus()); // int
 			arrObj.add(en.getValue().getUserType()); // int
 			arrObj.add(en.getValue().getJoint()); // int
@@ -403,16 +430,14 @@ public class MainDriver {
 
 		HashMap<Integer, ArrayList> accountsObj = new HashMap<Integer, ArrayList>();
 
-		System.out.println(arrObj.size());
-		System.out.println(bankAccounts.size());
 		int i = 0;
 		for (Entry<Integer, Account> en : bankAccounts.entrySet()) {
 			ArrayList arr = new ArrayList();
-			for (int j = 0; j < 7; j++) {
+			for (int j = 0; j < 6; j++) {
 				arr.add(arrObj.get(i + j));
 				accountsObj.put(en.getValue().getHashKey(), arr);
 			}
-			i += 7;
+			i += 6;
 		}
 
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
@@ -421,7 +446,8 @@ public class MainDriver {
 			io.printStackTrace();
 		}
 
-		//readObject(filename); // testing to make sure it was r=wrritten correctly and can be accessed
+		// readObject(filename); // testing to make sure it was r=wrritten correctly and
+		// can be accessed
 		System.out.println("Done");
 
 	} // end of main method
@@ -429,7 +455,7 @@ public class MainDriver {
 	// ******************************************************//
 	// ****************** Functions to use ******************//
 	// ******************************************************//
-	static void menuOption() { // returns user to main menu
+	private static void menuOption() { // returns user to main menu
 		System.out.println("Do you want to reurn to 1: main menu or 2: options screen");
 		System.out.println();
 		while (true) {
@@ -446,7 +472,7 @@ public class MainDriver {
 		}
 	}
 
-	static void checkUser() { // checks if the user exists
+	private static void checkUser() { // checks if the user exists
 		while (true) {
 			userN = sc.nextLine();
 			userN.toLowerCase();
@@ -458,7 +484,7 @@ public class MainDriver {
 			System.out.println(bankAccounts.toString());
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
 				// check if accountKey is in map
-				System.out.println(en.getValue().getUsername());
+				// System.out.println(en.getValue().getUsername());
 				if (userN.equals(en.getValue().getUsername())) {
 					currKey = en.getKey();
 					userExists = true;
@@ -475,7 +501,7 @@ public class MainDriver {
 		}
 	}
 
-	static void createKey() { // creates a special key from 0-9999
+	private static void createKey() { // creates a special key from 0-9999
 		while (true) {
 			accountKey = r.nextInt(9999);
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
@@ -489,7 +515,7 @@ public class MainDriver {
 		}
 	}
 
-	static void verifyClient() { // checks if client exists
+	private static void verifyClient() { // checks if client exists
 		while (true) {
 			System.out.println("Enter the username of the acocunt you wish to review");
 			checkUser();
@@ -501,32 +527,26 @@ public class MainDriver {
 		}
 	}
 
-	public static void readObject(String filename) { // this method will read all of the objects from file (database)
+	private static void readObject(String filename) { // this method will read all of the objects from file (database)
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
 			while (true) {
 				try {
-					/*
-					 * hash key int username string password string get app status int getusertype
-					 * int get joint int accounts accounts hashmap
-					 */
-					Account obac = new Account();
-					HashMap obj = (HashMap) ois.readObject();
-//					System.out.println(obj);
-					obj.
-					for(en : obj.entrySet()) {
-						obac.setHashKey();
+					while (true) {
+						HashMap<Integer, ArrayList> obj = (HashMap) ois.readObject();
+						System.out.println(obj);
+						for (Entry<Integer, ArrayList> en : obj.entrySet()) {
+							Account obac = new Account();
+							obac.setHashKey((int) en.getValue().get(0));
+							obac.userPass = (HashMap) en.getValue().get(1);
+							obac.setUsername(obac.userPass.keySet().iterator().next());
+							obac.setPassword(obac.userPass.get(obac.getUsername()));
+							obac.setApplicationStatus((int) en.getValue().get(2));
+							obac.setUserType((int) en.getValue().get(3));
+							obac.setJoint((int) en.getValue().get(4));
+							obac.accounts = (HashMap) en.getValue().get(5);
+							bankAccounts.put(obac.getHashKey(), obac);
+						}
 					}
-					// while (obj.listIterator().hasNext()) {
-					// obac.setHashKey((Integer) obj.listIterator().next());
-					// obac.setUsername((String) obj.listIterator().next());
-					// obac.setPassword((String) obj.listIterator().next());
-					// obac.setUserType((Integer) obj.listIterator().next());
-					// obac.setJoint((Integer) obj.listIterator().next());
-					//// obac.accounts = obj.listIterator().next(); //need to figre out how to do
-					// acocunts
-					// }
-					// bankAccounts.put(obac.getHashKey(), obac);
-					// System.out.println(bankAccounts);
 				} catch (Exception e) {
 					// e.printStackTrace();
 					break;
