@@ -1,7 +1,6 @@
 package com.example.core;
 
-import java.io.EOFException;
-
+//DONE
 /*
  * Mickey:Mouse:35:Arizona
 Hulk:Hogan:50:Virginia
@@ -13,55 +12,54 @@ Write a program that would read from the file and print it out to the screen in 
 Name: Mickey Mouse
 Age: 35 years
 State: Arizona State
-
-
  */
-
-//TO DO: double check
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ListIterator;
 
 public class Q20 {
 
 	public static void main(String[] args) {
-		String filename = "Data.txt";
-
-		 Q20NotepadC m = new Q20NotepadC("Mickey", "Mouse", 25, "Arizona");
-		 Q20NotepadC h = new Q20NotepadC("Hulk", "Hogan", 50, "Virginia");		
-		 Q20NotepadC r = new Q20NotepadC("Roger", "Rabbit", 22, "California");		
-		 Q20NotepadC w = new Q20NotepadC("Wonder", "Woman", 18, "Montana");
-		 
-		 try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-				oos.writeObject(m);
-				oos.writeObject(h);
-				oos.writeObject(r);
-				oos.writeObject(w);				
-			} catch (IOException io) {
-				io.printStackTrace();
-			}
-		 
-		 readObject(filename, m);
-	}
 	
-	public static void readObject(String filename, Object obj) {
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-			while (true) {
-				try {
-					obj = ois.readObject();
-				} catch (Exception e) {
-					break;
+
+		String filename = "Data2.txt";
+		readCharacterStream(filename);
+	}
+
+	public static void readCharacterStream(String filename) {
+		try (FileReader reader = new FileReader(filename)) {
+			int i;
+			int j = 0;
+			String dat = new String("");
+
+			while ((i = reader.read()) != -1) {
+				Q20NotepadC em = new Q20NotepadC();
+				while ((char) i != '\n' && i != -1) {
+					dat = dat + ((char) i);
+					i = reader.read();
+					
+					if ((char) i == ':' && j == 0) { // space between name
+						j++;
+					} else if ((char) i == ':' && j == 1) { //name assignment
+						dat = dat.replace(':', ' ');
+						em.setName(dat);
+						dat = "";
+						j++;
+					} else if ((char) i == ':' && j == 2) { //age assingment
+						dat = dat.substring(1, dat.length());
+						em.setAge(Integer.valueOf(dat));
+						dat = "";
+						j = 0;
+					} else if ((char) i == '\n' || i == -1) {
+						dat = dat.substring(1, dat.length());
+						em.setState(dat);
+						dat = "";
+					}
 				}
-				System.out.println(obj);
+				System.out.println(em);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
 		}
 	}
 

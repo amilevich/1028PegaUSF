@@ -6,20 +6,39 @@ public class Q20NotepadC implements Serializable{
 
 
 	private static final long serialVersionUID = 8434728043945598184L;
-	public  String name;
-	public String type;
-	public int age;
-	public String state;
+	private  String name;
+	private int age;
+	private String state;
 	
 	
-	public Q20NotepadC(String name, String type, int age, String state) {
-		super();
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
-		this.type = type;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
 		this.state = state;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Q20NotepadC(){
 		super();
 		//does nothing
@@ -27,7 +46,7 @@ public class Q20NotepadC implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Name: " + name + " "+ type + "\n" + "Age: " + age + " years" + "\n" + "State: " + state + " State";
+		return "Name: " + name + "\n" + "Age: " + age + " years" + "\n" + "State: " + state + " State";
 	}
 	
 	
