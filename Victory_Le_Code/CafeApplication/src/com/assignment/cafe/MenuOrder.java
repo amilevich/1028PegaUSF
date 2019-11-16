@@ -1,16 +1,20 @@
 package com.assignment.cafe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 
 public class MenuOrder {
 	
-	
+
 	//ArrayList to store food data
 
 	static Scanner input = new Scanner(System.in);
 	static ArrayList<String> orderList = new ArrayList<String>();
+	static Queue<Object> transaction = new LinkedList<>(Arrays.asList(orderList));
 	static Food food = new Food();
 	static Drink drink = new Drink();
 
@@ -29,8 +33,10 @@ public class MenuOrder {
 	public static void menu() {
 		System.out.println("***********************************************************************************************");
 		System.out.println("|                                                                                             |");
+		System.out.println("|                                     ヽ(◠ᴗ◠)ﾉ                                                 |");
+		System.out.println("|                                    Hello World                                              |");
 		System.out.println("|                                                                                             |");
-		System.out.println("|                             	      Cafe Victory                                            |");
+		System.out.println("|                             	     Cafe Victory                                             |");
 		System.out.println("|                                                                                             |");
 		System.out.println("|*********************************************************************************************|");
 		System.out.println("|                                                                                             |");
@@ -73,31 +79,67 @@ public class MenuOrder {
 			if(foodOption != 1 && foodOption != 2) {
 				orderList.add(food.icedLemonLoafCake);
 				food.setTotalPrice(food.cakePrice);
-				System.out.println("Obtained Iced Lemone Loaf Cake! ٩(･ᴗ･)و ");
-				System.out.println("                                        ");
-				System.out.println("Your current orders \n" + orderList.toString());
-				System.out.println("                                        ");
-				System.out.println("*****Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + " ********");
+				System.out.println("|********************************************************************************************************************|");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Obtained Iced Lemone Loaf Cake! ٩(･ᴗ･)و                                             |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Your current orders " + orderList.toString()+"                                         |");                                       
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                  |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("**********************************************************************************************************************");
 				menu();
 			}
 			else if(foodOption != 1 && foodOption != 3) {
 				orderList.add(food.creamCheese);
 				food.setTotalPrice(food.creamCheesePrice);
-				System.out.println("Obtained Cream Cheese! ٩(･ᴗ･)و");
-				System.out.println("                                        ");
-				System.out.println("Your current orders \n" + orderList.toString());
-				System.out.println("                                        ");
-				System.out.println("*****Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + " ********");
+				System.out.println("|********************************************************************************************************************|");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Obtained Cream Cheese! ٩(･ᴗ･)و                                                      |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Your current orders " + orderList.toString()+"                                      |");                                       
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                  |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("**********************************************************************************************************************");
 				menu();
 			}
 			else if(foodOption != 2 && foodOption != 3) {
 				orderList.add(food.bagel);
 				food.setTotalPrice(food.bagelPrice);
-				System.out.println("Obtained Plain Bagel! ٩(･ᴗ･)و");
 				System.out.println("                                        ");
-				System.out.println("Your current orders \n" + orderList.toString());
 				System.out.println("                                        ");
-				System.out.println("*****Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + " ********");
+				System.out.println("                                        ");
+				System.out.println("|********************************************************************************************************************|");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Obtained Plain Bagel! ٩(･ᴗ･)و                                                       |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Your current orders " + orderList.toString()+"                                                   |");                                       
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                  |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("**********************************************************************************************************************");
 				menu();
 			}
 			
@@ -121,37 +163,70 @@ public class MenuOrder {
 			if(drinkOption != 1 && drinkOption != 2) {
 				orderList.add(drink.water);
 				drink.setTotalPrice(drink.waterPrice);
-				System.out.println("Obtained Water! ٩(･ᴗ･)و ");
-				System.out.println("                                        ");
-				System.out.println("Your current orders \n" + orderList.toString());
-				System.out.println("                                        ");
-				System.out.println("*****Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + " ********");
+				System.out.println("|********************************************************************************************************************|");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Obtained Water! ٩(･ᴗ･)و                                             |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Your current orders " + orderList.toString()+"                                         |");                                       
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                  |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("**********************************************************************************************************************");
 				menu();
 			}
 			else if(drinkOption != 1 && drinkOption != 3) {
 				orderList.add(drink.whiteChocolateMocha);
 				drink.setTotalPrice(drink.wCMPrice);
-				System.out.println("Obtained White Chocolate Mocha! ٩(･ᴗ･)و");
-				System.out.println("                                        ");
-				System.out.println("Your current orders \n" + orderList.toString());
-				System.out.println("                                        ");
-				System.out.println("*****Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + " ********");
+				System.out.println("|********************************************************************************************************************|");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Obtained White Chocolate Mocha! ٩(･ᴗ･)و                                             |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Your current orders " + orderList.toString()+"                                         |");                                       
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                  |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("**********************************************************************************************************************");
 				menu();
 			}
 			else if(drinkOption != 2 && drinkOption != 3) {
 				orderList.add(drink.icedCoffee);
 				drink.setTotalPrice(drink.iCoffeePrice);
-				System.out.println("Obtained Iced Coffee! ٩(･ᴗ･)و");
-				System.out.println("                                        ");
-				System.out.println("Your current orders \n" + orderList.toString());
-				System.out.println("                                        ");
-				System.out.println("*****Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + " ********");
+				System.out.println("|********************************************************************************************************************|");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Obtained Iced Coffee! ٩(･ᴗ･)و                                                       |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Your current orders " + orderList.toString()+"                                                |");                                       
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                  |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("|                                                                                                                    |");
+				System.out.println("**********************************************************************************************************************");
 				menu();
 			}
 			
 			break;
 			
-		case 3:
+		case 3:     
 
 			System.out.println("***********************************************************************************************");
 			System.out.println("|                                                                                             |");
@@ -168,6 +243,7 @@ public class MenuOrder {
 			
 			System.out.println("|      Total Balance: " + (food.getTotalPrice() + drink.getTotalPrice()) + "                                                                     |");
 			System.out.println("***********************************************************************************************");
+			System.out.println(transaction);
 			orderList.clear();
 			food.setZero();
 			drink.setZero();
