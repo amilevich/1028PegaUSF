@@ -1,0 +1,60 @@
+				Exception/Exception Handling
+
+Exception- Event/Fault in the execution of our program that disrupts our progrmas's logic.
+Examples: RunTimeException,NullPointerException,IOException,ClassNotFoundException
+
+Error - A fault that occurs outside the programs logic.
+
+				Hierachy 
+			Throwable (Class)
+		    ||				 ||
+	(Checked)Exception			Error
+	  ||		    ||
+(Unchecked)Runtime 	CompileTime
+
+
+Checked - A fault scenario in your logic that the Java compiler forces you to handle. (IOException)
+Unchecked - A fault that occurs in common logic that can throw Exception. (ArithmiticException)
+
+				Catching Exceptions:
+
+try/catch or try/catch/finally
+
+try: Will "try" to run the code, however the catch logic will execute if there is an error.
+catch: A block of logic that will execute for a particular "caught" exception, the most general being Exception e,
+	which will catch all exceptions. (Multiple catche blocks can be used).
+finally: A block of logic that will execute regardless of whether there was an exception or not.
+
+try{ //risky behavior
+}catch(Exception e){ //Recovery code
+}
+
+Throws - A declaration in the method signature that passes the responsibility of handling an Exception to the 
+	calling method. To "duck" or "ducking". If done at the main method level, throws to the JVM and whenever
+	the JVM sees an exception it shuts down the code.
+
+				throw vs throws vs throwable:
+
+throw: A "keyword" use to manually thrown an exception. i.e. Exception e = new Exception();throw e;
+throws: A "keyword" used in a method signature
+throwable: Is the super class for all exceptions and errors in Java.
+
+
+
+				Writing and Outputing onto a file:
+
+CharacterStream: A way of writing and reading characters onto files. (IMPORT java.io.FileReader)
+
+[writeCharacter(String filename): FileWriter file = new FileWriter(filename,true);//true is when you append, false is overwrite.
+	for(i in range j){writer.write(i)}//will input numbers, chave to cast it to characters to read them back again.
+
+[readCharacter(String filename): FileReader reader = new FileReader(filename);
+	while((i = reader.read()) != -1){syso((char)i)}//print out file read, as long as there are characters. then being cast to
+	character type to be read as ASCII characters as opposed to integers. (note that it is modulo so the characters reset at some point).
+
+ByteStream: A way of writing characters in bytecode (machine readable but difficult for humans). (added security)
+	[OutPutStream os = new FileOutPutStream(filename);os.write(int);
+	InputStream os = new FileInputSream(filename); while(...){ syso((char)i)}
+
+
+

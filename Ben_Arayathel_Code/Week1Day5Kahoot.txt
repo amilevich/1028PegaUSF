@@ -1,0 +1,28 @@
+			Kahoot Question Answers
+
+POM: Project Object Model
+try/catch block needs at least : either try/catch or try/finally.
+keyword for ducking an exception: throws 
+
+What kind of ordering does the comparator interface use?: unnatural
+				comparable: natural.
+
+the Log4j logger methods: Error, Warn, Info and Fatal (Not EXCEPTION)
+
+"transient" keyword: displays the default values of fields. 
+
+ObjectOutPutStream is the class which is used to serialize an Object. 
+
+OutputStream (write the object)
+InputStream (read the object).
+
+Serializable is a marker interfaces. Marker interfaces is so that the JVM and the developer knows what the class is
+	going to do.
+
+unit testing is testing small units of code at a time. (e.g. JUnit).
+
+JUnit annotation: @Before (before each test case), @Test (Test class), @AfterClass(After the class tester).
+
+Maven is our dependency manager.
+
+

@@ -1,0 +1,20 @@
+Algorithms:set of instructions 
+Data Structures 
+
+Sorting Algorithms
+-used to rearrange a data structure according to a comparison operator on the element
+
+Bubble Sort
+Quick Sort 
+
+Searching algorithms
+1)Sequential search: the data structure is traversed sequentially until every element is checked
+2)Interval Search: better for large searches.
+
+
+(2,5,8,12,16,23,38,56,72,91)
+	  (16<23) -->
+	    (23,38,56,72,91)
+		(38>23) -->
+		      (23,38)
+			-->23

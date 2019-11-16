@@ -1,0 +1,14 @@
+Collection API
+Data Structure - collection of data with predetermined characteristics and methods.
+
+	
+
+Set: No-duplicateds unordered.
+List: non-fixed size, indexed elements
+Queue: first in, first out
+
+HashSet: every elemnt has the the hashcode as the unique identifier. Not ordered.
+TreeSet (extends the SortedSet interface): A set, but the elements are ordered.
+ArrayList:indexed list of non-fixed size. 
+LinkedList:consists of nodes, each node containing a value and a reference to the next node. 
+Deque: Allows you to add or remove from both sides of the list.

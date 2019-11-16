@@ -1,0 +1,63 @@
+full name 
+ID 
+passowrd
+checkingBalance
+savingBalance
+
+
+Account:
+	checking account:
+		balance
+		withdraw()
+		deposit()
+	saving account:
+		balance
+		withdraw() -- penalty charge
+		deposit() -- minimum amount
+
+
+Account holder will have access to all the information. Can access information and change detals.
+Employees can approve changes, but don't have access to most of the details.
+Bank admins is a God, this is his domain and he can do whatever he wants.
+
+Psuedo code:
+
+com.bank.backend:
+	Account:
+		-private attributes
+		-methods:
+			public withdraw(double amount){
+				if(amount>this.checkingBalance){syso(amount+"taken");this.checkingBalance-=amount;}
+				else{syso(not enough funds, only this.checkingBalance left);}
+			public deposit(double amount){
+				syso(the amount has been added to your checking balance);return void;
+			public transactionLog(){syso(this.transactionLog}
+			
+			public getAttributes(){}
+			public setAttributes(){}
+			public setPassword(String oldPassword){}
+			public cureCancer(){ syso("Nice Try")}
+			
+	AccountStorage:
+		-Map<Account> iDtoAccount = new HashMap<Long,Account>();
+		-methods:
+			public getAccount(String iD){return iDtoAccount.get(nametoID.get(name)}
+			protected removeAccount(String name){accountList.remove(name)}
+			public createAccount(){};
+	Bank Admin
+		-methods:
+			create 
+				
+
+
+com.bank.clientside:
+	MainDriver:
+		
+	Customer:
+
+	||	
+
+	Employee:	
+	
+
+

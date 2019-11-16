@@ -1,0 +1,40 @@
+			Learning about Strings
+String: (final) array of characters. Stromgs are immutable and the class is final.
+
+String   S1  =    "TacoCat";
+\\	Object	String Literal
+
+
+String "Objects" are stored in the heap (like any other object in Java). But String Literals 
+	are stored in the String Pool (which is within the heap).
+When a new String "object" is created, it checks to see if the String pool already has the 
+	String literal value. If yes, then it points to that value otherwise creates a new instance in the pool.
+String s1 = "tacoCat";//will create an object s1 that point to "tacoCat" within the String pool.
+String s2 = "BurritoBear";//Will create an object s2 that contains and points to "BurritoBear in the String Literal.
+
+		StringBuilder and StringBuffer stuff
+
+StringBuilder - mutable
+StringBuffer - mutable, thread-safe/synchronized
+
+String Sten = "Rick";
+StringBuilder sBuilderOne = new StringBuilder(Sten);
+sBuilderOne.append(" and Morty")
+syso(sBuilderOne);
+
+
+TDD - Test Driven Developmentd
+
+To test using Maven:
+		create Maven project
+		update some shit on the pom.xml file.
+		the class/methods to be tested will be stored in the src/main/... file
+		the testing methods will be stored in src/test/... file.
+
+Annotations that can be used within the test class:
+	@Ignore - ignores the method test that has this annotation.
+	@Test - will tell JVM that this is a testing method.
+	@After - have a method that will run after each test
+	@Before - have a method that will run before each test
+	@AfterClass - have a methhod that will run after the whole class
+	@BeforeClass - have a method that will run before the whole class.

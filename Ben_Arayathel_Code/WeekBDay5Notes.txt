@@ -1,0 +1,43 @@
+Multithreading in Java
+
+Life-cycles of a thread:
+	1)New
+	2)Runnable - can be executed.
+	3)Running - being executed
+	4)Non-runnable - "blocked"
+	5)Terminated
+
+
+States of a thread:
+Blocked - waiting for acces to resources.
+Waiting - waiting for an event to trigger.
+New - being instantiated.
+TimeWaiting - waiting for a specifed amount of time.
+DeadLock - when 2 threads require each others logic to finish executing 
+
+
+
+Method withing a thread:
+(from Thread class)
+run(): block of code that will be the logic of the thread
+start():starts thread JVM calls the run method
+sleep(long milliseconds): waiting for the specified period of time.
+wait(): needs to be notified to run again.
+(from the Object Class)
+notify(): one thread gets notified.
+notifyAll():notify all the threads.
+
+Synchronised: Blocks all other threads from using that resource.
+
+Solving Deadlock:
+	Tell one thread to wait while the other executes both methods.
+	Then notify the other thread to allow it to be runnable again.
+
+
+Consumer threads: uses the information produced by the producer thread to execute logic
+Producer threads: produces the information for consumer threads.
+	Both use the same buffered (fixed?) memory strucutre. To stop both from accessing it at the same time (deadlock)
+	or accessing data that doesn't exist (index error) we alternate between telling threads to sleep (i.e. sleeping 
+	while the memory buffer is asleep, for the producer thread).
+
+

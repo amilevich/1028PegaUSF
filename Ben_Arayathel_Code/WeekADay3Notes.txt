@@ -1,0 +1,30 @@
+Different types of interfaces:
+
+Marker Interface: Has no (abstract) methods. 
+
+Functional Interface: Only has 1 method.
+
+"final" key word meanings:
+
+class - cannot have children
+metod - cannot be overridden
+variables - cannot change the value of the variable (immutable).
+
+Abstract Class;
+"extends"
+has a constructor 
+concrete.abstract methods 
+any access modifie, can be static, can be final
+can inherit only 1
+
+Interface;
+"implements"
+no constructor 
+only abstract methods (only public)
+public static final variables(implicity)
+can inherit many
+
+
+inherit an interface from a class: "implements"
+inherits an interface from an interface: "extends"
+inherits a class from a class: "extends"

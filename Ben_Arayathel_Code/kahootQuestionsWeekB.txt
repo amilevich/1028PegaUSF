@@ -1,0 +1,53 @@
+boxing: turning a datatype into an object
+shadowing: using 2 variable with the same name within scopes that overlap.
+
+Only Nested not public or protected class can be declared static. 
+
+Time Complexity: Nested loops f(O(A),O(B)) = O(A*B)
+		 serial loops f(O(A),O(B)) = O(A+B)
+
+Wrapper Class: Changes primitive data types into an Object.
+
+Deadlock:When 2 threads are waiting for each other and can never execute, i.e accessing the same memory buffer. (A wants B and B wants A)
+
+Data Structure is a collection of darta values, the realtionshop among them and the operators within them.
+
+finalize keyword: used to perform clean up processing just before garbage collection.
+
+Collection: is an interface
+Collections: class
+
+Linear search: traverses a data structure sequentially and ehecks every element to find a specific element.
+
+void keyword: The method does not return anything
+
+WaitTime: A mehtod for thread, not a state type
+
+Starvation: a thread holds a resource for a long time so the other thread are blocked forever
+(Producer Consumer Poblem, )
+
+Qeue - FIFO
+
+Arguments: The proper term for the actual vvalue that is passed into a method
+
+Daemon Thread: a thread that never topls running in the background.
+
+Stack- LIFO
+
+Heap - is where objects are stored in memory.	
+
+.equals : echecks the memory location of two objects 
+== : checks the actual value.
+
+system.gc() : calls upon the garbage collector (not necessary).
+
+Array: a collection of the same type and a fixed size.
+
+start() method spawns a new thread while run() does not 
+
+Stack .peek: look at first element 
+	.pop: removes the first element
+	.push adds an element to stack (becomes the first element)
+
+Algorithm is not language specific 
+
