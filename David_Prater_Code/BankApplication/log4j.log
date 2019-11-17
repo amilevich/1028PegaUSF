@@ -1,0 +1,16 @@
+2019-11-14 14:48:46 INFO  MyClass:20 - Log, Log, Log, my balls
+2019-11-14 14:48:46 ERROR MyClass:21 - Log, Log, Log, my balls
+2019-11-14 14:48:46 FATAL MyClass:22 - Log, Log, Log, my balls
+2019-11-14 14:48:46 WARN  MyClass:23 - Log, Log, Log, my balls
+2019-11-14 14:48:54 INFO  MyClass:20 - Log, Log, Log, my balls
+2019-11-14 14:48:54 ERROR MyClass:21 - Log, Log, Log, my balls
+2019-11-14 14:48:54 FATAL MyClass:22 - Log, Log, Log, my balls
+2019-11-14 14:48:54 WARN  MyClass:23 - Log, Log, Log, my balls
+2019-11-14 14:49:50 INFO  MyClass:20 - Log, Log, Log, my balls
+2019-11-14 14:49:50 ERROR MyClass:21 - Log, Log, Log, my balls
+2019-11-14 14:49:50 FATAL MyClass:22 - Log, Log, Log, my balls
+2019-11-14 14:49:50 WARN  MyClass:23 - Log, Log, Log, my balls
+2019-11-14 14:50:16 INFO  MyClass:20 - Log, Log, Log, my balls
+2019-11-14 14:50:16 ERROR MyClass:21 - Log, Log, Log, my balls
+2019-11-14 14:50:16 FATAL MyClass:22 - Log, Log, Log, my balls
+2019-11-14 14:50:16 WARN  MyClass:23 - Log, Log, Log, my balls
