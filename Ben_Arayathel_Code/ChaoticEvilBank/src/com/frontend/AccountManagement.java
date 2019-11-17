@@ -1,7 +1,8 @@
-package com.users;
+package com.frontend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,11 +10,10 @@ import java.util.Scanner;
 public class AccountManagement {
 	
 	public static List<Account> pendingAccounts = new ArrayList<Account>(); // Stores pending accounts
-	public static Map<String,Account> storageAccount = new HashMap<String,Account>();// Stores approved accounts in a HashMap.
-	
-	
+	public static Map<String, Account> storageAccount = new HashMap<String,Account>();// Stores approved accounts in a HashMap.
+
 	//Method to pull an object from the stored Accounts
-	public static Account getAccount(Scanner in) {
+	public static Account getAccount(Scanner in) throws InputMismatchException{
 		System.out.println("Please give us a username:");
 		String username = in.next();
 		System.out.println("and the password to the account: ");
@@ -25,10 +25,11 @@ public class AccountManagement {
 			System.out.println("Account does not exist.");
 			return null;
 		}
-		
+
 	}
-	public static Account getAccountTransfer(Scanner in) {
-		System.out.println("please give us the username of the account?");
+	//Unique method for transferring between Accounts
+	public static Account getAccountTransfer(Scanner in) throws InputMismatchException {
+		System.out.println("please give us the username of the account.");
 		in.nextLine();
 		String accountName = in.nextLine();
 		Account account;
@@ -42,3 +43,4 @@ public class AccountManagement {
 		return null;
 	}
 }
+

@@ -1,17 +1,17 @@
-package com.users;
-
+package com.frontend;
 import java.io.Serializable;
 
 public class Account implements Serializable{
 	
-	/**
-	 * 
-	 */
 	static final long serialVersionUID = -1953226906380021677L;
-	String name;
-	String password;
-	String iD;
-	Double balance;
+	private String name;
+	private String password;
+	private String iD;
+	private Double balance;
+	
+	private String secondName = null;
+	private String secondPassword = null;
+	private String secondID = null;
 	
 	public Account(String name, String password, String iD, Double balance) {
 		super();
@@ -19,6 +19,37 @@ public class Account implements Serializable{
 		this.password = password;
 		this.iD = iD;
 		this.balance = balance;
+	}
+	
+	public String getSecondName() {
+		return secondName;
+	}
+
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
+	}
+
+	public String getSecondPassword() {
+		return secondPassword;
+	}
+
+	public void setSecondPassword(String secondPassword) {
+		this.secondPassword = secondPassword;
+	}
+
+	public String getSecondID() {
+		return secondID;
+	}
+
+	public void setSecondID(String secondID) {
+		this.secondID = secondID;
+	}
+
+	public Account(String name,String password, String iD, String name2, String password2,String iD2,Double Balance) {
+		this(name, password, iD, Balance);
+		this.secondName = name2;
+		this.secondID = iD2;
+		this.secondPassword = password2;
 	}
 
 	@Override
