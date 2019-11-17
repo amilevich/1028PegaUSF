@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.bank.model.Person;
+import com.bank.ui.BankMenu;
 
 import java.io.*;
 
@@ -13,11 +14,9 @@ public class NewCustomer implements Serializable {
 	Scanner sc = new Scanner(System.in);
 	public static ArrayList<Person> newCustomerList = new ArrayList<>();
 
-	/**
-	 * Collect all information for the new user
-	 */
 
-	public ArrayList<Person> registerNewCustomer() {
+	// This method collects all the information about the customer and adds them to the new customer list
+	public void registerNewCustomer() throws FileNotFoundException {
 				
 		System.out.println("What is your first name?");
 		String firstName = sc.nextLine();
@@ -34,30 +33,18 @@ public class NewCustomer implements Serializable {
 		System.out.println("Please choose a password.");
 		String password = sc.nextLine();
 
-		//Create a new customer object
+		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
 		Person newUser = new Person(firstName, lastName, address, phoneNumber, email, username, password);
 		newCustomerList.add(newUser);
-		System.out.println(newCustomerList.toString());
-		
-		
-		
-//		try {
-//			FileOutputStream fileOut = new FileOutputStream(
-//					"C:/Users/prate/Documents/My_Git_Repos/1028PegaUSF/David_Prater_Code/BankApplication/NewCustomerList.txt");
-//			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-//			out.writeObject(newUser);
-//			out.close();
-//			fileOut.close();
-//			System.out.printf("Serialized data is saved. \n");
-//		} catch (IOException i) {
-//			i.printStackTrace();
-//		}
 
-		return newCustomerList;
+
+		System.out.println("Please try to log in later to see if you were approved!");
+		BankMenu.getMainMenu();
+
 
 	}
 	
-	public void registerJointCustomer() {
+	public void registerJointCustomer() throws FileNotFoundException {
 		registerNewCustomer();
 		registerNewCustomer();
 

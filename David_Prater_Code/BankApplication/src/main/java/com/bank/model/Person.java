@@ -108,9 +108,9 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Person [accountNumber=" + accountNumber + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", address=" + address + ", phoneNumber=" + phoneNumber + ", email=" + email + ", username="
-				+ username + ", password=" + password + "]";
+		return "Account Number: " + accountNumber + "\nName: " + firstName + " " + lastName
+				+ "\nAddress: " + address + "\nPhone Number: " + phoneNumber + "\nEmail: " + email + "\nUsername: "
+				+ username + "\nPassword: " + password + "\n";
 	}
 
 }
