@@ -249,17 +249,32 @@ public class Menu {
 		for(int i=0; i < pendingCust.size(); i++) {
 			System.out.println(pendingCust.get(i));
 		}
-		String options = scan.next(); //Scanner String
-		System.out.println("Iterating thru accounts");
+		String options = scan.nextLine(); //Scanner String
 		
-		for(ListIterator<Customer> itr = pendingCust.listIterator(); itr.hasNext();) {
-			E element = itr.next();
-		}
-		
-		switch (options) {
-		
-		case "1": //Deposit
-		
+		ListIterator<Customer> itr = pendingCust.listIterator();
+		for(int i = 0; i < pendingCust.size(); i++ ) {
+			System.out.println(pendingCust.get(i));
+			System.out.println("Approve or deny this account?" + '\n' + "1. Approve" + '\n' + "2. Deny" + '\n' + "3. Exit");
+			
+			switch (options) {
+			
+			case "1": //Approve
+				validAccts.put(cust.userName + cust.userPin, cust);
+				break;
+			
+			case "2": //Deny
+				itr.remove();
+				break;
+				
+			case "3": //Exit
+				System.out.println("Closing menu.");
+				runAmenu();
+				break;
+				
+			default :
+				System.out.println("Invalid option.");
+				runAmenu();
+			}
 		}
 	}
 	public static void adminEdits() {
