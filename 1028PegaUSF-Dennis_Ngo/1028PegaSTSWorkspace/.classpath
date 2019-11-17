@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="1028Day2Assignment/src"/>
+	<classpathentry kind="src" path="1028Day3Assignment/src"/>
+	<classpathentry kind="src" path="BankingApp/src"/>
+	<classpathentry kind="src" path="CafeApp/src"/>
+	<classpathentry kind="src" path="HelloTesting/src/main/java"/>
+	<classpathentry kind="src" path="HelloTesting/src/test/java"/>
+	<classpathentry kind="src" path="Week1DayThreeExamples/src"/>
+	<classpathentry kind="src" path="Week1DayTwoExamples/src"/>
+	<classpathentry kind="src" path="WeekADayFiveExamples/src"/>
+	<classpathentry kind="src" path="WeekADayOneExamples/src"/>
+	<classpathentry kind="src" path="WeekADayThreeExamples/src"/>
+	<classpathentry kind="src" path="WeekADayTwoExamples/src"/>
+	<classpathentry kind="src" path="WeekBDayFour/src"/>
+	<classpathentry kind="output" path="1028Day2Assignment/bin"/>
+</classpath>
