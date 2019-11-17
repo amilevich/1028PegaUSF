@@ -1,42 +1,11 @@
 package com.app.main;
 
 public class Admin {
-	String userName;
-	int userPin;
-	String firstName;
-	String lastName;
-	boolean isAdmin = true; //access all account info
+	String userName = "BossMan";
+	String userPin = "1010";
+	String Name = "Mr. Ngo";
 	
-	public String getUserName() {
-		return userName;
+	public static void main(String[] args) {
+		
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public int getUserPin() {
-		return userPin;
-	}
-	public void setUserPin(int userPin) {
-		this.userPin = userPin;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-	
-	
 }
