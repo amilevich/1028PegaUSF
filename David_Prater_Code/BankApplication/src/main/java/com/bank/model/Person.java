@@ -6,6 +6,7 @@ public class Person implements Serializable {
 
 	private static final long serialVersionUID = 5635825819705054254L;
 
+	// Variables for single and joint account
 	private String accountNumber;
 	private double accountBalance;
 	private String firstName;
@@ -28,6 +29,7 @@ public class Person implements Serializable {
 			String email, String username, String password) {
 		super();
 		this.accountNumber = accountNumber;
+		// Initialize balance to zero
 		this.accountBalance = 0.0;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -45,6 +47,7 @@ public class Person implements Serializable {
 			String address2, String phoneNumber2, String email2, String username2, String password2) {
 		super();
 		this.accountNumber = accountNumber;
+		// Initialize balance to zero
 		this.accountBalance = 0.0;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -63,6 +66,7 @@ public class Person implements Serializable {
 	}
 
 
+	// Constructors for both single and joint accounts
 
 	public String getFirstName2() {
 		return firstName2;
@@ -194,7 +198,8 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-
+		// This if statement chooses which toString method to use depending on if its a single or joint account
+		// If usernam2 is null use single account toString else joint account toString
 		if (username2 == null) {
 
 			return "Account Number: " + accountNumber + "\nAccount Balance: " + accountBalance + "\nName: " + firstName
@@ -203,7 +208,7 @@ public class Person implements Serializable {
 		} else {
 			return "Account Number: " + accountNumber + "\nAccount Balance: " + accountBalance + "\nName: " + firstName
 					+ " " + lastName + "\nAddress: " + address + "\nPhone Number: " + phoneNumber + "\nEmail: " + email
-					+ "\nUser two Name: " + firstName + " " + lastName + "\nUser Two Address: " + address
+					+ "\nUser Two Name: " + firstName + " " + lastName + "\nUser Two Address: " + address
 					+ "\nUser Two Phone Number: " + phoneNumber + "\nUser Two Email: " + email + "\n";
 
 		}

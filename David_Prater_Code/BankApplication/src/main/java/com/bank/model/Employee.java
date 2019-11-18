@@ -14,10 +14,12 @@ public class Employee {
 		System.out.println("Please login with your company issued account username.");
 		String employeeName = sc.next().toString();
 
-		// If the user name is correct check the password. If either are incorrect send
-		// the user back to the main menu
+		// If the user name is correct check the password. If both are correct log in the employee.
+		// If either are incorrect send the user back to the main menu
+		// employee: username = employee and password = password
 		if (employeeName.equals("employee")) {
 			System.out.println("Please login with your company issued password");
+			// Convert all input to string to perfom input validation
 			String adminPassword = sc.next().toString();
 			if (adminPassword.equals("password")) {
 				employeeActions();
@@ -32,13 +34,17 @@ public class Employee {
 
 	}
 
+	// This method displays the actions the employee can perform
 	public static void employeeActions() throws FileNotFoundException {
-
+		// Run this method when an employee or administrator logs in to force them to approve all accounts
+		// before performing any other actions
 		Employee.approveNewCustomer();
 		System.out.println("What would you like to do today?");
 		System.out.println("1. View All Acounts\n2. Logout");
+		// Convert to string to perfrom input validation
 		String actionChoice = sc.next().toString();
 
+		// Switch between available choices for and return them to the menu after each action
 		switch (actionChoice) {
 		case "1":
 			viewAllAccounts();
@@ -48,9 +54,11 @@ public class Employee {
 			System.out.println("Logout succesful.");
 			BankMenu.getMainMenu();
 		default:
+			// Call recursively to get input until user submits correct action
 			employeeMenu();
 		}
 
+		// Call method recursively until the employee logs out
 		employeeActions();
 	}
 
@@ -69,42 +77,54 @@ public class Employee {
 			// Set choice to z to make sure it runs
 			String choice = "z";
 			do {
+				// Validate the user input by converting to string
 				choice = sc.next().toString();
+				// If user enters 'y' approve the account
 				if (choice.equals("y")) {
+					// Generate random account number between 100000 and 1 and set it to approved account
 					String accountNumber = generateAccountNumber();
 					newCustomer.setAccountNumber(accountNumber);
-
+					// Create a key (username + password) to access that account in the customer HashMap
 					BankMenu.customerMap.put((newCustomer.getUsername() + newCustomer.getPassword()), newCustomer);
+					// This checks if the current account is a joint account
+					// If their is a password for the second user it means its a joint account
 					if (newCustomer.getPassword2() != null) {
+						// Create a second key that references the same person object that way both objects are updated by either use
 						BankMenu.customerMap.put((newCustomer.getUsername2() + newCustomer.getPassword2()), newCustomer);
 					}
 					
-					BankMenu.customerList.add(newCustomer);
+					// Add the Person(s) to the customer HashMap
+					BankMenu.newCustomerList.add(newCustomer);
 					break;
+					// Deny account
 				} else if (choice.equals("n")) {
 					System.out.println("Denied");
 				} else {
 					System.out.println("Press 'y' to approve account and 'n' to deny the account.");
 				}
+				// Call this loop until they approve or deny the account
 			} while (!choice.equals("y") || !choice.equals("n"));
 
 		}
 
-		// This line makes the new arraylist empty
+		// This line makes a new ArrayList deleting the approved and denied accounts
 		NewCustomer.newCustomerList.removeAll(NewCustomer.newCustomerList);
 
 	}
 
+	// Method to view all accounts
 	public static void viewAllAccounts() {
+		// For each keyset in the customer HashMap print their information
 		for (String i: BankMenu.customerMap.keySet()) {
 			System.out.println(BankMenu.customerMap.get(i).toString());
 		}
 	}
 	
+	// This generate a random number between 100000 and 1 and returns it as a string
 	public static String generateAccountNumber() {
 		Random r = new Random();
 		int randomAccountNumber = r.nextInt((100000 - 1) + 1) + 1;
-		
+		// Convert the integer to a string
 		return Integer.toString(randomAccountNumber);
 	}
 

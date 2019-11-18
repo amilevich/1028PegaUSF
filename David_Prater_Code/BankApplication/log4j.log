@@ -1,16 +1,18 @@
-2019-11-14 14:48:46 INFO  MyClass:20 - Log, Log, Log, my balls
-2019-11-14 14:48:46 ERROR MyClass:21 - Log, Log, Log, my balls
-2019-11-14 14:48:46 FATAL MyClass:22 - Log, Log, Log, my balls
-2019-11-14 14:48:46 WARN  MyClass:23 - Log, Log, Log, my balls
-2019-11-14 14:48:54 INFO  MyClass:20 - Log, Log, Log, my balls
-2019-11-14 14:48:54 ERROR MyClass:21 - Log, Log, Log, my balls
-2019-11-14 14:48:54 FATAL MyClass:22 - Log, Log, Log, my balls
-2019-11-14 14:48:54 WARN  MyClass:23 - Log, Log, Log, my balls
-2019-11-14 14:49:50 INFO  MyClass:20 - Log, Log, Log, my balls
-2019-11-14 14:49:50 ERROR MyClass:21 - Log, Log, Log, my balls
-2019-11-14 14:49:50 FATAL MyClass:22 - Log, Log, Log, my balls
-2019-11-14 14:49:50 WARN  MyClass:23 - Log, Log, Log, my balls
-2019-11-14 14:50:16 INFO  MyClass:20 - Log, Log, Log, my balls
-2019-11-14 14:50:16 ERROR MyClass:21 - Log, Log, Log, my balls
-2019-11-14 14:50:16 FATAL MyClass:22 - Log, Log, Log, my balls
-2019-11-14 14:50:16 WARN  MyClass:23 - Log, Log, Log, my balls
+
+2019-11-18 09:58:26 INFO  MainActivity:15 - This is my logger test
+2019-11-18 10:32:14 INFO  Customer:84 - 26811 withdrew $10.0
+2019-11-18 10:34:44 INFO  Customer:84 - 26811 withdrew $10.0
+2019-11-18 10:36:02 INFO  Customer:93 - Account #26811 deposited $100.0
+2019-11-18 10:41:28 INFO  Customer:84 - Account #26811 withdrew $13.0
+2019-11-18 10:41:34 INFO  Customer:93 - Account #26811 deposited $64.0
+2019-11-18 10:42:07 INFO  Customer:131 - $40.0 Transferred from Account #26811 to account number #56091
+2019-11-18 11:49:12 INFO  NewCustomer:44 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: David Prater
+Address: 906 William
+Phone Number: 6203885201
+Email: david@gmail.com
+
+2019-11-18 12:23:50 INFO  Customer:114 - Account #26811 deposited $55.0
+2019-11-18 12:24:12 INFO  Customer:114 - Account #26811 deposited $2.0
+2019-11-18 12:27:11 INFO  Customer:114 - Account #26811 deposited $19816.0
