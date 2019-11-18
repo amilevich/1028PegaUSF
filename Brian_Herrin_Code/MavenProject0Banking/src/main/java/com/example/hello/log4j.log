@@ -1,0 +1,4 @@
+2019-11-14 15:49:50 INFO  HelloWorld:13 - HelloWorld
+2019-11-14 15:49:50 WARN  HelloWorld:15 - Oof!
+2019-11-14 15:49:50 ERROR HelloWorld:16 - Blah wrong Blah
+2019-11-14 15:49:50 FATAL HelloWorld:17 - Oh nooo, bad times
