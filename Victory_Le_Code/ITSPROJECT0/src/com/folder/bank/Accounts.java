@@ -319,7 +319,8 @@ public class Accounts implements Serializable {
 			System.out.println("\t 1. View All Accounts");
 			System.out.println("\t 2. Approve/Decline/Cancel Accounts");
 			System.out.println("\t 3. Access client accounts");
-			System.out.println("\t 4. Done");
+			System.out.println("\t 4. Cancel accounts");
+			System.out.println("\t 5. Done");
 			String option = input.next();
 
 			switch (option) {
@@ -378,7 +379,70 @@ public class Accounts implements Serializable {
 				}
 				adminLogin();
 				break;
+			
 			case "4":
+				System.out.println("\t ****Cancel Account****");
+				System.out.println("\n");
+				System.out.println("\t Pending Accounts:");
+				System.out.println("");
+				for(Customers i : accountsPending) {
+					System.out.println("\n\t"+i);
+				}
+				if(accountsPending.isEmpty()) {
+					System.out.println("\t ****Pending Accounts is empty****");
+				}
+				System.out.println("");
+				System.out.println("\t Approved Accounts:");
+				System.out.println("\n");
+				for(Customers i : accountsApproved) {
+					System.out.println("\n\t"+i);
+				}
+				if(accountsApproved.isEmpty()) {
+					System.out.println("\t ****Approved Accounts is empty****");
+				}
+				System.out.println("\n");
+				
+				//******************************************************************
+				// Choose who you want to cancel by ID
+				System.out.println("Choose user ID to remove");
+				int cancelId = input.nextInt();
+				
+				for(Customers i : accountsPending) {
+					System.out.println(i.getCustomerId());
+					if(cancelId == i.getCustomerId()) {
+						System.out.println("In the if Statement");
+						accountsPending.remove(i);
+						writeObject(filename,accountsPending);
+						System.out.println("\t Pending Accounts:");
+						System.out.println("");
+						for(Customers j : accountsPending) {
+							System.out.println("\n\t\t"+j);
+						}
+						if(accountsPending.isEmpty()) {
+							System.out.println("\t ****Pending Accounts is empty****");
+						}
+					}
+				}
+				
+				for(Customers i : accountsApproved) {
+					System.out.println(i.getCustomerId());
+					if(cancelId == i.getCustomerId()) {
+						System.out.println("In the if Statement 2");
+						accountsApproved.remove(i);
+						writeObject(filename2,accountsApproved);
+						System.out.println("\t Approved Accounts:");
+						System.out.println("");
+						for(Customers j : accountsApproved) {
+							System.out.println("\n\t\t"+j);
+						}
+						if(accountsPending.isEmpty()) {
+							System.out.println("\t ****Approved Accounts is empty****");
+						}
+					}
+				}
+				break;
+
+			case "5":
 				System.out.println("\t Done");
 				menu();
 				break;
@@ -388,7 +452,8 @@ public class Accounts implements Serializable {
 				adminLogin();
 				break;
 			}
-		}
+		} 
+		adminLogin();
 	}
 
 	// ********************************************************************************************************
@@ -686,7 +751,7 @@ System.out.println("");
 				c = i;
 				accountsApproved.add(c);
 			}
-			System.out.println("SAd" + accountsApproved);
+			System.out.println(accountsApproved);
 
 		} catch (FileNotFoundException e) {
 			System.out.println("No accounts loaded");
