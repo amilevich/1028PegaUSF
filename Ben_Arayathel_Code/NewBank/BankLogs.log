@@ -67,3 +67,55 @@ User logged in.
 2019-11-18 17:26:59 INFO  Customer:37 - User chose to withdraw
 2019-11-18 17:27:02 INFO  MainDriver:119 - User input an invalid data type
 2019-11-18 17:27:02 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:02:48 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:02:53 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 19:02:58 INFO  Customer:70 - User chose to attempt to create a joint account
+2019-11-18 19:03:12 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 19:03:15 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:03:25 INFO  MainDriver:106 - User logged in as a employee
+2019-11-18 19:14:27 INFO  Employee:75 - Pending accounts have been approved
+2019-11-18 19:26:30 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:26:33 INFO  MainDriver:111 - User logged in as a boss
+2019-11-18 19:26:35 INFO  BankAdmin:27 - User successfully logged in as an admin
+2019-11-18 19:26:41 INFO  BankAdmin:94 - a has been removed from the bank
+2019-11-18 19:26:51 INFO  BankAdmin:94 - a has been removed from the bank
+2019-11-18 19:27:28 INFO  BankAdmin:94 - e has been removed from the bank
+2019-11-18 19:27:33 INFO  MainDriver:113 - User logged out of admin menu
+2019-11-18 19:27:45 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:27:48 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 19:27:51 INFO  Customer:70 - User chose to attempt to create a joint account
+2019-11-18 19:27:57 INFO  Customer:129 - User failed in creating account, same username as a previos account
+2019-11-18 19:27:57 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 19:28:11 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:28:13 INFO  MainDriver:106 - User logged in as a employee
+2019-11-18 19:51:37 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:51:40 INFO  MainDriver:106 - User logged in as a employee
+2019-11-18 19:51:59 INFO  MainDriver:108 - User logged out of employee menu
+2019-11-18 19:52:03 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:52:04 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 19:52:13 INFO  Customer:70 - User chose to attempt to create a joint account
+2019-11-18 19:52:22 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 19:52:24 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:52:25 INFO  MainDriver:106 - User logged in as a employee
+2019-11-18 19:52:36 INFO  Employee:76 - Pending accounts have been approved
+2019-11-18 19:58:39 INFO  MainDriver:108 - User logged out of employee menu
+2019-11-18 19:58:41 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:58:43 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 19:58:47 INFO  Customer:70 - User chose to attempt to create a joint account
+2019-11-18 19:58:56 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 19:58:59 INFO  MainDriver:90 - User logged in.
+2019-11-18 19:59:01 INFO  MainDriver:106 - User logged in as a employee
+2019-11-18 19:59:09 INFO  Employee:76 - Pending accounts have been approved
+2019-11-18 20:04:25 INFO  MainDriver:90 - User logged in.
+2019-11-18 20:04:28 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 20:04:36 INFO  Customer:70 - User chose to attempt to create a joint account
+2019-11-18 20:04:40 INFO  Customer:129 - User failed in creating account, same username as a previos account
+2019-11-18 20:04:40 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 20:04:45 INFO  MainDriver:90 - User logged in.
+2019-11-18 20:04:47 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 20:04:50 INFO  Customer:70 - User chose to attempt to create a joint account
+2019-11-18 20:05:05 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 20:05:07 INFO  MainDriver:90 - User logged in.
+2019-11-18 20:05:08 INFO  MainDriver:106 - User logged in as a employee
+2019-11-18 20:08:43 INFO  Employee:76 - Pending accounts have been approved
+2019-11-18 20:09:00 INFO  MainDriver:108 - User logged out of employee menu

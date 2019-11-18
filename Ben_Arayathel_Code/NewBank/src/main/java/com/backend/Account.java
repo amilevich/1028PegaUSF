@@ -14,6 +14,7 @@ public class Account implements Serializable{
 	private String secondPassword = null;
 	private String secondID = null;
 	
+	private boolean joint = false;
 	public Account(String name, String password, String iD, Double balance) {
 		super();
 		this.name = name;
@@ -51,11 +52,17 @@ public class Account implements Serializable{
 		this.secondName = name2;
 		this.secondID = iD2;
 		this.secondPassword = password2;
+		this.joint = true;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [name=" + name + ", iD=" + iD + ", balance=" + balance + "]";
+		if(this.secondName == null) {
+		return "Account [name=" + name + ", iD=" + iD + ", balance=" + balance + ", Account type = single" + "]";
+		}else {
+			return "Account [Name=" + name + ", ID=" + iD + ", Balance=" + balance + ", Account type = joint" + 
+		", Second name=" + secondName + ", Second ID=" + secondID + "]";
+		}
 	}
 
 	public String getName() {

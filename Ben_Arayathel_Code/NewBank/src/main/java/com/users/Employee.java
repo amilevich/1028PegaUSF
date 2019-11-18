@@ -41,8 +41,9 @@ public class Employee {
 		case 0:
 			approveAccounts(in);
 			break;
-		case 2:
+		case 1:
 			getSecrets(in);
+			break;
 		default:
 			System.out.println("That really isn't an option, learn to read to ");
 		}
