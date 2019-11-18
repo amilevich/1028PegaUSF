@@ -21,7 +21,7 @@ public class Accounts implements Serializable {
 	private int accountID = randomGen.nextInt(100);
 	private boolean isJoint;
 	private String status;
-	private int balance;
+	private static int balance;
 
 	// Scanners
 	static Scanner input = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Accounts implements Serializable {
 
 	// Iterator
 	static Iterator<Customers> iterPending = accountsPending.iterator();
-	// static Iterator<Customers> iterApproved = accountsApproved.iterator();
+	static Iterator<Customers> iterApproved = accountsApproved.iterator();
 
 	static // Instantiate of Classes
 	Customers newCustomer = new Customers();
@@ -40,8 +40,8 @@ public class Accounts implements Serializable {
 	Admin admin = new Admin();
 
 	// Text File
-	static String filename = "./bankPending.txt";
-	static String filename2 = "./bankApproved.txt";
+	static String filename = "./baPen.txt";
+	static String filename2 = "./baApp.txt";
 
 	static // Unrelated Variable
 	int option;
@@ -53,9 +53,11 @@ public class Accounts implements Serializable {
 
 	public static void menu() {
 		System.out.println("");
+		System.out.println("Accounts pending Read File: ");
 		readObject(filename);
-		System.out.println();
-		readObject(filename2);
+		System.out.println("");
+		System.out.println("Currently Active Customer Read File:");
+		readObject2(filename2);
 		System.out.println("\n");
 		System.out.println("\t~" + "Account Pending");
 		System.out.println(" \n");
@@ -69,38 +71,49 @@ public class Accounts implements Serializable {
 		System.out.println("\t 4. Registration");
 		System.out.println("\t 5. Done");
 
-
 		// * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		// Switch 1. Login
 		// Switch 2. Registration
 		try {
 			String option = input.next();
-	
+
 			flag = 0;
 			switch (option) {
-			case "1": // Customer Login
+			case "1":
+				// Customer Login
 				customerLogin();
 				break;
-			case "2": // Employee Login
+			case "2":
+				// Employee Login
 				employeeLogin();
 				break;
-			case "3": // Admin login
+			case "3":
+				// Admin login
 				adminLogin();
 				break;
 			case "4":
 				registration();
 				break;
 			case "5":
+				System.out.println("Saved & Updated file");
+				System.out.println("See ya next time! (´▽`)b");
 				writeObject(filename, accountsPending);
 				writeObject(filename2, accountsApproved);
 			default:
 				menu();
-		}
+			}
 
-	} catch(Exception e){
-		System.out.println("Invalid user input. Da fook");
+		} catch (Exception e) {
+			//System.out.println("Invalid user input. Da fook");
+			menu();
+		}
 	}
-}
+
+	public void transfer(double transferAm, Customers send, Customers recieve) {
+		double transferA = 100.00;
+		System.out.println("Get account balance " + accountsApproved.get(getBalance()));
+
+	}
 
 	// *******************************************************************************************************************
 	// Customer Login
@@ -110,13 +123,14 @@ public class Accounts implements Serializable {
 		System.out.println("");
 		System.out.println("*****Customer Login Page*****");
 		System.out.println("");
-
-		// Customer Login Username
+		System.out.println(accountsApproved);
+		// Customer Login Username //Thanks
 		System.out.println("Provide ID:");
 		int userIDCredential;
 		while (true) {
 			String tempy = input.next();
 			try {
+				// userIDCredential = Integer.parseInt(tempy);
 				userIDCredential = Integer.valueOf(tempy);
 				break;
 			} catch (Exception e) {
@@ -127,36 +141,84 @@ public class Accounts implements Serializable {
 		// Customer Login Password
 		System.out.println("Provide Password: ");
 		String passCredential = input.next();
-		if (accountsApproved.isEmpty()) {
-			Customers i = accountsApproved.iterator().next();
-			if (userIDCredential == i.getCustomerId() && passCredential.equals(i.getPassword())) {
-				System.out.println("Login credential valid");
+
+		for (Customers customer : accountsApproved) {
+			System.out.println("\n");
+			System.out.println("Before the if statement");
+			System.out.println(customer);
+			System.out.println(accountsApproved);
+
+			if (userIDCredential == customer.getCustomerId() && passCredential.equals(customer.getPassword())) {
+				System.out.println("\n");
+				System.out.println("\t Login credential valid (´▽`)b");
 				System.out.println("");
 				System.out.println("");
-				System.out.println("1. Display");
-				System.out.println("2. Deposit");
-				System.out.println("3. Withdraw");
-				System.out.println("4. Done");
+				System.out.println("\t 1. Display");
+				System.out.println("\t 2. Deposit");
+				System.out.println("\t 3. Withdraw");
+				System.out.println("\t 4. Transfer Money");
+				System.out.println("\t 5. Done");
 				String option = input.next();
 
 				switch (option) {
 				case "1":
-					System.out.println("1. Display info");
+					System.out.println("\t ****Display info****");
 					customerList(accountsApproved, userIDCredential);
 					customerLogin();
 					break;
 				case "2":
-					System.out.println("Deposit Here");
-					deposit(accountsPending, userIDCredential);
+					System.out.println("\t ****Deposit****");
+					deposit(accountsApproved, userIDCredential);
 					customerLogin();
 					break;
 				case "3":
-					System.out.println("3. Withdraw");
-					withdraw(accountsPending, userIDCredential);
+					System.out.println("\t ****Withdraw****");
+					withdraw(accountsApproved, userIDCredential);
 					customerLogin();
 					break;
 				case "4":
-					System.out.println("4. Done");
+					System.out.println("\t ****Transfer Money****");
+					System.out.println("\n");
+					System.out.println("Enter account ID to transfer the money:");
+					System.out.println("\n");
+					int id = input.nextInt();
+					System.out.println("\n");
+
+					int flag = 0;
+					for (Customers i : accountsApproved) {
+						if (id == i.getCustomerId()) {
+							System.out.println("User Id: " + i.getUsername());
+							System.out.println("Customer ID:" + i.getCustomerId());
+							System.out.println("Username: " + i.getUsername());
+							System.out.println("Balance: " + i.getTotalBalance());
+							System.out.println("\n");
+							System.out.println("\t 1. Send Money!!!");
+							String optionss = input.next();
+
+							switch (optionss) {
+							case "1":
+
+								System.out.println("How much do you wanna send?");
+								int sendMon = input.nextInt();
+								i.setTotalBalance(i.getTotalBalance() + sendMon);
+
+								System.out.println("\t ****Receipt****");
+								System.out.println("TToTTal balance: " + i.getTotalBalance());
+								System.out
+										.println("Total recieved from " + i.getUsername() + ": " + i.getTotalBalance());
+								System.out.println("Balance : " + i.getTotalBalance());
+								customer.setTotalBalance(customer.getTotalBalance() - sendMon);
+								flag = 1;
+								break;
+							}
+						}
+						if (flag == 1) {
+							break;
+						}
+					}
+					break;
+				case "5":
+					System.out.println("\t Done");
 					menu();
 					break;
 				default:
@@ -166,6 +228,9 @@ public class Accounts implements Serializable {
 				}
 			} else {
 				System.out.println("false");
+				System.out.println("Else statement");
+				System.out.println(customer);
+
 				customerLogin();
 			}
 		}
@@ -198,16 +263,16 @@ public class Accounts implements Serializable {
 			switch (option) {
 			case "1":
 				System.out.println("\t View All Accounts");
-				if (accountsPending.isEmpty()) {
+				if (accountsPending.isEmpty() && accountsApproved.isEmpty()) {
 					System.out.println("");
 					System.out.println("");
 					System.out.println("\t No Accounts...Register to continue");
 					employeeLogin();
 				} else {
 					printListPretty(accountsPending);
+					printListPretty(accountsApproved);
 					employeeLogin();
 				}
-
 				break;
 			case "2":
 				System.out.println("\t Approve/Decline Accounts");
@@ -216,6 +281,8 @@ public class Accounts implements Serializable {
 				break;
 			case "3":
 				System.out.println("\t 3. Done");
+				writeObject(filename, accountsPending);
+				writeObject(filename2, accountsApproved);
 				menu();
 				break;
 			default:
@@ -266,19 +333,49 @@ public class Accounts implements Serializable {
 					printListPretty(accountsPending);
 					adminLogin();
 				}
-
+				if (accountsApproved.isEmpty()) {
+					System.out.println("");
+					System.out.println("");
+					System.out.println("\t No Accounts...Register to continue");
+				} else {
+					printListPretty(accountsApproved);
+					adminLogin();
+				}
 				break;
 			case "2":
-				System.out.println("\t Approve/Decline Accounts");
+				System.out.println("\t ****Approve/Decline Accounts****");
 				accDec();
 				adminLogin();
 				break;
 			case "3":
-				System.out.println("\t Access client accounts");
-				// Print Accounts Pending
-				printListPretty(accountsPending);
-				// Print Accounts Approved
-				printListPretty(accountsApproved);
+				System.out.println("\t ****Access Specific client accounts****");
+
+				System.out.println("\n");
+				System.out.println("\t Enter Account ID you wanna access:");
+				int id;
+				while (true) {
+					String tempy = input.next();
+					try {
+						id = Integer.valueOf(tempy);
+						break;
+					} catch (Exception e) {
+						System.out.println("Invlaid please enter a number");
+					}
+				}
+
+				// Print Specific Accounts Approved
+				for (Customers i : accountsApproved) {
+					if (id == i.getCustomerId()) {
+						System.out.println(i);
+					}
+				}
+
+				// Print Specific Pending Accounts
+				for (Customers i : accountsPending) {
+					if (id == i.getCustomerId()) {
+						System.out.println(i);
+					}
+				}
 				adminLogin();
 				break;
 			case "4":
@@ -329,7 +426,7 @@ public class Accounts implements Serializable {
 			singleCustomer.setPassword(passwordSin);
 
 			// Single Account ID
-			singleCustomer.setAccountType("\t Single");
+			singleCustomer.setAccountType("Single");
 			System.out.println("\n");
 			// Single Accounts Balance
 			singleCustomer.setTotalBalance(0);
@@ -345,7 +442,7 @@ public class Accounts implements Serializable {
 
 			// Add into account pending Array List
 			accountsPending.add(singleCustomer);
-			// writeObject(filename, accountsPending);
+			writeObject(filename, accountsPending);
 
 			break;
 		// Joint Account
@@ -363,7 +460,7 @@ public class Accounts implements Serializable {
 			jointCustomer.setPassword(passwordJoint);
 			System.out.println("\n");
 			// Set Account Type
-			jointCustomer.setAccountType("\t Joint");
+			jointCustomer.setAccountType("Joint");
 
 			// Second User
 			Customers joint2Customer = new Customers();
@@ -375,7 +472,7 @@ public class Accounts implements Serializable {
 			joint2Customer.setCustomerId(jointCustomer.getCustomerId());
 
 			// Set Account Type
-			joint2Customer.setAccountType("\t Joint");
+			joint2Customer.setAccountType("Joint");
 			System.out.println("\n");
 
 			// Single Accounts Balance
@@ -401,7 +498,7 @@ public class Accounts implements Serializable {
 			// Add into account pending Array List
 			accountsPending.add(jointCustomer);
 			accountsPending.add(joint2Customer);
-			// writeObject(filename, accountsPending);
+			writeObject(filename, accountsPending);
 			break;
 
 		default:
@@ -414,78 +511,134 @@ public class Accounts implements Serializable {
 	// Approval / Decline method for Customers
 
 	public static void accDec() {
-		System.out.println("1. Accept");
-		System.out.println("2. Decline");
+		System.out.println("\n");
+		if (accountsPending.isEmpty()) {
+			System.out.println("\t Pending accounts is empty");
+		} else {
+			for (Customers i : accountsPending) {
+				System.out.println("\t Account currently pending: " + i);
+			}
+		}
+		System.out.println(" ");
+		if (accountsApproved.isEmpty()) {
+		} else {
+			for (Customers i : accountsApproved) {
+				System.out.println("\t Current active accounts: " + i);
+			}
+		}
+		System.out.println("\n");
+		System.out.println("\t 1. Accept");
+		System.out.println("\t 2. Decline");
 		int judgement = input.nextInt();
 
 		switch (judgement) {
 		case 1:
-			System.out.println("Accepted");
-			accountsApproved.add(accountsPending.get(0));
-			System.out.println("Show accountPending:\t" + accountsPending);
-			accountsPending.remove(0);
-			System.out.println("Show accountsApproved:\t" + accountsApproved);
-			System.out.println("Show current accountPending:\t" + accountsPending);
+			System.out.println("");
+			System.out.println("*************************");
+			System.out.println("");
+			// Add pending account to approved account
+			System.out.println("\t Approved!!! (´∀｀)");
+
+			// Show past account pending for check
+			for (Customers i : accountsPending) {
+				System.out.println("\t Account previously pending: " + i);
+			}
+			System.out.println("Enter customerID:");
+			int id = input.nextInt();
+			input.nextLine();
+			for (Customers i : accountsPending) {
+				System.out.println("hi");
+				if (i.getCustomerId() == id) {
+					System.out.println("Hello");
+					accountsApproved.add(i);
+					accountsPending.remove(i);
+					writeObject(filename, accountsPending);
+					writeObject(filename2, accountsApproved);
+				}
+			}
+System.out.println("");
+			// Show active account
+			for (Customers i : accountsApproved) {
+				System.out.println("\t Current active accounts:\t" + i);
+			}
+			System.out.println("");
+
+			// Show current pending account list
+			System.out.println("\t Accounts currently pending:\t" + accountsPending);
+
+			// Store accounts into database
+			writeObject(filename2, accountsApproved);
+			writeObject(filename, accountsPending);
 			break;
 		case 2:
-			System.out.println("Decline");
+			System.out.println("\t Decline ゜:(つд⊂):゜。");
 			printListPretty(accountsPending);
 			accountsPending.remove(0);
 			System.out.println(accountsPending);
+
+			// Store accounts pending
+			// writeObject(filename, accountsPending);
 			break;
 		default:
 			System.out.println("Default at accDec");
 			break;
 		}
 	}
+
 	// *******************************************************************************
 	// Money Transaction
 
 	// Deposit
-	public static void deposit(ArrayList<Customers> accountsPending, int userIDCredential) {
+	public static void deposit(ArrayList<Customers> accountsApproved, int userIDCredential) {
 		int newBalance = 0;
+		System.out.println("\t Enter Amount to Deposit:");
 		int amount = input.nextInt();
 		if (amount > 0) {
-			for (Customers i : accountsPending) {
+			for (Customers i : accountsApproved) {
 				if (i.getCustomerId() == userIDCredential) {
 					newBalance = amount + i.getTotalBalance();
 					i.setTotalBalance(newBalance);
-					System.out.println("The amount of " + newBalance + " was deposited");
-					System.out.println(i.getTotalBalance());
+					System.out.println("\t The amount of $" + newBalance + " was deposited");
+					System.out.println("\t $" + i.getTotalBalance());
 					// writeObject(filename, accountsPending);
 				}
-				customerLogin();
+
 			}
 		} else {
 			System.out.println("Invalid Deposit");
 		}
+		customerLogin();
 
 	}
 
 	// ********************************************************************************************************
 
 	// Withdraw
-	public static void withdraw(ArrayList<Customers> accountsPending, int userIDCredential) {
+	public static void withdraw(ArrayList<Customers> accountsApproved, int userIDCredential) {
 		System.out.println("Withdraw amount: ");
-		readObject(filename.toString());
 		int newBalance = 0;
 		int amount = input.nextInt();
 		if (amount != 0 && amount > 0) {
-			for (Customers i : accountsPending) {
+			for (Customers i : accountsApproved) {
 				if (i.getCustomerId() == userIDCredential) {
 					newBalance = i.getTotalBalance() - amount;
 					i.setTotalBalance(newBalance);
-					System.out.println("The amount of " + newBalance + " was withdrawed");
-					System.out.println(i.getTotalBalance());
+					System.out.println("The amount of $" + newBalance + " was withdrawed");
+					System.out.println("Total Balance: $" + i.getTotalBalance());
 					// writeObject(filename, accountsPending);
 				}
-				customerLogin();
 			}
 		} else {
 			System.out.println("Invalid Deposit");
 		}
+		customerLogin();
 	}
 
+	// *******************************************************************************************************************
+	// Transfer money from one account to another
+	public static void transferMoney() {
+
+	}
 	// *******************************************************************************************************************
 	// ObjectInputStream & ObjectOutputStream
 
@@ -500,10 +653,11 @@ public class Accounts implements Serializable {
 
 	}
 
-	// Read object from filename
+	// Read object from Accounts Pending
 	public static void readObject(String filename) {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
 			ArrayList<Customers> temp = (ArrayList<Customers>) ois.readObject();
+			accountsPending.clear();
 			for (Customers i : temp) {
 				Customers c = new Customers();
 				c = i;
@@ -521,15 +675,18 @@ public class Accounts implements Serializable {
 		}
 	}
 
+	// Read Object from Accounts Approved
 	public static void readObject2(String filename2) {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename2))) {
 			ArrayList<Customers> temp = (ArrayList<Customers>) ois.readObject();
+			accountsApproved.clear();
+			// System.out.println(temp);
 			for (Customers i : temp) {
 				Customers c = new Customers();
 				c = i;
 				accountsApproved.add(c);
 			}
-			System.out.println(accountsApproved);
+			System.out.println("SAd" + accountsApproved);
 
 		} catch (FileNotFoundException e) {
 			System.out.println("No accounts loaded");
@@ -545,25 +702,39 @@ public class Accounts implements Serializable {
 	// *******************************************************************************************************************
 	// Print Account balance information
 
-	public static void customerList(ArrayList<Customers> accountsPending, int userIDCredential) {
+	public static void customerList(ArrayList<Customers> accountsApproved, int userIDCredential) {
 
-		for (Customers i : accountsPending) {
+		for (Customers i : accountsApproved) {
 			if (i.getCustomerId() == userIDCredential) {
 				System.out.println("This account belongs to  " + i.getUsername());
 				System.out.println(
 						"Total balance for account #: " + i.getCustomerId() + "\n " + i.getTotalBalance() + "\n");
 				System.out.println("");
 				System.out.println(i.toString());
+				break;
 			}
 		}
 
 	}
 	// ********************************************************************************************************
 
-	static void printListPretty(ArrayList<Customers> accountsPending) {
-		System.out.println("All Customers: ");
-		for (Customers i : accountsPending) {
-			System.out.println(i);
+	static void printListPretty(ArrayList<Customers> accountsAll) {
+		System.out.println("\t All Active Customers: ");
+		if (accountsApproved.isEmpty()) {
+			System.out.println("\t ***No Active Customers. Try to approve more customers.***");
+		} else {
+			for (Customers i : accountsApproved) {
+				System.out.println("\t All Active Accounts: " + i);
+			}
+		}
+
+		if (accountsPending.isEmpty()) {
+			System.out.println("\n");
+			System.out.println("\t ***No Pending Customers. Try to approve more customers.***");
+		} else {
+			for (Customers i : accountsPending) {
+				System.out.println("\t All Pending Accounts: " + i);
+			}
 		}
 		System.out.println(flag);
 		if (flag == 1) {
@@ -579,7 +750,6 @@ public class Accounts implements Serializable {
 
 	// ********************************************************************************************************
 	// ********************************************************************************************************
-
 
 	// Account Constructors
 	public Accounts() {
@@ -620,7 +790,7 @@ public class Accounts implements Serializable {
 	}
 
 	// Get Balance Account
-	public int getBalance() {
+	public static int getBalance() {
 		return balance;
 	}
 

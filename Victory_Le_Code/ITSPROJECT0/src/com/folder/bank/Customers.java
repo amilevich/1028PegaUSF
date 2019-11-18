@@ -43,7 +43,7 @@ public class Customers implements Serializable {
 	@Override
 	public String toString() {
 		return "Customers [customerId=" + customerId + ", totalBalance="
-				+ totalBalance + ", accountType=" + accountType + ", username=" + username + ", password=" + password
+				+ totalBalance + ", accountType= " + accountType + ", username=" + username + ", password=" + password
 				+ "]";
 	}
 
