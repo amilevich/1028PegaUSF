@@ -8,6 +8,11 @@ public class MainActivity{
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		//openMainMenuChoice(menuChoice);
+		try{
+			BankMenu.readCustomerList();
+			}catch(Exception e) {
+				e.printStackTrace();
+			};
 		BankMenu.getMainMenu();
 	}
 	

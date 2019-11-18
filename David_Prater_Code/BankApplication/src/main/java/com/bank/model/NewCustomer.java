@@ -13,11 +13,13 @@ public class NewCustomer implements Serializable {
 	private static final long serialVersionUID = -3579390326967818657L;
 	Scanner sc = new Scanner(System.in);
 	public static ArrayList<Person> newCustomerList = new ArrayList<>();
+	public static String accountNumber = null;
+	//public static double accountBalance = null;
 
 
 	// This method collects all the information about the customer and adds them to the new customer list
 	public void registerNewCustomer() throws FileNotFoundException {
-				
+		
 		System.out.println("What is your first name?");
 		String firstName = sc.nextLine();
 		System.out.println("What is your last name?");
@@ -34,7 +36,7 @@ public class NewCustomer implements Serializable {
 		String password = sc.nextLine();
 
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
-		Person newUser = new Person(firstName, lastName, address, phoneNumber, email, username, password);
+		Person newUser = new Person(accountNumber, firstName, lastName, address, phoneNumber, email, username, password);
 		newCustomerList.add(newUser);
 
 
@@ -45,8 +47,47 @@ public class NewCustomer implements Serializable {
 	}
 	
 	public void registerJointCustomer() throws FileNotFoundException {
-		registerNewCustomer();
-		registerNewCustomer();
+		
+		System.out.println("Please Enter Informtaion for User One");
+		System.out.println("What is your first name?");
+		String firstName = sc.nextLine();
+		System.out.println("What is your last name?");
+		String lastName = sc.nextLine();
+		System.out.println("What is your address");
+		String address = sc.nextLine();
+		System.out.println("What is your phone number?");
+		String phoneNumber = sc.nextLine();
+		System.out.println("What is your email?");
+		String email = sc.nextLine();
+		System.out.println("Please create a username.");
+		String username = sc.nextLine();
+		System.out.println("Please choose a password.");
+		String password = sc.nextLine();
+		
+		System.out.println("Please Enter Informtaion for User Two");
+		System.out.println("What is your first name?");
+		String firstName2 = sc.nextLine();
+		System.out.println("What is your last name?");
+		String lastName2 = sc.nextLine();
+		System.out.println("What is your address");
+		String address2 = sc.nextLine();
+		System.out.println("What is your phone number?");
+		String phoneNumber2 = sc.nextLine();
+		System.out.println("What is your email?");
+		String email2 = sc.nextLine();
+		System.out.println("Please create a username.");
+		String username2 = sc.nextLine();
+		System.out.println("Please choose a password.");
+		String password2 = sc.nextLine();
+
+		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
+		Person newUser = new Person(accountNumber, firstName, lastName, address, phoneNumber, email, username, password, firstName2, lastName2, address2, phoneNumber2, 
+				email2, username2, password2);
+		newCustomerList.add(newUser);
+
+
+		System.out.println("Please try to log in later to see if you were approved!");
+		BankMenu.getMainMenu();
 
 	}
 }
