@@ -1,0 +1,8 @@
+username,password,role
+Admin1,pass1,1
+randymarsh,rando1,0
+Admin,pass2,1stanmarsh,stan12,0
+usertest2,user2,0
+ba,pass,1
+shaypatel,1234,0
+shaypatel,1234,1
