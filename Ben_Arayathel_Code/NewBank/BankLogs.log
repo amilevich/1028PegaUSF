@@ -1,2 +1,69 @@
 User logged in.
 User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in.
+User logged in as a boss
+User logged in.
+User logged in.
+User logged in as a boss
+User logged in.
+User logged in.
+User logged in as a boss
+User logged in.
+User logged in as a customer
+User logged in.
+User logged in.
+User logged in as a customer
+User logged in.
+User logged in as a customer
+User logged in.
+User logged in as a employee
+User logged in.
+2019-11-18 15:10:14 INFO  MainDriver:90 - User logged in.
+2019-11-18 15:10:40 INFO  MainDriver:100 - User logged in as a customer
+2019-11-18 15:14:14 INFO  MainDriver:90 - User logged in.
+2019-11-18 15:14:17 INFO  MainDriver:90 - User logged in.
+2019-11-18 15:14:20 INFO  MainDriver:105 - User logged in as a employee
+2019-11-18 15:51:19 INFO  MainDriver:90 - User logged in.
+2019-11-18 15:51:21 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 15:51:26 INFO  Customer:51 - User chose to see how rich they are
+2019-11-18 15:51:31 INFO  Customer:37 - User chose to withdraw
+2019-11-18 15:51:32 INFO  Customer:135 - User withdrew £20.0
+2019-11-18 15:51:36 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 15:54:09 INFO  MainDriver:90 - User logged in.
+2019-11-18 15:54:11 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 15:54:13 INFO  Customer:66 - User chose to create a single account.
+2019-11-18 15:54:14 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 16:12:53 INFO  MainDriver:90 - User logged in.
+2019-11-18 16:12:54 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 16:13:00 INFO  Customer:51 - User chose to see how rich they are
+2019-11-18 16:13:05 INFO  Customer:37 - User chose to withdraw
+2019-11-18 16:13:06 INFO  Customer:139 - Ha, the user is poor
+2019-11-18 16:13:09 INFO  Customer:137 - User withdrew £50.0 from ab
+2019-11-18 16:13:12 INFO  MainDriver:103 - User logged out of customer menu
+2019-11-18 16:22:43 INFO  MainDriver:90 - User logged in.
+2019-11-18 16:22:45 INFO  MainDriver:111 - User logged in as a boss
+2019-11-18 16:22:47 INFO  BankAdmin:27 - User successfully logged in as an admin
+2019-11-18 16:23:02 INFO  Customer:152 - User has deposited in £100.0 to ab
+2019-11-18 16:23:10 INFO  MainDriver:113 - User logged out of admin menu
+2019-11-18 17:25:59 INFO  MainDriver:90 - User logged in.
+2019-11-18 17:25:59 INFO  MainDriver:90 - User logged in.
+2019-11-18 17:26:45 INFO  MainDriver:90 - User logged in.
+2019-11-18 17:26:47 INFO  MainDriver:101 - User logged in as a customer
+2019-11-18 17:26:59 INFO  Customer:37 - User chose to withdraw
+2019-11-18 17:27:02 INFO  MainDriver:119 - User input an invalid data type
+2019-11-18 17:27:02 INFO  MainDriver:90 - User logged in.

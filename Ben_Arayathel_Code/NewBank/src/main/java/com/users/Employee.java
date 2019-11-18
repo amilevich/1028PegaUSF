@@ -3,10 +3,15 @@ package com.users;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.backend.Account;
 import com.backend.AccountManagement;
+import com.frontend.MainDriver;
 
 public class Employee {
+	
+	final static Logger loggy = Logger.getLogger(Employee.class);
 	//Hard coded ID for 
 	static String Employeeusername = "e";
 	static String Employeepassword = "p";
@@ -23,13 +28,14 @@ public class Employee {
 		}else{
 			System.out.println("Incorrect login credentials");}
 	}
-	
 	//THis method will showcase what the employee can do and gives access to the methods within the class.
 	public static void loggedInMenu(Scanner in) throws InputMismatchException{
-		
+		do {
 		System.out.println("Well done, you can follow basic protocol.");
-		System.out.println("What would you like to do? Approve pending accounts[0] "
-				+ "or access intimate details about our customers?[1]");
+		System.out.println("What would you like to do?");
+		System.out.println("[0] Approve Pending Accounts.");
+		System.out.println("[1] Disregard User privacy and access their intimate details.");
+		
 		int options = in.nextInt();		
 		switch(options) {
 		case 0:
@@ -37,10 +43,11 @@ public class Employee {
 			break;
 		case 2:
 			getSecrets(in);
-		
+		default:
+			System.out.println("That really isn't an option, learn to read to ");
 		}
+		}while(MainDriver.keepinteracting(in, "employee"));
 	}
-	
 	//Approve pending accounts, within the array list into the "approved" pending map.
 	public static void approveAccounts(Scanner in) throws InputMismatchException {
 		if(AccountManagement.pendingAccounts.isEmpty()) {
@@ -65,9 +72,9 @@ public class Employee {
 			}
 			AccountManagement.pendingAccounts.removeAll(AccountManagement.pendingAccounts);
 			System.out.println("Account processing complete");
+			loggy.info("Pending accounts have been approved");
 		}
-	}
-	
+	}	
 	//Allows employees to view account details via the toString method
 	public static void getSecrets(Scanner in) throws InputMismatchException{
 
@@ -95,7 +102,7 @@ public class Employee {
 				if (input.equals("no")) {
 					accessing = false;
 				}else if(input.equals("yes")) {
-					System.out.println("Cheery ho, lets get you some more trusted secret from the fools who use our service.");
+					System.out.println("Cheery ho, lets get you some more trusted secret from our valued customers.");
 				}else {
 					System.out.println("That isn't a vaild input, remember we don't accept upper case.");
 					break;

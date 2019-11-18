@@ -9,5 +9,10 @@ public class BankTester {
 		assertEquals(0, 0);
 		System.out.println("test 1");
 	}
+	
+//	@Test
+//	public void tetGetAccount() {
+//		assertEquals(expected, actual);
+//	}
 
 }

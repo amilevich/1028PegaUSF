@@ -2,10 +2,8 @@ package com.frontend;
 
 
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -32,7 +30,7 @@ public class MainDriver {
 	}
 	//Introductory menu 
 	public static void introductoryMenu() {
-		System.out.println("\t" + "Hello, Welcome to our lovely Bank.");
+		System.out.println("Hello, Welcome to our lovely Bank.");
 		System.out.println("Remember to have an employee in training to be a pega trainee by your side.");
 		System.out.println("Let's get the legal stuff out of the way.");
 		System.out.println("We will not be legally elligibale for any damages caused, also for any money lost (we have no insurance either)." + "\n");
@@ -53,23 +51,14 @@ public class MainDriver {
 	         fis.close();
 	      }catch(IOException ioe)
 	      {
-	         ioe.printStackTrace();
-	         return;
+	         System.out.println("IO exception occured" + "\n");
 	      }catch(ClassNotFoundException c)
 	      {
 	         System.out.println("Class not found");
-	         c.printStackTrace();
 	         return;
 	      }
 	      System.out.println("Deserialized HashMap..");
 	      // Display content using Iterator
-	      Set set = AccountManagement.storageAccount.entrySet();
-	      Iterator iterator = set.iterator();
-	      while(iterator.hasNext()) {
-	         Map.Entry mentry = (Map.Entry)iterator.next();
-	         System.out.print("key: "+ mentry.getKey() + " & Value: ");
-	         System.out.println(mentry.getValue());
-	      }
 
 		
 	}
@@ -83,7 +72,7 @@ public class MainDriver {
 			oos.writeObject(AccountManagement.storageAccount);
 			oos.close();
 			fos.close();
-			System.out.printf("Serialized HashMap data is saved in hashmap.ser");
+			System.out.println("Serialized HashMap data is saved in hashmap.ser");
 		}catch(IOException ioe)
 		{
 			ioe.printStackTrace();
@@ -99,24 +88,39 @@ public class MainDriver {
 		introductoryMenu();
 		do{
 			loggy.info("User logged in.");
-			System.out.println("Input 0,1,2, depending on whether you're a customer,employee or bank admin"); //Giving user the options for which menu they'd like
+			
+			System.out.println("Which menu would you like to access?"); //Giving user the options for which menu they'd like
+			System.out.println("[0] Customer");
+			System.out.println("[1] Employee");
+			System.out.println("[2] Bank Admin");
 			try {
 				int input = in.nextInt(); 
 				in.nextLine();
 				switch(input) {	
 				case 0:
+					loggy.info("User logged in as a customer");
 					Customer.access(in);  //Accesses the customer menu
+					loggy.info("User logged out of customer menu");
 					break;
 				case 1:
+					loggy.info("User logged in as a employee");
 					Employee.employeeLogin(in); //Accesses the employee login
+					loggy.info("User logged out of employee menu");
 					break;
 				case 2:
+					loggy.info("User logged in as a boss");
 					BankAdmin.employeeLogin(in); //Access the bank admin login
+					loggy.info("User logged out of admin menu");
 					break;
+				case 3:
+					
+					
 			}
 			interacting = keepinteracting(in, "bank"); 
 			}catch(InputMismatchException e) {
-				e.printStackTrace();
+				
+				loggy.info("User input an invalid data type");
+
 				System.out.println("\n" + "Invalid input, try to follow the (VERY) easy instructions next time." + 
 				"You've been returned to the main menu" + "\n");
 				in.nextLine();

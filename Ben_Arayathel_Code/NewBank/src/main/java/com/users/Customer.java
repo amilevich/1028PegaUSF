@@ -3,16 +3,20 @@ package com.users;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.backend.Account;
 import com.backend.AccountManagement;
 import com.frontend.MainDriver;
 
 public class Customer {
+	
+	final static Logger loggy = Logger.getLogger(Customer.class);
 
 	//access will let the user decide between opening a new account vs logging into a previous account.
 	public static void access(Scanner in) throws InputMismatchException{
-		System.out.println("Hi there, extemely valued meatbag");
-		System.out.println("Would you like to access your account [0] or create an account[1]?");
+		System.out.println("Hi there, extemely super duper valued customer.");
+		System.out.println("Would you like to access your account[0] or create an account[1]?");
 		int input = in.nextInt();
 		switch(input) {
 		case 0:
@@ -21,58 +25,85 @@ public class Customer {
 				break;
 			}
 			do {
-			System.out.println();
-			System.out.println("What would you like to do with your account? Withdraw[0],"
-					+ "Deposit[1] or Transfer[2]?");
+			System.out.println("");
+			System.out.println("What would you like to do with your account?");
+			System.out.println("[0] Withdraw");
+			System.out.println("[1] Deposit");
+			System.out.println("[2] Transfer");
+			System.out.println("[3] View Balance");
 			int input2 = in.nextInt();
 			switch(input2) {
 			case 0:
+				loggy.info("User chose to withdraw");
 				withdraw(account, in);
 				break;
 			case 1:
+				loggy.info("User chose to deposit, very nice");
 				deposit(account, in);
 				break;
 			case 2:
+				loggy.info("User is transferring money");
 				System.out.println("Which account would you like to transfer to?");
 				Account account2 = AccountManagement.getAccountTransfer(in);
 				transfer(account, account2, in);
 				break;
+			case 3:
+				loggy.info("User chose to see how rich they are");
+				viewBalance(account);
+				break;
 			default:
-				System.out.println("While that is not an invalid option, that doesn't get you anything.");
+				loggy.info("User can't read or type, insufficient data to conclude which.");
+				System.out.println("While that is not an invalid option, that doesn't get you anything mate.");
 			}
 			
 			}while(MainDriver.keepinteracting(in,"customer"));
 			break;
 		case 1:
-			System.out.println("A single account[0] or a joint account[1]?");
+			System.out.println("Create a single account[0] or a joint account[1]?");
 			int input3 = in.nextInt();
 			switch(input3) {
 			case 0:
+				loggy.info("User chose to attempt to create a single account.");
 				create(in);
 				break;
 			case 1:
+				loggy.info("User chose to attempt to create a joint account");
 				createJoint(in);
 				break;
 			}
 			break;
 		default:
-			System.out.println("That is not a vaild input, you'll be returned back to the main menu.");
+			System.out.println("That is not a vaild input, you'll be returned back to the previous menu.");
 		}
 	}
 	
+	private static void viewBalance(Account account) {
+		System.out.println("Your balance is " + account.getBalance());
+	}
+
 	//creates an account
 	public static void create(Scanner in) throws InputMismatchException{
+		boolean interacting = true;
+		while(interacting) {
 		System.out.println("Please give us a username:");
 		String username = in.next();
-		//if(AccountManagement.storageAccount)
 		System.out.println("and password: ");
 		String password = in.next();
+		if(AccountManagement.storageAccount.containsKey(username+password)) {
+			System.out.println("An account with your details have already been created.");
+			System.out.println("You'll be removed from the creation menu");
+			loggy.info("User failed in creating account, same username as a previos account");
+			interacting = false;
+		}else {
 		System.out.println("and how much would you like to deposit into your account?");
 		Double balance = in.nextDouble();
 		Account account = new Account(username, password, username + password, balance);
-		
 		AccountManagement.pendingAccounts.add(account);
+		loggy.info("Pending account succesfully created by user");
 		System.out.println("Congratulations, your account is waiting to be approved by a staff member.");
+		interacting = false;
+		}
+		}
 	}
 	
 	//creates a joint account
@@ -87,12 +118,23 @@ public class Customer {
 		System.out.println("and a password: ");
 		String password2 = in.next();
 		
+		if(AccountManagement.storageAccount.containsKey(username1+password1)) {
+			System.out.println("An account with your details have already been created.");
+			System.out.println("You'll be removed from the creation menu");
+			loggy.info("User failed in creating account, same username as a previos account");
+			
+		}else if(AccountManagement.storageAccount.containsKey(username2 + password2)){
+			System.out.println("An account with your details have already been created.");
+			System.out.println("You'll be removed from the creation menu");
+			loggy.info("User failed in creating account, same username as a previos account");
+		}else {
+		
 		System.out.println("How much would you like to deposit into your account?");
 		Double balance = in.nextDouble();
-		
+		//Calling on a different constructor to that of the single account.
 		Account account = new Account(username1, password1, username1+password1, username2, password2, username2+password2, balance);
 		AccountManagement.pendingAccounts.add(account);
-		System.out.println("Congratulations, your joint account is waiting to be approved by a staff member.");
+		System.out.println("Congratulations, your joint account is waiting to be approved by a staff member.");}
 		
 	}
 	
@@ -103,8 +145,9 @@ public class Customer {
 		if(account.getBalance()>=drawl) {
 			account.setBalance(account.getBalance() - drawl);
 			System.out.println("Your new account balance is £" + account.getBalance());
-
+			loggy.info("User withdrew £" + drawl + " from " + account.getiD());
 		}else if(account.getBalance()<drawl){
+			loggy.info("Ha, the user is poor");
 			System.out.println("Your account balance is only £" + account.getBalance());
 			System.out.println("Please request a lower amount or input 0 if you'd like to cancel your transaction.");
 			withdraw(account, in);
@@ -116,7 +159,8 @@ public class Customer {
 		System.out.println("How much would you like to deposit?");
 		double dep = in.nextDouble();
 		account.setBalance(account.getBalance() + dep);
-		System.out.println("You've deposited into your account, you account is now £" + account.getBalance());
+		System.out.println("You've deposited into account,  account now has £" + account.getBalance());
+		loggy.info("User has deposited in £" + dep + " to " + account.getiD());
 	}
 	
 	//Transferring money between accounts
@@ -127,11 +171,16 @@ public class Customer {
 		if((account1.getBalance()-transferAmount) >= 0) {
 			account1.setBalance(account1.getBalance()-transferAmount);
 			account2.setBalance(account2.getBalance()+transferAmount);
-			System.out.println("Transfer is succesful");}
+			System.out.println("Transfer is succesful");
+			loggy.info("User transferred £" + transferAmount + " from " + account1.getName() + " to " + account2.getName());
+		}
 		else {
-			System.out.println("Transfer not succesful, try again or input 0 when prompted for transfer amount to cancel transaction");
+			loggy.info("User unsucessfully attempted to transfer funds");
+			System.out.println("Transfer not succesful, insufficient funds, try again or input 0 when prompted for transfer amount to cancel transaction");
 			transfer(account1, account2, in);
-		}}catch(Exception e) {
+		}
+		
+		}catch(Exception e) {
 			e.getStackTrace();
 		}
 		
