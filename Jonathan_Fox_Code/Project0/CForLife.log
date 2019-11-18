@@ -1,0 +1,14 @@
+2019-11-16 14:14:42 INFO  Driver:45 - BankInfo.txt openned.
+2019-11-16 14:17:16 INFO  Driver:197 - 500.5 CBucks deposited into Account 2. New balance: 500.5 CBucks.
+2019-11-16 14:17:32 INFO  Driver:164 - Account 0 canceled.
+
+2019-11-16 14:17:47 INFO  Driver:123 - Account 0.0 created.
+2019-11-16 14:18:25 INFO  Driver:143 - Account 3 approved.
+2019-11-16 14:18:36 INFO  Driver:197 - 10.0 CBucks deposited into Account 3. New balance: 10.0 CBucks.
+2019-11-16 14:18:41 INFO  Driver:514 - 5.0 CBucks withdrawn from Account 3. New balance: 5.0 CBucks.
+2019-11-16 14:18:51 INFO  Driver:482 - User testuser transfered 5.0 CBucks from Account 3 to Account 1.
+
+2019-11-16 14:19:15 INFO  Driver:123 - Account 4 created.
+2019-11-16 14:20:31 INFO  Driver:45 - BankInfo.txt openned.
+2019-11-17 16:00:20 INFO  Driver:45 - BankInfo.txt openned.
+2019-11-18 10:17:57 INFO  Driver:45 - BankInfo.txt openned.
