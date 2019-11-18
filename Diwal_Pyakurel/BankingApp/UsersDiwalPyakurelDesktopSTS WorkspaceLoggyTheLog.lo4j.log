@@ -1,0 +1,34 @@
+2019-11-17 01:03:55 INFO  Logger:45 - this works
+2019-11-17 17:18:51 INFO  Logger:23 - customerlogs in
+2019-11-17 17:19:04 INFO  Logger:110 - Customer request to open a single account
+2019-11-17 17:19:22 INFO  Logger:110 - Customer request to open a single account
+2019-11-17 17:19:58 INFO  Logger:104 - Customer requests to open a joint account
+2019-11-17 17:20:08 INFO  Logger:23 - adminlogs in
+2019-11-17 17:20:32 INFO  Logger:23 - customerlogs in
+2019-11-17 17:20:57 INFO  Logger:23 - customerlogs in
+2019-11-17 17:21:24 INFO  Logger:23 - customerlogs in
+2019-11-17 17:22:13 INFO  Logger:227 - A deposit has been made
+2019-11-17 17:22:13 INFO  Logger:81 - $200.0 has been withdraw on the account 7883318
+2019-11-17 17:26:33 INFO  Logger:23 - customerlogs in
+2019-11-17 17:26:54 INFO  Logger:262 - A withdrawl has been done
+2019-11-17 17:26:54 INFO  Logger:96 - $100.0 has been withdraw on the account 7883318
+2019-11-17 17:27:24 INFO  Logger:23 - adminlogs in
+2019-11-17 17:27:46 INFO  Logger:227 - A deposit has been made
+2019-11-17 17:27:46 INFO  Logger:55 - $100.0 has been deposited on the account 7883318
+2019-11-17 17:27:59 INFO  Logger:23 - adminlogs in
+2019-11-17 17:28:18 INFO  Logger:227 - A deposit has been made
+2019-11-17 17:28:18 INFO  Logger:262 - A withdrawl has been done
+2019-11-17 17:28:18 INFO  Logger:285 - A transfer has been completed
+2019-11-17 17:28:18 INFO  Logger:82 - $100.0 has been deposited on the account 7117057
+2019-11-17 17:28:18 INFO  Logger:83 - $100.0 has been withdrawn from the account 7883318
+2019-11-17 17:36:13 INFO  Logger:23 - adminlogs in
+2019-11-17 17:37:16 INFO  Logger:23 - adminlogs in
+2019-11-17 17:38:45 INFO  Logger:23 - customerlogs in
+2019-11-17 17:38:52 INFO  Logger:23 - adminlogs in
+2019-11-17 17:58:15 INFO  Logger:23 - adminlogs in
+2019-11-17 17:59:11 INFO  Logger:23 - adminlogs in
+2019-11-17 18:02:31 INFO  Logger:23 - adminlogs in
+2019-11-17 18:09:12 INFO  Logger:23 - adminlogs in
+2019-11-17 18:12:39 INFO  Logger:23 - employeelogs in
+2019-11-17 18:12:51 INFO  Logger:262 - A withdrawl has been done
+2019-11-17 18:12:51 INFO  Logger:66 - $100.0 has been deposited on the account 3910155
