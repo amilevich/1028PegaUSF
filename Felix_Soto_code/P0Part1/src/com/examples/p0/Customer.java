@@ -1,9 +1,18 @@
 package com.examples.p0;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer extends User {
+public class Customer extends User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9077569368241655850L;
 	private ArrayList<Account> accounts = new ArrayList<Account>();
 
 	public Customer(String name, String userName, String password) {
@@ -42,7 +51,7 @@ public class Customer extends User {
 		if (amount < 500)
 			System.out.println("Sorry we cant open an account with amount " + amount.toString());
 		else {
-			System.out.println("Okay! You have " + amount.toString() + " as opening balance");
+			System.out.println("Okay! You have $" + amount.toString() + " as opening balance");
 			Account temp = new Account(amount);
 			if (accounts.add(temp)) {
 				Bank.setTotalMoneyDeposited(Bank.getTotalMoneyDeposited() + amount);
@@ -63,4 +72,30 @@ public class Customer extends User {
 	public ArrayList<Account> getAccounts() {
 		return accounts;
 	}
+	
+	public void inOut(){
+		String filename = "./AccountsFile.txt";
+		writeObject(filename, accounts);
+		readObject(filename);
+		System.out.println("done");
+	}
+	
+	public static void writeObject(String filename, ArrayList<Account> lst) {
+		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))){
+			oos.writeObject(lst);
+			
+		}catch(IOException io) {
+			io.printStackTrace();
+		}
+	}
+	
+	public static void readObject(String filename) {
+		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))){
+			System.out.println(ois.readObject());
+		}catch(IOException exception) {
+		exception.printStackTrace();
+		}catch(ClassNotFoundException anything) {
+			anything.printStackTrace();
+		}
+	}	
 }

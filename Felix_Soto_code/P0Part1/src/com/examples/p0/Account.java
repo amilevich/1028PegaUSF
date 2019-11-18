@@ -18,7 +18,7 @@ public class Account {
 	public void showAccountDetails() {
 		System.out.print("Account Number: ");
 		System.out.println(this.getAccountNumber());
-		System.out.print("Current Balance: ");
+		System.out.print("Current Balance: $");
 		System.out.println(this.getBalance());
 		System.out.print("Account Status: ");
 		System.out.println(this.getStatus());

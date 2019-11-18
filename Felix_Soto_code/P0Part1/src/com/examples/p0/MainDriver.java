@@ -18,8 +18,9 @@ public class MainDriver {
 					showUserMenu();
 					input2 = Excptns.integerInput();
 					if (input2 == 1) {
-						Customer cust = gb.customerLogin();
+						Customer cust = gb.accountLogin();
 						if (cust == null) {
+						
 						} else {
 							do {
 								showCustomerMenu();
@@ -50,7 +51,9 @@ public class MainDriver {
 							} while (input3 != 0);
 						}
 					} else if (input2 == 2) {
-						gb.addCustomers();
+						gb.addSingleCustomers();
+					} else if( input2 == 3) {
+						gb.addJointCustomers();
 					} else if (input2 != 0) {
 						System.out.println("Please select one of the above option");
 					}
@@ -134,7 +137,8 @@ public class MainDriver {
 	public static void showUserMenu() {
 		System.out.println();
 		System.out.println("Press 1 if you are already a customer of our bank");
-		System.out.println("Press 2 to register youself as a customer");
+		System.out.println("Press 2 to register a single account");
+		System.out.println("Press 3 to register a joint account");
 		System.out.println("Press 0 to go back to previous menu");
 	}
 

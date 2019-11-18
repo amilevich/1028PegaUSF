@@ -49,7 +49,7 @@ public class Bank {
 		if (admin != this.admin)
 			return;
 		System.out.println("Total number of accounts: " + customers.size());
-		System.out.println("Total number of registrered accounts: " + getAccountsCount());
+		System.out.println("Total number of registered accounts: " + getAccountsCount());
 		System.out.println("Total money deposited: " + getTotalMoneyDeposited());
 	}
 	
@@ -68,7 +68,7 @@ public class Bank {
 		}
 		return count;
 	}
-	public void addCustomers() throws IOException {
+	public void addSingleCustomers() throws IOException {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		String fullName;
@@ -119,7 +119,7 @@ public class Bank {
 
 		Customer newCustomer = new Customer(fullName, userName, password);
 		if (customers.add(newCustomer)) {
-			System.out.println("You are now our customer.");
+			System.out.println("You have succesfully registered with a single account.");
 			newCustomer.showCustomerDetails();
 		}
 	}
@@ -132,7 +132,7 @@ public class Bank {
 		return false;
 	}
 
-	public Customer customerLogin() throws IOException {
+	public Customer accountLogin() throws IOException {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		Customer temp = null;
@@ -169,6 +169,62 @@ public class Bank {
 			}
 		} while (input != 0);
 		return temp;
+	}	
+
+	public void  addJointCustomers(){
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		String fullName;
+		String userName;
+		String password;
+
+		// input name
+		do {
+			System.out.println("Your full name please?");
+			fullName = new String(sc.nextLine().toUpperCase());
+			if (fullName.matches("[A-Z]+\\s[A-Z]+")) {
+				System.out.println("Welcome " + fullName);
+				break;
+			} else {
+				System.out.println("Sorry the format of name should be \"FirstName LastName\"");
+			}
+		} while (true);
+
+		// input username
+		do {
+			System.out.println("Choose a username containing only letters.");
+			userName = new String(sc.nextLine());
+			if (userName.matches("[a-zA-Z]+")) {
+				if (checkUsername(userName)) {
+					System.out.println("Username already exists. Please Choose another.");
+				} else {
+					System.out.println("Your username is: " + userName);
+					break;
+				}
+			} else {
+				System.out.println("Invalid username.");
+			}
+		} while (true);
+
+		// input password
+		do {
+			System.out.println("Please choose a password.");
+			password = new String(sc.nextLine());
+			System.out.println("Type your chosen password again.");
+			String temp = new String(sc.nextLine());
+			if (password.equals(temp)) {
+				System.out.println("Your password has been chosen succesfully.");
+				break;
+			} else {
+				System.out.println("Sorry, the passwords didn't match, please try again");
+			}
+		} while (true);
+
+		Customer newCustomer = new Customer(fullName, userName, password);
+		if (customers.add(newCustomer)) {
+			System.out.println("You have succesfully registered with a joint account.");
+			newCustomer.showCustomerDetails();
+		}
 	}
 
 	public Admin adminLogin() throws IOException {
