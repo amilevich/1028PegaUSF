@@ -1,0 +1,100 @@
+Database - housing for information and structured data.
+Table - most basic data object
+
+Rows --> Records
+Columns --> Attributes
+
+DBMS - Database Management System
+RDBMS - Relational DBMS
+
+SQL(Structured Query Language): 
+
+OracleSQL (Works on RDBMS, similar to MySQL, different syntaxes):
+
+DML(Data Manipulation Language):
+	Keywords:
+		SELECT (select a data)
+		INSERT (create new data)
+		UPDATE (change data)
+		DELETE (remove data)
+
+Minimum basic functionality: CRUD - Create, Read, Update and Delete. Any model, should at minimum should be able to do it
+
+
+DQL(Data Query Language):
+	Keywords:	
+		SELECT (controversial, can be either in DQL or DML, logically should be in DQL, but who gives a shit)
+
+DDL(Data Definition Language):
+	Keywords:
+		CREATE (Creates a column, i.e. a place to store data)
+		ALTER (Alter attributes of a table, e.g. add a key to a column, changes how we access data)
+		DROP (Deletes the table and it's data, nukes it)
+		TRUNCATE (Keeps the data structure, removes all the data)
+
+TCL(Transcation Control Language)
+(Transaction - any change to your DB)
+	Keywords:
+		COMMIT (Saves any changes to your DB, i.e. saves Transactions)
+		SAVEPOINT (Saves a version of your DB, i.e. Checkpoint)
+		ROLLBACK (Returns the DB to a version that was saved)
+
+DCL(Data Control Language)
+	Keywords:
+		GRANT (Allows a user to access your database)
+		REVOKE (Removes permissions for user access)
+
+
+
+Key - uniquely identify attribute or set of attributes for a record 
+Primary Key - your go to to uniquely identify records in a table
+Foreign key - primary key of another table.
+Compositye Key - not one column as a key, but 2 or more attributes that act as a primary or a foreign keys. (e.g. full names vs first names),	
+			also not good for big databases due to increased complexity and difficult to confirm uniqueness. 
+
+
+Transcations must be: 
+ATOMIC: All or nothing goes (if 1 query fails in a multiple query transaction, all the queries failed)
+CONSISTENT: Does not violate refernetial integrity
+ISOLATED: No transactions interferes with another
+DURABLE: Data persists (data still exists even if the local version of it breaks).
+
+REFERNTIAL INTEGRITY: ALL foreign keys must be primary keys of another table. Operations cannot negatively affect the DB scheme.
+			
+-------Signing up for AWS--------------------------------------------------------------------------------------------------------------------------
+AWS: Amazon Web Services
+RDS: Relational Database Services
+
+AWS sign in instructions:
+
+Go to services
+Go to RDS
+Click on "Database Instances"
+Click on "Create Databases"
+Select Engine "Oracle" --> Edition "Oracle Enterprise Edition" REMEMBER TO CLICK "only eligible for RDS free"
+On Specify DB details, chose engine version "Oracle 12.1.0.2.v17"
+
+MASTER PASSWORD: SUPERp4ssw0rd
+
+On Database options, specify database name to ORCL.
+
+Everything else should be on left on default.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Attributes for columns have constraints, they must be:
+	UNIQUE
+	NOT NULL
+	CHECK :Defines a condition that all values must followe.
+	PRIMARY KEY ]
+		    |--UNIQUE + NOT NULL
+	FOREIGN KEY ]
+		
+Multiplicity - relationship between tables:
+
+	1-1
+	1-many
+	many-1
+	many-many
+
+For many-many databases, you need 3 databases, with one database being the junction table.
+	
