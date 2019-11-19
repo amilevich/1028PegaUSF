@@ -6,8 +6,8 @@ package com.homework.HW1;
 
 public class Q16_StringChar {
 	public static void main(String[] args) {
-		
-		System.out.println("Length of string passed :" + args[0].length());
+		for (String x : args) {
+			System.out.println(x.length());
+		}
 	}
-	
 }
