@@ -185,7 +185,6 @@ public class Bank {
 		}catch(IOException io) {
 			io.printStackTrace();
 		}
-		//Files.write(Paths.get(filename), content.getBytes(), StandardOpenOption.CREATE);
 	}
 	//read 
 	public void readAccounts(String filename) {
