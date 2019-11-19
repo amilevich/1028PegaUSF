@@ -74,6 +74,7 @@ Click on "Create Databases"
 Select Engine "Oracle" --> Edition "Oracle Enterprise Edition" REMEMBER TO CLICK "only eligible for RDS free"
 On Specify DB details, chose engine version "Oracle 12.1.0.2.v17"
 
+MASTER USER: bauser1028
 MASTER PASSWORD: SUPERp4ssw0rd
 
 On Database options, specify database name to ORCL.
@@ -98,3 +99,16 @@ Multiplicity - relationship between tables:
 
 For many-many databases, you need 3 databases, with one database being the junction table.
 	
+
+
+
+Click on services, --> Compue --> EC2
+Left hand side, scroll down until "Network and Security",--> Security Groups --> Click create rule --> click on myIP and set port between 1520-1522.
+
+SQL connecting to AWs
+under Connections, click "Green Plus"
+username: your username
+password: your password 
+Hostname: endpoint on AWs
+Port: 1521
+SID selected : ORCL
