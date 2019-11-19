@@ -450,6 +450,7 @@ public class Bank {
 						System.out.println("Invalid account name!");
 					}
 					break;
+					// both admin and employee can allow custormer accounts 
 				case "allow":
 					if(cmd.length!=2) {//deny account_name
 						System.out.println("Invalid command! Please enter command 'help'!");
@@ -466,12 +467,13 @@ public class Bank {
 						System.out.println("Invalid account name!");
 					}
 					break;
+					// only admin can authorize cancellation of account 
 				case "cancel":
 					if(bank.getAuthority()!=4) {
 						System.out.println("Invalid authority!");
 						break;
 					}
-					if(cmd.length!=2) {//cancel account_name
+					if(cmd.length!=2) {
 						System.out.println("Invalid command! Please enter command 'help'!");
 						break;
 					}
@@ -479,6 +481,7 @@ public class Bank {
 						System.out.println("Invalid account name!");
 					}
 					break;
+					// admin and employee accounts can only use this option to deposit customer accounts
 				case "depositx":
 					if(bank.getAuthority()!=4) {
 						System.out.println("Invalid authority!");
@@ -501,6 +504,7 @@ public class Bank {
 					Double new_qty4=bank.Deposit(cmd[1], qty4);
 					System.out.println(cmd[1]+" account "+qty4.toString()+" deposited. Current balance is "+new_qty4.toString());
 					break;
+					// admin and employee accounts can only use this option to withdraw from customer accounts
 				case "withdrawx":
 					if(bank.getAuthority()!=4) {
 						System.out.println("Invalid authority!");
@@ -523,6 +527,7 @@ public class Bank {
 					Double new_qty5=bank.Withdraw(cmd[1], qty5);
 					System.out.println(cmd[1]+" account "+qty5.toString()+" withdrawed. Current balance is "+new_qty5.toString());
 					break;
+					//writes through the file
 				case "write":
 					if(cmd.length!=1) {//write in the file
 						System.out.println("Invalid command! Please enter command 'help'!");
@@ -535,7 +540,8 @@ public class Bank {
 					bank.writeAccounts("store1.txt");
 					System.out.println("Successfully saved!");
 					break;
-				case "read": //read through the file
+					//read through the file
+				case "read": 
 					if(cmd.length!=1) {
 						System.out.println("Invalid command! Please enter command 'help'!");
 						break;
@@ -546,11 +552,13 @@ public class Bank {
 					}
 					bank.readAccounts("store1.txt");
 					break;
+					// terminates the program
 				case "exit":
 					in.close();
 					System.out.println("Bye, bye! Bank man!");
 					System.exit(0);
 					break;
+					// display the general command menu
 				case "help":
 					System.out.println("Commands of Bank Simulation:");
 					System.out.println("Super admin name:'super' password:'super'");
