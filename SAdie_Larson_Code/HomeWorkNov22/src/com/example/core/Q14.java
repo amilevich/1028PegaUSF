@@ -34,20 +34,10 @@ public class Q14 {
 				break;
 			case 3:
 				String str = "I am learning Core Java";
-//				char arr[] = str.toCharArray();
-//				for (char i : arr) {
-//					System.out.println(i);
-//				}
-				ArrayList<String> arr = new ArrayList();
-				int temp = 0;
-				for(int i = 0; i < str.length(); i++) {
-					if(str.charAt(i) == ' '){
-						arr.add(str.substring(temp, (i)));
-						temp = i+1;
-						}
+				String arr[] = str.split(" ");
+				for(String i : arr) {
+					System.out.println(i);
 				}
-				arr.add(str.substring(temp, str.length()));
-				System.out.println(arr);
 				break;
 			}
 			cases--;
