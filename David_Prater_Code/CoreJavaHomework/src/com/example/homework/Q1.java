@@ -2,14 +2,14 @@ package com.example.homework;
 
 public class Q1 {
 
-	// Perform a bubble sort on the following
-	// integer array: 1,0,5,6,3,2,3,7,9,8,4
-	int[] bubbleArray = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
-
 	// This method takes in an int array and returns a an array sorted greatest to
 	// least
-	int[] bubbleSort(int[] bubbleArray) {
+	int[] bubbleSort() {
 
+		// Perform a bubble sort on the following
+		// integer array: 1,0,5,6,3,2,3,7,9,8,4
+		int[] bubbleArray = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
+		
 		// Loop the length of the array - 1 because there is nothing
 		// to the "right" of the final element to compare with
 		for (int i = 0; i < bubbleArray.length - 1; i++) {
@@ -32,6 +32,11 @@ public class Q1 {
 
 		}
 
+		// Print sorted array
+		for(int i : bubbleArray) {
+			System.out.print(i + " ");
+		}
+	
 		// Return the sorted array
 		return bubbleArray;
 
