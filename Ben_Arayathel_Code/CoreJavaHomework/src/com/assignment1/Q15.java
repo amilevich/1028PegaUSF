@@ -14,7 +14,7 @@ public class Q15 implements Q15interface{
 
 	@Override
 	public double multiplication(double... d) {
-		double sum = 0;
+		double sum = 1;
 		for(double i:d) {
 			sum *= i;
 		}
