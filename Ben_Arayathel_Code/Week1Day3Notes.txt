@@ -20,7 +20,7 @@ Unchecked - A fault that occurs in common logic that can throw Exception. (Arith
 
 try/catch or try/catch/finally
 
-try: Will "try" to run the code, however the catch logic will execute if there is an error.
+try: Will "try" to run the code, however the catch logic will execute if there is a problem (Exception or Error).
 catch: A block of logic that will execute for a particular "caught" exception, the most general being Exception e,
 	which will catch all exceptions. (Multiple catche blocks can be used).
 finally: A block of logic that will execute regardless of whether there was an exception or not.

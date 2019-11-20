@@ -36,5 +36,5 @@ Annotations that can be used within the test class:
 	@Test - will tell JVM that this is a testing method.
 	@After - have a method that will run after each test
 	@Before - have a method that will run before each test
-	@AfterClass - have a methhod that will run after the whole class
+	@AfterClass - have a method that will run after the whole class
 	@BeforeClass - have a method that will run before the whole class.
