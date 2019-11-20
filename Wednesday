@@ -1,0 +1,105 @@
+CREATE TABLE TA(
+    nums NUMBER(6),
+    chars VARCHAR2(10)
+    );
+CREATE TABLE TB(
+    other_nums NUMBER(6),
+    other_chars VARCHAR2(10)
+    );
+INSERT INTO TA VALUES(1,'a');
+INSERT INTO TA VALUES(2,'b');
+INSERT INTO TA VALUES(3,'c');
+INSERT INTO TA VALUES(4,'d');
+
+INSERT INTO TB VALUES(3, 'C');
+INSERT INTO TB VALUES(4, 'D');
+INSERT INTO TB VALUES(5, 'E');
+INSERT INTO TB VALUES(6, 'F');
+INSERT INTO TB VALUES(7, 'G');
+
+SELECT * FROM TA;
+SELECT * FROM TB;
+
+SELECT * FROM TA INNER JOIN TB ON TA.nums = TB.other_nums;
+
+SELECT * FROM TA LEFT JOIN TB ON TA.nums = TB.other_nums ORDER BY TA.nums;
+SELECT * FROM TA RIGHT JOIN TB ON TA.nums = TB.other_nums ORDER BY TB.other_nums;
+
+SELECT * FROM TA FULL OUTER JOIN TB ON TA.nums = TB.other_nums ORDER BY TA.nums;
+
+SELECT * FROM TA CROSS JOIN TB ORDER BY TA.nums;
+
+SELECT nums, chars FROM TA UNION SELECT other_nums, LOWER(other_chars) FROM TB;
+SELECT nums, chars FROM TA UNION ALL SELECT other_nums, LOWER(other_chars) FROM TB;
+
+SELECT nums, chars FROM TA MINUS SELECT other_nums, LOWER(other_chars) FROM TB
+ORDER BY nums;
+
+SELECT nums, chars FROM TA INTERSECT SELECT other_nums, LOWER(other_chars) FROM TB
+ORDER BY nums;
+
+SELECT nums, chars FROM TA UNION SELECT emp_id, LOWER(emp_name) FROM emps;
+
+CREATE TABLE emps(
+    emp_id NUMBER(6) PRIMARY KEY,
+    emp_name VARCHAR2(50),
+    super_id NUMBER(6),
+    CONSTRAINT some_fk FOREIGN KEY (super_id) REFERENCES emps(emp_id)
+    );
+    
+INSERT INTO emps VALUES(1, 'Cristian', 3);
+INSERT INTO emps VALUES(3, 'Alex', null);
+INSERT INTO emps VALUES(2, 'Timothy', 5);
+INSERT INTO emps VALUES(5, 'Charlie', 4);
+INSERT INTO emps VALUES(4, 'Dennis Angel', 3);
+SELECT * FROM emps; 
+
+--self join
+SELECT * FROM emps a, emps b WHERE a.super_id = b.emp_id;
+
+
+--PL/SQL
+--An extension of Oracle, it provides a means to write actual code in SQL
+
+--STORED PROCEDURE
+--a named transaction that can be invoked when called (method in Java)
+
+CREATE PROCEDURE hello_world_procedure
+IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Hello, peoples');
+END;
+/
+
+BEGIN --{
+    hello_world_procedure();
+END; --}
+/ --stop
+
+EXECUTE hello_world_procedure();
+
+--SEQUENCE
+--An object/entity that will maintain a counter for you
+CREATE SEQUENCE emp_seq
+    START WITH 100 
+    INCREMENT BY 1;
+    --this sequence will be used to handle the id field for employees
+/
+SELECT * FROM employees;
+
+--TRIGGER
+--An object/entity that we can create that waits for actions to occur and performs
+--the designated code
+CREATE OR REPLACE TRIGGER emp_seq_trigger
+BEFORE INSERT ON employees --when and what action happens ('after')
+FOR EACH ROW
+BEGIN
+    IF :new.e_id IS NULL THEN
+    SELECT emp_seq.nextval INTO :new.e_id FROM dual;
+    END IF;
+END;
+/
+
+SELECT * FROM employees;
+INSERT INTO employees VALUES(null, 'Shaylen', 50000, 'whatever');
+INSERT INTO employees VALUES(null, 'Watts', 5, 'commander');

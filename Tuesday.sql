@@ -131,5 +131,28 @@ SELECT UPPER(e_name), LOWER(e_title) FROM employees;
 -- having is a conditional that can be applied to aggregate data
 -- if GROUP BY is NOT used, HAVING behaves like WHERE
 
-SELECT SUM(e_salary), 
+SELECT SUM(e_salary), UPPER(e_title) FROM employees
+WHERE e_salary > 8000
+GROUP BY e_title
+HAVING SUM(e_salary) > 50000
+ORDER BY e_title;
+
+/*
+LIKE 
+- we use the LIKE clause to search for data that matches a sort of regular
+expression criteria.
+There are two wildcards:
+    _ -> ONE of any character
+    % -> zero-many of any character
+*/
+SELECT * FROM employees;
+SELECT * FROM employees WHERE LOWER(e_name) LIKE 'c%';
+-- all names that start with 'c', not case sensitive because of LOWER
+SELECT * FROM employees WHERE LOWER(e_name) LIKE '_a%';
+-- all names that have 'a' as their second letter, not case sensitive
+SELECT * FROM employees WHERE LOWER(e_title) LIKE 'j%o_';
+-- all titles that start with 'j' and have 'o' as their second to last character
+
+
+
 
