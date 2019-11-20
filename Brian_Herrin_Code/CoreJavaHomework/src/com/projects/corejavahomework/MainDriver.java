@@ -1,8 +1,13 @@
 package com.projects.corejavahomework;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Scanner;
 
 import com.projects.corejavahomework1.Question11Class;
 
@@ -108,12 +113,12 @@ public class MainDriver {
 		return ((a < b) ? a : b);
 	}
 	
-	//Q11
+	//Q11 work
 	public static float useOtherPackageClass(float a, float b){
 		return a+b;
 	}
 	
-	//Q13
+	//Q13 work
 	public static String print0Or1Toggle(String pattern, int aggro, boolean isLeft, boolean isOne){
 		String[] addOns = {" 1","1 ","0 "," 0"};
 		
@@ -162,7 +167,7 @@ public class MainDriver {
 		return pattern;	
 	}
 	
-	//Q14
+	//Q14 work
 	private static String[] switchExample(int question14Index, double question14Num, String question14string) {
 		if(question14Index < 1) {
 			question14Index = 1;
@@ -188,7 +193,50 @@ public class MainDriver {
 		return temp;
 	}
 	
+	//Q19 work
+	public static boolean isPrime(Integer input){
+		if(input == 1) {
+			return false;
+		} else {
+			for(Integer j = 2; j <= input; j++) {
+				if(j != input && input%j == 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	//Q20 work
+	public static String [] readDataTxtLine(String filename, int index) {
+		String readLine = null;
+		String [] output = null;
+		try(BufferedReader reader = new BufferedReader(new FileReader(filename))){
+			int i = 0;
+			if(index < 0) {
+				index = 0;
+			}
+			readLine = reader.readLine();
+			while(i < index) {
+				//if(readLine != null) {
+				if(reader.ready()) {
+					//System.out.println(readLine);
+					readLine = reader.readLine();
+					i++;
+				}
+			}
+			reader.close();
+			output = readLine.split(":", 4);
+			//for(String i : output) { System.out.print(i + " "); }
+			return output;
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return output;
+		
+	}
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
 		// Q1: Perform a bubble sort on the following integer array:  1,0,5,6,3,2,3,7,9,8,4
 		System.out.println("Question 1: ");
 		Integer question1array[] = {1,0,5,6,3,2,3,7,9,8,4};
@@ -374,7 +422,16 @@ public class MainDriver {
 		// Q17: Write a program that calculates the simple interest on the principal, rate of interest and number of years provided by the user. Enter principal, rate and time through the console using the Scanner class.
 			// Interest = Principal* Rate* Time
 		System.out.println("Question 17: ");
-		
+		// Used 56.0, .25, 5 for numbers
+		double question17temp = 0.0;
+		System.out.println("Type in principal: ");
+		//question17temp = sc.nextDouble();
+		System.out.println("Type in rate of interest: ");
+		//question17temp = question17temp*sc.nextDouble();
+		System.out.println("Type in number of years: ");
+		//question17temp = question17temp*sc.nextDouble();
+		System.out.println("Simple interest is: $" + question17temp);
+		System.out.println("");
 		
 		// Q18: Write a program having a concrete subclass that inherits three abstract methods from a
 			// superclass.  Provide the following three implementations in the subclass corresponding to the abstract methods in the superclass: 
@@ -383,11 +440,53 @@ public class MainDriver {
 			 	// 3.	Convert the input string to integer and add 10, output the result to the console.
 				// Create an appropriate class having a main method to test the above setup.
 		System.out.println("Question 18: ");
-		
+		Question18ConcreteClass q18Concrete = new  Question18ConcreteClass();
+		System.out.println("Testing isUpperCaseCharactersInString: Input: " + "superpuppieS" + " " + q18Concrete.isUpperCaseCharactersInString("superpuppieS") );
+		System.out.println("Testing morphUpperCaseCharacterString: Input: " + "SuPeRpUpPiEs" + " " + q18Concrete.morphUpperCaseCharacterString("SuPeRpUpPiEs") );
+		System.out.println("Testing morphIntegerPlusTen: Input: " + "5" + " " + q18Concrete.morphIntegerPlusTen("5") );
+		System.out.println("");
 		
 		// Q19: Create an ArrayList and insert integers 1 through 10. Display the ArrayList. Add all the even numbers up and display the result. Add all the odd numbers up and display the result. Remove the prime numbers from the ArrayList and print out the remaining ArrayList.
 		System.out.println("Question 19: ");
-		
+		int question19Sum = 0;
+		ArrayList<Integer> aLInt = new ArrayList<Integer>();
+		aLInt.add(1);
+		aLInt.add(2);
+		aLInt.add(3);
+		aLInt.add(4);
+		aLInt.add(5);
+		aLInt.add(6);
+		aLInt.add(7);
+		aLInt.add(8);
+		aLInt.add(9);
+		aLInt.add(10);
+		for(Integer i : aLInt) {
+			System.out.println("ArrayList<Integer>:" + i);
+		}
+		for(Integer i : aLInt) {
+			if(i%2 == 0) {
+				question19Sum += i;
+			}
+		}
+		System.out.println("Even Numbers Sum: " + question19Sum);
+		question19Sum = 0;
+		for(Integer i : aLInt) {
+			if(i%2 != 0) {
+				question19Sum += i;
+			}
+		}
+		System.out.println("Odd Numbers Sum: " + question19Sum);
+		ListIterator<Integer> listIterator = aLInt.listIterator();
+		do {
+			Integer question19temp = listIterator.next();
+			if(isPrime(question19temp)) {
+				listIterator.remove();
+			}
+		} while(listIterator.hasNext());
+		for(Integer i : aLInt) {
+			System.out.println("Primes Gone: " + i);
+		}
+		System.out.println("");
 		
 		// Q20: Create a notepad file called Data.txt and enter the following: 
 			// Mickey:Mouse:35:Arizona
@@ -399,6 +498,16 @@ public class MainDriver {
 			// Age: 35 years
 			// State: Arizona State
 		System.out.println("Question 20: ");
-		
+		String[] question20string = new String[4];
+		String filename = "src/com/projects/corejavahomework/Data.txt";
+		question20string = readDataTxtLine(filename, 0);
+		//question20string = readDataTxtLine(filename, 1);
+		//question20string = readDataTxtLine(filename, 2);
+		//question20string = readDataTxtLine(filename, 3);
+		//question20string = readDataTxtLine(filename, 4);
+		System.out.println("Name: " + question20string[0] + " " + question20string[1]);
+		System.out.println("Age: " + question20string[2] + " years");
+		System.out.println("State: " + question20string[3] + " State");
+		sc.close();
 	}
 }
