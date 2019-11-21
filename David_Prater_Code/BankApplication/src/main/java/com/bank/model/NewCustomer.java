@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.bank.model.Person;
+import com.bank.model.Account;
 import com.bank.ui.BankMenu;
 
 import java.io.*;
@@ -15,7 +15,7 @@ public class NewCustomer implements Serializable {
 	private static final long serialVersionUID = -3579390326967818657L;
 	final static Logger logger = Logger.getLogger(NewCustomer.class);
 	Scanner sc = new Scanner(System.in);
-	public static ArrayList<Person> newCustomerList = new ArrayList<>();
+	public static ArrayList<Account> newCustomerList = new ArrayList<>();
 	public static String accountNumber = null;
 
 
@@ -39,7 +39,7 @@ public class NewCustomer implements Serializable {
 		String password = sc.nextLine();
 
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
-		Person newUser = new Person(accountNumber, firstName, lastName, address, phoneNumber, email, username, password);
+		Account newUser = new Account(accountNumber, firstName, lastName, address, phoneNumber, email, username, password);
 		newCustomerList.add(newUser);
 		logger.info("New account created succesfully. " + newUser);
 
@@ -84,7 +84,7 @@ public class NewCustomer implements Serializable {
 		String password2 = sc.nextLine();
 
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
-		Person newUser = new Person(accountNumber, firstName, lastName, address, phoneNumber, email, username, password, firstName2, lastName2, address2, phoneNumber2, 
+		Account newUser = new Account(accountNumber, firstName, lastName, address, phoneNumber, email, username, password, firstName2, lastName2, address2, phoneNumber2, 
 				email2, username2, password2);
 		newCustomerList.add(newUser);
 		logger.info("New joint account created succesfully.\n" + newUser);

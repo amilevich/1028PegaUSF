@@ -1,4 +1,4 @@
-package com.example.homework.q1package1;
+package com.example.homework.q11package1;
 
 public class VariableClass {
 

@@ -2,7 +2,7 @@ package com.bank.model;
 
 import java.io.Serializable;
 
-public class Person implements Serializable {
+public class Account implements Serializable {
 
 	private static final long serialVersionUID = 5635825819705054254L;
 
@@ -25,7 +25,7 @@ public class Person implements Serializable {
 	private String username2 = null;
 	private String password2 = null;
 
-	public Person(String accountNumber, String firstName, String lastName, String address, String phoneNumber,
+	public Account(String accountNumber, String firstName, String lastName, String address, String phoneNumber,
 			String email, String username, String password) {
 		super();
 		this.accountNumber = accountNumber;
@@ -42,7 +42,7 @@ public class Person implements Serializable {
 	
 	
 
-	public Person(String accountNumber, String firstName, String lastName, String address,
+	public Account(String accountNumber, String firstName, String lastName, String address,
 			String phoneNumber, String email, String username, String password, String firstName2, String lastName2,
 			String address2, String phoneNumber2, String email2, String username2, String password2) {
 		super();

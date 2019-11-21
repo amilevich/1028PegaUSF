@@ -42,6 +42,7 @@ public class Q8 {
 		
 	}
 	
+	// Check palindrome
 	public static String palindrome(String s) {
 		String temp = "";
 		for (int i = s.length() - 1; i >= 0; i--) {

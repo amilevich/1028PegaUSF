@@ -16,14 +16,14 @@ import com.bank.model.Administrator;
 import com.bank.model.Customer;
 import com.bank.model.Employee;
 import com.bank.model.NewCustomer;
-import com.bank.model.Person;
+import com.bank.model.Account;
 
 public class BankMenu {
 
-	// Create ArrayList to store a Person objects for people applying for an account
-	public static ArrayList<Person> newCustomerList = new ArrayList<Person>();
-	// Create HashMap to store a customers Person object and key. (This is what is WRITTEN and READ to the file)
-	public static HashMap<String, Person> customerMap = new HashMap<>();
+	// Create ArrayList to store a Account objects for people applying for an account
+	public static ArrayList<Account> newCustomerList = new ArrayList<Account>();
+	// Create HashMap to store a customers Account object and key. (This is what is WRITTEN and READ to the file)
+	public static HashMap<String, Account> customerMap = new HashMap<>();
 
 	// Create scanner to collect user input
 	static Scanner sc = new Scanner(System.in);
@@ -108,7 +108,7 @@ public class BankMenu {
 			FileInputStream fis = new FileInputStream("C:\\Users\\prate\\Documents\\My_Git_Repos\\1028PegaUSF\\David_Prater_Code\\BankApplication\\CustomerList.txt");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			// Set customerMap equal to the specified data type and read deserialize the data
-			customerMap = (HashMap<String, Person>) ois.readObject();
+			customerMap = (HashMap<String, Account>) ois.readObject();
 			
 			// Close FileInputStream and ObjectOutpuStream
 			ois.close();

@@ -1,5 +1,10 @@
 package com.example.homework;
 
+import java.io.IOException;
+
+import com.example.homework.q15.*;
+import com.example.homework.q18.Q18;
+
 public class MainDriver {
 
 	static int factorial;
@@ -19,6 +24,12 @@ public class MainDriver {
 		Q12 q12 = new Q12();
 		Q13 q13 = new Q13();
 		Q14 q14 = new Q14();
+		// In Package
+		// Command Line Arguments
+		Q17 q17 = new Q17();
+		Q18 q18 = new Q18();
+		Q19 q19 = new Q19();
+		Q20 q20 = new Q20();
 		
 		q1.bubbleSort();
 		q2.fibonacciSequence();
@@ -32,9 +43,20 @@ public class MainDriver {
 		q10.ternaryMin(10 , 15);
 		q11.accessFloats();
 		q12.printEven();
-		
+		q13.printTriangle();
 		// input 1,2,3 for sqrt, date, string array
 		q14.switchCase(2);
+		// Q15 In Package
+		q17.calculateInterest();
+		q18.question18();
+		q19.arrayListManipulation();;
+		
+		try {
+			q20.prettyPrint();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

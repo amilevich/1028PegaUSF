@@ -6,15 +6,14 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.bank.ui.BankMenu;
-import com.bank.ui.MainActivity;
 
 public class Administrator {
 
 	final static Logger logger = Logger.getLogger(Administrator.class);
 	static Scanner sc = new Scanner(System.in);
-	public static Person currentPerson = null;
-	public static Person transferPerson = null;
-	public static Person receiverPerson = null;
+	public static Account currentAccount = null;
+	public static Account transferAccount = null;
+	public static Account receiverAccount = null;
 
 	// This is the login method for the administrator
 	// Administrator username = "admin"
@@ -61,13 +60,13 @@ public class Administrator {
 		case "2":
 			// Withdrawal
 			getPassKey();
-			Customer.withdrawalFunds(currentPerson);
+			Customer.withdrawalFunds(currentAccount);
 			administratorActions();
 			break;
 		case "3":
 			// Deposit
 			getPassKey();
-			Customer.depositFunds(currentPerson);
+			Customer.depositFunds(currentAccount);
 			administratorActions();
 			break;
 		case "4":
@@ -126,9 +125,9 @@ public class Administrator {
 	public static void getPassKey() throws FileNotFoundException {
 		System.out.println("Whats is the key for the account? (key = username + password)");
 		String passKey = sc.next().toString();
-		// If they enter a valid key set current customer to that person objects in customer HashMap
+		// If they enter a valid key set current customer to that Account objects in customer HashMap
 		if(BankMenu.customerMap.containsKey(passKey)) {
-			 currentPerson = BankMenu.customerMap.get(passKey);
+			 currentAccount = BankMenu.customerMap.get(passKey);
 		} else {
 			// Else return to administrator menu
 			System.out.println("Invalid key. Please Try Again.");
@@ -141,13 +140,13 @@ public class Administrator {
 		System.out.println("Whats is the key for the account you wish to delete? (key = username + password)");
 		String passKey = sc.next().toString();
 		
-		// If this key is in the customer HashMap delete its corresponding Person object
+		// If this key is in the customer HashMap delete its corresponding Account object
 		if(BankMenu.customerMap.containsKey(passKey)) {
-			 currentPerson = BankMenu.customerMap.get(passKey);
+			 currentAccount = BankMenu.customerMap.get(passKey);
 			 BankMenu.customerMap.remove(passKey);
 			 // Notify the administrator of a successful account canceling
 			 System.out.println("Account Removed Succesfully.");
-			 logger.info("Account number " + currentPerson.getAccountNumber() + "successfully deleted.");
+			 logger.info("Account number " + currentAccount.getAccountNumber() + "successfully deleted.");
 			 
 		} else {
 			// If the admin submits an invalid key return them to the actions menu

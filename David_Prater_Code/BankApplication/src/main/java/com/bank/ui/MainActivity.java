@@ -1,8 +1,6 @@
 package com.bank.ui;
 import java.io.FileNotFoundException;
 
-import org.apache.log4j.Logger;
-
 import com.bank.ui.BankMenu;
 
 public class MainActivity{

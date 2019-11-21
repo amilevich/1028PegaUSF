@@ -7,25 +7,29 @@ import java.util.List;
 
 public class Q7 {
 	
-	//TODO Come back and comment this monster
+	// Hello and welcome to the madness
+	// There are five classes in here 
+	
+
 	public void sortEmployees() {
 		List<Employee> employees = new ArrayList<Employee>();
 		employees.add(new Employee("Jonny", "Welder", 30));
 		employees.add(new Employee("David", "Software", 26));
 
-		
+		// Sort by name
 		Collections.sort(employees, new NameComparator());
 		System.out.println("Sorted by name: " + employees.toString());
-		
+		// Sort by age
 		Collections.sort(employees, new AgeComparator());
 		System.out.println("Sorted by age: " + employees.toString());
-		
+		// Sort by department
 		Collections.sort(employees, new DepartmentComparator());
 		System.out.println("Sorted by department: " + employees.toString());
 	}
 
 }
 
+// Create an encapsulated Employee class with vars, constructors, getters and setters and toString
  class Employee {
 
 	private String name;
@@ -71,6 +75,8 @@ public class Q7 {
 	
 }
 
+ 
+ // This class sorts employees by name (a -> z)
 class NameComparator implements Comparator<Employee> {
 
 	@Override
@@ -85,6 +91,7 @@ class NameComparator implements Comparator<Employee> {
 	}
 }
 
+// This class sorts youngest to oldest
 class AgeComparator implements Comparator<Employee>{
 
 	@Override
@@ -95,6 +102,8 @@ class AgeComparator implements Comparator<Employee>{
 	
 }
 
+
+// This class sorts employees by name (a -> z)
 class DepartmentComparator implements Comparator<Employee>{
 
 	@Override

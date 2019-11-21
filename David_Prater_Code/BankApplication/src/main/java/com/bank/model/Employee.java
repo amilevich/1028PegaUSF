@@ -67,7 +67,7 @@ public class Employee {
 
 		// Loop through the arraylist of newCustomers and have the user choose whether
 		// to approve or deny each account
-		for (Person newCustomer : NewCustomer.newCustomerList) {
+		for (Account newCustomer : NewCustomer.newCustomerList) {
 			System.out.println("Press 'y' to approve account and 'n' to deny the account.");
 			String output = newCustomer.toString();
 			System.out.println(output);
@@ -89,11 +89,11 @@ public class Employee {
 					// This checks if the current account is a joint account
 					// If their is a password for the second user it means its a joint account
 					if (newCustomer.getPassword2() != null) {
-						// Create a second key that references the same person object that way both objects are updated by either use
+						// Create a second key that references the same Account object that way both objects are updated by either use
 						BankMenu.customerMap.put((newCustomer.getUsername2() + newCustomer.getPassword2()), newCustomer);
 					}
 					
-					// Add the Person(s) to the customer HashMap
+					// Add the Account(s) to the customer HashMap
 					BankMenu.newCustomerList.add(newCustomer);
 					break;
 					// Deny account

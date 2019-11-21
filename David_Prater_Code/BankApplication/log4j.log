@@ -16,3 +16,45 @@ Email: david@gmail.com
 2019-11-18 12:23:50 INFO  Customer:114 - Account #26811 deposited $55.0
 2019-11-18 12:24:12 INFO  Customer:114 - Account #26811 deposited $2.0
 2019-11-18 12:27:11 INFO  Customer:114 - Account #26811 deposited $19816.0
+2019-11-20 16:14:00 INFO  NewCustomer:44 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: David Prater
+Address: 906 William
+Phone Number: 6203885201
+Email: david@mail.com
+
+2019-11-20 16:14:25 INFO  Customer:114 - Account #58663 deposited $100.0
+2019-11-20 16:15:10 INFO  NewCustomer:90 - New joint account created succesfully.
+Account Number: null
+Account Balance: 0.0
+Name: DAvid Prater
+Address: 906 road stret
+Phone Number: 7894561231
+Email: dp@mail
+User Two Name: DAvid Prater
+User Two Address: 906 road stret
+User Two Phone Number: 7894561231
+User Two Email: dp@mail
+
+2019-11-20 16:16:22 INFO  Administrator:150 - Account number 58663successfully deleted.
+2019-11-21 11:50:23 INFO  NewCustomer:44 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name:  David
+Address: Prater
+Phone Number: 6203885201
+Email: david@gmail.com
+
+2019-11-21 11:55:44 INFO  NewCustomer:44 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: David Prater
+Address: 906 William Way
+Phone Number: 6203885201
+Email: david@gmail.com
+
+2019-11-21 12:29:17 INFO  NewCustomer:44 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: ben UK
+Address: somewhere
+Phone Number: 6203885201
+Email: ben@ben.com
+
