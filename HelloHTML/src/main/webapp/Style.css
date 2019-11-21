@@ -1,0 +1,20 @@
+@charset "ISO-8859-1";
+
+/*.headers{
+	color: yellow;
+	text-align: right;
+}
+*/
+
+#hello{
+	color:red;
+	font-size: 60px;
+}
+
+body{
+	background-color: #edc674;
+}
+/*
+# for id selection
+. for class selection
+*/
