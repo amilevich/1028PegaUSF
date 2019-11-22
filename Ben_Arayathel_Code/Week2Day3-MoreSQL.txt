@@ -1,0 +1,19 @@
+11/20/2019
+
+	Key words in Java, How to link 2 tables together 
+
+			JOINS
+		INNER		SELF
+
+OUTER	->LEFT : All the elements on the left table as well the elemnets in the right with a corresponding left table value
+	->RIGHT : All the elements on the right table and elements from the left table with a corresponing right table value
+	->FULL: All the elements from both tables, each element that doesn't have a corresponding value will have null
+
+CROSS - 
+
+
+	Set Operations:
+UNION -- Unique records only  || A u B
+UNION ALL  -- Allows duplicates as well	  || A u B u duplicates
+MINUS -- all entries that are distinct in A but not in B. ||  A \ B
+Intersect -- elements in both A and B. || A n B 

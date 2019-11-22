@@ -20,7 +20,7 @@ Unchecked - A fault that occurs in common logic that can throw Exception. (Arith
 
 try/catch or try/catch/finally
 
-try: Will "try" to run the code, however the catch logic will execute if there is a problem (Exception or Error).
+try: Will "try" to run the code, however the catch logic will execute if there is an error.
 catch: A block of logic that will execute for a particular "caught" exception, the most general being Exception e,
 	which will catch all exceptions. (Multiple catche blocks can be used).
 finally: A block of logic that will execute regardless of whether there was an exception or not.
@@ -46,7 +46,7 @@ throwable: Is the super class for all exceptions and errors in Java.
 CharacterStream: A way of writing and reading characters onto files. (IMPORT java.io.FileReader)
 
 [writeCharacter(String filename): FileWriter file = new FileWriter(filename,true);//true is when you append, false is overwrite.
-	for(i in range j){writer.write(i)}//will input numbers, chave to cast it to characters to read them back again.
+	for(i in range j){writer.write(i)}//will input numbers, have to cast it to characters to read them back again.
 
 [readCharacter(String filename): FileReader reader = new FileReader(filename);
 	while((i = reader.read()) != -1){syso((char)i)}//print out file read, as long as there are characters. then being cast to
