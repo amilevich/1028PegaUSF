@@ -1,0 +1,27 @@
+rows are records 
+columns are attributes 
+
+JDBC stands for Java Database Connectivity 
+
+Scalar function, applies to each record in the attribute.
+Agregate function, requires a set of values to give a single result.
+
+Boolean is not a data type in Oracle SQL, (CHAR, BLOB Binary Large Object, NUMBER)
+
+Joins allow to retrieve data from two or more tables based on a logical relationship between the tables.
+
+[Joins add columns together i.e. two tables of 2 columns become 1 table with 4 columns]
+
+Query : any instruction to SQL that changes
+
+Transaction: is				!!!LOOK THIS UP!!! 
+
+A "View" is a virtual table that references a result set.
+
+When used with the keyword LIKE, this keyword represent exactly one characters. !!!LOOK UP THIS!!!
+
+DDL includes keywords CREATE, DROP, ALTER and TRUNCATE
+
+3rd NMF: Not allowing tran
+
+% used with the 

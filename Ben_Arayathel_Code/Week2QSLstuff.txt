@@ -1,0 +1,65 @@
+
+What a database? 
+	An organised collection of data 
+
+What is DBMS?
+	Database Management System. Tables not related.
+
+What is RDBMS?
+	Relational Database Management System. Tables related 
+
+What is SQL?
+	Structured Query Language (Procedural language), domain-specific language used to manage data in a database
+
+What is DML?
+	Data Manipulation Language, (subsection of SQL) it is used to manage data entries (records) it contains the keywords INSERT, UPDATE, DELETE, SELECT.
+
+What is DDL?
+	Data Definition Language, (subsection of SQL) it is used to create or alter tables, contains CREATE, ALTER, DROP, TRUNCATE
+
+What is DQL?
+	Data Query Language, (S/SQL) it is used to read data in databases, contains SELECT.
+
+What is TCL?
+	Transaction Control Language, it keeps instances of the tables and logs transactions (any changes on the table). Keywords: COMMIT, ROLLBACK, SAVEPOINT
+
+What is a query?
+	A query is a single statement as part of the DML, (typically keywords) SELECT, UPDATE, DELETE, INSERT. 
+
+What are the properties of transactions?
+	Transactions are a group/set of statements. They can contains anything within SQL, e.g. CREATE, COMMIT, INSERT
+	Transactions are ACID - Atomic, Consistent, Isolated, Durable
+		Atomic - All or Nothing, A transaction will fail if any of the queries within the group fail.
+		Consistent - Data integrity is always maintained (i.e. a global copy of the database exists if a local one fails)
+		Isolation - Transactions do not intefere with each other.
+		Durable - Changes that are commited by a transaction persist, even in event of system failure.
+
+What is a key?
+	A key is used to find a records/data-rows. It can be a single or multiple fields or attributes. Keys are used to establish relations with different tables
+		or views.
+
+What is a candidate key?
+	A key that can uniquely identify a record (can be 1 or more attributes), a table can have multiple candidate keys.
+
+What is a primary key?
+	Is used to uniquely identify a record. It can be a single or multiple attribute/field (but it's not NULL and can't accept DUPLICATE values), a single table
+		can only have 1 primary key (i.e. only 1 candidate key in a table can be a primary key).
+
+What is a composite key?
+	A composite key consists of multiple attributes/fields to uniqely find a record.
+
+What is a foreign key?
+	A field in a database that is the Primary key for another table. (e.g. in a employee table, department could be a primary key for for department table).
+
+What is mulitplicity?
+	A mapping of records to records, e.g. 1-1 (name - SSN) , 1-many (Customer - products), many-1 (Employees - Bosses), many-many (Names - Birthdays).
+
+What is referential integrity?
+	Referential integrity is with regards to foreign keys in a table. Every foriegn key must reference a vaild record (we can't have orphaned records).
+		This can occur if we delete a row in a table without removing the foreign key referencing it as well. 
+
+What is cascade delete?
+	Cascade delete is what allows us to maintain referential integrity. If we delete a record in a table, we remove all foreign keys with references to it.
+
+
+ 
