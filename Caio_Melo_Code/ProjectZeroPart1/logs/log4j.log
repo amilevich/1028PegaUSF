@@ -1,0 +1,144 @@
+2019-11-17 17:51:54 INFO  MainDriver:20 - Information!
+2019-11-17 19:50:53 INFO  MainDriver:20 - Information!
+2019-11-17 19:50:57 INFO  MainDriver:20 - Information!
+2019-11-18 09:34:12 INFO  MainDriver:20 - Information!
+2019-11-18 15:14:41 INFO  MainDriver:20 - Information!
+2019-11-18 15:15:05 FATAL MainDriver:212 - Employee Username directory not found.
+2019-11-18 15:15:22 INFO  MainDriver:20 - Information!
+2019-11-18 15:15:25 INFO  MainDriver:174 - Successful Employee Login. By :caio
+2019-11-18 15:15:37 INFO  MainDriver:20 - Information!
+2019-11-18 15:15:45 INFO  MainDriver:174 - Successful Employee Login. By :caio
+2019-11-18 15:15:50 INFO  Customer:106 - daniel File Updated.
+2019-11-18 15:15:50 INFO  Customer:281 - Account has been approved.
+2019-11-18 15:15:56 INFO  MainDriver:20 - Information!
+2019-11-18 15:16:00 INFO  MainDriver:61 - Successful Login by : daniel
+2019-11-18 15:16:14 INFO  Customer:154 - Customer deposit successful.
+2019-11-20 21:12:26 INFO  MainDriver:20 - Information!
+2019-11-20 21:51:37 INFO  MainDriver:21 - Information!
+2019-11-20 21:53:23 INFO  MainDriver:21 - Information!
+2019-11-20 21:53:28 INFO  MainDriver:21 - Information!
+2019-11-20 21:53:33 INFO  MainDriver:21 - Information!
+2019-11-20 21:53:43 INFO  MainDriver:21 - Information!
+2019-11-20 21:53:57 INFO  MainDriver:21 - Information!
+2019-11-20 21:54:05 INFO  MainDriver:21 - Information!
+2019-11-20 21:54:09 INFO  MainDriver:21 - Information!
+2019-11-20 21:54:26 INFO  MainDriver:21 - Information!
+2019-11-20 21:55:04 INFO  MainDriver:21 - Information!
+2019-11-20 22:22:53 INFO  MainDriver:21 - Information!
+2019-11-20 22:23:36 INFO  MainDriver:21 - Information!
+2019-11-20 22:23:45 INFO  MainDriver:21 - Information!
+2019-11-20 22:24:00 INFO  MainDriver:21 - Information!
+2019-11-20 22:30:29 INFO  MainDriver:21 - Information!
+2019-11-20 22:30:37 INFO  MainDriver:21 - Information!
+2019-11-20 22:30:53 INFO  MainDriver:21 - Information!
+2019-11-20 22:31:00 INFO  MainDriver:21 - Information!
+2019-11-21 08:56:15 INFO  MainDriver:21 - Information!
+2019-11-21 08:56:21 INFO  MainDriver:21 - Information!
+2019-11-21 09:00:34 INFO  MainDriver:21 - Information!
+2019-11-21 13:37:52 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:38:14 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:38:43 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:40:55 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:40:57 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:43:46 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:47:45 INFO  Customer:177 - caio File Updated.
+2019-11-21 13:49:12 INFO  Customer:177 - caio File Updated.
+2019-11-21 18:11:02 INFO  MainDriver:30 - Information!
+2019-11-21 18:11:54 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 18:12:28 INFO  Customer:176 - caio File Updated.
+2019-11-21 18:12:29 INFO  Customer:468 - Account approved.
+2019-11-21 18:18:33 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 18:20:07 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 18:20:23 INFO  Customer:176 - caro File Updated.
+2019-11-21 18:20:23 INFO  Customer:282 - Account has been approved.
+2019-11-21 18:27:34 INFO  MainDriver:30 - Information!
+2019-11-21 18:28:31 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 18:29:29 INFO  Customer:176 - caio1 File Updated.
+2019-11-21 18:29:30 INFO  Customer:282 - Account has been approved.
+2019-11-21 18:30:26 INFO  MainDriver:30 - Information!
+2019-11-21 18:30:34 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 18:30:59 INFO  Customer:176 - caro File Updated.
+2019-11-21 18:31:00 INFO  Customer:282 - Account has been approved.
+2019-11-21 18:43:50 INFO  Customer:176 - caro File Updated.
+2019-11-21 20:04:27 INFO  Customer:177 - caro File Updated.
+2019-11-21 20:26:31 INFO  Customer:176 - caro File Updated.
+2019-11-21 20:29:22 INFO  Customer:176 - caro File Updated.
+2019-11-21 20:30:34 INFO  Customer:176 - caro File Updated.
+2019-11-21 20:32:12 INFO  MainDriver:30 - Information!
+2019-11-21 20:33:00 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 20:33:40 INFO  Customer:176 - caio File Updated.
+2019-11-21 20:33:40 INFO  Customer:282 - Account has been approved.
+2019-11-21 20:41:32 INFO  MainDriver:69 - Successful Login by : caio
+2019-11-21 20:42:37 INFO  Customer:176 - caio File Updated.
+2019-11-21 20:42:38 INFO  Customer:223 - Customer deposit successful. Amount : 100
+2019-11-21 20:43:07 INFO  Customer:232 - Customer withdrawl successful.
+2019-11-21 20:44:26 INFO  Customer:176 - caro File Updated.
+2019-11-21 20:46:47 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 21:06:42 INFO  MainDriver:30 - Information!
+2019-11-21 21:07:00 INFO  MainDriver:69 - Successful Login by : caio
+2019-11-21 21:07:21 INFO  Customer:176 - caio File Updated.
+2019-11-21 21:07:22 INFO  Customer:222 - Customer deposit successful. Amount : 100
+2019-11-21 21:07:27 INFO  Customer:176 - caio File Updated.
+2019-11-21 21:07:28 INFO  Customer:222 - Customer deposit successful. Amount : 10000
+2019-11-21 22:02:02 INFO  MainDriver:30 - Information!
+2019-11-21 22:02:29 INFO  MainDriver:69 - Successful Login by : caio
+2019-11-21 22:36:19 INFO  MainDriver:30 - Information!
+2019-11-21 22:38:37 INFO  MainDriver:30 - Information!
+2019-11-21 22:41:54 INFO  Admin:239 - Approved Application
+2019-11-21 22:42:19 INFO  Admin:291 - JointAccount has been approved.
+2019-11-21 22:46:54 INFO  MainDriver:30 - Information!
+2019-11-21 22:47:22 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 22:47:48 INFO  Customer:280 - Account has been approved.
+2019-11-21 22:57:59 INFO  MainDriver:30 - Information!
+2019-11-21 22:58:50 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 22:59:09 INFO  Customer:280 - Account has been approved.
+2019-11-21 22:59:35 INFO  Customer:280 - Account has been approved.
+2019-11-21 22:59:44 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:06:24 INFO  Customer:280 - Account has been approved.
+2019-11-21 23:07:40 INFO  MainDriver:30 - Information!
+2019-11-21 23:07:50 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:10:17 INFO  MainDriver:30 - Information!
+2019-11-21 23:10:30 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:10:59 INFO  MainDriver:30 - Information!
+2019-11-21 23:11:20 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:12:38 INFO  Customer:296 - JointAccount has been approved.
+2019-11-21 23:21:56 INFO  MainDriver:30 - Information!
+2019-11-21 23:22:39 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:23:24 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:24:40 INFO  Customer:418 - Account approved.
+2019-11-21 23:29:05 INFO  MainDriver:30 - Information!
+2019-11-21 23:29:26 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:30:37 INFO  Customer:260 - Account has been approved.
+2019-11-21 23:30:37 INFO  Customer:418 - Account approved.
+2019-11-21 23:36:23 INFO  MainDriver:30 - Information!
+2019-11-21 23:36:33 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:38:49 INFO  MainDriver:30 - Information!
+2019-11-21 23:39:10 INFO  MainDriver:182 - Successful Employee Login. By :worker
+2019-11-21 23:39:48 INFO  Customer:260 - Account has been approved.
+2019-11-21 23:39:48 INFO  Customer:418 - Account approved.
+2019-11-21 23:41:17 INFO  MainDriver:69 - Successful Login by : caio
+2019-11-22 09:03:26 INFO  MainDriver:30 - Information!
+2019-11-22 09:21:05 INFO  MainDriver:30 - Information!
+2019-11-22 09:27:43 INFO  MainDriver:30 - Information!
+2019-11-22 09:32:07 INFO  MainDriver:30 - Information!
+2019-11-22 10:17:13 INFO  MainDriver:33 - Information!
+2019-11-22 10:52:33 INFO  MainDriver:33 - Information!
+2019-11-22 10:54:06 INFO  MainDriver:33 - Information!
+2019-11-22 10:56:32 INFO  MainDriver:33 - Information!
+2019-11-22 10:59:41 INFO  MainDriver:33 - Information!
+2019-11-22 11:00:55 INFO  MainDriver:33 - Information!
+2019-11-22 11:11:42 INFO  MainDriver:33 - Information!
+2019-11-22 11:12:09 INFO  MainDriver:33 - Information!
+2019-11-22 11:29:55 INFO  MainDriver:33 - Information!
+2019-11-22 11:30:10 INFO  MainDriver:72 - Successful Login by : caio
+2019-11-22 11:30:50 INFO  MainDriver:33 - Information!
+2019-11-22 15:10:30 INFO  MainDriver:33 - Information!
+2019-11-22 15:16:10 INFO  MainDriver:33 - Information!
+2019-11-22 15:17:43 INFO  Admin:566 - Employee has been promoted
+2019-11-22 15:17:44 INFO  Admin:566 - Employee has been promoted
+2019-11-22 15:17:45 INFO  Admin:566 - Employee has been promoted
+2019-11-22 15:17:46 INFO  Admin:566 - Employee has been promoted
+2019-11-22 15:17:47 INFO  Admin:577 - Employee has been demoted
+2019-11-22 15:17:48 INFO  Admin:577 - Employee has been demoted
+2019-11-22 15:17:49 INFO  Admin:577 - Employee has been demoted
+2019-11-22 15:19:29 INFO  MainDriver:33 - Information!
