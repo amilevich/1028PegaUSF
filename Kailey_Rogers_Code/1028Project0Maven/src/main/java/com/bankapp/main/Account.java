@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 public class Account {
 
 	private int accID;
@@ -15,6 +17,8 @@ public class Account {
 	private double transfer;
 	public static final boolean validInput = false;
 	public static int flag = 0;
+
+	final static Logger bankLog = Logger.getLogger(Account.class);
 
 	// Getters and Setters
 	public int getAccID() {
@@ -79,10 +83,10 @@ public class Account {
 		String username;
 		flag = 0;
 		while (!validInput && flag == 0) {
+			System.out.print("Which account would you like to withdraw from: ");
+			// cws.nextLine();
+			username = cws.nextLine();
 			for (Entry<String, Customer> en : hMap.entrySet()) {
-				System.out.print("Which account would you like to withdraw from: ");
-				cws.nextLine();
-				username = cws.nextLine();
 				if (username.equals(en.getValue().getUserUsername())) {
 					System.out.print("What would you like to withdraw: ");
 					amount = cws.nextDouble();
@@ -95,23 +99,26 @@ public class Account {
 						en.getValue().setBalance(en.getValue().getBalance() - amount);
 						System.out.println(
 								"Withdraw successful!  Customer's balance is " + en.getValue().getBalance() + ".");
+						bankLog.info("User " + username + " withdrew " + amount + " dollars leaving a balance of "
+								+ en.getValue().getBalance() + " dollars.");
 						flag = 1;
 					}
 				}
 			}
 		}
+		flag = 0;
 	}
 
 	public void depositPro(HashMap<String, Customer> hMap) {
 		Scanner cds = new Scanner(System.in);
 		double temp3;
 		String username;
-		int filler;
+		flag = 0;
 		while (!validInput && flag == 0) {
+			System.out.print("Which account would you like to deposit to: ");
+			// cds.nextLine();
+			username = cds.nextLine();
 			for (Entry<String, Customer> en : hMap.entrySet()) {
-				System.out.print("Which account would you like to deposit to: ");
-				cds.nextLine();
-				username = cds.nextLine();
 				if (username.equals(en.getValue().getUserUsername())) {
 					System.out.print("What would you like to deposit: ");
 					temp3 = cds.nextDouble();
@@ -123,10 +130,13 @@ public class Account {
 						en.getValue().setBalance(en.getValue().getBalance() + temp3);
 						System.out.println(
 								"Deposit successful!  Customer's balance is " + en.getValue().getBalance() + ".");
+						bankLog.info("User " + username + " deposited " + temp3 + " dollars making a balance of "
+								+ en.getValue().getBalance() + " dollars.");
 						flag = 1;
 						break;
 					}
 				}
+
 			}
 		}
 		flag = 0;
@@ -138,9 +148,9 @@ public class Account {
 		double amount;
 		int choice;
 		String accountFrom;
+		flag = 0;
 		while (!validInput && flag == 0) {
 			System.out.print("Which account would you like to transfer from: ");
-			cts.nextLine();
 			accountFrom = cts.nextLine();
 			for (Entry<String, Customer> en : hMap.entrySet()) {
 				if (accountFrom.equals(en.getValue().getUserUsername())) {
@@ -174,6 +184,9 @@ public class Account {
 											"Transfer successful!  You balance is " + en.getValue().getBalance() + ".");
 									System.out.println(i.getValue().getUserFirstName() + "'s account balance is now: "
 											+ i.getValue().getBalance() + ".");
+									bankLog.info("User " + en.getValue().getUserUsername() + " transfered " + amount
+											+ " dollars to " + i.getValue().getUserUsername() + " leaving a balance of "
+											+ en.getValue().getBalance() + " dollars.");
 									flag = 1;
 									break;
 								case 2:
@@ -187,18 +200,22 @@ public class Account {
 								// transfer successful
 								i.getValue().setBalance(i.getValue().getBalance() + amount);
 								en.getValue().setBalance(en.getValue().getBalance() - amount);
-								System.out.println(
-										"Transfer successful! " + en.getValue().getUserFirstName() + "'s balance is " + en.getValue().getBalance() + ".");
+								System.out.println("Transfer successful! " + en.getValue().getUserFirstName()
+										+ "'s balance is " + en.getValue().getBalance() + ".");
 								System.out.println(i.getValue().getUserFirstName() + "'s account balance is now: "
 										+ i.getValue().getBalance() + ".");
+								bankLog.info("User " + en.getValue().getUserUsername() + " transfered " + amount
+										+ " dollars to " + i.getValue().getUserUsername() + " leaving a balance of "
+										+ en.getValue().getBalance() + " dollars.");
 								flag = 1;
+								break;
 							}
 						}
 					}
 				}
 			}
-			flag = 0;
 		}
+		flag = 0;
 	}
 
 	public void viewAccountPro(HashMap<String, Customer> viewAcc) {
@@ -244,11 +261,13 @@ public class Account {
 					en.getValue().setStatus("approved");
 					System.out.println(" ");
 					System.out.println("Account approved!");
+					bankLog.info("User " + en.getValue().getUserUsername() + " has been approved.");
 					flag = 1;
 					break;
-				} else {
-					System.out.print("Not a valid username.  Please enter a valid username: ");
 				}
+			}
+			if (flag != 1) {
+				System.out.print("Not a valid username.  Please enter a valid username.");
 			}
 		}
 		flag = 0;
@@ -267,17 +286,22 @@ public class Account {
 							+ en.getValue().getUserLastName() + " Type of Account: "
 							+ en.getValue().getUserAccountApply());
 				}
-				System.out.print("Please enter the username of the user you would like to cancel: ");
-				temp = acp.nextLine();
+			}
+			System.out.print("Please enter the username of the user you would like to cancel: ");
+			temp = acp.nextLine();
+			for (Entry<String, Customer> en : cancelAcc.entrySet()) {
 				if (temp.equals(en.getValue().getUserUsername())) {
 					en.getValue().setStatus("cancelled");
 					System.out.println(" ");
 					System.out.println("Account cancelled!");
+					bankLog.info("User " + en.getValue().getUserUsername() + " has been cancelled.");
 					flag = 1;
 					break;
-				} else {
-					System.out.print("Not a valid username.  Please enter a valid username: ");
 				}
+			}
+			if (flag != 1) {
+
+				System.out.print("Not a valid username.  Please enter a valid username: ");
 			}
 		}
 		flag = 0;

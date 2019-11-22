@@ -3,12 +3,16 @@ package com.bankapp.main;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import org.apache.log4j.Logger;
+
 import java.util.Map.Entry;
 
 public class BankApp {
 
 	public static int flag = 0;
 	public static int flag1 = 0;
+	final static Logger bankLog = Logger.getLogger(BankApp.class);
 
 	public static void main(String[] args) {
 		HashMap<String, Customer> hMap = new HashMap<String, Customer>();
@@ -27,12 +31,27 @@ public class BankApp {
 				System.out.println("1 register");
 				System.out.println("2 login");
 				System.out.print("What would you like to do: ");
-				temp = msc.nextInt();
+				while (!validInput) {
+					try {
+						String input = msc.nextLine();
+						temp = Integer.valueOf(input);
+						break;
+					} catch (Exception e) {
+						System.out.println("Please enter a valid number.");
+					}
+				}
 				switch (temp) {
 				case 1:
 					Customer account = new Customer();
 					account.accountSignUp(hMap);
 					hMap.put(account.getUserUsername(), account);
+					if (!account.getUserAccountApply().equals("single")) {
+						String user2 = account.getUserAccountApply();
+						Customer account1 = new Customer(account.getUserUsername(), account.getUserPassword(),
+								account.getUserFirstName(), account.getUserLastName(), hMap.get(user2).getUserUsername(),
+								hMap.get(user2).getJointUserPassword(), hMap.get(user2).getJointUserFirstName(),
+								hMap.get(user2).getJointUserLastName());
+					}
 					break;
 				case 2:
 					System.out.println("\n");
@@ -41,8 +60,15 @@ public class BankApp {
 					System.out.println("2 employee");
 					System.out.println("3 admin");
 					System.out.print("Please choose the appropriate login: ");
-					temp = msc.nextInt();
-					msc.nextLine();
+					while (!validInput) {
+						try {
+							String input = msc.nextLine();
+							temp = Integer.valueOf(input);
+							break;
+						} catch (Exception e) {
+							System.out.println("Please enter a valid number.");
+						}
+					}
 					switch (temp) {
 					case 1:
 						// get username
@@ -74,7 +100,15 @@ public class BankApp {
 											System.out.println("4 view account info");
 											System.out.println("5 exit to main menu");
 											System.out.print("What would you like to do: ");
-											temp4 = msc.nextInt();
+											while (!validInput) {
+												try {
+													String input = msc.nextLine();
+													temp4 = Integer.valueOf(input);
+													break;
+												} catch (Exception e) {
+													System.out.println("Please enter a valid number.");
+												}
+											}
 
 											switch (temp4) {
 											case 1:
@@ -91,6 +125,10 @@ public class BankApp {
 														en.getValue().setBalance(en.getValue().getBalance() + temp3);
 														System.out.println("Deposit successful!  Your balance is "
 																+ en.getValue().getBalance() + ".");
+														bankLog.info("User " + en.getValue().getUserUsername()
+																+ " deposited " + temp3
+																+ " dollars making a balance of "
+																+ en.getValue().getBalance() + " dollars.");
 														flag = 1;
 													}
 												}
@@ -110,6 +148,10 @@ public class BankApp {
 														en.getValue().setBalance(en.getValue().getBalance() - amount);
 														System.out.println("Withdraw successful!  Your balance is "
 																+ en.getValue().getBalance() + ".");
+														bankLog.info(
+																"User " + en.getValue().getUserUsername() + " withdrew "
+																		+ amount + " dollars leaving a balance of "
+																		+ en.getValue().getBalance() + " dollars.");
 														flag = 1;
 													}
 												}
@@ -156,6 +198,12 @@ public class BankApp {
 																	System.out.println(i.getValue().getUserFirstName()
 																			+ "'s account balance is now: "
 																			+ i.getValue().getBalance() + ".");
+																	bankLog.info("User "
+																			+ en.getValue().getUserUsername()
+																			+ " transferred " + amount + " dollars to "
+																			+ i.getValue().getUserUsername()
+																			+ " leaving a balance of "
+																			+ en.getValue().getBalance() + " dollars.");
 																	flag = 1;
 																	break;
 																case 2:
@@ -178,6 +226,11 @@ public class BankApp {
 																System.out.println(i.getValue().getUserFirstName()
 																		+ "'s account balance is now: "
 																		+ i.getValue().getBalance() + ".");
+																bankLog.info("User " + en.getValue().getUserUsername()
+																		+ " transferred " + amount + " dollars to "
+																		+ i.getValue().getUserUsername()
+																		+ " leaving a balance of "
+																		+ en.getValue().getBalance() + " dollars.");
 																flag = 1;
 															}
 														}

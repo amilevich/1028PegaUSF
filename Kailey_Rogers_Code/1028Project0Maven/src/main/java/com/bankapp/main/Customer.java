@@ -11,14 +11,46 @@ public class Customer extends Account {
 	private String userFirstName;
 	private String userLastName;
 	private String jointUserUsername;
+	private String jointUserPassword;
+	private String jointUserFirstName;
+	private String jointUserLastName;
 	private String userAccountApply;
 	public static final boolean validInput = false;
 	public static int flag = 0;
 	public static int flag1 = 0;
 
 	// Getters and setters
+	
+	public Customer() {
+		
+	}
+
 	public String getUserUsername() {
 		return userUsername;
+	}
+
+	public String getJointUserPassword() {
+		return jointUserPassword;
+	}
+
+	public void setJointUserPassword(String jointUserPassword) {
+		this.jointUserPassword = jointUserPassword;
+	}
+
+	public String getJointUserFirstName() {
+		return jointUserFirstName;
+	}
+
+	public void setJointUserFirstName(String jointUserFirstName) {
+		this.jointUserFirstName = jointUserFirstName;
+	}
+
+	public String getJointUserLastName() {
+		return jointUserLastName;
+	}
+
+	public void setJointUserLastName(String jointUserLastName) {
+		this.jointUserLastName = jointUserLastName;
 	}
 
 	public void setUserUsername(String userUsername) {
@@ -65,12 +97,14 @@ public class Customer extends Account {
 		this.userAccountApply = userAccountApply;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "[Username = " + userUsername + "]  [userPassword = " + userPassword + "]  [First Name= "
-//				+ userFirstName + "]  [Last Name=" + userLastName + "]  [Joint Username =" + jointUserUsername
-//				+ "]  [Account Applied for = " + userAccountApply + "]" + "\n";
-//	}
+	// @Override
+	// public String toString() {
+	// return "[Username = " + userUsername + "] [userPassword = " + userPassword +
+	// "] [First Name= "
+	// + userFirstName + "] [Last Name=" + userLastName + "] [Joint Username =" +
+	// jointUserUsername
+	// + "] [Account Applied for = " + userAccountApply + "]" + "\n";
+	// }
 
 	// Account Creation
 	public void accountSignUp(HashMap<String, Customer> signup) {
@@ -83,14 +117,14 @@ public class Customer extends Account {
 				boolean userExists = false;
 				temp = sc.nextLine();
 				for (Entry<String, Customer> en : signup.entrySet()) {
-					//if user exists
+					// if user exists
 					if (temp.equals(en.getValue().getUserUsername())) {
 						System.out.println("User already exists.  Please try again.");
 						userExists = true;
 						break;
 					}
 				}
-				//if no input
+				// if no input
 				if (temp.length() <= 0) {
 					System.out.println("Invalid username length.  Please enter a valid username.");
 				} else if (!userExists) {
@@ -158,11 +192,12 @@ public class Customer extends Account {
 									"Application for a joint account has been sent to our employess for approval.  Once approved, you may"
 											+ " log in.  Thank you.");
 							userExists = true;
-							setUserAccountApply("joint");
+							setUserAccountApply(temp);
 							break;
 							// if user does not exist
 						} else {
 							System.out.print("User does not exist.  Please enter a valid user: ");
+							//setUserAccountApply("single");
 						}
 					}
 					// invalid account type entered
@@ -172,11 +207,24 @@ public class Customer extends Account {
 				// this.setStatus("pending");
 				// System.out.println(getStatus());
 				// System.out.println(this.getStatus());
-				setUserAccountApply(temp);
+			
 			}
 			flag = 1;
 		}
 		this.setStatus("pending");
 		flag = 0;
+	}
+
+	public Customer(String userUsername, String userPassword, String userFirstName, String userLastName,
+			String jointUserUsername, String jointUserPassword, String jointUserFirstName, String jointUserLastName) {
+		super();
+		this.userUsername = userUsername;
+		this.userPassword = userPassword;
+		this.userFirstName = userFirstName;
+		this.userLastName = userLastName;
+		this.jointUserUsername = jointUserUsername;
+		this.jointUserPassword = jointUserPassword;
+		this.jointUserFirstName = jointUserFirstName;
+		this.jointUserLastName = jointUserLastName;
 	}
 }

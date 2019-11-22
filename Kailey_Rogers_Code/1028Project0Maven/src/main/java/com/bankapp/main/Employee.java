@@ -53,8 +53,15 @@ public class Employee extends Account{
 						System.out.println("2 accounts needing approval");
 						System.out.println("3 exit to main menu");
 						System.out.print("What would you like to do: ");
-						temp2 = cls.nextInt();
-						cls.nextLine();
+						while (!validInput) {
+							try {String input = cls.nextLine();
+							temp2 = Integer.valueOf(input);
+							break;
+							}catch(Exception e){
+								System.out.println("Please enter a valid number.");
+							}
+						}
+
 
 						switch (temp2) {
 						case 1:

@@ -60,7 +60,14 @@ public class Admin extends Account {
 						System.out.println("6 cancel an account");
 						System.out.println("7 return to main menu");
 						System.out.print("What would you like to do: ");
-						temp2 = cls.nextInt();
+						while (!validInput) {
+							try {String input = cls.nextLine();
+							temp2 = Integer.valueOf(input);
+							break;
+							}catch(Exception e){
+								System.out.println("Please enter a valid number.");
+							}
+						}
 
 						switch (temp2) {
 						case 1:
