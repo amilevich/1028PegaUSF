@@ -139,6 +139,12 @@ How do you add a column to a table?
 How would you use IN and EXIST?
 
 DROP, DELETE and TRUNCATE?
+	DROP:
+		Nukes the database, it removes the records as well the table structure itself
+	DELETE:
+		Uses to remove a record or a specified set of records
+	TRUNCATE:
+		Removes all the data from the table while keeping the data structure
 
 How to prevent SQL injection?
 
