@@ -41,7 +41,8 @@ public class Customer implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Customer [userName=" + userName + ", userPin=" + userPin + ", Name=" + Name + "]";
+		//return "Customer [userName=" + userName + ", userPin=" + userPin + ", Name=" + Name + "]";
+		return "Personal Info- Name: " + Name + " Username: "+ userName + " Userpin: " + userPin;
 	}
 	public String getUserName() {
 		return userName;

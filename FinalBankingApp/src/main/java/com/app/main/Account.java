@@ -18,12 +18,16 @@ public class Account implements Serializable{
 	float balance;
 	long accountNumber;
 	ArrayList<String> customers = new ArrayList<String>(); //Cust IDs
+	//long randomAccount = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
 
 	String accNum; 
-	public Account(float balance, long accountNumber) {
+	
+	
+	public Account() {
 		super();
-		this.balance = balance;
-		this.accountNumber = accountNumber;
+		this.balance=0;
+		this.accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
+		//(long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
 		this.customers=  new ArrayList<String>();	
 		this.accNum = Long.toString(this.accountNumber);
 
@@ -40,7 +44,8 @@ public class Account implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Account [balance=" + balance + ", accountNumber=" + accountNumber + "]";
+		//return "Account [balance=" + balance + ", accountNumber=" + accountNumber + "]";
+		return "Account Info- Account #: " + accountNumber + " Balance: $" + balance;
 	}
 
 	public float getBalance() {
