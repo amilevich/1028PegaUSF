@@ -61,5 +61,91 @@ What is referential integrity?
 What is cascade delete?
 	Cascade delete is what allows us to maintain referential integrity. If we delete a record in a table, we remove all foreign keys with references to it.
 
+What is Like keyboard?
+	LIKE is used for pattern matching, e.g. SELECT * FROM tableName where attribute like 'a%'
+	%  matches zero or mor characters. -- "attribute like 'a%'
+	_  Matching exactly one character. -- "attribute like 'ami_'
 
- 
+What is GROUP BY?
+	GROUP BY statement groups together rows with the same values into summary rows.
+
+What is ORDER BY?
+	ORDER BY statement changes the order depending on the order of a specified attribute. (All the rows are still listed).
+
+What is the WHERE clause?
+	WHERE is used to filter out records. Agregated functions cannot be used with this clause.
+
+What is the HAVING clause?
+	HAVING is used to filter out with agregated functions.
+
+What is an agregated function?
+	An agregated function is an operation that is applied on an entire column and give out a single value. (e.g. calculating the average weight)
+
+What is a scalar function?
+	A scalar function is an operation that acts on an individual record, e.g. rounding, setting character records to uppercase or lowercase.
+
+What are constraints?
+	Constraints in a columns allow us to define what kind of behaviours our records have to follow.
+
+What is a view?
+	A view is a temporary virtual table that shows querys completed by the user.
+
+What is set opertations?
+	A set operator combines queries from 2 tables into a single view. (It extends the rows)
+		The Keywords are:
+			UNION - All distinct rows in both tables
+			UNION ALL - All rows in both tables (allows duplicates)
+			INTERSECTION - rows that exist in both tables
+			MINUS - All distinct rows, that are in the first query but not in the second query
+
+What are joins?
+	A join clause combines rows from multiple tables into a single related colunms (It extends the columns)
+		The Keywords are:
+			INNER JOIN - Returns records from both tables (queries)
+			LEFT JOIN - Returns records from the left table and matching records from the right
+			RIGHT JOIN - Return records from the right table and matching records from the left.
+			FULLL OUTER JOIN - Returns all records when there is a match in either left or right.
+
+How are joins different to set operations?
+	A join allows the user to agregates records into a "super" column (i.e. it extends vertically). A set operations extends the table horizontally 
+		(easier to compare and contrast rows?).
+
+What is normalisation?
+	Normalisation is the practise of reducing data redundancy, resulting in more efficient queries. Industry standard is to reach NF3 (normalisation form 3).
+
+1st, 2nd , 3rd normalisation forms?
+	1st NF: 
+		First normalistaion form is data granularity and a primary key within ithe table
+	2nd NF:
+		Second normailsation 
+	3rd :
+		Doesn't allow transitive property
+
+What is PL/SQL?
+	It's SQL with added functionality, allows us to do procedural programming methods (like functions) but not OOP
+
+What is a sequence?
+
+What is a stored procedure?
+
+Function vs Stored procedure?
+
+What is a cursor?
+
+How do you add a record to a table?
+
+How do you add a column to a table?
+
+How would you use IN and EXIST?
+
+DROP, DELETE and TRUNCATE?
+
+How to prevent SQL injection?
+
+What are CRUD operations ?
+	Create, Read, Update and Delete, in oracle SQL they are INSERT, SELECT, UPDATE, DELETE
+
+
+
+
+
