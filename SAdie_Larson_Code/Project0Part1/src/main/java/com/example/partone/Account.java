@@ -15,7 +15,7 @@ public class Account implements Client, Employee, SystemAdmin {
 
 	final static Logger loggy = Logger.getLogger(Account.class);
 	private int hashKey;
-	HashMap<String, String> userPass = new HashMap<String, String>();
+	public HashMap<String, String> userPass = new HashMap<String, String>();
 	private String username;
 	private String password;
 	// private String fName;
@@ -24,7 +24,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	// private int birthY;
 	// private int birthM;
 	protected static String accountType; // 1: Single, 2: Joint
-	private int userType; // client = 1, employee = 2, system admin = 3
+	private int userType = 1; // client = 1, employee = 2, system admin = 3
 	public static int accountKey; // accounts hashkey
 	protected boolean accountExists = false;
 	private int joint = 0; // will fill in with populated HashKey if joint
@@ -143,9 +143,9 @@ public class Account implements Client, Employee, SystemAdmin {
 						+ accounts + "]";
 			}
 		} else if (userType == 2) { // employee
-			info = "Account [ Username=Password: " + userPass + ", accountAccessType: Employee" + "]";
+			info = "Account [Username=Password: " + userPass + ", accountAccessType: Employee" + "]";
 		} else { // sys ad
-			info = "Account [ Username=Password: " + userPass + ", accountAccessType: System Admin" + "]";
+			info = "Account [Username=Password: " + userPass + ", accountAccessType: System Admin" + "]";
 		}
 		return info;
 	}
@@ -153,9 +153,6 @@ public class Account implements Client, Employee, SystemAdmin {
 	// ******************************************************//
 	// ******* creating an actual account *******************//
 	// ******************************************************//
-	public Account() {
-		// needed for adding from file
-	}
 
 	public Account(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
 		createJAccount(bankAccounts, accountKey, temp);
@@ -166,6 +163,34 @@ public class Account implements Client, Employee, SystemAdmin {
 
 		createAccount(bankAccounts, choice);
 		// System.out.println("\t\t\tdone constructing");
+	}
+
+	// SQL
+	public Account(int hashKey, String usern, String userp, String usern2, String userp2, int userType, int joint,
+			float checking, float savings) {
+		this.accountKey = hashKey;
+		this.userPass.put(usern, userp);
+		if (!usern2.equals("NULL")) {
+			this.userPass.put(usern2, userp2);
+		}
+		this.userType = userType;
+		this.joint = joint;
+		this.accounts.put("checking", checking);
+		this.accounts.put("savings", savings);
+	}
+
+	public Account(int hashKey, String usern, String userp, String usern2, String userp2, int userType, int joint) {
+		this.accountKey = hashKey;
+		this.userPass.put(usern, userp);
+		if (!usern2.equals("NULL")) {
+			this.userPass.put(usern2, userp2);
+		}
+		this.userType = userType;
+		this.joint = joint;
+	}
+
+	public Account() {
+
 	}
 
 	public void createAccount(HashMap<Integer, Account> bankAccounts, String choice) {
@@ -183,7 +208,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		System.out.println("\t\t\tPlease enter a username below");
 		while (true) {
 			username = sc.nextLine();
-			username.toLowerCase();
+			username = username.toLowerCase();
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
 				accountExists = username.equals(en.getValue().getUsername());
 				if (accountExists) {
@@ -201,10 +226,9 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 
 		// ************ setting up a password *******************//
-		System.out.println("\t\t\tPlease enter a password below");
+		System.out.println("\t\t\tPlease enter a password below. Case Sensitive");
 		while (true) {
 			password = sc.nextLine();
-			password.toLowerCase();
 			if (password.length() < 1) { // change to verify password meets specs
 				System.out.println("\t\t\tInvalid. errors occurred in creating a password");
 			} else {
@@ -214,6 +238,8 @@ public class Account implements Client, Employee, SystemAdmin {
 
 		setUsername(username);
 		setPassword(password);
+		accounts.put("checking", 0.00f);
+		accounts.put("savings", 0.00f);
 		// userPass.put(this.getUsername(), this.getPassword());
 
 		// ******Setting up account information *******************//
@@ -279,10 +305,12 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	private void createJAccount(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
-		userPass.put(bankAccounts.get(accountKey).getUsername(), bankAccounts.get(accountKey).getPassword());
-		userPass.put(bankAccounts.get(temp).getUsername(), bankAccounts.get(temp).getPassword());
-		accounts.put("shared checking", 0.0);
-		userType = 1; // client
+		this.userPass.put(bankAccounts.get(accountKey).getUsername(), bankAccounts.get(accountKey).getPassword());
+		this.userPass.put(bankAccounts.get(temp).getUsername(), bankAccounts.get(temp).getPassword());
+		this.accounts.put("shared checking", 0.00f);
+		this.accounts.put("shared savings", 0.00f);
+		this.userType = 1; // client
+
 	}
 
 	// ******************************************************//
@@ -290,8 +318,8 @@ public class Account implements Client, Employee, SystemAdmin {
 	// ******************************************************//
 
 	protected boolean accountHolder; // check to see status of account
-//	protected double accountBalance = 0.00;
-	private int applicationStatus; // 0: applied, 1: approved, 2: denied
+	// protected float accountBalance = 0.00;
+	private int applicationStatus = 0; // 0: applied, 1: approved, 2: denied
 
 	public int getApplicationStatus() {
 		return applicationStatus;
@@ -302,12 +330,12 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	public String accountCur; // checking, savings, whatever they call it
-	public double amount;
+	public float amount;
 
-	Map<String, Double> accounts = new HashMap<String, Double>();
+	public Map<String, Float> accounts = new HashMap<String, Float>();
 
 	@Override
-	public void createAccounts(Map<String, Double> accounts2) { // note difference between account(user) and accounts
+	public void createAccounts(Map<String, Float> accounts2) { // note difference between account(user) and accounts
 																// (types of accounts a user has
 		if (userType == 2) {
 			System.out.println("\t\t\tError. You are an Employee you do not have access to creating accounts");
@@ -317,7 +345,7 @@ public class Account implements Client, Employee, SystemAdmin {
 			while (true) {
 				accountCur = sc.nextLine();
 				accountExists = false;
-				for (Entry<String, Double> en : accounts2.entrySet()) { // iterate through all members
+				for (Entry<String, Float> en : accounts2.entrySet()) { // iterate through all members
 					// in
 					// accounts map // check if accountKey is in map
 					if (accountCur.equals(en.getKey())) {
@@ -330,7 +358,7 @@ public class Account implements Client, Employee, SystemAdmin {
 					break;
 				}
 			}
-			accounts2.put(accountCur, 0.0);
+			accounts2.put(accountCur, 0.0f);
 		}
 	}
 
@@ -396,8 +424,8 @@ public class Account implements Client, Employee, SystemAdmin {
 		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
-			for (Entry<String, Double> en : accounts.entrySet()) { //
+			accountCur = accountCur.toLowerCase();
+			for (Entry<String, Float> en : accounts.entrySet()) { //
 				// check if accountKey is in map
 				if (accountCur.equals(en.getKey())) {
 					System.out.println("\t\t\taccount exists");
@@ -419,9 +447,9 @@ public class Account implements Client, Employee, SystemAdmin {
 			checkAccount = 3;
 		}
 		if (choice.equals("1")) {
-			accounts.put(accountCur, deposit());
+			accounts.put(accountCur, deposit(accountCur));
 		} else if (choice.equals("2")) {
-			accounts.put(accountCur, withdraw());
+			accounts.put(accountCur, withdraw(accountCur));
 		}
 		if (choice.equals("3")) {
 			// System.out.println(hashKey);
@@ -438,12 +466,12 @@ public class Account implements Client, Employee, SystemAdmin {
 		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
+			accountCur = accountCur.toLowerCase();
 			if (accountCur.equals("create")) {
 				createAccounts(bankAccounts.get(joint).accounts);
 				System.out.println(bankAccounts.get(joint).accounts);
 			}
-			for (Entry<String, Double> en : bankAccounts.get(joint).accounts.entrySet()) {
+			for (Entry<String, Float> en : bankAccounts.get(joint).accounts.entrySet()) {
 				// check if accountKey is in map
 				if (accountCur.equals(en.getKey())) {
 					System.out.println("\t\t\taccount exists");
@@ -460,9 +488,9 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 		checkClientAction();
 		if (choice.equals("1")) {
-			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).deposit());
+			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).deposit(accountCur));
 		} else if (choice.equals("2")) {
-			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).withdraw());
+			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).withdraw(accountCur));
 		}
 		if (choice.equals("3")) {
 			bankAccounts.get(joint).transfer(joint, hashKey, bankAccounts);
@@ -495,7 +523,7 @@ public class Account implements Client, Employee, SystemAdmin {
 					boolean keyFound = false;
 					boolean notClient = false;
 					temp = sc.nextLine();
-					temp.toLowerCase();
+					temp = temp.toLowerCase();
 					if (temp.equals("exit")) {
 						break;
 					}
@@ -534,24 +562,27 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	@Override
-	public void viewInformation() {
+	public void viewInformation(HashMap<Integer, Account> bankAccounts) {
 		System.out.println("\t\t\tUsername: " + getUsername());
 		System.out.println("\t\t\tPassword: " + getPassword());
 		System.out.println("\t\t\tAccount Staus: " + applicationStatus);
 		System.out.println("\t\t\tOpen accounts: " + accounts);
+		if (joint > 0) {
+			System.out.println("\t\t\tJoint Accounts: " + bankAccounts.get(joint).accounts);
+		}
 		System.out.println("\t\t\tJoint status: " + joint);
 	}
 
 	@Override
-	public double deposit() {
+	public float deposit(String acc) {
 		System.out.println("\t\t\tPlease enter amount you wish to deposit");
 		exceptionCaught = true;
 		while (true && exceptionCaught) {
 			exceptionCaught = false;
 			String amountTemp = sc.nextLine();
 			try {
-				amount = Double.valueOf(amountTemp);
-			} catch (Exception e) {
+				amount = Float.valueOf(amountTemp);
+			} catch (NumberFormatException e) {
 				System.out.println("\t\t\tInvalid. Input must be an number");
 				exceptionCaught = true;
 				continue;
@@ -566,17 +597,15 @@ public class Account implements Client, Employee, SystemAdmin {
 
 		}
 		loggy.info(username + " made a deposit of" + amount);
-		System.out.println(accounts.get(accountCur));
-		System.out.println("\t\t\tYour new account balance is: " + (accounts.get(accountCur) + amount));
-		double tempy= accounts.get(accountCur)- amount;
-		accounts.put(accountCur, tempy);
-		return (accounts.get(accountCur));
+		System.out.println("\t\t\tYour new account balance is: " + (accounts.get(acc) + amount));
+		float tempy = accounts.get(acc) + amount;
+		accounts.put(acc, tempy);
+		return (accounts.get(acc));
 	}
 
 	@Override
-	public double withdraw() {
-
-		if (accounts.get(accountCur) > 0) {
+	public float withdraw(String acc) {
+		if (accounts.get(acc) > 0) {
 			System.out.println("\t\t\tPlease enter amount you wish to withdraw:");
 			exceptionCaught = true;
 
@@ -584,14 +613,14 @@ public class Account implements Client, Employee, SystemAdmin {
 				exceptionCaught = false;
 				String amountTemp = sc.nextLine();
 				try {
-					amount = Double.valueOf(amountTemp);
-				} catch (Exception e) {
+					amount = Float.valueOf(amountTemp);
+				} catch (NumberFormatException e) {
 					System.out.println("\t\t\tInvalid. Input must be an number");
 					exceptionCaught = true;
 					continue;
 				}
-				if (amount > accounts.get(accountCur)) { // checks if enough in account
-					System.out.println("\t\t\tInvalid! Your acocunt only has: " + accounts.get(accountCur));
+				if (amount > accounts.get(acc)) { // checks if enough in account
+					System.out.println("\t\t\tInvalid! Your acocunt only has: " + accounts.get(acc));
 					System.out.println("\t\t\tPlease re-enter withdraw amount");
 					exceptionCaught = true;
 				} else if (amount < 0) { // checks if non-negative value used
@@ -603,15 +632,14 @@ public class Account implements Client, Employee, SystemAdmin {
 				}
 			}
 			loggy.info(username + " made a withdraw of" + amount);
-
-			System.out.println("\t\t\tYour new account balance is: " + (accounts.get(accountCur) - amount));
-			double tempy= accounts.get(accountCur)- amount;
-			accounts.put(accountCur, tempy); 
-			return (accounts.get(accountCur));
+			System.out.println("\t\t\tYour new account balance is: " + (accounts.get(acc) - amount));
+			float tempy = accounts.get(acc) - amount;
+			accounts.put(acc, tempy);
+			return (accounts.get(acc));
 		} else {
 			System.out.println("\t\t\tYou only have $0 in your account");
 		}
-		return (accounts.get(accountCur));
+		return (accounts.get(acc));
 	}
 
 	@Override
@@ -648,10 +676,10 @@ public class Account implements Client, Employee, SystemAdmin {
 			while (true) {
 				accountExists = false;
 				accountCur = sc.nextLine();
-				accountCur.toLowerCase();
+				accountCur = accountCur.toLowerCase();
 				// check if account exists in the list
-				for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all
-																								// members
+				for (Entry<String, Float> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all
+																							// members
 					// in
 					// accounts map // check if accountKey is in map
 					if (accountCur.equals(en.getKey())) {
@@ -676,10 +704,10 @@ public class Account implements Client, Employee, SystemAdmin {
 			System.out.println("\t\t\tPlease enter account you wish to transfer to");
 			while (true) {
 				accountCur = sc.nextLine();
-				accountCur.toLowerCase();
+				accountCur = accountCur.toLowerCase();
 				// check if account exists in the list
-				for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all
-																								// members
+				for (Entry<String, Float> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all
+																							// members
 					if (accountCur.equals(en.getKey())) {
 						accountExists = true;
 						break;
@@ -701,8 +729,8 @@ public class Account implements Client, Employee, SystemAdmin {
 				exceptionCaught = false;
 				String amountTemp = sc.nextLine();
 				try {
-					amount = Double.valueOf(amountTemp);
-				} catch (Exception e) {
+					amount = Float.valueOf(amountTemp);
+				} catch (NumberFormatException e) {
 					System.out.println("\t\t\tInvalid. Amount must be an integer value.");
 					exceptionCaught = true;
 					continue;
@@ -735,9 +763,9 @@ public class Account implements Client, Employee, SystemAdmin {
 		while (true) {
 			accountExists = false;
 			accountCur = sc.nextLine();
-			accountCur.toLowerCase();
+			accountCur = accountCur.toLowerCase();
 			// check if account exists in the list
-			for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all members
+			for (Entry<String, Float> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all members
 				// in
 				// accounts map // check if accountKey is in map
 				if (accountCur.equals(en.getKey())) {
@@ -748,7 +776,7 @@ public class Account implements Client, Employee, SystemAdmin {
 					break; // breaks out of for loop
 				}
 			}
-			for (Entry<String, Double> en : bankAccounts.get(otherKey).accounts.entrySet()) { // iterate through all
+			for (Entry<String, Float> en : bankAccounts.get(otherKey).accounts.entrySet()) { // iterate through all
 																								// members
 				// in
 				// accounts map // check if accountKey is in map
@@ -786,15 +814,15 @@ public class Account implements Client, Employee, SystemAdmin {
 		System.out.println("\t\t\tPlease enter account you wish to transfer to");
 		while (true) {
 			accountOn = sc.nextLine();
-			accountOn.toLowerCase();
+			accountOn = accountOn.toLowerCase();
 			// check if account exists in the list
-			for (Entry<String, Double> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all members
+			for (Entry<String, Float> en : bankAccounts.get(key).accounts.entrySet()) { // iterate through all members
 				if (accountOn.equals(en.getKey())) {
 					accountExists = true;
 					break;
 				}
 			}
-			for (Entry<String, Double> en : bankAccounts.get(otherKey).accounts.entrySet()) { // iterate through all
+			for (Entry<String, Float> en : bankAccounts.get(otherKey).accounts.entrySet()) { // iterate through all
 																								// members
 				if (accountOn.equals(en.getKey())) {
 					accountExists = true;
@@ -819,8 +847,8 @@ public class Account implements Client, Employee, SystemAdmin {
 			exceptionCaught = false;
 			String amountTemp = sc.nextLine();
 			try {
-				amount = Double.valueOf(amountTemp);
-			} catch (Exception e) {
+				amount = Float.valueOf(amountTemp);
+			} catch (NumberFormatException e) {
 				System.out.println("\t\t\tInvalid. Amount must be an integer value.");
 				exceptionCaught = true;
 				continue;
@@ -978,5 +1006,4 @@ public class Account implements Client, Employee, SystemAdmin {
 			}
 		}
 	}
-
 }

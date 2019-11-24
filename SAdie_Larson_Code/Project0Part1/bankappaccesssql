@@ -1,0 +1,4 @@
+CREATE USER larson_sadie IDENTIFIED BY passw4rd;
+
+GRANT CONNECT, RESOURCE TO larson_sadie;
+GRANT DBA TO larson_sadie WITH ADMIN OPTION;
