@@ -30,16 +30,13 @@ public class NewCustomer implements Serializable {
 		System.out.println("What is your address");
 		String address = sc.nextLine();
 		System.out.println("What is your phone number?");
-		String phoneNumber = sc.nextLine();
-		System.out.println("What is your email?");
-		String email = sc.nextLine();
 		System.out.println("Please create a username.");
 		String username = sc.nextLine();
 		System.out.println("Please choose a password.");
 		String password = sc.nextLine();
 
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
-		Account newUser = new Account(accountNumber, firstName, lastName, address, phoneNumber, email, username, password);
+		Account newUser = new Account(accountNumber, 0, firstName, lastName, address, username, password);
 		newCustomerList.add(newUser);
 		logger.info("New account created succesfully. " + newUser);
 
@@ -58,10 +55,6 @@ public class NewCustomer implements Serializable {
 		String lastName = sc.nextLine();
 		System.out.println("What is your address");
 		String address = sc.nextLine();
-		System.out.println("What is your phone number?");
-		String phoneNumber = sc.nextLine();
-		System.out.println("What is your email?");
-		String email = sc.nextLine();
 		System.out.println("Please create a username.");
 		String username = sc.nextLine();
 		System.out.println("Please choose a password.");
@@ -74,18 +67,13 @@ public class NewCustomer implements Serializable {
 		String lastName2 = sc.nextLine();
 		System.out.println("What is your address");
 		String address2 = sc.nextLine();
-		System.out.println("What is your phone number?");
-		String phoneNumber2 = sc.nextLine();
-		System.out.println("What is your email?");
-		String email2 = sc.nextLine();
 		System.out.println("Please create a username.");
 		String username2 = sc.nextLine();
 		System.out.println("Please choose a password.");
 		String password2 = sc.nextLine();
 
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
-		Account newUser = new Account(accountNumber, firstName, lastName, address, phoneNumber, email, username, password, firstName2, lastName2, address2, phoneNumber2, 
-				email2, username2, password2);
+		Account newUser = new Account(accountNumber, firstName, lastName, address, username, password, firstName2, lastName2, address2, username2, password2);
 		newCustomerList.add(newUser);
 		logger.info("New joint account created succesfully.\n" + newUser);
 

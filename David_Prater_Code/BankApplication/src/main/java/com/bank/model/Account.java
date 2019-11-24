@@ -12,21 +12,17 @@ public class Account implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String address;
-	private String phoneNumber;
-	private String email;
 	private String username;
 	private String password;
 
 	private String firstName2 = null;
 	private String lastName2 = null;
 	private String address2 = null;
-	private String phoneNumber2 = null;
-	private String email2 = null;
 	private String username2 = null;
 	private String password2 = null;
 
-	public Account(String accountNumber, String firstName, String lastName, String address, String phoneNumber,
-			String email, String username, String password) {
+	public Account(String accountNumber, double accountBalance, String firstName, String lastName, String address, String username,
+			String password) {
 		super();
 		this.accountNumber = accountNumber;
 		// Initialize balance to zero
@@ -34,17 +30,12 @@ public class Account implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
 		this.username = username;
 		this.password = password;
 	}
-	
-	
 
-	public Account(String accountNumber, String firstName, String lastName, String address,
-			String phoneNumber, String email, String username, String password, String firstName2, String lastName2,
-			String address2, String phoneNumber2, String email2, String username2, String password2) {
+	public Account(String accountNumber, String firstName, String lastName, String address, String username,
+			String password, String firstName2, String lastName2, String address2, String username2, String password2) {
 		super();
 		this.accountNumber = accountNumber;
 		// Initialize balance to zero
@@ -52,22 +43,14 @@ public class Account implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.username = username;
-		this.password = password;
 		this.firstName2 = firstName2;
 		this.lastName2 = lastName2;
 		this.address2 = address2;
-		this.phoneNumber2 = phoneNumber2;
-		this.email2 = email2;
 		this.username2 = username2;
 		this.password2 = password2;
 	}
 
-
 	// Constructors for both single and joint accounts
-
 	public String getFirstName2() {
 		return firstName2;
 	}
@@ -90,30 +73,6 @@ public class Account implements Serializable {
 
 	public void setAddress2(String address2) {
 		this.address2 = address2;
-	}
-
-	public String getPhoneNumber2() {
-		return phoneNumber2;
-	}
-
-	public void setPhoneNumber2(String phoneNumber2) {
-		this.phoneNumber2 = phoneNumber2;
-	}
-
-	public String getEmail2() {
-		return email2;
-	}
-
-	public void setEmail2(String email2) {
-		this.email2 = email2;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getAccountNumber() {
@@ -148,30 +107,6 @@ public class Account implements Serializable {
 		this.address = address;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public double getAccountBalance() {
 		return accountBalance;
 	}
@@ -196,20 +131,36 @@ public class Account implements Serializable {
 		this.password2 = password2;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
-		// This if statement chooses which toString method to use depending on if its a single or joint account
+		// This if statement chooses which toString method to use depending on if its a
+		// single or joint account
 		// If usernam2 is null use single account toString else joint account toString
 		if (username2 == null) {
 
 			return "Account Number: " + accountNumber + "\nAccount Balance: " + accountBalance + "\nName: " + firstName
-					+ " " + lastName + "\nAddress: " + address + "\nPhone Number: " + phoneNumber + "\nEmail: " + email + "\n";
+					+ " " + lastName + "\nAddress: " + address + "\nPhone Number: " + "\n";
 
 		} else {
 			return "Account Number: " + accountNumber + "\nAccount Balance: " + accountBalance + "\nName: " + firstName
-					+ " " + lastName + "\nAddress: " + address + "\nPhone Number: " + phoneNumber + "\nEmail: " + email
-					+ "\nUser Two Name: " + firstName + " " + lastName + "\nUser Two Address: " + address
-					+ "\nUser Two Phone Number: " + phoneNumber + "\nUser Two Email: " + email + "\n";
+					+ " " + lastName + "\nAddress: " + address + "\nUser Two Name: " + firstName + " " + lastName
+					+ "\nUser Two Address: " + address + "\n";
 
 		}
 	}

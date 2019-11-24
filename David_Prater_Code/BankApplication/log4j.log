@@ -58,3 +58,11 @@ Address: somewhere
 Phone Number: 6203885201
 Email: ben@ben.com
 
+2019-11-23 17:02:04 INFO  NewCustomer:44 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: a a
+Address: a
+Phone Number: a
+Email: a
+
+2019-11-23 17:02:59 INFO  Customer:114 - Account #39590 deposited $50.0
