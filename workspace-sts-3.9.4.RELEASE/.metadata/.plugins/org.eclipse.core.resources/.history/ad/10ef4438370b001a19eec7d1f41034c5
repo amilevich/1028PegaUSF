@@ -1,0 +1,17 @@
+package com.homework.algorthim;
+
+public class Q4Factorial {
+
+	public static void main(String[] args) {
+		factorial();
+
+	}
+	
+	public static void factorial() {
+		int n = 5;
+		int sum =  n*(n-1)*(n-2)*(n-3)*(n-4);		
+		n=n-1;
+		System.out.println(sum);
+	}
+
+}

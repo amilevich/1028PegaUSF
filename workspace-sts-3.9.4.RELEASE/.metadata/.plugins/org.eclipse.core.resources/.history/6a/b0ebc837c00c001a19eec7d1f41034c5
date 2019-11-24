@@ -1,0 +1,17 @@
+package com.homework.algorthim;
+
+public class Q12EnhancedLoop {
+
+	public void enhancedLoop() {
+		
+		int[] arr = {};
+		int i;
+		for(i=0; i <=100; i++) {
+			System.out.println(i);
+			arr[i] = i;
+		}
+		
+		
+		
+	}
+}

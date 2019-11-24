@@ -1,0 +1,14 @@
+package com.example.dao;
+
+
+/*
+ * JDBC
+ * 
+ * SQL injection - you are allowed to put SQL queries then USERS can hack your data. AVOID
+ * - Connection --> allows us to connect to our DB
+ * - Statement -> raw SQL query 
+ * - PreparedStatement -> 
+ */
+public class PetDaoImpl implements PetDao {
+
+}

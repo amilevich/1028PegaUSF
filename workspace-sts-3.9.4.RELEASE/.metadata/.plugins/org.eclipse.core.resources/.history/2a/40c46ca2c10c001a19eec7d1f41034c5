@@ -1,0 +1,33 @@
+package com.homework.algorthim;
+
+import java.util.ArrayList;
+
+public class Q12EnhancedLoop {
+	int n = 100;
+	ArrayList<Integer> evenNum = new ArrayList<Integer>(n);
+
+	public void enhancedLoop() {
+		for(int n : evenNum) {
+			evenNum.add(n);
+			System.out.println(evenNum);			
+		}
+		
+	}
+	
+	
+	
+//	public void enhancedLoop() {
+//		int n =100;
+//		int[] arr = new int[n];
+//		
+//		for(int i = 0; i < arr.length; i++) {
+//			if(i  %  2 == 1) {
+//				arr[i] = i+1;
+//				System.out.println(arr[i]);				
+//			}else {
+//				System.out.println("odd");
+//			}
+//			
+//		}
+//	}
+}

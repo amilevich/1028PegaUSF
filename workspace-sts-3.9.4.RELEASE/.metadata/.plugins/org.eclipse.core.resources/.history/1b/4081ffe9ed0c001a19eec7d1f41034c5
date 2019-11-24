@@ -1,0 +1,29 @@
+package com.homework.algorthim;
+
+import java.util.ArrayList;
+
+public class Q19 {
+	ArrayList<Integer> odd = new ArrayList<Integer>();
+	ArrayList<Integer> even = new ArrayList<Integer>();
+	ArrayList<Integer> normal = new ArrayList<Integer>();
+	
+	public void stuff() {
+		 int i = 1;
+		 int count = 0;
+		
+		while(i <=10){
+			normal.add(i);
+			if(i % 2 == 0) {
+				even.add(i);
+			} else if(i % 2 !=0) {
+				odd.add(i);
+			} else if(i == 2 || i == 3 || i == 5 || i == 7){
+				normal.remove(i);					
+			}
+			i++;
+		}
+		
+		
+	}
+	
+}

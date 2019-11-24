@@ -1,0 +1,12 @@
+package com.homework.algorthim;
+
+public class Q9PrimeNumbers {
+	
+	
+	public void primeNum() {
+		
+		for(int i = 0; i <=100; i++) {
+			System.out.println(i);
+		}
+	}
+}

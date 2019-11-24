@@ -1,0 +1,48 @@
+package com.homework.algorthim;
+
+public class MainDriver {
+
+	public static void main(String[] args) {
+		
+//		// Q1. Perform a bubble sort on the following integer array:  1,0,5,6,3,2,3,7,9,8,4
+//		Q1BubbleSort bubbleSort = new Q1BubbleSort();
+//		int[] arr = {1,0,5,6,3,2,3,7,9,8,4}; 
+//		
+//		// Before the bubble sort
+//		for(int i = 0; i < arr.length; i++) {
+//			System.out.println("Before the bubble sort: "+ arr[i]);
+//		}
+//		
+//		//Bubble Sort method ACTIVATE!
+//		bubbleSort.bubbleSort(arr);
+//		
+//		// After the bubble sort
+//		for(int i = 0; i < arr.length; i++) {
+//			System.out.println("After the bubble sort: "+arr[i]);
+//		}
+		
+//***************************************************************************************************************************************************************************
+		
+		
+//		//Q2. Write a program to display the first 25 Fibonacci numbers beginning at 0. 
+//		Q2Fibonacci printFib = new Q2Fibonacci();
+//		printFib.printFib(25);
+		
+//***************************************************************************************************************************************************************************
+
+		//Q3. Reverse a string without using a temporary variable.  Do NOT use reverse() in the StringBuffer or the StringBuilder APIs.
+//		Q3ReverseString reverse = new Q3ReverseString();
+//		reverse.reverseString("hello");
+
+//***************************************************************************************************************************************************************************
+		
+		//Q4. Write a program to compute N factorial.
+//		Q4Factorial factorial = new Q4Factorial();
+//		System.out.println(factorial.factorial(5));
+
+//***************************************************************************************************************************************************************************
+		
+		//Q5. Write a substring method that accepts a string str and an integer idx and returns the substring contained between 0 and idx-1 inclusive.  Do NOT use any of the existing substring methods in the String, StringBuilder, or StringBuffer APIs.
+
+	}
+}

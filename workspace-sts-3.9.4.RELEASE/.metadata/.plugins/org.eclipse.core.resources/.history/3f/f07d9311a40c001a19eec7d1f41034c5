@@ -1,0 +1,49 @@
+package com.homework.algorthim;
+
+import java.util.ArrayList;
+
+public class Q8Palindromes {
+
+	//“karan”, “madam”, ”tom”, “civic”, “radar”, “sexes”, “jimmy”, “kayak”, “john”,  “refer”, “billy”, “did” 
+	//populate arrayList with names
+	ArrayList<String> name = new ArrayList<String>();
+	ArrayList<String> palindromes = new ArrayList<String>();
+	public void arrayList() {
+		
+		String[] list = {"karan", "madam", "tom", "civic", "radar", "sexes", "jimmy", "kayak", "john", "refer", "billy", "did"};
+		
+		
+		String reverse = "";
+		for(int i = 0; i < list.length; i++) {
+			System.out.println(i);
+			reverse = reverse + list[i];
+			System.out.println(reverse);
+		}
+		
+	}
+}
+//		name.add("karan");
+//		name.add("madam");
+//		name.add("tom");
+//		name.add("civic");
+//		name.add("radar");
+//		name.add("sexes");
+//		name.add("jimmy");
+//		name.add("kayak");
+//		name.add("john");
+//		name.add("refer");
+//		name.add("billy");
+//		name.add("did");
+//		System.out.println("This is the orginal arraylist of strings: "+name);
+//		
+//		//Check for Palindromes
+//		String reverse;
+//		for(String i : name) {
+//			reverse = reverse + i.
+//		}
+		
+	
+	
+	//iterate through object and check if object is a palindrome
+	//push palindrome into new arraylist
+

@@ -1,0 +1,14 @@
+package com.homework.algorthim;
+
+import java.util.ArrayList;
+import java.util.jar.Attributes.Name;
+
+public class Q8Palindromes {
+
+	//populate arrayList with names
+	ArrayList<Name> name = new ArrayList<Name>();
+	ArrayList<Palindromess> palindromes = new ArrayList<Palindromess>();
+	
+	//iterate through object and check if object is a palindrome
+	//push palindrome into new arraylist
+}

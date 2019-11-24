@@ -1,0 +1,17 @@
+package com.homework.algorthim;
+
+public interface Q15Operants {
+
+	public default void addition() {
+		
+	}
+	public default void subtraction() {
+		
+	}
+	public default void multiply() {
+		
+	}
+	public default void divide() {
+		
+	}
+}

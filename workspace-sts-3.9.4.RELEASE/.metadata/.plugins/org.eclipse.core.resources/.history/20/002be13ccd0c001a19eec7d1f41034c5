@@ -1,0 +1,50 @@
+package com.homework.algorthim;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Q14SwitchCase {
+	//Q14. Write a program that demonstrates the switch case. Implement the following functionalities in the cases:
+//	Case 1: Find the square root of a number using the Math class method. 
+//	Case 2: Display today’s date.
+//	Case 3: Split the following string and store it in a string array. 
+//			“I am learning Core Java
+	
+	public void switchCase() {
+		
+		Scanner input = new Scanner(System.in);
+		int option = input.nextInt();
+		
+		System.out.println("1. Square Root \n 2. Display date \n 3. Store String");
+		
+		switch(option) {
+		case 1 :
+			System.out.println("Enter number to find its Square Root:");
+			int inputs = input.nextInt();
+			double answer = Math.sqrt(inputs);
+			System.out.println(answer);	
+			break;
+		case 2 :
+			System.out.println("Display todays date");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			System.out.println(dateFormat.format(date));
+			break;
+		case 3 : 
+			String[] arr = {"I am learning Core Java"};
+			System.out.println(arr);
+			break;
+//			String[] arr = new String[];
+//			String string = "I am learning Core Java";
+//			for (int i = 0; i < string.length(); i++) {
+//				string.charAt(i);
+//				
+//			}
+		default:
+			System.out.println("Default");
+		}
+	}
+
+}

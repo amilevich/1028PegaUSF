@@ -1,0 +1,33 @@
+package com.homework.algorthim;
+
+public class Q3ReverseString {
+	
+	public void reverseString(String input) {
+
+		//Attempt 3
+		String s = "Hello World";
+		for(int i = s.length()-1; i < s.length(); i--) {
+			System.out.println(i);
+		}
+		
+
+		// Attempt 2
+//		char[] stringBreaker = input.toCharArray();
+//		String reverse = "";
+//		
+//		for( int i = stringBreaker.length; i >stringBreaker.length-1; i--) {
+//			
+//			reverse = stringBreaker + reverse;
+//		}
+//		System.out.println(reverse);
+		
+		// Attempt 1
+//		for(int i = 0; i >= string.length-1; i--) {
+//		string;
+//			System.out.println("Reverse string: " + reverse);
+//		}
+		
+		
+	}
+
+}

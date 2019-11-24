@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.headers{
+	color: yellow;
+	text-align:right;
+}
+
+#hello{
+	color:red;
+	text-align:right;
+}

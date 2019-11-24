@@ -1,0 +1,70 @@
+package com.example.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.example.model.Pet;
+
+/*
+ * JDBC
+ * 
+ * SQL injection - you are allowed to put SQL queries then USERS can hack your data. AVOID
+ * - Connection --> allows us to connect to our DB
+ * - Statement -> raw SQL query 
+ * - PreparedStatement -> precompiles the SQL string without parameters, once parameters are added, they are only treated as values, never keywords
+ * - Callabale Statemet -> same idea as Prepeared Statement but is used for stored procedures
+ * 
+ *  Both PreparedStatement and CallableStatement prevent SQL injection
+ *  
+ *  To connect to our database, we need 4 things:
+ *  
+ *  1) URL (endpoint + port number + database name)
+ *  2) Username
+ *  3) Passowrd
+ *  4) Driver (Jar that implements JDBC)
+ */
+public class PetDaoImpl implements PetDao {
+	
+	private static String urL
+	= "jdbc:oracle:thin:@my1028pegausf.c8fjsw7dnsyi.us-west-1.rds.amazonaws.com:1521:orcl";
+	
+	private static String username = "Pets";
+	private static String password = "p4ssw0rd";
+
+	
+	public int insertPet(Pet p) {
+		try (Connection conn = DriverManager.getConnection(urL,username,password)){
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO Pets VALUES(?,?)");
+			ps.setString(1, p.getName());
+			ps.setString(2, p.getType());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public Pet selectPetByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Pet> SelectAllPets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int updatePet(Pet p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int deletePet(Pet p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,24 @@
+package com.homework.algorthim;
+
+public class Q3ReverseString {
+	
+	public static void main(String [] args) {
+		reverseString("Hello");
+	}
+	
+	public static void reverseString(String input) {
+		
+		//Attempt 1
+		for(int i = input.length()-1; i >= 0; i--) {
+			input+=input.charAt(i);
+		}
+		for(int j = 0; j < input.length() -1 ; j++) {
+			input = input.substring(j, input.length());
+			System.out.println(input);
+		}
+		System.out.println(input);
+		
+		
+	}
+
+}

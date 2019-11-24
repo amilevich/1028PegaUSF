@@ -1,0 +1,31 @@
+package com.homework.algorthim;
+
+import java.util.ArrayList;
+
+public class Q8Palindromes {
+
+	//“karan”, “madam”, ”tom”, “civic”, “radar”, “sexes”, “jimmy”, “kayak”, “john”,  “refer”, “billy”, “did” 
+	//populate arrayList with names
+	ArrayList<String> name = new ArrayList<String>();
+	ArrayList<String> palindromes = new ArrayList<String>();
+	public void arrayList() {
+		name.add("karan");
+		name.add("madam");
+		name.add("tom");
+		name.add("civic");
+		name.add("radar");
+		name.add("sexes");
+		name.add("jimmy");
+		name.add("kayak");
+		name.add("john");
+		name.add("refer");
+		name.add("billy");
+		name.add("did");
+		System.out.println(name);
+		
+	}
+	
+	
+	//iterate through object and check if object is a palindrome
+	//push palindrome into new arraylist
+}
