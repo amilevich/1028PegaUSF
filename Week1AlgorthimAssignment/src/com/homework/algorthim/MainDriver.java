@@ -131,8 +131,8 @@ public class MainDriver implements Comparator, Q15Operants{
 //***************************************************************************************************************************************************************************
 
 	//Q13. Display the triangle on the console as follows using any type of loop.  Do NOT use a simple group of print statements to accomplish this.
-		Q13Triangle q13 = new Q13Triangle();
-		q13.triangle();
+//		Q13Triangle q13 = new Q13Triangle();
+//		q13.triangle();
 
 //***************************************************************************************************************************************************************************
 		
