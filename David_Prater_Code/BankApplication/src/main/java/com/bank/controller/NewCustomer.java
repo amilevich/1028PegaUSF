@@ -1,3 +1,4 @@
+
 package com.bank.controller;
 
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ public class NewCustomer {
 	Scanner sc = new Scanner(System.in);
 	public static ArrayList<Account> newCustomerList = new ArrayList<>();
 	public static String accountNumber = null;
-
-
 
 	// This method collects all the information about the customer and adds them to the new customer list
 	public void registerNewCustomer() {
@@ -46,6 +45,7 @@ public class NewCustomer {
 	
 	public void registerJointCustomer() {
 		
+		// Get first users information
 		String accountNumber = generateAccountNumber();
 		System.out.println("Please Enter Informtaion for User One");
 		System.out.println("What is your first name?");
@@ -59,6 +59,7 @@ public class NewCustomer {
 		System.out.println("Please choose a password.");
 		String password = sc.nextLine();
 		
+		// Get second users information
 		System.out.println("Please Enter Informtaion for User Two");
 		System.out.println("What is your first name?");
 		String firstName2 = sc.nextLine();

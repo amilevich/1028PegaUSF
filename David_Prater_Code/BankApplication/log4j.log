@@ -193,3 +193,8 @@ Address: Banana Street
 Account Balance: 0.0
 Name: Banana Apple
 Address: Banana Street
+2019-11-25 12:32:48 INFO  NewCustomer:39 - New account created succesfully. Account ID: 0
+Account Number: 11748
+Account Balance: 0.0
+Name: banana banana
+Address: asdf

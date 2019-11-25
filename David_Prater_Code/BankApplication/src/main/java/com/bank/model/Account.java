@@ -49,21 +49,6 @@ public class Account implements Serializable {
 		this.password = password;
 	}
 
-	public Account(String accountNumber, String firstName, String lastName, String address, String username,
-			String password, String firstName2, String lastName2, String address2, String username2, String password2) {
-		super();
-		this.accountNumber = accountNumber;
-		// Initialize balance to zero
-		this.accountBalance = 0.0;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.firstName2 = firstName2;
-		this.lastName2 = lastName2;
-		this.address2 = address2;
-		this.username2 = username2;
-		this.password2 = password2;
-	}
 
 	// Constructors for both single and joint accounts
 	public String getFirstName2() {

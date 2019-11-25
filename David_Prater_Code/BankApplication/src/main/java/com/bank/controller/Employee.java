@@ -1,6 +1,5 @@
 package com.bank.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -80,8 +79,7 @@ public class Employee {
 			String output = newCustomer.toString();
 			System.out.println(output);
 
-			// This do while loop runs until the current user approves or denies the pending
-			// account
+			// This do while loop runs until the current user approves or denies the pending account
 			// Set choice to z to make sure it runs
 			String choice = "z";
 			do {
@@ -89,10 +87,6 @@ public class Employee {
 				choice = sc.next().toString();
 				// If user enters 'y' approve the account
 				if (choice.equals("y")) {
-					// Generate random account number between 100000 and 1 and set it to approved
-					// account
-//					String accountNumber = generateAccountNumber();
-//					newCustomer.setAccountNumber(accountNumber);
 					
 					AccountDaoImpl.insertAccount(newCustomer);
 					// Create a key (username + password) to access that account in the customer

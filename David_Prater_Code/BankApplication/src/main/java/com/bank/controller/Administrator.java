@@ -45,7 +45,8 @@ public class Administrator {
 
 	// This method displays and collects the administrators actions
 	public static void administratorActions() {
-		// This method forces the administrator to approve or deny accounts before they can perfrom any other actions
+		// This method forces the administrator to approve or deny accounts before they
+		// can perfrom any other actions
 		Employee.approveNewCustomer();
 		System.out.println("What would you like to do today?");
 		System.out.println(
@@ -95,8 +96,7 @@ public class Administrator {
 
 	// This method is used to delete existing accounts
 	public static void cancelAccount() {
-		System.out.println(
-				"1. Select Which Account to Delete\n2. View All Accounts\n3. Return to Administrator Menu");
+		System.out.println("1. Select Which Account to Delete\n2. View All Accounts\n3. Return to Administrator Menu");
 
 		// Convert to string to perform input validation
 		String actionChoice = sc.next().toString();
@@ -121,49 +121,33 @@ public class Administrator {
 		cancelAccount();
 
 	}
-	
-	// This method allows the administrator to choose which account the want to perform actions on
-	public static void getPassKey() {
-		System.out.println("Whats is the key for the account? (key = username + password)");
-		String passKey = sc.next().toString();
-		// If they enter a valid key set current customer to that Account objects in customer HashMap
-		if(BankMenu.customerMap.containsKey(passKey)) {
-			 currentAccount = BankMenu.customerMap.get(passKey);
-		} else {
-			// Else return to administrator menu
-			System.out.println("Invalid key. Please Try Again.");
-			administratorActions();
-		}
-	}
-	
+
 	// This method allows the administrator to delete accounts
-	public static void removeAccount(){
-		System.out.println("Whats is the account number for the account you wish to delete? (key = username + password)");
+	public static void removeAccount() {
+		System.out
+				.println("Whats is the account number for the account you wish to delete? (key = username + password)");
 		String accountNumber = sc.next().toString();
 		Account accountToDelete;
-		// If this key is in the customer HashMap delete its corresponding Account object
+		// If this key is in the customer HashMap delete its corresponding Account
+		// object
+
 		accountToDelete = (AccountDaoImpl.selectAccountByNumber(accountNumber));
-//			 //currentAccount = BankMenu.customerMap.get(passKey);
-			 AccountDaoImpl.deleteAccount(accountToDelete);
-//			 
-//			 System.out.println("Account Removed Succesfully.");
-//			 logger.info("Account number " + currentAccount.getAccountNumber() + "successfully deleted.");
-//			 
-//		} else {
-//			// If the admin submits an invalid key return them to the actions menu
-//			System.out.println("Invalid key. Please Try Again");
-//			administratorActions();
+		if (accountToDelete != null) {
+			AccountDaoImpl.deleteAccount(accountToDelete);
+		} else {
+			System.out.println("Invalid Account Number.");
+			administratorActions();
 		}
-	
-		public static Account getAccount() {
-			System.out.println("What is the account number?");
-			String accountNumber = sc.next();
-			currentAccount = AccountDaoImpl.selectAccountByNumber(accountNumber);
-			
-			return currentAccount;
-		}
-	
-		
+
 	}
 
+	// Get account from account number
+	public static Account getAccount() {
+		System.out.println("What is the account number?");
+		String accountNumber = sc.next();
+		currentAccount = AccountDaoImpl.selectAccountByNumber(accountNumber);
 
+		return currentAccount;
+	}
+
+}
