@@ -34,8 +34,8 @@ public class Accounts implements Serializable {
 	final static Logger loggy = Logger.getLogger(Accounts.class);
 
 	// Instantiate of ArrayList
-	static ArrayList<Customers> accountsPending = new ArrayList<Customers>();
-	static ArrayList<Customers> accountsApproved = new ArrayList<Customers>();
+	public static ArrayList<Customers> accountsPending = new ArrayList<Customers>();
+	public static ArrayList<Customers> accountsApproved = new ArrayList<Customers>();
 
 	// Iterator
 	static Iterator<Customers> iterPending = accountsPending.iterator();
@@ -45,7 +45,7 @@ public class Accounts implements Serializable {
 	Customers newCustomer = new Customers();
 	Employees employee = new Employees();
 	Admin admin = new Admin();
-	static CustomerDaoImpl cusDao = new CustomerDaoImpl();
+	public static CustomerDaoImpl cusDao = new CustomerDaoImpl();
 
 	// Text File
 	static String filename = "./bankPen.txt";
@@ -61,11 +61,18 @@ public class Accounts implements Serializable {
 
 	public static void menu() {
 		System.out.println("");
-		System.out.println("Accounts pending Read File: ");
-		readObject(filename);
+		System.out.println("OGaccountsPending");
+		for(Customers a : accountsPending) {
+			System.out.println(a);			
+		}
+		System.out.println("\n");
+		System.out.println("OGaccountsApproved");
+		for(Customers b : accountsApproved) {
+			System.out.println(b);			
+		}
+		//readObject(filename);
 		System.out.println("");
-		System.out.println("Currently Active Customer Read File:");
-		readObject2(filename2);
+		//readObject2(filename2);s
 		System.out.println("\n");
 		System.out.println("\t~" + "Account Pending");
 		System.out.println(" \n");
@@ -131,7 +138,7 @@ public class Accounts implements Serializable {
 		System.out.println("");
 		System.out.println("*****Customer Login Page*****");
 		System.out.println("");
-		System.out.println(accountsApproved);
+//		System.out.println(cusDao.);
 		// Customer Login Username //Thanks
 		System.out.println("Provide ID:");
 		int userIDCredential;
@@ -151,12 +158,7 @@ public class Accounts implements Serializable {
 		String passCredential = input.next();
 
 		for (Customers customer : accountsApproved) {
-			System.out.println("\n");
-			System.out.println("Before the if statement");
-			System.out.println(customer);
-			System.out.println(accountsApproved);
-
-			if (userIDCredential == customer.getCustomerId() && passCredential.equals(customer.getPassword())) {
+			if (userIDCredential == customer.getCustomerId() && passCredential.equals(customer.getPassword()) && customer.getPendingApproved() == 1) {
 				System.out.println("\n");
 				System.out.println("\t Login credential valid (´▽`)b");
 				loggy.info(customer.getCustomerId() + "Customer Login Successful");
@@ -215,11 +217,13 @@ public class Accounts implements Serializable {
 
 								System.out.println("\t ****Receipt****");
 								System.out.println("TToTTal balance: " + i.getTotalBalance());
-								System.out
-										.println("Total recieved from " + i.getUsername() + ": " + i.getTotalBalance());
+								System.out.println("Total recieved from " + i.getUsername() + ": " + i.getTotalBalance());
 								System.out.println("Balance : " + i.getTotalBalance());
 								customer.setTotalBalance(customer.getTotalBalance() - sendMon);
 								flag = 1;
+								System.out.println("This is the thing" + i);
+								cusDao.updateCustomer(i);
+								cusDao.updateCustomer(customer);
 								loggy.info("Customer -- Transfer money to " + i.getUsername() + " amount: " + sendMon);
 								break;
 							}
@@ -238,14 +242,13 @@ public class Accounts implements Serializable {
 					System.out.println("Nice going you broke it...");
 					break;
 				}
-			} else {
-				System.out.println("false");
-				System.out.println("Else statement");
-				System.out.println(customer);
-				loggy.warn("Error!!!!");
-				customerLogin();
-			}
+			}// else {
+//				System.out.println("Error statement");
+//				loggy.warn("Login Error!!!!");
+//			}
 		}
+		
+		customerLogin();
 	}
 
 	// *******************************************************************************************************************
@@ -332,7 +335,7 @@ public class Accounts implements Serializable {
 			loggy.info("Admin -- Successful login");
 			System.out.println("\n");
 			System.out.println("\t 1. View All Accounts");
-			System.out.println("\t 2. Approve/Decline/Cancel Accounts");
+			System.out.println("\t 2. Approve/Decline Accounts");
 			System.out.println("\t 3. Access client accounts");
 			System.out.println("\t 4. Cancel accounts");
 			System.out.println("\t 5. Done");
@@ -341,26 +344,25 @@ public class Accounts implements Serializable {
 			switch (option) {
 			case "1":
 				System.out.println("\t View All Accounts");
-				if (accountsPending.isEmpty()) {
-					System.out.println("");
-					System.out.println("");
-					System.out.println("\t No Pending Accounts...Register to continue");
-				} else {
-					//printListPretty(accountsPending);
-					System.out.println("Accounts Pending");
-					cusDao.selectAllCustomers();
-					adminLogin();
-				}
-				if (accountsApproved.isEmpty()) {
+				if (accountsPending.isEmpty() && accountsApproved.isEmpty()) {
 					System.out.println("");
 					System.out.println("");
 					System.out.println("\t No Accounts...Register to continue");
 				} else {
-					//printListPretty(accountsApproved);
-					System.out.println("Accounts Approved");
+					//printListPretty(accountsPending);
 					cusDao.selectAllCustomers();
 					adminLogin();
 				}
+//				if (accountsApproved.isEmpty()) {
+//					System.out.println("");
+//					System.out.println("");
+//					System.out.println("\t No Accounts...Register to continue");
+//				} else {
+//					//printListPretty(accountsApproved);
+//					System.out.println("Accounts Approved");
+//					cusDao.selectAllCustomers();
+//					adminLogin();
+//				}
 				break;
 			case "2":
 				System.out.println("\t ****Approve/Decline Accounts****");
@@ -484,6 +486,7 @@ public class Accounts implements Serializable {
 	// ********************************************************************************************************
 	// Methods below
 	// ***********************************************************************************************************
+	
 
 	// Registration
 	public static void registration() {
@@ -656,8 +659,10 @@ public class Accounts implements Serializable {
 				if (i.getCustomerId() == id) {
 					accountsApproved.add(i);
 					accountsPending.remove(i);
-					writeObject(filename, accountsPending);
-					writeObject(filename2, accountsApproved);
+					i.setPendingApproved(1);
+					cusDao.updateCustomer(i);
+					//writeObject(filename, accountsPending);
+					//writeObject(filename2, accountsApproved);
 					// Add pending account to approved account
 					System.out.println("\t Approved!!! (´∀｀)");
 					loggy.info("Approved new Account!!");
@@ -671,18 +676,26 @@ public class Accounts implements Serializable {
 			System.out.println("");
 
 			// Show current pending account list
-			System.out.println("\t Accounts currently pending:\t" + accountsPending);
+			for (Customers i : accountsPending) {
+				System.out.println("\t Accounts currently pending:\t" + i);				
+			}
 
 			// Store accounts into database
-			writeObject(filename2, accountsApproved);
-			writeObject(filename, accountsPending);
+			//writeObject(filename2, accountsApproved);
+			//writeObject(filename, accountsPending);
 			break;
 		case 2:
-			System.out.println("\t Decline ゜:(つд⊂):゜。");
-			loggy.info("Decline new Account!!");
-			printListPretty(accountsPending);
-			accountsPending.remove(0);
-			System.out.println(accountsPending);
+			System.out.println("Enter customerID:");
+			int idd = input.nextInt();
+			for (Customers i : accountsPending) {
+				if (i.getCustomerId() == idd) {
+					accountsPending.remove(i);
+					cusDao.deleteCustomer(i);
+					System.out.println("\t Decline ゜:(つд⊂):゜。");
+					loggy.info("Decline new Account!!");
+					System.out.println(accountsPending);
+				}
+			}
 
 			// Store accounts pending
 			// writeObject(filename, accountsPending);
@@ -702,13 +715,16 @@ public class Accounts implements Serializable {
 		System.out.println("\t Enter Amount to Deposit:");
 		int amount = input.nextInt();
 		if (amount > 0) {
-			for (Customers i : accountsApproved) {
+			for (
+					Customers i : accountsApproved) {
 				if (i.getCustomerId() == userIDCredential) {
 					newBalance = amount + i.getTotalBalance();
 					i.setTotalBalance(newBalance);
 					System.out.println("\t The amount of $" + newBalance + " was deposited");
 					System.out.println("\t $" + i.getTotalBalance());
-					// writeObject(filename, accountsPending);
+					System.out.println(i);
+					cusDao.updateCustomer(i);
+					writeObject(filename, accountsPending);
 				}
 
 			}
@@ -731,9 +747,10 @@ public class Accounts implements Serializable {
 				if (i.getCustomerId() == userIDCredential) {
 					newBalance = i.getTotalBalance() - amount;
 					i.setTotalBalance(newBalance);
-					System.out.println("The amount of $" + newBalance + " was withdrawed");
+					System.out.println("The amount of $" + amount + " was withdrawed");
 					System.out.println("Total Balance: $" + i.getTotalBalance());
-					// writeObject(filename, accountsPending);
+					cusDao.updateCustomer(i);
+					writeObject(filename, accountsPending);
 				}
 			}
 		} else {

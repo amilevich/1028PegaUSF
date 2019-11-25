@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.folder.bank.Accounts;
 import com.folder.bank.Customers;
 
 public class CustomerDaoImpl {
@@ -53,32 +54,45 @@ public class CustomerDaoImpl {
 		return null;
 	}
 	
-	public List<Customers> selectAllCustomers(){
-		List<Customers> customers = new ArrayList<Customers>();
+	public void  selectAllCustomers(){
+		
 		try(Connection conn = DriverManager.getConnection(urL,username,password)){
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Customers");
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				customers.add(new Customers(rs.getInt("customerID"), rs.getInt("totalBalance"), rs.getString("accountType"), rs.getString("username"), rs.getString("passwords"), rs.getInt("pendingApproved")));
+				if(rs.getInt("pendingApproved")== 0) {
+					Accounts.accountsPending.add(new Customers(rs.getInt("customerID"), rs.getInt("totalBalance"), rs.getString("accountType"), rs.getString("username"), rs.getString("passwords"), rs.getInt("pendingApproved")));
+				} else {
+					
+					Accounts.accountsApproved.add(new Customers(rs.getInt("customerID"), rs.getInt("totalBalance"), rs.getString("accountType"), rs.getString("username"), rs.getString("passwords"), rs.getInt("pendingApproved")));
+				}
 			}
-			System.out.println(customers);
+			System.out.println("\t Accounts pending from Database: ");
+			for(Customers a : Accounts.accountsPending) {
+				System.out.println(a);				
+			}
+			System.out.println("\n");
+			System.out.println("\t Accounts approved from Database: ");
+			for(Customers b : Accounts.accountsApproved) {
+				System.out.println(b);				
+			}			
 			System.out.println("Select All Customers complete");
 		} catch(SQLException e){
 			e.printStackTrace();
 		}
-		return customers;
 	}
 
 	public int updateCustomer(Customers c) {
 		try (Connection conn = DriverManager.getConnection(urL,username,password)){
 			
-			PreparedStatement ps = conn.prepareStatement("UPDATE Customers SET VALUES(?,?,?,?,?) WHERE id=?");
-			ps.setInt(1, c.getCustomerId());
-			ps.setString(2, c.getAccountType());
-			ps.setString(3, c.getUsername());
-			ps.setString(4, c.getPassword());
-			ps.setInt(5, c.getTotalBalance());
+			PreparedStatement ps = conn.prepareStatement("UPDATE Customers SET totalBalance= (?), pendingApproved= (?) WHERE customerID=?");
+			ps.setInt(3, c.getCustomerId());
+//			ps.setString(2, c.getAccountType());
+//			ps.setString(3, c.getUsername());
+//			ps.setString(4, c.getPassword());
+			ps.setInt(1, c.getTotalBalance());
+			ps.setInt(2, c.getPendingApproved());
 			ps.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
