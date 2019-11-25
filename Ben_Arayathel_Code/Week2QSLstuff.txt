@@ -133,10 +133,13 @@ Function vs Stored procedure?
 What is a cursor?
 
 How do you add a record to a table?
+	INSERT INTO tablename VALUES(?,?,?,...)
 
 How do you add a column to a table?
+	ALTER TABLE tablename add columnname constraints.
 
 How would you use IN and EXIST?
+
 
 DROP, DELETE and TRUNCATE?
 	DROP:
@@ -147,6 +150,7 @@ DROP, DELETE and TRUNCATE?
 		Removes all the data from the table while keeping the data structure
 
 How to prevent SQL injection?
+	By using Java's prepared statements, doesn't allow users to accidentlly/intentionally input SQL clauses into transactions.
 
 What are CRUD operations ?
 	Create, Read, Update and Delete, in oracle SQL they are INSERT, SELECT, UPDATE, DELETE
