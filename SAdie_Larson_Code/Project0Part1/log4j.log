@@ -1,17 +1,20 @@
-2019-11-24 23:46:40 INFO  MainDriver:417 -  c Creted an Account
-2019-11-24 23:46:47 INFO  MainDriver:448 -  e Creted an Account
-2019-11-24 23:46:55 INFO  MainDriver:461 -  s Creted an Account
-2019-11-24 23:47:09 INFO  MainDriver:417 -  r Creted an Account
-2019-11-24 23:47:21 INFO  MainDriver:417 -  t Creted an Account
-2019-11-24 23:47:24 INFO  MainDriver:430 -  t Creted an Joint Account with   c  t
-2019-11-24 23:47:34 INFO  MainDriver:193 -  e Logged in
-2019-11-24 23:47:39 INFO  MainDriver:226 -  e Approved  c's account
-2019-11-24 23:47:48 INFO  MainDriver:226 -  e Approved  r's account
-2019-11-24 23:48:03 INFO  MainDriver:118 -  c Logged in
-2019-11-24 23:48:15 INFO  Account:627 - null made a deposit of423.0
-2019-11-24 23:48:21 INFO  MainDriver:159 -  c Changed their password
-2019-11-24 23:54:32 INFO  MainDriver:178 -  t Tried to log in but account is not active
-2019-11-24 23:54:34 INFO  MainDriver:118 -  r Logged in
-2019-11-24 23:56:56 INFO  MainDriver:118 -  r Logged in
-2019-11-24 23:57:03 INFO  MainDriver:161 -  r Changed their password
-2019-11-25 00:16:03 INFO  MainDriver:195 -  e Logged in
+2019-11-25 09:31:29 INFO  MainDriver:421 -  cl Creted an Account
+2019-11-25 09:31:38 INFO  MainDriver:451 -  em Creted an Account
+2019-11-25 09:31:44 INFO  MainDriver:464 -  sys Creted an Account
+2019-11-25 09:31:55 INFO  MainDriver:421 -  cl2 Creted an Account
+2019-11-25 09:32:04 INFO  MainDriver:433 -  cl2 Creted an Joint Account with   cl2  cl
+2019-11-25 09:33:26 INFO  MainDriver:421 -  cl Creted an Account
+2019-11-25 09:34:17 INFO  MainDriver:421 -  cl Creted an Account
+2019-11-25 09:50:04 INFO  MainDriver:421 -  cl Creted an Account
+2019-11-25 09:58:25 INFO  MainDriver:421 -  c Creted an Account
+2019-11-25 09:58:36 INFO  MainDriver:451 -  e Creted an Account
+2019-11-25 09:58:42 INFO  MainDriver:464 -  s Creted an Account
+2019-11-25 09:58:49 INFO  MainDriver:421 -  w Creted an Account
+2019-11-25 09:58:56 INFO  MainDriver:433 -  w Creted an Joint Account with   c  w
+2019-11-25 10:04:57 INFO  MainDriver:421 -  c Creted an Account
+2019-11-25 10:06:27 INFO  MainDriver:421 -  c Creted an Account
+2019-11-25 11:08:47 INFO  MainDriver:421 -  c Creted an Account
+2019-11-25 11:08:55 INFO  MainDriver:451 -  e Creted an Account
+2019-11-25 11:09:02 INFO  MainDriver:464 -  s Creted an Account
+2019-11-25 11:09:13 INFO  MainDriver:421 -  t Creted an Account
+2019-11-25 11:09:16 INFO  MainDriver:433 -  t Creted an Joint Account with   c  t

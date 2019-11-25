@@ -21,10 +21,10 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 	@Override
 	public void insertBankAccounts(Account acc) {
 		System.out.println(acc);
-		int j = 1;
+		int j = 0;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO AccountU VALUES(?,?,?,?,?,?,?,?,?)");
-			ps.setInt(j, acc.getHashKey()); // need to add in trigger
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO AccountU(a_accountKey, a_accountStatus, a_userName1, a_passWord1, a_userName2, a_password2, a_userType, a_joint) VALUES(?,?,?,?,?,?,?,?)");
+		//	ps.setInt(j, acc.getHashKey()); // need to add in trigger
 			ps.setInt(j + 1, acc.getHashKey());
 			ps.setInt(j + 2, acc.getApplicationStatus());
 			int temp = 1;
@@ -50,19 +50,19 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 			ps.setInt(j + 8, acc.getJoint());
 			ps.executeUpdate();
 			// ****************Joint************************//
-			if (acc.userPass.size() > 1) {// joint account {
-				ps = conn.prepareStatement("INSERT INTO AccountM VALUES(?,?,?)");
+			if (acc.userPass.size() > 1 && acc.getUserType() == 1 ) {// joint account {
+				ps = conn.prepareStatement("INSERT INTO AccountM(a_checking, a_savings) VALUES(?,?)");
 				ps.setFloat(1, acc.accounts.get("shared checking"));
 				ps.setFloat(2, acc.accounts.get("shared savings"));
-				ps.setInt(3, acc.getHashKey());
+	//			ps.setInt(3, acc.getHashKey());
 				ps.executeUpdate();
 			}
 			// ****************account with money************************//
 			else if (acc.getUserType() == 1) {// client
-				ps = conn.prepareStatement("INSERT INTO AccountM VALUES(?,?,?)");
+				ps = conn.prepareStatement("INSERT INTO AccountM(a_checking, a_savings) VALUES(?,?)");
 				ps.setFloat(1, acc.accounts.get("checking"));
 				ps.setFloat(2, acc.accounts.get("savings"));
-				ps.setInt(3, acc.getHashKey());
+		//		ps.setInt(3, acc.getHashKey());
 				ps.executeUpdate();
 			}
 		} catch (SQLException e) {
