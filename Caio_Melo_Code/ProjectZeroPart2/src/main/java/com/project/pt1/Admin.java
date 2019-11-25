@@ -477,12 +477,8 @@ public class Admin {
 			System.out.println("No current employees!");
 			adminPrompt();
 		}
-		if (empList.size() == 1) {
-			System.out.println("[1] Employee Account");
-			Employee tempy = empList.get(0);
-			MainDriver.promptContinue();
-		} else {
-			System.out.println("Which account would you like to view?[1-" + count + "]");
+		 else {
+			System.out.println("Which account would you like to view?[1 of " + (count-1) + "]");
 		}
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
@@ -525,7 +521,6 @@ public class Admin {
 			switch (y) {
 			case 1:
 				x.setSalary(x.getSalary() + 5000);
-				System.out.println("$5000 raise! Congratulations !");
 				System.out.println("New Salary: " + x.getSalary());
 				Loggy.info("Employee has been promoted");
 				promoteDemote(x);
