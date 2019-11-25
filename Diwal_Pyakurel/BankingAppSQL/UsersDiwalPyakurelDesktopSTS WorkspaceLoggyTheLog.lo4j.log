@@ -1,0 +1,185 @@
+2019-11-17 01:03:55 INFO  Logger:45 - this works
+2019-11-17 17:18:51 INFO  Logger:23 - customerlogs in
+2019-11-17 17:19:04 INFO  Logger:110 - Customer request to open a single account
+2019-11-17 17:19:22 INFO  Logger:110 - Customer request to open a single account
+2019-11-17 17:19:58 INFO  Logger:104 - Customer requests to open a joint account
+2019-11-17 17:20:08 INFO  Logger:23 - adminlogs in
+2019-11-17 17:20:32 INFO  Logger:23 - customerlogs in
+2019-11-17 17:20:57 INFO  Logger:23 - customerlogs in
+2019-11-17 17:21:24 INFO  Logger:23 - customerlogs in
+2019-11-17 17:22:13 INFO  Logger:227 - A deposit has been made
+2019-11-17 17:22:13 INFO  Logger:81 - $200.0 has been withdraw on the account 7883318
+2019-11-17 17:26:33 INFO  Logger:23 - customerlogs in
+2019-11-17 17:26:54 INFO  Logger:262 - A withdrawl has been done
+2019-11-17 17:26:54 INFO  Logger:96 - $100.0 has been withdraw on the account 7883318
+2019-11-17 17:27:24 INFO  Logger:23 - adminlogs in
+2019-11-17 17:27:46 INFO  Logger:227 - A deposit has been made
+2019-11-17 17:27:46 INFO  Logger:55 - $100.0 has been deposited on the account 7883318
+2019-11-17 17:27:59 INFO  Logger:23 - adminlogs in
+2019-11-17 17:28:18 INFO  Logger:227 - A deposit has been made
+2019-11-17 17:28:18 INFO  Logger:262 - A withdrawl has been done
+2019-11-17 17:28:18 INFO  Logger:285 - A transfer has been completed
+2019-11-17 17:28:18 INFO  Logger:82 - $100.0 has been deposited on the account 7117057
+2019-11-17 17:28:18 INFO  Logger:83 - $100.0 has been withdrawn from the account 7883318
+2019-11-17 17:36:13 INFO  Logger:23 - adminlogs in
+2019-11-17 17:37:16 INFO  Logger:23 - adminlogs in
+2019-11-17 17:38:45 INFO  Logger:23 - customerlogs in
+2019-11-17 17:38:52 INFO  Logger:23 - adminlogs in
+2019-11-17 17:58:15 INFO  Logger:23 - adminlogs in
+2019-11-17 17:59:11 INFO  Logger:23 - adminlogs in
+2019-11-17 18:02:31 INFO  Logger:23 - adminlogs in
+2019-11-17 18:09:12 INFO  Logger:23 - adminlogs in
+2019-11-17 18:12:39 INFO  Logger:23 - employeelogs in
+2019-11-17 18:12:51 INFO  Logger:262 - A withdrawl has been done
+2019-11-17 18:12:51 INFO  Logger:66 - $100.0 has been deposited on the account 3910155
+2019-11-18 15:12:43 INFO  Logger:23 - customerlogs in
+2019-11-23 13:38:21 INFO  Logger:23 - customerlogs in
+2019-11-23 19:12:06 INFO  Logger:15 - customerlogs in
+2019-11-23 19:20:28 INFO  Logger:15 - customerlogs in
+2019-11-23 19:20:55 INFO  Logger:111 - Customer requests to open a joint account
+2019-11-23 19:23:01 INFO  Logger:15 - customerlogs in
+2019-11-23 19:23:15 INFO  Logger:118 - Customer request to open a single account
+2019-11-23 19:24:40 INFO  Logger:15 - newlogs in
+2019-11-23 19:24:44 INFO  Logger:15 - customerlogs in
+2019-11-23 19:24:58 INFO  Logger:118 - Customer request to open a single account
+2019-11-23 19:27:28 INFO  Logger:15 - customerlogs in
+2019-11-23 19:27:49 INFO  Logger:111 - Customer requests to open a joint account
+2019-11-23 19:37:15 INFO  Logger:15 - adminlogs in
+2019-11-23 19:38:21 INFO  Logger:15 - adminlogs in
+2019-11-23 19:40:38 INFO  Logger:15 - adminlogs in
+2019-11-23 20:00:20 INFO  Logger:15 - adminlogs in
+2019-11-23 20:16:28 INFO  Logger:15 - adminlogs in
+2019-11-23 20:17:10 INFO  Logger:15 - adminlogs in
+2019-11-23 20:19:01 INFO  Logger:15 - adminlogs in
+2019-11-23 20:21:33 INFO  Logger:15 - adminlogs in
+2019-11-23 20:22:40 INFO  Logger:15 - adminlogs in
+2019-11-23 20:23:17 INFO  Logger:15 - adminlogs in
+2019-11-23 20:24:16 INFO  Logger:15 - adminlogs in
+2019-11-23 20:25:00 INFO  Logger:15 - adminlogs in
+2019-11-23 20:25:23 INFO  Logger:15 - adminlogs in
+2019-11-23 20:26:35 INFO  Logger:15 - adminlogs in
+2019-11-23 20:28:48 INFO  Logger:15 - adminlogs in
+2019-11-23 20:29:07 INFO  Logger:15 - customerlogs in
+2019-11-23 20:29:22 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 20:31:17 INFO  Logger:15 - customerlogs in
+2019-11-23 20:31:28 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 20:33:46 INFO  Logger:15 - adminlogs in
+2019-11-23 20:33:52 INFO  Logger:15 - customerlogs in
+2019-11-23 20:34:04 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:08:19 INFO  Logger:15 - customerlogs in
+2019-11-23 21:08:34 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:13:46 INFO  Logger:15 - customerlogs in
+2019-11-23 21:14:00 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:16:55 INFO  Logger:15 - customerlogs in
+2019-11-23 21:17:05 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:49:55 INFO  Logger:15 - customerlogs in
+2019-11-23 21:50:07 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:52:51 INFO  Logger:15 - newlogs in
+2019-11-23 21:52:55 INFO  Logger:15 - customerlogs in
+2019-11-23 21:53:11 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:54:49 INFO  Logger:15 - customerlogs in
+2019-11-23 21:55:10 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 21:57:53 INFO  Logger:15 - customerlogs in
+2019-11-23 21:58:14 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 22:01:15 INFO  Logger:15 - adminlogs in
+2019-11-23 22:03:45 INFO  Logger:15 - adminlogs in
+2019-11-23 22:05:17 INFO  Logger:15 - adminlogs in
+2019-11-23 22:08:18 INFO  Logger:15 - adminlogs in
+2019-11-23 22:09:16 INFO  Logger:15 - adminlogs in
+2019-11-23 22:13:38 INFO  Logger:15 - adminlogs in
+2019-11-23 22:15:07 INFO  Logger:15 - adminlogs in
+2019-11-23 22:15:33 INFO  Logger:15 - adminlogs in
+2019-11-23 22:17:07 INFO  Logger:15 - adminlogs in
+2019-11-23 22:17:55 INFO  Logger:15 - adminlogs in
+2019-11-23 22:30:11 INFO  Logger:15 - customerlogs in
+2019-11-23 22:30:20 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 22:34:04 INFO  Logger:15 - adminlogs in
+2019-11-23 22:34:23 INFO  Logger:15 - adminlogs in
+2019-11-23 22:42:24 INFO  Logger:15 - adminlogs in
+2019-11-23 22:46:13 INFO  Logger:15 - customerlogs in
+2019-11-23 22:46:20 INFO  Logger:120 - Customer request to open a single account
+2019-11-23 22:47:59 INFO  Logger:15 - customerlogs in
+2019-11-23 22:48:09 INFO  Logger:120 - Customer request to open a single account
+2019-11-24 00:48:00 INFO  Logger:15 - adminlogs in
+2019-11-24 00:50:25 INFO  Logger:15 - adminlogs in
+2019-11-24 00:52:12 INFO  Logger:15 - customerlogs in
+2019-11-24 08:15:51 INFO  Logger:15 - customerlogs in
+2019-11-24 08:16:13 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 08:16:43 INFO  Logger:15 - customerlogs in
+2019-11-24 08:17:00 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 08:17:26 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 08:17:52 INFO  Logger:15 - adminlogs in
+2019-11-24 08:19:05 INFO  Logger:15 - adminlogs in
+2019-11-24 08:19:34 INFO  Logger:15 - customerlogs in
+2019-11-24 08:28:49 INFO  Logger:115 - Customer requests to open a joint account
+2019-11-24 08:30:35 INFO  Logger:15 - adminlogs in
+2019-11-24 09:26:08 INFO  Logger:15 - customerlogs in
+2019-11-24 09:26:26 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 09:26:42 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 09:27:22 INFO  Logger:115 - Customer requests to open a joint account
+2019-11-24 09:27:29 INFO  Logger:15 - adminlogs in
+2019-11-24 09:27:59 INFO  Logger:15 - customerlogs in
+2019-11-24 11:40:02 INFO  Logger:15 - customerlogs in
+2019-11-24 11:42:16 INFO  Logger:15 - customerlogs in
+2019-11-24 11:42:44 INFO  Logger:83 - $300.0 has been withdraw on the account 6057880
+2019-11-24 12:10:15 INFO  Logger:15 - customerlogs in
+2019-11-24 12:10:34 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 12:12:00 INFO  Logger:122 - Customer request to open a single account
+2019-11-24 12:12:22 INFO  Logger:15 - adminlogs in
+2019-11-24 12:12:59 INFO  Logger:15 - customerlogs in
+2019-11-24 12:15:17 INFO  Logger:85 - $300.0 has been withdraw on the account 2266313
+2019-11-24 12:15:46 INFO  Logger:85 - $-600.0 has been withdraw on the account 2266313
+2019-11-24 12:16:47 INFO  Logger:15 - customerlogs in
+2019-11-24 12:17:10 INFO  Logger:85 - $-700.0 has been withdraw on the account 2266313
+2019-11-24 12:24:29 INFO  Logger:15 - customerlogs in
+2019-11-24 12:27:29 INFO  Logger:15 - customerlogs in
+2019-11-24 12:27:51 INFO  Logger:105 - $700.0 has been withdraw on the account 2266313
+2019-11-24 12:30:32 INFO  Logger:15 - customerlogs in
+2019-11-24 12:31:02 INFO  Logger:105 - $900.0 has been withdraw on the account 2266313
+2019-11-24 12:31:41 INFO  Logger:85 - $400.0 has been withdraw on the account 2266313
+2019-11-24 13:14:52 INFO  Logger:15 - customerlogs in
+2019-11-24 13:15:57 INFO  Logger:131 - $600.0 has been withdrawn on the account 2266313
+2019-11-24 13:15:57 INFO  Logger:132 - $600.0 has been withdrawn on the account 2266313
+2019-11-24 13:17:00 INFO  Logger:131 - $600.0 has been withdrawn on the account 2266313
+2019-11-24 13:17:00 INFO  Logger:132 - $600.0 has been withdrawn on the account 2266313
+2019-11-24 13:47:45 INFO  Logger:15 - customerlogs in
+2019-11-24 13:49:14 INFO  Logger:15 - customerlogs in
+2019-11-24 13:51:55 INFO  Logger:15 - customerlogs in
+2019-11-24 13:55:22 INFO  Logger:15 - customerlogs in
+2019-11-24 14:38:12 INFO  Logger:15 - adminlogs in
+2019-11-24 14:39:51 INFO  Logger:15 - adminlogs in
+2019-11-24 14:40:44 INFO  Logger:15 - adminlogs in
+2019-11-24 14:41:07 INFO  Logger:55 - $1000.0 has been deposited on the account 2266313
+2019-11-24 14:55:59 INFO  Logger:15 - adminlogs in
+2019-11-24 15:06:01 INFO  Logger:15 - adminlogs in
+2019-11-24 15:10:17 INFO  Logger:15 - adminlogs in
+2019-11-24 16:03:06 INFO  Logger:15 - employeelogs in
+2019-11-24 16:20:17 INFO  Logger:15 - employeelogs in
+2019-11-24 16:20:56 INFO  Logger:53 - $300.0 has been deposited on the account 3531448
+2019-11-24 16:44:06 INFO  Logger:15 - adminlogs in
+2019-11-24 16:57:30 INFO  Logger:15 - customerlogs in
+2019-11-24 16:57:49 INFO  Logger:123 - Customer request to open a single account
+2019-11-24 16:58:12 INFO  Logger:15 - adminlogs in
+2019-11-24 16:59:45 INFO  Logger:51 - $100.0 has been deposited on the account 3531448
+2019-11-24 17:01:19 INFO  Logger:81 - $1.0 has been deposited on the account 3531448
+2019-11-24 17:01:19 INFO  Logger:82 - $1.0 has been withdrawn from the account 3531448
+2019-11-24 17:01:35 INFO  Logger:15 - customerlogs in
+2019-11-24 17:02:11 INFO  Logger:85 - $123.0 has been withdraw on the account 4383915
+2019-11-24 18:35:38 INFO  Logger:15 - customerlogs in
+2019-11-24 18:36:00 INFO  Logger:123 - Customer request to open a single account
+2019-11-24 18:36:07 INFO  Logger:15 - adminlogs in
+2019-11-24 18:36:54 INFO  Logger:15 - customerlogs in
+2019-11-24 18:38:00 INFO  Logger:85 - $20.0 has been withdraw on the account 3077679
+2019-11-24 23:07:29 INFO  Logger:15 - customerlogs in
+2019-11-24 23:07:43 INFO  Logger:125 - Customer request to open a single account
+2019-11-25 14:54:06 INFO  Logger:15 - customerlogs in
+2019-11-25 14:54:28 INFO  Logger:117 - Customer request to open a single account
+2019-11-25 14:57:32 INFO  Logger:15 - adminlogs in
+2019-11-25 15:00:38 INFO  Logger:15 - adminlogs in
+2019-11-25 15:11:59 INFO  Logger:15 - adminlogs in
+2019-11-25 15:15:14 INFO  Logger:15 - adminlogs in
+2019-11-25 15:18:36 INFO  Logger:15 - adminlogs in
+2019-11-25 15:18:45 INFO  Logger:15 - customerlogs in
+2019-11-25 15:18:58 INFO  Logger:117 - Customer request to open a single account
+2019-11-25 15:19:10 INFO  Logger:15 - adminlogs in
+2019-11-25 15:21:17 INFO  Logger:15 - adminlogs in
