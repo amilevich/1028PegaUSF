@@ -67,16 +67,21 @@ public class CustomerDaoImpl {
 					
 					Accounts.accountsApproved.add(new Customers(rs.getInt("customerID"), rs.getInt("totalBalance"), rs.getString("accountType"), rs.getString("username"), rs.getString("passwords"), rs.getInt("pendingApproved")));
 				}
-			}
-			System.out.println("\t Accounts pending from Database: ");
+			}	
+			System.out.println("_________________________________________________________________________________________________________________________________");
+			System.out.println("\n");
+			System.out.println("\t\t Accounts pending from Database:");
+			System.out.println("_________________________________________________________________________________________________________________________________");
 			for(Customers a : Accounts.accountsPending) {
-				System.out.println(a);				
+				System.out.println("|         "+a);			
 			}
 			System.out.println("\n");
-			System.out.println("\t Accounts approved from Database: ");
+			System.out.println("\t\t Accounts approved from Database: ");
 			for(Customers b : Accounts.accountsApproved) {
-				System.out.println(b);				
-			}			
+				System.out.println("|         "+b);			
+			}
+			System.out.println("_________________________________________________________________________________________________________________________________");
+
 			System.out.println("Select All Customers complete");
 		} catch(SQLException e){
 			e.printStackTrace();

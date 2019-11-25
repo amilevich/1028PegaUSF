@@ -60,21 +60,13 @@ public class Accounts implements Serializable {
 	// Main Menu
 
 	public static void menu() {
-		System.out.println("");
-		System.out.println("OGaccountsPending");
-		for(Customers a : accountsPending) {
-			System.out.println(a);			
-		}
-		System.out.println("\n");
-		System.out.println("OGaccountsApproved");
-		for(Customers b : accountsApproved) {
-			System.out.println(b);			
-		}
 		//readObject(filename);
-		System.out.println("");
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
 		//readObject2(filename2);s
 		System.out.println("\n");
-		System.out.println("\t~" + "Account Pending");
 		System.out.println(" \n");
 		System.out.println("\t  [̲̅$̲̅(̲̅ ᵕ꒳ᵕ)̲̅$̲̅]");
 		System.out.println("        *****Bank*****");
@@ -85,7 +77,11 @@ public class Accounts implements Serializable {
 		System.out.println("\t 3. Admin");
 		System.out.println("\t 4. Registration");
 		System.out.println("\t 5. Done");
-
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
+		
 		// * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		// Switch 1. Login
 		// Switch 2. Registration
