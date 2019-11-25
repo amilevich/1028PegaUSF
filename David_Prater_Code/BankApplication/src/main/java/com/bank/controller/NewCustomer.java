@@ -1,18 +1,17 @@
-package com.bank.model;
+package com.bank.controller;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
 import com.bank.model.Account;
-import com.bank.ui.BankMenu;
+import com.bank.view.BankMenu;
 
-import java.io.*;
 
-public class NewCustomer implements Serializable {
+public class NewCustomer {
 
-	private static final long serialVersionUID = -3579390326967818657L;
 	final static Logger logger = Logger.getLogger(NewCustomer.class);
 	Scanner sc = new Scanner(System.in);
 	public static ArrayList<Account> newCustomerList = new ArrayList<>();
@@ -21,7 +20,7 @@ public class NewCustomer implements Serializable {
 
 
 	// This method collects all the information about the customer and adds them to the new customer list
-	public void registerNewCustomer() throws FileNotFoundException {
+	public void registerNewCustomer() {
 		
 		System.out.println("What is your first name?");
 		String firstName = sc.nextLine();
@@ -29,12 +28,11 @@ public class NewCustomer implements Serializable {
 		String lastName = sc.nextLine();
 		System.out.println("What is your address");
 		String address = sc.nextLine();
-		System.out.println("What is your phone number?");
 		System.out.println("Please create a username.");
 		String username = sc.nextLine();
 		System.out.println("Please choose a password.");
 		String password = sc.nextLine();
-
+		accountNumber = generateAccountNumber();
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
 		Account newUser = new Account(accountNumber, 0, firstName, lastName, address, username, password);
 		newCustomerList.add(newUser);
@@ -46,8 +44,9 @@ public class NewCustomer implements Serializable {
 
 	}
 	
-	public void registerJointCustomer() throws FileNotFoundException {
+	public void registerJointCustomer() {
 		
+		String accountNumber = generateAccountNumber();
 		System.out.println("Please Enter Informtaion for User One");
 		System.out.println("What is your first name?");
 		String firstName = sc.nextLine();
@@ -73,7 +72,9 @@ public class NewCustomer implements Serializable {
 		String password2 = sc.nextLine();
 
 		//Create a new customer object and add them the ArrayList of new customers pending approval or denial
-		Account newUser = new Account(accountNumber, firstName, lastName, address, username, password, firstName2, lastName2, address2, username2, password2);
+		Account newUser = new Account(accountNumber, 0, firstName, lastName, address, username, password);
+		newCustomerList.add(newUser);
+		newUser = new Account(accountNumber, 0, firstName2, lastName2, address2, username2, password2);
 		newCustomerList.add(newUser);
 		logger.info("New joint account created succesfully.\n" + newUser);
 
@@ -82,4 +83,13 @@ public class NewCustomer implements Serializable {
 		BankMenu.getMainMenu();
 
 	}
+	
+	// This generate a random number between 100000 and 1 and returns it as a string
+	public static String generateAccountNumber() {
+		Random r = new Random();
+		int randomAccountNumber = r.nextInt((100000 - 1) + 1) + 1;
+		// Convert the integer to a string
+		return Integer.toString(randomAccountNumber);
+	}
+	
 }

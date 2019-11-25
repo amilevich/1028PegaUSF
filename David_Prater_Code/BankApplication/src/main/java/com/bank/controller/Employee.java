@@ -1,20 +1,25 @@
-package com.bank.model;
+package com.bank.controller;
 
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.bank.ui.BankMenu;
+import com.bank.dao.AccountDaoImpl;
+import com.bank.model.Account;
+import com.bank.view.BankMenu;
 
 public class Employee {
 
 	static Scanner sc = new Scanner(System.in);
+	AccountDaoImpl accountDaoImpl = new AccountDaoImpl();
 
-	public static void employeeMenu() throws FileNotFoundException {
+	public static void employeeMenu() {
 		System.out.println("Please login with your company issued account username.");
 		String employeeName = sc.next().toString();
 
-		// If the user name is correct check the password. If both are correct log in the employee.
+		// If the user name is correct check the password. If both are correct log in
+		// the employee.
 		// If either are incorrect send the user back to the main menu
 		// employee: username = employee and password = password
 		if (employeeName.equals("employee")) {
@@ -35,8 +40,9 @@ public class Employee {
 	}
 
 	// This method displays the actions the employee can perform
-	public static void employeeActions() throws FileNotFoundException {
-		// Run this method when an employee or administrator logs in to force them to approve all accounts
+	public static void employeeActions() {
+		// Run this method when an employee or administrator logs in to force them to
+		// approve all accounts
 		// before performing any other actions
 		Employee.approveNewCustomer();
 		System.out.println("What would you like to do today?");
@@ -44,7 +50,8 @@ public class Employee {
 		// Convert to string to perfrom input validation
 		String actionChoice = sc.next().toString();
 
-		// Switch between available choices for and return them to the menu after each action
+		// Switch between available choices for and return them to the menu after each
+		// action
 		switch (actionChoice) {
 		case "1":
 			viewAllAccounts();
@@ -65,6 +72,7 @@ public class Employee {
 	// This method allows the current user to approve or deny pending accounts
 	public static void approveNewCustomer() {
 
+
 		// Loop through the arraylist of newCustomers and have the user choose whether
 		// to approve or deny each account
 		for (Account newCustomer : NewCustomer.newCustomerList) {
@@ -81,18 +89,24 @@ public class Employee {
 				choice = sc.next().toString();
 				// If user enters 'y' approve the account
 				if (choice.equals("y")) {
-					// Generate random account number between 100000 and 1 and set it to approved account
-					String accountNumber = generateAccountNumber();
-					newCustomer.setAccountNumber(accountNumber);
-					// Create a key (username + password) to access that account in the customer HashMap
+					// Generate random account number between 100000 and 1 and set it to approved
+					// account
+//					String accountNumber = generateAccountNumber();
+//					newCustomer.setAccountNumber(accountNumber);
+					
+					AccountDaoImpl.insertAccount(newCustomer);
+					// Create a key (username + password) to access that account in the customer
+					// HashMap
 					BankMenu.customerMap.put((newCustomer.getUsername() + newCustomer.getPassword()), newCustomer);
 					// This checks if the current account is a joint account
 					// If their is a password for the second user it means its a joint account
 					if (newCustomer.getPassword2() != null) {
-						// Create a second key that references the same Account object that way both objects are updated by either use
-						BankMenu.customerMap.put((newCustomer.getUsername2() + newCustomer.getPassword2()), newCustomer);
+						// Create a second key that references the same Account object that way both
+						// objects are updated by either use
+						BankMenu.customerMap.put((newCustomer.getUsername2() + newCustomer.getPassword2()),
+								newCustomer);
 					}
-					
+
 					// Add the Account(s) to the customer HashMap
 					BankMenu.newCustomerList.add(newCustomer);
 					break;
@@ -115,11 +129,17 @@ public class Employee {
 	// Method to view all accounts
 	public static void viewAllAccounts() {
 		// For each keyset in the customer HashMap print their information
-		for (String i: BankMenu.customerMap.keySet()) {
-			System.out.println(BankMenu.customerMap.get(i).toString());
+		List<Account> accounts = AccountDaoImpl.selectAllAccounts();
+		for(Account a : accounts) {
+			System.out.println("Account Number: " + a.getAccountNumber());
+			System.out.println("Account Balance: " + a.getAccountBalance());
+			System.out.println("Name: " + a.getFirstName() + " " + a.getLastName());
+			System.out.println("Address: " + a.getAddress());
+			System.out.println("");
 		}
+
 	}
-	
+
 	// This generate a random number between 100000 and 1 and returns it as a string
 	public static String generateAccountNumber() {
 		Random r = new Random();

@@ -1,11 +1,12 @@
-package com.bank.model;
+package com.bank.controller;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.bank.ui.BankMenu;
+import com.bank.dao.AccountDaoImpl;
+import com.bank.model.Account;
+import com.bank.view.BankMenu;
 
 public class Administrator {
 
@@ -18,7 +19,7 @@ public class Administrator {
 	// This is the login method for the administrator
 	// Administrator username = "admin"
 	// Administrator password = "password"
-	public static void adminstratorMenu() throws FileNotFoundException {
+	public static void adminstratorMenu() {
 
 		System.out.println("Please login with your company issued account username.");
 		String adminName = sc.next().toString();
@@ -43,7 +44,7 @@ public class Administrator {
 	}
 
 	// This method displays and collects the administrators actions
-	public static void administratorActions() throws FileNotFoundException {
+	public static void administratorActions() {
 		// This method forces the administrator to approve or deny accounts before they can perfrom any other actions
 		Employee.approveNewCustomer();
 		System.out.println("What would you like to do today?");
@@ -59,13 +60,13 @@ public class Administrator {
 			break;
 		case "2":
 			// Withdrawal
-			getPassKey();
+			getAccount();
 			Customer.withdrawalFunds(currentAccount);
 			administratorActions();
 			break;
 		case "3":
 			// Deposit
-			getPassKey();
+			getAccount();
 			Customer.depositFunds(currentAccount);
 			administratorActions();
 			break;
@@ -93,7 +94,7 @@ public class Administrator {
 	}
 
 	// This method is used to delete existing accounts
-	public static void cancelAccount() throws FileNotFoundException {
+	public static void cancelAccount() {
 		System.out.println(
 				"1. Select Which Account to Delete\n2. View All Accounts\n3. Return to Administrator Menu");
 
@@ -122,7 +123,7 @@ public class Administrator {
 	}
 	
 	// This method allows the administrator to choose which account the want to perform actions on
-	public static void getPassKey() throws FileNotFoundException {
+	public static void getPassKey() {
 		System.out.println("Whats is the key for the account? (key = username + password)");
 		String passKey = sc.next().toString();
 		// If they enter a valid key set current customer to that Account objects in customer HashMap
@@ -136,24 +137,33 @@ public class Administrator {
 	}
 	
 	// This method allows the administrator to delete accounts
-	public static void removeAccount() throws FileNotFoundException {
-		System.out.println("Whats is the key for the account you wish to delete? (key = username + password)");
-		String passKey = sc.next().toString();
-		
+	public static void removeAccount(){
+		System.out.println("Whats is the account number for the account you wish to delete? (key = username + password)");
+		String accountNumber = sc.next().toString();
+		Account accountToDelete;
 		// If this key is in the customer HashMap delete its corresponding Account object
-		if(BankMenu.customerMap.containsKey(passKey)) {
-			 currentAccount = BankMenu.customerMap.get(passKey);
-			 BankMenu.customerMap.remove(passKey);
-			 // Notify the administrator of a successful account canceling
-			 System.out.println("Account Removed Succesfully.");
-			 logger.info("Account number " + currentAccount.getAccountNumber() + "successfully deleted.");
-			 
-		} else {
-			// If the admin submits an invalid key return them to the actions menu
-			System.out.println("Invalid key. Please Try Again");
-			administratorActions();
+		accountToDelete = (AccountDaoImpl.selectAccountByNumber(accountNumber));
+//			 //currentAccount = BankMenu.customerMap.get(passKey);
+			 AccountDaoImpl.deleteAccount(accountToDelete);
+//			 
+//			 System.out.println("Account Removed Succesfully.");
+//			 logger.info("Account number " + currentAccount.getAccountNumber() + "successfully deleted.");
+//			 
+//		} else {
+//			// If the admin submits an invalid key return them to the actions menu
+//			System.out.println("Invalid key. Please Try Again");
+//			administratorActions();
 		}
+	
+		public static Account getAccount() {
+			System.out.println("What is the account number?");
+			String accountNumber = sc.next();
+			currentAccount = AccountDaoImpl.selectAccountByNumber(accountNumber);
+			
+			return currentAccount;
+		}
+	
 		
 	}
 
-}
+

@@ -1,21 +1,13 @@
-package com.bank.ui;
+package com.bank.view;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import org.apache.log4j.Logger;
-
-import com.bank.model.Administrator;
-import com.bank.model.Customer;
-import com.bank.model.Employee;
-import com.bank.model.NewCustomer;
+import com.bank.controller.Administrator;
+import com.bank.controller.Customer;
+import com.bank.controller.Employee;
+import com.bank.controller.NewCustomer;
 import com.bank.model.Account;
 
 public class BankMenu {
@@ -32,7 +24,7 @@ public class BankMenu {
 	static Employee employee = new Employee();
 
 	// This method is the main menu for the entire applications
-	public static void getMainMenu() throws FileNotFoundException {
+	public static void getMainMenu() {
 
 		System.out.println("Please make a selection from the table below\n" + "1. Apply for an account\n"
 				+ "2. Account Login\n" + "3. Employee Login\n" + "4. Administrator Login\n" + "5. Exit Program");
@@ -42,7 +34,7 @@ public class BankMenu {
 	}
 
 	// This method takes in the user input
-	public static void openMainMenuChoice(String mainMenuChoice) throws FileNotFoundException {
+	public static void openMainMenuChoice(String mainMenuChoice) {
 		switch (mainMenuChoice) {
 		case "1":
 			// Menu for the user to choose single or joint account
@@ -81,7 +73,6 @@ public class BankMenu {
 			break;
 		case "5":
 			// Write current accounts to file then terminate the program
-			writeCustomerList();
 			System.exit(0);
 		default:
 			// If user input doesn't match an action call the this method recursively until they input a valid action
@@ -89,39 +80,6 @@ public class BankMenu {
 		}
 	}
 
-	// This method writes the customerHashMap to the corresponding directory for the CustomerList.txt file
-	public static void writeCustomerList() {
-		// If the file location exists, serialize the data. If it doesn't exist catch exception
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(
-				"C:\\Users\\prate\\Documents\\My_Git_Repos\\1028PegaUSF\\David_Prater_Code\\BankApplication\\CustomerList.txt"))) {
-			oos.writeObject(customerMap);
-		} catch (IOException io) {
-			io.printStackTrace();
-		}
-	}
 
-	// This method reads the customerHashMap from the corresponding directory for the CustomerList.txt file
-	public static void readCustomerList() {
-		// If the file location exists, deserialize the data. If it doesn't exist catch exception
-		try {
-			// Create FileInputStream and ObjectOutpuStream to deserialize the data
-			FileInputStream fis = new FileInputStream("C:\\Users\\prate\\Documents\\My_Git_Repos\\1028PegaUSF\\David_Prater_Code\\BankApplication\\CustomerList.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			// Set customerMap equal to the specified data type and read deserialize the data
-			customerMap = (HashMap<String, Account>) ois.readObject();
-			
-			// Close FileInputStream and ObjectOutpuStream
-			ois.close();
-			fis.close();
-			// Catch the exceptions
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} catch (ClassNotFoundException c) {
-			System.out.println("Class not found");
-			c.printStackTrace();
-			return;
-		}
-
-	}
 
 }

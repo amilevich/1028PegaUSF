@@ -1,11 +1,12 @@
-package com.bank.model;
+package com.bank.controller;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.bank.ui.BankMenu;
+import com.bank.dao.AccountDaoImpl;
+import com.bank.model.Account;
+import com.bank.view.BankMenu;
 
 public class Customer {
 
@@ -20,7 +21,7 @@ public class Customer {
 	static Account receiverAccount = null;
 
 	// This method logs in the customer and sends them to the customer menu
-	public static void customerMenu() throws FileNotFoundException {
+	public static void customerMenu() {
 
 		// Get input for the users username and password
 		System.out.println("Please Enter Your Username.");
@@ -28,12 +29,13 @@ public class Customer {
 		System.out.println("Please Enter Your Password.");
 		String password = sc.next().toString();
 		// Combine the username and password because this is their key in the customer HashMap
-		String passwordKey = username + password;
+		currentAccount = AccountDaoImpl.selectAccountByID(username);
 		
-		// If the users submitted a correct key log them in to the customer menu
-		if(BankMenu.customerMap.containsKey(passwordKey)) {
+		String passwordCheck = currentAccount.getPassword();
+		
+		//If the users submitted a correct key log them in to the customer menu
+		if(password.equals(passwordCheck)) {
 			// Set the current customer to access that Account details
-			currentAccount = BankMenu.customerMap.get(passwordKey);
 			customerActions(currentAccount);
 		} else {
 			// If login fails print failure message and send them to the main menu
@@ -44,10 +46,10 @@ public class Customer {
 	}
 
 	// This method has the menu for actions the customer can perform. (View Account, Withdrawal, Deposit, and Transfer)
-	public static void customerActions(Account Account) throws FileNotFoundException {
+	public static void customerActions(Account Account) {
 		// **Account.toString();
 		System.out.println("What would you like to do today?");
-		System.out.println("1. View Account Balance\n2. Withdraw Funds\n3. Deposit Funds\n4. TransferFunds\n5. Logout");
+		System.out.println("1. View Account Balance\n2. Withdraw Funds\n3. Deposit Funds\n4. Transfer Funds\n5. Logout");
 		// Convert all input to a string to handle input validation
 		String actionChoice = sc.next().toString();
 
@@ -88,19 +90,20 @@ public class Customer {
 	}
 
 	// Method to withdrawal funds from account
-	public static void withdrawalFunds(Account Account) throws FileNotFoundException {
+	public static void withdrawalFunds(Account Account) {
 		System.out.println("How much money would you like to withdrawal today?");
 		// This method makes sure the user entered a positive number
 		double withdrawlAmount = getPositiveDouble();
 		// Check to make sure they have enough money
 		if(withdrawlAmount > Account.getAccountBalance()) {
-			// If they dont have enough money print account balance and send them to customer menu
+			// If they don't have enough money print account balance and send them to customer menu
 			System.out.println("Sorry, You dont have enough money.");
 			System.out.println("You have $" + Account.getAccountBalance() + " in account #" + Account.getAccountNumber() + ".");
 			customerActions(Account);
 		} else {
 			// If they have enough money withdrawal it from account
 			Account.setAccountBalance(Account.getAccountBalance() - withdrawlAmount);
+			AccountDaoImpl.updateAccount(Account);
 			logger.info("Account #" + Account.getAccountNumber() + " withdrew $" + withdrawlAmount);
 		}
 	}
@@ -111,56 +114,77 @@ public class Customer {
 		// Check to make sure they entered a positive number
 		double depositAmount = getPositiveDouble();
 		Account.setAccountBalance(Account.getAccountBalance() + depositAmount);
+		AccountDaoImpl.updateAccount(Account);
 		logger.info("Account #" + Account.getAccountNumber() + " deposited $" + depositAmount);
 	}
 
 	// Method to transfer funds to an account
-	public static void transferFunds() throws FileNotFoundException {
+	public static void transferFunds() {
 		// Get receivers username and password which equals key to access the account
-		System.out.println("What is the username of the account you wish to transfer to?");
-		String receiverName = sc.next().toString();
-		System.out.println("What is the password of the account you wish to transfer to?");
-		String receiverPassword= sc.next().toString();
-		String receiverKey = receiverName + receiverPassword;
+		System.out.println("What is the account number for the trasferer?");
+		String transfererAccountNumber = sc.next().toString();
+
 		
 		// Get transferrers username and password which equals key to access the account
-		System.out.println("What is the username of the account you wish to transfer to?");
-		String transfererName = sc.next().toString();
-		System.out.println("What is the password of the account you wish to transfer to?");
-		String transfererPassword= sc.next().toString();
-		String transfererKey = transfererName + transfererPassword;
+		System.out.println("What is the account number to transfer to?");
+		String receiverAccountNumber = sc.next().toString();
+		
+		transferAccount = AccountDaoImpl.selectAccountByNumber(transfererAccountNumber);
+		receiverAccount = AccountDaoImpl.selectAccountByNumber(receiverAccountNumber);
+		
+		
+		if(receiverAccountNumber.equals(receiverAccount.getAccountNumber()) && transfererAccountNumber.equals(transferAccount.getAccountNumber())) {
+			System.out.println("How much money would you like to transfer?");
+			double funds = getPositiveDouble();
+			if (transferAccount.getAccountBalance() >= funds) {
+				transferAccount.setAccountBalance(transferAccount.getAccountBalance() - funds);
+				receiverAccount.setAccountBalance(receiverAccount.getAccountBalance() + funds);
+				AccountDaoImpl.updateAccount(transferAccount);
+				AccountDaoImpl.updateAccount(receiverAccount);
+				System.out.println("You transferred $" + funds + " to Account #" + receiverAccountNumber + " account.");
+				logger.info("$" + funds + " Transferred from Account #" + transferAccount.getAccountNumber() + " to account number #" + receiverAccount.getAccountNumber());
+			} else {
+				System.out.println("Sorry don't have enough funds for that transfer.\nYou have been returned to the main menu for safety purposes.");
+				BankMenu.getMainMenu();
+			}
+			
+		} else {
+			System.out.println("For safety purposes you have been returned to the main menu?");
+		}
 		
 		// Check if transfer account exists
-		if(BankMenu.customerMap.containsKey(transfererKey)) {
-			 transferAccount = BankMenu.customerMap.get(transfererKey);
-		} else {
-			System.out.println("For safety purposes you have been returned to the main menu?");
-			BankMenu.getMainMenu();
-		}
-		
-		// Check if receivers account exist
-		if(BankMenu.customerMap.containsKey(receiverKey)) {
-			receiverAccount = BankMenu.customerMap.get(receiverKey);
-		} else {
-			System.out.println("For safety purposes you have been returned to the main menu?");
-			BankMenu.getMainMenu();
-		}
+//		if(BankMenu.customerMap.containsKey(transfererKey)) {
+//			 transferAccount = BankMenu.customerMap.get(transfererKey);
+//		} else {
+//			System.out.println("For safety purposes you have been returned to the main menu?");
+//			BankMenu.getMainMenu();
+//		}
+//		Account transfererAccount = selectAccountByNumber(transfererAccountNumber);
+//		
+//		
+//		// Check if receivers account exist
+//		if() {
+//			receiverAccount = BankMenu.customerMap.get(receiverKey);
+//		} else {
+//			System.out.println("For safety purposes you have been returned to the main menu?");
+//			BankMenu.getMainMenu();
+//		}
 		
 		// Get funds amount and check if it positive
-		System.out.println("How much money would you like to transfer?");
-		double funds = getPositiveDouble();
-
-		// Check to make sure transferrer has enough funds if so transfer from their account to receiver
-		// If they don't have enough funds notify them and send them to the main menu
-		if (transferAccount.getAccountBalance() >= funds) {
-			transferAccount.setAccountBalance(transferAccount.getAccountBalance() - funds);
-			receiverAccount.setAccountBalance(receiverAccount.getAccountBalance() + funds);
-			System.out.println("You transferred $" + funds + " to " + receiverName + " account.");
-			logger.info("$" + funds + " Transferred from Account #" + transferAccount.getAccountNumber() + " to account number #" + receiverAccount.getAccountNumber());
-		} else {
-			System.out.println("Sorry aren't have enough funds for that transfer.\nYou have been returned to the main menu for safety purposes.");
-			BankMenu.getMainMenu();
-		}
+//		System.out.println("How much money would you like to transfer?");
+//		double funds = getPositiveDouble();
+//
+//		// Check to make sure transferrer has enough funds if so transfer from their account to receiver
+//		// If they don't have enough funds notify them and send them to the main menu
+//		if (transferAccount.getAccountBalance() >= funds) {
+//			transferAccount.setAccountBalance(transferAccount.getAccountBalance() - funds);
+//			receiverAccount.setAccountBalance(receiverAccount.getAccountBalance() + funds);
+//			System.out.println("You transferred $" + funds + " to " + receiverAccountNumber + " account.");
+//			logger.info("$" + funds + " Transferred from Account #" + transferAccount.getAccountNumber() + " to account number #" + receiverAccount.getAccountNumber());
+//		} else {
+//			System.out.println("Sorry don't have enough funds for that transfer.\nYou have been returned to the main menu for safety purposes.");
+//			BankMenu.getMainMenu();
+//		}
 
 	}
 

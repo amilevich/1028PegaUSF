@@ -66,3 +66,130 @@ Phone Number: a
 Email: a
 
 2019-11-23 17:02:59 INFO  Customer:114 - Account #39590 deposited $50.0
+2019-11-24 15:36:41 INFO  NewCustomer:40 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: David Prater
+Address: 906 William
+
+2019-11-24 16:06:15 INFO  NewCustomer:77 - New joint account created succesfully.
+Account Number: null
+Account Balance: 0.0
+Name: David Prater
+Address: 12702 Bruce B
+User Two Name: David Prater
+User Two Address: 12702 Bruce B
+
+2019-11-24 16:56:33 INFO  Customer:115 - Account #77277 deposited $100.0
+2019-11-24 17:02:42 INFO  Customer:117 - Account #77277 deposited $54321.0
+2019-11-24 17:12:54 INFO  Customer:119 - Account #77277 deposited $489.0
+2019-11-24 17:14:31 INFO  Customer:108 - Account #77277 withdrew $789.0
+2019-11-24 17:16:11 INFO  Customer:108 - Account #5 withdrew $1000.0
+2019-11-24 17:24:31 INFO  Customer:119 - Account #5 deposited $1000.0
+2019-11-24 17:24:48 INFO  Customer:108 - Account #5 withdrew $1000.0
+2019-11-24 17:27:40 INFO  NewCustomer:77 - New joint account created succesfully.
+Account Number: null
+Account Balance: 0.0
+Name: banana banana
+Address: banana street
+User Two Name: banana banana
+User Two Address: banana street
+
+2019-11-24 17:37:32 INFO  Customer:124 - Account #5 deposited $1234.0
+2019-11-24 17:42:12 INFO  NewCustomer:79 - New joint account created succesfully.
+Account Number: null
+Account Balance: 0.0
+Name: joint2 joint2
+Address: 123456 Road
+
+2019-11-24 17:47:57 INFO  NewCustomer:81 - New joint account created succesfully.
+Account Number: 50238
+Account Balance: 0.0
+Name: joint2 joint2
+Address: sgsdfsd
+
+2019-11-24 18:09:14 INFO  NewCustomer:41 - New account created succesfully. Account Number: 46508
+Account Balance: 0.0
+Name: ass ass
+Address: ass
+
+2019-11-24 18:11:50 INFO  NewCustomer:41 - New account created succesfully. Account Number: 59796
+Account Balance: 0.0
+Name: ass ass
+Address: ass
+
+2019-11-24 18:14:13 INFO  NewCustomer:81 - New joint account created succesfully.
+Account Number: 77852
+Account Balance: 0.0
+Name: zxc zxc
+Address: zxc
+
+2019-11-24 19:34:40 INFO  Customer:118 - Account #59796 deposited $500.0
+2019-11-24 19:35:48 INFO  NewCustomer:39 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: ass ass
+Address: ass
+
+2019-11-24 19:36:23 INFO  Customer:118 - Account #null deposited $500.0
+2019-11-24 19:39:55 INFO  NewCustomer:39 - New account created succesfully. Account Number: null
+Account Balance: 0.0
+Name: ass ass
+Address: ass
+
+2019-11-24 19:40:22 INFO  Customer:118 - Account #null deposited $100.0
+2019-11-24 19:44:49 INFO  NewCustomer:39 - New account created succesfully. Account Number: 74244
+Account Balance: 0.0
+Name: David Prater
+Address: 906 William Way
+
+2019-11-24 19:45:28 INFO  Customer:118 - Account #74244 deposited $999.0
+2019-11-24 19:45:38 INFO  Customer:107 - Account #74244 withdrew $99.0
+2019-11-24 19:47:02 INFO  NewCustomer:79 - New joint account created succesfully.
+Account Number: 97439
+Account Balance: 0.0
+Name: Shaylyn Patel
+Address: Tampa, FL
+
+2019-11-24 19:47:33 INFO  Customer:118 - Account #97439 deposited $100.0
+2019-11-24 19:47:59 INFO  Customer:107 - Account #97439 withdrew $50.0
+2019-11-24 21:16:34 INFO  Customer:147 - $100.0 Transferred from Account #74244 to account number #97439
+2019-11-24 21:19:54 INFO  Customer:149 - $100.0 Transferred from Account #74244 to account number #97439
+2019-11-24 21:32:50 INFO  Customer:150 - $50.0 Transferred from Account #74244 to account number #97439
+2019-11-24 21:33:51 INFO  Customer:119 - Account #74244 deposited $50.0
+2019-11-24 21:35:38 INFO  Customer:118 - Account #74244 deposited $50.0
+2019-11-24 21:35:47 INFO  Customer:107 - Account #74244 withdrew $50.0
+2019-11-24 21:36:46 INFO  Customer:118 - Account #97439 deposited $123.0
+2019-11-24 21:37:22 INFO  Customer:107 - Account #97439 withdrew $48.0
+2019-11-24 21:37:41 INFO  Customer:118 - Account #97439 deposited $56.34
+2019-11-24 21:40:06 INFO  NewCustomer:39 - New account created succesfully. Account Number: 42864
+Account Balance: 0.0
+Name: david password
+Address: 906 William
+
+2019-11-24 21:40:39 INFO  Customer:118 - Account #42864 deposited $685.36
+2019-11-24 22:24:08 INFO  NewCustomer:79 - New joint account created succesfully.
+Account Number: 83309
+Account Balance: 0.0
+Name: shaylyn sjaylyn
+Address: Memphis TN
+
+2019-11-24 22:25:09 INFO  Customer:118 - Account #83309 deposited $150.0
+2019-11-24 22:27:06 INFO  Customer:107 - Account #83309 withdrew $25.5
+2019-11-24 22:27:23 INFO  Customer:107 - Account #83309 withdrew $50.0
+2019-11-25 09:39:06 INFO  Customer:107 - Account #42864 withdrew $25.0
+2019-11-25 09:39:33 INFO  Customer:118 - Account #42864 deposited $100.0
+2019-11-25 09:41:30 INFO  Customer:107 - Account #42864 withdrew $100.0
+2019-11-25 09:41:55 INFO  Customer:118 - Account #42864 deposited $75.0
+2019-11-25 09:42:44 INFO  Customer:149 - $11.0 Transferred from Account #83309 to account number #83309
+2019-11-25 09:44:39 INFO  Customer:145 - $100.0 Transferred from Account #42864 to account number #83309
+2019-11-25 09:51:25 INFO  NewCustomer:39 - New account created succesfully. Account Number: 53794
+Account Balance: 0.0
+Name: banana banana
+Address: Banana Street
+2019-11-25 09:52:58 INFO  NewCustomer:39 - New account created succesfully. Account Number: 80908
+Account Balance: 0.0
+Name: banana tree
+Address: Banana Street
+2019-11-25 09:54:12 INFO  NewCustomer:39 - New account created succesfully. Account Number: 24909
+Account Balance: 0.0
+Name: Banana Apple
+Address: Banana Street

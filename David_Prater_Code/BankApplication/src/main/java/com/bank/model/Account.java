@@ -7,6 +7,7 @@ public class Account implements Serializable {
 	private static final long serialVersionUID = 5635825819705054254L;
 
 	// Variables for single and joint account
+	private int accountID;
 	private String accountNumber;
 	private double accountBalance;
 	private String firstName;
@@ -21,12 +22,26 @@ public class Account implements Serializable {
 	private String username2 = null;
 	private String password2 = null;
 
-	public Account(String accountNumber, double accountBalance, String firstName, String lastName, String address, String username,
-			String password) {
+	public Account(String accountNumber, double accountBalance, String firstName, String lastName, String address,
+			String username, String password) {
 		super();
 		this.accountNumber = accountNumber;
 		// Initialize balance to zero
-		this.accountBalance = 0.0;
+		this.accountBalance = accountBalance;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.username = username;
+		this.password = password;
+	}
+
+	public Account(int accountID, String accountNumber, double accountBalance, String firstName, String lastName,
+			String address, String username, String password) {
+		super();
+		this.accountID = accountID;
+		this.accountNumber = accountNumber;
+		// Initialize balance to zero
+		this.accountBalance = accountBalance;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -146,23 +161,24 @@ public class Account implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+
+	public int getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
+	}
 
 	@Override
 	public String toString() {
 		// This if statement chooses which toString method to use depending on if its a
 		// single or joint account
 		// If usernam2 is null use single account toString else joint account toString
-		if (username2 == null) {
+		return "Account ID: " + accountID + "\nAccount Number: " + accountNumber + "\nAccount Balance: "
+				+ accountBalance + "\nName: " + firstName + " " + lastName + "\nAddress: " + address;
 
-			return "Account Number: " + accountNumber + "\nAccount Balance: " + accountBalance + "\nName: " + firstName
-					+ " " + lastName + "\nAddress: " + address + "\nPhone Number: " + "\n";
-
-		} else {
-			return "Account Number: " + accountNumber + "\nAccount Balance: " + accountBalance + "\nName: " + firstName
-					+ " " + lastName + "\nAddress: " + address + "\nUser Two Name: " + firstName + " " + lastName
-					+ "\nUser Two Address: " + address + "\n";
-
-		}
 	}
-
 }
