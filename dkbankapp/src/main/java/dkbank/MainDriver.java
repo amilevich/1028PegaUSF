@@ -1,22 +1,25 @@
 package dkbank;
 
-import java.util.HashMap;
-import org.apache.log4j.Logger;
 
 import java.util.Scanner;
+import org.apache.log4j.Logger;
+
 
 public class MainDriver {
-	static HashMap<String, Customers> hashMapCust = Customers.deSerializeCustomer();
-	static HashMap<String, Accounts> hashMapAcc = Accounts.deSerializeAccount();
+	
 	final static Logger logger = Logger.getLogger(MainDriver.class);
+	HashMaps hashMaps; 
+	
 	MainDriver(){
+		this.hashMaps = new HashMaps();
 	}
 	
 	public static void main(String[] args) {
-		menu();
+		MainDriver main = new MainDriver(); 
+		main.menu();
 	}
 	
-	public static void menu() {
+	public void menu() {
 		Scanner sc_user = new Scanner(System.in);
 		System.out.println("\n************************************ COMMANDS ************************************");
 		System.out.println("Apply for an account[1], Customer sign in[2], Employee sign in[3], Admin sign in[4]");
@@ -27,7 +30,7 @@ public class MainDriver {
 			case "1":
 				System.out.println("[INPUT]: Single account? (Y/N)");
 				String singleAcc = sc_user.nextLine();
-				if (singleAcc.equals("Y")==true) {
+				if (singleAcc.equals("Y")||singleAcc.equals("y")) {
 					applySingleAccount();
 				}else {
 					applyJointAccount();
@@ -40,37 +43,39 @@ public class MainDriver {
 			case "3":
 				Employee.verifyEmployee();
 				Employee employee = new Employee();
-				employee.getEmpOptions(); 
+				hashMaps = employee.getEmpOptions(hashMaps); 
 				
 				break;
 			case "4":
 				Admin.verifyAdmin(); 
 				Admin admin = new Admin();
-				admin.getAdminOptions();
+				hashMaps = admin.getAdminOptions(hashMaps);
 				break;
 			default:			
 				System.out.println("*ERROR*: invalid input.");
 				menu(); 
 		}
-		Customers.serializeCustomer(hashMapCust);
-		Accounts.serializeAccount(hashMapAcc);
+		hashMaps.dataObject.truncateAcc();
+		hashMaps.dataObject.truncateKeys();
+		hashMaps.dataObject.truncateCust();
+		hashMaps.dataObject.insertAllCust(hashMaps.hashMapCust);
+		hashMaps.dataObject.insertAllAcc(hashMaps.hashMapAcc);
 		System.out.println("Bye now.");
-		System.exit(0);
 	}
 	
-	public static void applySingleAccount() {
+	public void applySingleAccount() {
 		String person = "Person";
 		Customers customerInfo = makeCustomer(person);
 		Accounts single_acc = new Accounts(customerInfo);
 		customerInfo.arrayAcc.add(single_acc.accNum);
-		hashMapAcc.put(single_acc.accNum, single_acc);
-		hashMapCust.put(customerInfo.id, customerInfo);
+		hashMaps.hashMapAcc.put(single_acc.accNum, single_acc);
+		hashMaps.hashMapCust.put(customerInfo.id, customerInfo);
 		Accounts.printAccInfo(single_acc);
 		logger.info("NEW APPLICATION: " + "account#: "+ single_acc.accNum);
 		//menu();
 	}
 	
-	public static void applyJointAccount() {
+	public void applyJointAccount() {
 		String person1 = "Person #1";
 		String person2 = "Person #2";
 		Customers customerInfo1 = fetchOrMakeCustomer(person1);
@@ -78,15 +83,15 @@ public class MainDriver {
 		Accounts joint_acc = new Accounts(customerInfo1, customerInfo2);
 		customerInfo1.arrayAcc.add(joint_acc.accNum);
 		customerInfo2.arrayAcc.add(joint_acc.accNum);
-		hashMapCust.put(customerInfo1.id, customerInfo1);
-		hashMapCust.put(customerInfo2.id, customerInfo2);
-		hashMapAcc.put(joint_acc.accNum, joint_acc);
+		hashMaps.hashMapCust.put(customerInfo1.id, customerInfo1);
+		hashMaps.hashMapCust.put(customerInfo2.id, customerInfo2);
+		hashMaps.hashMapAcc.put(joint_acc.accNum, joint_acc);
 		Accounts.printAccInfo(joint_acc);
 		logger.info("NEW APPLICATION: " + "account#: "+ joint_acc.accNum);
 		//menu();
 	}
 	
-	private static Customers makeCustomer(String person_num) {
+	private Customers makeCustomer(String person_num) {
 		Scanner sc = new Scanner(System.in);
 		String userName2;
 		String userPassword2;
@@ -102,7 +107,7 @@ public class MainDriver {
 		return customerInfo2;
 	}
 
-	private static Customers fetchOrMakeCustomer(String person_num) {
+	private Customers fetchOrMakeCustomer(String person_num) {
 		String userId;
 		String userPassword;
 		String existingAccount;
@@ -123,7 +128,7 @@ public class MainDriver {
 				userPassword = sc.nextLine();
 				verify = verifyCustomer(userId, userPassword);
 				if (verify.equals("pass") == true) {
-					customerInfo = hashMapCust.get(userId);
+					customerInfo = hashMaps.hashMapCust.get(userId);
 					correct = true;
 				} else correct = false; 
 			} else {
@@ -134,9 +139,9 @@ public class MainDriver {
 		return customerInfo;
 	}
 		
-	static String verifyCustomer(String userId, String userPassword) {
-		if (hashMapCust.containsKey(userId)== true) {
-			Customers customer = hashMapCust.get(userId);
+	String verifyCustomer(String userId, String userPassword) {
+		if (hashMaps.hashMapCust.containsKey(userId)== true) {
+			Customers customer = hashMaps.hashMapCust.get(userId);
 			if (customer.password.equals(userPassword)==true) {
 				return "pass"; 
 			}else {
@@ -149,7 +154,7 @@ public class MainDriver {
 		return "fail";
 	}
 	
-	static Customers fetchCustomer() {
+	Customers fetchCustomer() {
 		Scanner sc = new Scanner(System.in); 
 		Customers customerInfo;
 		String pass; 
@@ -159,7 +164,7 @@ public class MainDriver {
 		String userInputPswd = sc.nextLine();
 		pass = verifyCustomer(userInputId, userInputPswd);
 		if (pass.equals("pass")) {
-			customerInfo = hashMapCust.get(userInputId);
+			customerInfo = hashMaps.hashMapCust.get(userInputId);
 			return customerInfo;
 		}else {
 			System.out.println("*ERROR*: Invalid. Please retry.");
@@ -168,20 +173,20 @@ public class MainDriver {
 		return customerInfo; 
 	}
 	
-	static void provideCustomerOptions(Customers loggedInCust) {
+	void provideCustomerOptions(Customers loggedInCust) {
 		Scanner sc = new Scanner(System.in);
 		if (loggedInCust.arrayAcc.size()==1) {
-			getCustomerOptions(loggedInCust.arrayAcc.get(0));
+			getCustomerOptions(loggedInCust, loggedInCust.arrayAcc.get(0));
 		}else if (loggedInCust.arrayAcc.size()==2) {
 			String accOption;
 			System.out.println("[INPUT] Please choose account: " + loggedInCust.arrayAcc.get(0)+ "[1] or " + loggedInCust.arrayAcc.get(1) + "[2]");
 			accOption = sc.nextLine();
 			switch (accOption){
 			case "1":
-				getCustomerOptions(loggedInCust.arrayAcc.get(0));
+				getCustomerOptions(loggedInCust, loggedInCust.arrayAcc.get(0));
 				break;
 			case "2":
-				getCustomerOptions(loggedInCust.arrayAcc.get(1));
+				getCustomerOptions(loggedInCust, loggedInCust.arrayAcc.get(1));
 				break;
 			}
 		}else {
@@ -190,20 +195,19 @@ public class MainDriver {
 			accOption = sc.nextLine();
 			switch (accOption){
 			case "1":
-				getCustomerOptions(loggedInCust.arrayAcc.get(0));
+				getCustomerOptions(loggedInCust, loggedInCust.arrayAcc.get(0));
 				break;
 			case "2":
-				getCustomerOptions(loggedInCust.arrayAcc.get(1));
+				getCustomerOptions(loggedInCust, loggedInCust.arrayAcc.get(1));
 				break;
 			case "3":
-				getCustomerOptions(loggedInCust.arrayAcc.get(2));
+				getCustomerOptions(loggedInCust, loggedInCust.arrayAcc.get(2));
 				break;
 			}
-			
 		}
 	}
 	
-	static void getCustomerOptions(String accNum) {
+	void getCustomerOptions(Customers cust, String accNum) {
 		boolean logout = false; 
 		Scanner sc = new Scanner(System.in);
 		while (logout == false) {
@@ -213,13 +217,13 @@ public class MainDriver {
 			System.out.println("[INPUT] Type available command:");
 			String userInput = sc.nextLine();
 			if (userInput.equals("1")) {
-				Accounts.printAccInfo(hashMapAcc.get(accNum));
+				Accounts.printAccInfo(hashMaps.hashMapAcc.get(accNum));
 			}else if(userInput.equals("2")) {
-				Customers.depositCustomer(accNum);
+				hashMaps.hashMapAcc = cust.depositCustomer(hashMaps.hashMapAcc, accNum);
 			}else if(userInput.equals("3")) {
-				Customers.withdrawCustomer(accNum);
+				hashMaps.hashMapAcc = cust.withdrawCustomer(hashMaps.hashMapAcc, accNum);
 			}else if(userInput.equals("4")) {
-				Customers.transferCustomer(accNum);		
+				hashMaps.hashMapAcc = cust.transferCustomer(hashMaps.hashMapAcc, accNum);		
 			}else if(userInput.equals("5")) {
 				System.out.println("Bye now.");
 				logout = true;
@@ -250,14 +254,14 @@ public class MainDriver {
 		return amount;
 	}
 	
-	public static int checkSSN(String person_num) {
+	public int checkSSN(String person_num) {
 		Scanner sc = new Scanner(System.in);
 		int ssn;
 		System.out.println("[INPUT]: " + person_num +  ", what is your SSN?");
 		try {
 			ssn = sc.nextInt();
 			int ssn2 = ssn*ssn;
-			if (ssn>0 && hashMapAcc.containsKey(Integer.toString(ssn2))==false) {
+			if (ssn>0 && hashMaps.hashMapAcc.containsKey(Integer.toString(ssn2))==false) {
 				return ssn;
 			} else {
 				System.out.println("*ERROR*: Either the social security provided already exists in the system or a negative value was inputed.");
@@ -270,12 +274,12 @@ public class MainDriver {
 		return ssn;
 	}
 	
-	public static String checkId(String person_num) {
+	public String checkId(String person_num) {
 		Scanner sc = new Scanner(System.in); 
 		String id;
 		System.out.println("[INPUT]: " + person_num + ", choose id?");
 		id = sc.nextLine();
-		if (hashMapCust.containsKey(id)== false) {
+		if (hashMaps.hashMapCust.containsKey(id)== false) {
 			return id;
 		} else {
 			System.out.println("*ERROR*: The id already exists. Please try another.");

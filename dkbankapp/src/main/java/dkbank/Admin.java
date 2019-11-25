@@ -7,7 +7,7 @@ public class Admin extends Employee{
 	static String password = "345"; 
 	static String id = "admin";
 	
-	void getAdminOptions() {
+	HashMaps getAdminOptions(HashMaps hashMaps) {
 		boolean logout = false; 
 		Scanner sc = new Scanner(System.in);
 		while (logout == false) {
@@ -19,23 +19,23 @@ public class Admin extends Employee{
 			System.out.println("[INPUT] Type available command:");
 			String userInput = sc.nextLine();
 			if (userInput.equals("1")) {
-				emp_viewAllAcc();
+				emp_viewAllAcc(hashMaps);
 			}else if(userInput.equals("2")) {
-				emp_viewAcc();
+				emp_viewAcc(hashMaps);
 			}else if(userInput.equals("3")) {
-				emp_viewCust();	
+				emp_viewCust(hashMaps);	
 			}else if(userInput.equals("4")) {
-				emp_approveAcc();
+				hashMaps = emp_approveAcc(hashMaps);
 			}else if(userInput.equals("5")) {
-				emp_denyAcc();
+				hashMaps = emp_denyAcc(hashMaps);
 			}else if(userInput.equals("6")) {
-				adminCancel();
+				hashMaps = adminCancel(hashMaps);
 			}else if(userInput.equals("7")) {
-				adminDeposit();		
+				hashMaps = adminDeposit(hashMaps);		
 			}else if(userInput.equals("8")) {
-				adminWithdraw();
+				hashMaps = adminWithdraw(hashMaps);
 			}else if(userInput.equals("9")) {
-				adminTransfer();				
+				hashMaps = adminTransfer(hashMaps);				
 			}else if(userInput.equals("10")) {
 				System.out.println("Bye now.");
 				logout = true;
@@ -44,66 +44,72 @@ public class Admin extends Employee{
 				System.out.println("*ERROR*: Invalid input");
 			}
 		}
+		return hashMaps; 
 	}
 	
-	private void adminDeposit() {
+	private HashMaps adminDeposit(HashMaps hashMaps) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("[INPUT]: What is the account number?");
 		String accNum = sc.nextLine();
-		boolean accFound = MainDriver.hashMapAcc.containsKey(accNum);
+		boolean accFound =  hashMaps.hashMapAcc.containsKey(accNum);
 		if (accFound==false) {
 			System.out.println("*ERROR*: Account number not found.");
 		}else {
 			System.out.println("#SUCCESS#: Account number found.");
-			Customers.depositCustomer(accNum);
-		}	
-	}
-	
-	private void adminWithdraw() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("[INPUT]: What is the account number?");
-		String accNum = sc.nextLine();
-		boolean accFound = MainDriver.hashMapAcc.containsKey(accNum);
-		if (accFound==false) {
-			System.out.println("*ERROR*: Account number not found.");
-		}else {
-			Customers.withdrawCustomer(accNum);
-			
+			Customers cust = new Customers(); 
+			hashMaps.hashMapAcc = cust.depositCustomer(hashMaps.hashMapAcc, accNum);
 		}
-	}
-	private void adminTransfer() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("[INPUT]: What is the account number?");
-		String accNum = sc.nextLine();
-		boolean accFound = MainDriver.hashMapAcc.containsKey(accNum);
-		if (accFound==false) {
-			System.out.println("*ERROR*: Account number not found.");
-		}else {
-			System.out.println("#SUCCESS#: Account number found.");
-			Customers.transferCustomer(accNum);
-		}
+		return hashMaps; 
 	}
 	
-	private void adminCancel() {
+	private HashMaps adminWithdraw(HashMaps hashMaps) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("[INPUT]: What is the account number?");
 		String accNum = sc.nextLine();
-		boolean accFound = MainDriver.hashMapAcc.containsKey(accNum);
+		boolean accFound = hashMaps.hashMapAcc.containsKey(accNum);
+		if (accFound==false) {
+			System.out.println("*ERROR*: Account number not found.");
+		}else {
+			Customers cust = new Customers(); 
+			hashMaps.hashMapAcc = cust.withdrawCustomer(hashMaps.hashMapAcc, accNum);
+		}
+		return hashMaps;
+	}
+	private HashMaps adminTransfer(HashMaps hashMaps) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("[INPUT]: What is the account number?");
+		String accNum = sc.nextLine();
+		boolean accFound = hashMaps.hashMapAcc.containsKey(accNum);
 		if (accFound==false) {
 			System.out.println("*ERROR*: Account number not found.");
 		}else {
 			System.out.println("#SUCCESS#: Account number found.");
-			int arrayCustSize = MainDriver.hashMapAcc.get(accNum).arrayCust.size();
+			Customers cust = new Customers(); 
+			hashMaps.hashMapAcc = cust.transferCustomer(hashMaps.hashMapAcc, accNum);
+		}
+		return hashMaps;
+	}
+	
+	private HashMaps adminCancel(HashMaps hashMaps) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("[INPUT]: What is the account number?");
+		String accNum = sc.nextLine();
+		boolean accFound = hashMaps.hashMapAcc.containsKey(accNum);
+		if (accFound==false) {
+			System.out.println("*ERROR*: Account number not found.");
+		}else {
+			System.out.println("#SUCCESS#: Account number found.");
+			int arrayCustSize = hashMaps.hashMapAcc.get(accNum).arrayCust.size();
 			for (int i=0;i<arrayCustSize; i++) {
 				System.out.println("Fetching the account's customer #"+ i + " information...");
-				String id = MainDriver.hashMapAcc.get(accNum).arrayCust.get(i);
-				int arrayAccSize = MainDriver.hashMapCust.get(id).arrayAcc.size();
+				String id = hashMaps.hashMapAcc.get(accNum).arrayCust.get(i);
+				int arrayAccSize = hashMaps.hashMapCust.get(id).arrayAcc.size();
 				for (int x=0; i<arrayAccSize; i++) {
 					System.out.println("Customer #" + i + ": finding the right account...");
-					if (MainDriver.hashMapCust.get(id).arrayAcc.get(x).equals(accNum)) {
+					if (hashMaps.hashMapCust.get(id).arrayAcc.get(x).equals(accNum)) {
 						System.out.println("Customer #" + i + ": correct account found.");
 						System.out.println("Executing cancellation...");
-						MainDriver.hashMapCust.get(id).arrayAcc.remove(x);
+						hashMaps.hashMapCust.get(id).arrayAcc.remove(x);
 						System.out.println("Customer #" + i + ": cancellation complete.");
 						break;
 					}
@@ -111,6 +117,7 @@ public class Admin extends Employee{
 			}
 			System.out.println("#SUCCESS#: Account cancelled.");
 		}
+		return hashMaps;
 	}
 	
 	static void verifyAdmin() {
