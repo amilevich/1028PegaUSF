@@ -1,0 +1,41 @@
+register customer abc abc 
+open abc abc 
+deposit 45 
+close 
+write 
+read 
+resg 
+register customer ankara ankara 
+open ankara ankara 
+depsoit 45 
+deposit 56 
+close 
+view 
+open super super 
+view_all 
+write 
+close 
+write 
+read 
+open abc abc 
+deposit 45 
+close 
+exit 
+register a a 
+register customer a a 
+open a a 
+deposit 34 
+register customer a 
+register customer a a 
+open a a 
+deposit 34 
+view 
+close 
+view 
+view_all 
+open super super 
+view 
+open super super 
+view_all 
+close 
+register df 
