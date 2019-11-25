@@ -117,9 +117,9 @@ What is normalisation?
 	1st NF: 
 		First normalistaion form is data granularity and a primary key within ithe table
 	2nd NF:
-		Second normailsation 
+		Doesn't allow partial dependencies (i.e. if a primary key is composite then each column should depend on every attribute withing the key.)
 	3rd :
-		Doesn't allow transitive property
+		Doesn't allow transitive property (i.e. a column should only depend on the primary key, not another non-primary column)
 
 What is PL/SQL?
 	It's SQL with added functionality, allows us to do procedural programming methods (like functions) but not OOP

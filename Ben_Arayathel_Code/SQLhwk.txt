@@ -1,0 +1,55 @@
+SQL Hwk Answer syntax
+
+2.1 SELECT 
+Selecting all records from the employee hwk:
+		SELECT * FROM employee;
+Selecting all records where the employee's last name is "King":
+		SELECT * FROM employee WHERE Lastname = 'King';
+Selecting all records where the employee's first name is "Andrew" and ReportSTO is NULL:
+		SELECT * FROM employee WHERE Firstname = 'Andrew' AND ReportSTO IS NULL;
+
+2.2 ORDER BY
+Selecting all album table and sorting by title, ascending:
+		SELECT * FROM album ORDER BY title
+Selecting first name from Customer and sort result set in ascending order.
+		SELECT firstname FROM customer ORDER BY city ASC;
+
+2.3 INSERT INTO 
+Insert two new records into Genre table:
+		INSERT INTO genre (26, 'A Happy Songs');
+Insert two new records into Employee table:
+		INSERT INTO employee VALUES (10,'Ab','Ba', 'IT Staff', 7, '07-JAN-11','08-JAN-11','933 UK','Newark','CD','Canada','TN40 1TL','+1 (403) 465-1234','+1 (403) 123-1234','ab@chinookcorp.com');
+Insert two new records:
+		INSERT INTO customer VALUES (61,'Aa','Bb',null,'asdf 12','England',null,'UK','TN40 ASD','123',null,'asdf@asdf.com',2);
+
+2.4 UPDATE
+Update "Aaron Mitchell" in Customer table to "Robert Walter"
+	UPDATE Customer SET firstname = 'Robert' , lastname = 'Walter' WHERE firstname = 'Aaron' AND lastname = 'Mitchell';
+Update name of artist in the Artis table "Creedence Clearwater Revival" to "CCR".
+	UPDATE artist SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival';
+
+2.5 LIKE
+Select all invoices with a billing address like 'T%'.
+	SELECT * FROM invoice WHERE billingaddress LIKE 'T%'
+
+2.6 BETWEEN
+Select all invoices that have a total between 15 and 50;
+	SELECT * FROM invoice WHERE (total > 15) AND (total <50);
+Select all employees hired between 1st of June 2003 and 1st of March 2004;
+	SELECT * FROM employee WHERE hiredate BETWEEN '01-JUN-03' AND '01-MAR-04';	
+
+2.7 DELETE
+Delete a record from Customer Table where the name is Robert Walter.
+	There are 2 ways from what I can see, either remove constraints (leaving orphaned records) or remove records until you reach the bottom child table.
+	I opted for the latter (unfortunately):
+		--Nested loop to remove rows from the bottom child table, "Invoiceline", Then removing invoice record, then customer record.
+		DELETE FROM invoiceline WHERE invoiceid IN 
+ 		(SELECT invoiceid FROM invoice WHERE customerid = 
+ 		(SELECT customerid FROM customer WHERE firstname ='Robert' AND lastname = 'Walter'));
+		--Deleting invoice records
+		DELETE FROM invoice WHERE customerID = 
+		(SELECT customerid FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter');
+		--Deleting customer ID finally
+		DELETE FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter';
+
+
