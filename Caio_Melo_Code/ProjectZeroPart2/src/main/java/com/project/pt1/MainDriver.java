@@ -81,11 +81,12 @@ public class MainDriver {
 
 				}
 			}
-			else {
+		}
+			
 				System.out.println("No user found by that username.");
 				prompt();
-			}
-		}
+			
+		
 //prompt
 	}
 
@@ -94,7 +95,7 @@ public class MainDriver {
 		ArrayList<Customer> custCred = z;
 
 		for (Customer temp : custCred) {
-
+			System.out.println(temp.toString());
 			if (temp.getUsername().contentEquals(x) && temp.getPassword().contentEquals(y)) {
 
 				if (temp.appStatus.equals(Status.PENDING)) {
