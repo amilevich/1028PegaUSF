@@ -132,15 +132,16 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	@Override
+
 	public String toString() {
 		String info = null;
 		if (userType == 1) {
 			if (joint > 0) {
 				info = "Account [Username=Password: " + userPass + ", accountAccessType: client" + ", Account: "
-						+ accounts + ", Joint Key: " + joint + "]";
+						+ accounts + ", Joint Key: " + joint + ", Account Status: " + applicationStatus + "]";
 			} else { // not a joint account
 				info = "Account [Username=Password: " + userPass + ", accountAccessType: client" + ", Account: "
-						+ accounts + "]";
+						+ accounts + ", Account Status: " + applicationStatus + "]";
 			}
 		} else if (userType == 2) { // employee
 			info = "Account [Username=Password: " + userPass + ", accountAccessType: Employee" + "]";
@@ -165,32 +166,36 @@ public class Account implements Client, Employee, SystemAdmin {
 		// System.out.println("\t\t\tdone constructing");
 	}
 
-	// SQL
-	public Account(int hashKey, String usern, String userp, String usern2, String userp2, int userType, int joint,
-			float checking, float savings) {
+	// ****************** SQL ********************//
+	public Account(int hashKey, int appStat, String usern, String userp, String usern2, String userp2, int userType,
+			int joint, float checking, float savings) {
 		this.accountKey = hashKey;
+		this.hashKey = hashKey;
+		this.applicationStatus = appStat;
+		this.userPass.put(usern, userp);
+		if (!usern2.equals("NULL")) {
+			this.userPass.put(usern2, userp2);
+			this.accounts.put("shared checking", checking);
+			this.accounts.put("shared savings", savings);
+		} else {
+			this.accounts.put("checking", checking);
+			this.accounts.put("savings", savings);
+		}
+		this.userType = userType;
+		this.joint = joint;
+	}
+
+	// emplyee/sysad
+	public Account(int hashKey, int appStat, String usern, String userp, String usern2, String userp2, int userType,
+			int joint) {
+		this.accountKey = hashKey;
+		this.applicationStatus = appStat;
 		this.userPass.put(usern, userp);
 		if (!usern2.equals("NULL")) {
 			this.userPass.put(usern2, userp2);
 		}
 		this.userType = userType;
 		this.joint = joint;
-		this.accounts.put("checking", checking);
-		this.accounts.put("savings", savings);
-	}
-
-	public Account(int hashKey, String usern, String userp, String usern2, String userp2, int userType, int joint) {
-		this.accountKey = hashKey;
-		this.userPass.put(usern, userp);
-		if (!usern2.equals("NULL")) {
-			this.userPass.put(usern2, userp2);
-		}
-		this.userType = userType;
-		this.joint = joint;
-	}
-
-	public Account() {
-
 	}
 
 	public void createAccount(HashMap<Integer, Account> bankAccounts, String choice) {
@@ -305,8 +310,23 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	private void createJAccount(HashMap<Integer, Account> bankAccounts, int accountKey, int temp) {
-		this.userPass.put(bankAccounts.get(accountKey).getUsername(), bankAccounts.get(accountKey).getPassword());
-		this.userPass.put(bankAccounts.get(temp).getUsername(), bankAccounts.get(temp).getPassword());
+		String u1 = "";
+		String p1 = "";
+		String u2 = "";
+		String p2 = "";
+
+		for (Entry<String, String> en2 : bankAccounts.get(accountKey).userPass.entrySet()) {
+			u1 += " " + en2.getKey();
+			p1 += " " + en2.getValue();
+
+		}
+		for (Entry<String, String> en2 : bankAccounts.get(temp).userPass.entrySet()) {
+			u2 += " " + en2.getKey();
+			p2 += " " + en2.getValue();
+
+		}
+		this.userPass.put(u1, p1);
+		this.userPass.put(u2, p2);
 		this.accounts.put("shared checking", 0.00f);
 		this.accounts.put("shared savings", 0.00f);
 		this.userType = 1; // client
@@ -563,8 +583,10 @@ public class Account implements Client, Employee, SystemAdmin {
 
 	@Override
 	public void viewInformation(HashMap<Integer, Account> bankAccounts) {
-		System.out.println("\t\t\tUsername: " + getUsername());
-		System.out.println("\t\t\tPassword: " + getPassword());
+		for (Entry<String, String> i : userPass.entrySet()) {
+			System.out.println("\t\t\tUsername: " + i.getKey());
+			System.out.println("\t\t\tPassword: " + i.getValue());
+		}
 		System.out.println("\t\t\tAccount Staus: " + applicationStatus);
 		System.out.println("\t\t\tOpen accounts: " + accounts);
 		if (joint > 0) {
@@ -919,7 +941,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	public void setAccountStatus() {
 		System.out.println("\t\t\tCurrent status is: " + applicationStatus); // currently only will be pending as
 																				// empoyee
-		// can't go in to edit anythign else
+		// can't go in to edit anything else
 		if (applicationStatus == 0) {
 			System.out.println("\t\t\tDo you wnat to approve the account?");
 			checkYN();
@@ -927,7 +949,6 @@ public class Account implements Client, Employee, SystemAdmin {
 				applicationStatus = 1; // approved
 				accountHolder = true;
 				System.out.println("\t\t\tThe account is now approved");
-
 			} else if (yn.equals("2")) {
 				applicationStatus = 2; // denied
 				System.out.println("\t\t\tThe account is now denied");
@@ -950,8 +971,7 @@ public class Account implements Client, Employee, SystemAdmin {
 			System.out.println("\t\t\tDo you want to cancel the account?");
 			checkYN();
 			if (yn.equals("1")) {
-				this.applicationStatus = 2; // approved
-				this.accountHolder = false;
+				Menu.b.deleteBankAccounts(hashKey);
 				System.out.println("\t\t\tThe account is now cancelled");
 			} else if (yn.equals("2")) {
 				applicationStatus = 1; // denied

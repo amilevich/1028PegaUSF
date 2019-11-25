@@ -19,6 +19,7 @@ CREATE TABLE AccountM(
 DROP TABLE AccountM;
 DROP TABLE AccountU;
 SELECT * FROM AccountU;
+UPDATE AccountU SET a_accountStatus = 1 WHERE a_accountKey = 292;
 SELECT * FROM AccountM;
 
 --INSERT INTO AccountU(a_accountKey, a_accountStatus, a_userName1, a_passWord1, a_userName2, a_passWord2, a_userType, a_joint) VALUES(123,'1','l','u','o','p','1',0);

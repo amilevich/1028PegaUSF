@@ -32,7 +32,6 @@ public class Menu {
 	public static BankAccountsDaoImpl b = new BankAccountsDaoImpl();
 
 	public void menuShow() {
-		bankAccounts = b.selectBankAccounts();
 		// String filename = "./bankUsers6.txt";
 		// readObject(filename); // Reads in past bank accounts created and adds to
 		// hashmap to parse through data
@@ -40,6 +39,7 @@ public class Menu {
 		// **************************Variables Used******************************//
 		String userP = null;
 		while (repeatMain) { // will repeat continuously unless user wants to end completely
+			bankAccounts = b.selectBankAccounts();
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------");
 			System.out.println(
@@ -59,7 +59,7 @@ public class Menu {
 			repeatMain = false;
 			repeatOptions = true;
 			System.out.println("\t\t\tHello, welcome to Revature Banking.");
-			System.out.println("\t\t\tDo you want to 1: Log in or 2: Create an acocunt");
+			System.out.println("\t\t\tDo you want to 1: Log in or 2: Create an account");
 			System.out.println("\t\t\tEnter 1 or 2:");
 			while (true) {
 				choice = sc.nextLine();
@@ -83,24 +83,41 @@ public class Menu {
 				while (true) { // check password corresponds with Username
 					System.out.println("\t\t\tPassword Case Sensitive:");
 					userP = sc.nextLine();
-					boolean validP = userP.equals(bankAccounts.get(currKey).getPassword());
-					if (!validP) {
-						System.out.println("\t\t\tIncorrect password. Please re-enter password. Case Sensitive");
+					for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
+						// check if accountKey is in map
+						// System.out.println(en.getValue().getUsername());
+						for (Entry<String, String> en2 : en.getValue().userPass.entrySet()) {
+							if (userP.equals(en2.getValue())) {
+								userExists = true;
+								break;
+							}
+						}
+						if (userExists) {
+							break;
+						}
+					}
+					if (!userExists) {
+						System.out.println("\t\t\tPlease re-enter password");
 					} else {
+						userExists = false;
 						break;
 					}
 				}
+
 				// ******************************************************//
 				// ******************Client Account ********************//
 				// ******************************************************//
 				if (bankAccounts.get(currKey).getUserType() == 1) {
 					int temp = currKey;
+					String tempU = "";
+					for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+						tempU += (" " + i.getKey());
+					}
 					// System.out.println(bankAccounts.get(temp).getApplicationStatus());
 					if (bankAccounts.get(temp).getApplicationStatus() == 1) { // approved account
-						loggy.info(bankAccounts.get(temp).getUsername() + " Logged in");
+						loggy.info(tempU + " Logged in");
 						while (repeatOptions) {
-							System.out.println("\t\t\tWelcome " + bankAccounts.get(temp).getUsername()
-									+ "! What would you like to do?");
+							System.out.println("\t\t\tWelcome " + tempU + "! What would you like to do?");
 							String options = "\t\t\t1: Check Information 2: Access Accounts 3: Change Passsword 4: Return to main";
 							System.out.println(options);
 							System.out.println("\t\t\tEnter 1, 2, or 3");
@@ -128,6 +145,7 @@ public class Menu {
 							case "2":
 								// sends to client to go through accounts names
 								bankAccounts.get(currKey).accessAccounts(bankAccounts, currKey);
+								b.updateBankAccounts(bankAccounts.get(currKey));
 								menuOption();
 								break;
 
@@ -135,10 +153,13 @@ public class Menu {
 								// change password
 								System.out.println("\t\t\tEnter new Password Case Sensitive:  ");
 								userP = sc.nextLine();
-								bankAccounts.get(temp).setPassword(userP);
+								for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+									i.setValue(userP);
+								}
 								System.out.println(
-										bankAccounts.get(temp).getUsername() + "'s password successfully updated ");
-								loggy.info(bankAccounts.get(temp).getUsername() + " Changed their password");
+										tempU + "'s password successfully updated ");
+								loggy.info(tempU + " Changed their password");
+								b.updateBankAccounts(bankAccounts.get(currKey));
 								menuOption();
 								break;
 							case "4":
@@ -155,7 +176,7 @@ public class Menu {
 					} else {
 						System.out.println("\t\t\tError. Your account is not active. Please speak witih employee\n");
 						loggy.info(
-								bankAccounts.get(currKey).getUsername() + " Tried to log in but account is not active");
+								tempU + " Tried to log in but account is not active");
 						repeatMain = true;
 					}
 				} else if (repeatMain) { // should break out of repeat loop and restart
@@ -167,13 +188,17 @@ public class Menu {
 				// ******************************************************//
 				else if (bankAccounts.get(currKey).getUserType() == 2) {
 					int tempEKey = currKey;
-					loggy.info(bankAccounts.get(currKey).getUsername() + " Logged in");
+					String tempU = "";
+					for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+						tempU += (" " + i.getKey());
+					}
+					loggy.info(tempU + " Logged in");
 					while (repeatOptions) {
-						System.out.println("\t\t\t\t\t\tWelcome employee: " + bankAccounts.get(tempEKey).getUsername());
+						System.out.println("\t\t\t\t\t\tWelcome employee: " + tempU);
 						System.out.println("\t\t\tWhat would you like to do?");
 						String options = "1: Check Account Application Status, 2: Check Account Information, 3: Change Password 4: Return to main";
 						System.out.println(options);
-						System.out.println("\t\t\tEnter 1, 2, or 3");
+						System.out.println("\t\t\tEnter 1, 2, 3, or 4");
 						// implement options
 						while (true) {
 							choice = sc.nextLine();
@@ -186,7 +211,6 @@ public class Menu {
 						switch (choice) {
 						case "1":
 							// check account application status
-							String temp = bankAccounts.get(tempEKey).getUsername();
 							verifyClient(); // calls the checkUser function and verifies that account employee is
 											// trying
 											// to access is a client only
@@ -194,18 +218,25 @@ public class Menu {
 							if (repeatMain) {
 								break;
 							}
+							String tempU2 = "";
+							for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+								tempU2 += (" " + i.getKey());
+							}
+							//Set account status
 							bankAccounts.get(currKey).setAccountStatus();
 							if (bankAccounts.get(currKey).getApplicationStatus() == 1) {
-								loggy.info(
-										temp + " Approved " + bankAccounts.get(currKey).getUsername() + "'s account");
+								loggy.info(tempU + " Approved " + tempU2 + "'s account");
 							} else if (bankAccounts.get(currKey).getApplicationStatus() == 2) {
-								loggy.info(temp + " Denied " + bankAccounts.get(currKey).getUsername() + "'s account");
+								loggy.info(tempU + " Denied " + tempU2 + "'s account");
 							}
+							System.out.println(bankAccounts.get(currKey).getHashKey());
+							
+							System.out.println("hi");
+							b.updateBankAccounts(bankAccounts.get(currKey));
 							menuOption();
-
 							break;
 						case "2": // view information
-							System.out.println("\t\t\tPlease enter username of of the user you want to look at");
+							System.out.println("\t\t\tPlease enter username of the user you want to look at");
 							verifyClient();
 							if (repeatMain) {
 								break;
@@ -217,10 +248,12 @@ public class Menu {
 							// change password
 							System.out.println("\t\t\tEnter new Password Case Sensitive: ");
 							userP = sc.nextLine();
-							bankAccounts.get(currKey).setPassword(userP);
-							System.out.println(
-									bankAccounts.get(tempEKey).getUsername() + "'s password successfully updated ");
-							loggy.info(bankAccounts.get(tempEKey).getUsername() + " Changed their password");
+							for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+								i.setValue(userP);
+							}
+							System.out.println(tempU + "'s password successfully updated ");
+							loggy.info(tempU + " Changed their password");
+							b.updateBankAccounts(bankAccounts.get(currKey));
 							menuOption();
 							break;
 						case "4":
@@ -249,7 +282,10 @@ public class Menu {
 				// *****************Sys Admin Account *******************//
 				// ******************************************************//
 				else if (bankAccounts.get(currKey).getUserType() == 3) {
-					String tempU = bankAccounts.get(currKey).getUsername();
+					String tempU = "";
+					for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+						tempU += (" " + i.getKey());
+					}
 					loggy.info(tempU + " Logged in");
 					int temp = currKey;
 					while (repeatOptions) {
@@ -275,14 +311,18 @@ public class Menu {
 							if (repeatMain) {
 								break;
 							} else {
+								String tempU2 = "";
+								for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+									tempU2 += (" " + i.getKey());
+								}
 								bankAccounts.get(currKey).setAccountStatusAd();
 								if (bankAccounts.get(currKey).getApplicationStatus() == 1) {
-									loggy.info(tempU + " Approved " + bankAccounts.get(currKey).getUsername()
-											+ "'s account");
+									loggy.info(tempU + " Approved " + tempU2 + "'s account");
 								} else if (bankAccounts.get(currKey).getApplicationStatus() == 2) {
-									loggy.info(tempU + " Denied/Cancelled " + bankAccounts.get(currKey).getUsername()
-											+ "'s account");
+									loggy.info(tempU + " Denied/Cancelled " + tempU2 + "'s account");
 								}
+								System.out.println(bankAccounts.get(currKey));
+								b.updateBankAccounts(bankAccounts.get(currKey));
 								menuOption();
 							}
 							break;
@@ -299,13 +339,16 @@ public class Menu {
 							if (repeatMain) {
 								break;
 							}
+							String tempU2 = "";
+							for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+								tempU2 += (" " + i.getKey());
+							}
 							System.out.println("\t\t\tEnter new Password Case Sensitive: ");
 							userP = sc.nextLine();
 							bankAccounts.get(currKey).setPassword(userP);
-							System.out.println(
-									bankAccounts.get(currKey).getUsername() + "'s password successfully updated ");
-							loggy.info(bankAccounts.get(temp).getUsername() + " changed "
-									+ bankAccounts.get(currKey).getUsername() + "'s password");
+							System.out.println(tempU + "'s password successfully updated ");
+							loggy.info(tempU + " changed " + tempU2 + "'s password");
+							b.updateBankAccounts(bankAccounts.get(currKey));
 							menuOption();
 							break;
 						case "4":
@@ -315,15 +358,18 @@ public class Menu {
 								break;
 							}
 							bankAccounts.get(accountKey).accessAccounts(bankAccounts, currKey);
+							b.updateBankAccounts(bankAccounts.get(currKey));
 							menuOption();
 							break;
 						case "5":
 							System.out.println("\t\t\tEnter new Password Case Sensitive: ");
 							userP = sc.nextLine();
-							bankAccounts.get(temp).setPassword(userP);
-							System.out.println(
-									bankAccounts.get(temp).getUsername() + "'s password successfully updated ");
-							loggy.info(bankAccounts.get(temp).getUsername() + " Changed their password");
+							for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
+								i.setValue(userP);
+							}
+							System.out.println(tempU + "'s password successfully updated ");
+							loggy.info(tempU + " Changed their password");
+							b.updateBankAccounts(bankAccounts.get(temp));
 							menuOption();
 							break;
 						case "6":
@@ -368,20 +414,27 @@ public class Menu {
 					bankAccounts.put(accountKey, cl);
 					b.insertBankAccounts(cl);
 					System.out.println();
-					loggy.info(cl.getUsername() + " Creted an Account");
+					String tempU = "";
+					for (Entry<String, String> i : cl.userPass.entrySet()) {
+						tempU += (" " + i.getKey());
+					}
+					loggy.info(tempU + " Creted an Account");
 					int temp = 0;
 					temp = cl.apply(bankAccounts, accountKey);
-					System.out.println(temp);
 					int temp2 = accountKey;
 					if (temp > 0) {
 						Account jo = new Account(bankAccounts, accountKey, temp);
 						createKey();
+						String tempU2 = "";
+						for (Entry<String, String> i : jo.userPass.entrySet()) {
+							tempU2 += (" " + i.getKey());
+						}
 						bankAccounts.put(accountKey, jo);
-						loggy.info(cl.getUsername() + " Creted an Joint Account with "
-								+ bankAccounts.get(temp2).getUsername());
+						loggy.info(tempU + " Creted an Joint Account with " + tempU2);
 						bankAccounts.get(temp2).setJoint(accountKey);
 						bankAccounts.get(temp).setJoint(accountKey);
-						jo.setHashKey(accountKey);
+						jo.setHashKey(accountKey)
+						;
 						b.insertBankAccounts(jo);
 					}
 					repeatMain = true;
@@ -391,7 +444,11 @@ public class Menu {
 					createKey();
 					em.setHashKey(accountKey);
 					bankAccounts.put(accountKey, em);
-					loggy.info(em.getUsername() + " Creted an Account");
+					String tempUE = "";
+					for (Entry<String, String> i : em.userPass.entrySet()) {
+						tempUE += (" " + i.getKey());
+					}
+					loggy.info(tempUE + " Creted an Account");
 					b.insertBankAccounts(em);
 					repeatMain = true;
 					break;
@@ -400,7 +457,11 @@ public class Menu {
 					createKey();
 					sa.setHashKey(accountKey);
 					bankAccounts.put(accountKey, sa);
-					loggy.info(sa.getUsername() + " Creted an Account");
+					String tempUS = "";
+					for (Entry<String, String> i : sa.userPass.entrySet()) {
+						tempUS += (" " + i.getKey());
+					}
+					loggy.info(tempUS + " Creted an Account");
 					b.insertBankAccounts(sa);
 					repeatMain = true;
 					break;
@@ -501,9 +562,14 @@ public class Menu {
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members
 				// check if accountKey is in map
 				// System.out.println(en.getValue().getUsername());
-				if (userN.equals(en.getValue().getUsername())) {
-					currKey = en.getKey();
-					userExists = true;
+				for (Entry<String, String> en2 : en.getValue().userPass.entrySet()) {
+					if (userN.equals(en2.getKey())) {
+						currKey = en.getKey();
+						userExists = true;
+						break;
+					}
+				}
+				if (userExists) {
 					break;
 				}
 			}
@@ -533,7 +599,7 @@ public class Menu {
 
 	private static void verifyClient() { // checks if client exists
 		while (true) {
-			System.out.println("\t\t\tEnter the username of the acocunt you wish to review");
+			System.out.println("\t\t\tEnter the username of the account you wish to review");
 			checkUser();
 			if (bankAccounts.get(currKey).getUserType() == 1) {
 				break;
@@ -543,34 +609,36 @@ public class Menu {
 		}
 	}
 
-	private static void readObject(String filename) { // this method will read all of the objects from file (database)
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-			while (true) {
-				try {
-					while (true) {
-						HashMap<Integer, ArrayList> obj = (HashMap) ois.readObject();
-						// System.out.println(obj);
-						for (Entry<Integer, ArrayList> en : obj.entrySet()) {
-							Account obac = new Account();
-							obac.setHashKey((int) en.getValue().get(0));
-							obac.userPass = (HashMap) en.getValue().get(1);
-							obac.setUsername(obac.userPass.keySet().iterator().next());
-							obac.setPassword(obac.userPass.get(obac.getUsername()));
-							obac.setApplicationStatus((int) en.getValue().get(2));
-							obac.setUserType((int) en.getValue().get(3));
-							obac.setJoint((int) en.getValue().get(4));
-							obac.accounts = (HashMap) en.getValue().get(5);
-							bankAccounts.put(obac.getHashKey(), obac);
-						}
-					}
-				} catch (Exception e) {
-					// e.printStackTrace();
-					break;
-				}
-			}
-		} catch (IOException e) {
-			// e.printStackTrace();
-			System.out.println("\t\t\tDone passing in bankAccounts data");
-		}
-	}
+	// private static void readObject(String filename) { // this method will read
+	// all of the objects from file (database)
+	// try (ObjectInputStream ois = new ObjectInputStream(new
+	// FileInputStream(filename))) {
+	// while (true) {
+	// try {
+	// while (true) {
+	// HashMap<Integer, ArrayList> obj = (HashMap) ois.readObject();
+	// // System.out.println(obj);
+	// for (Entry<Integer, ArrayList> en : obj.entrySet()) {
+	// Account obac = new Account();
+	// obac.setHashKey((int) en.getValue().get(0));
+	// obac.userPass = (HashMap) en.getValue().get(1);
+	// obac.setUsername(obac.userPass.keySet().iterator().next());
+	// obac.setPassword(obac.userPass.get(obac.getUsername()));
+	// obac.setApplicationStatus((int) en.getValue().get(2));
+	// obac.setUserType((int) en.getValue().get(3));
+	// obac.setJoint((int) en.getValue().get(4));
+	// obac.accounts = (HashMap) en.getValue().get(5);
+	// bankAccounts.put(obac.getHashKey(), obac);
+	// }
+	// }
+	// } catch (Exception e) {
+	// // e.printStackTrace();
+	// break;
+	// }
+	// }
+	// } catch (IOException e) {
+	// // e.printStackTrace();
+	// System.out.println("\t\t\tDone passing in bankAccounts data");
+	// }
+	// }
 }
