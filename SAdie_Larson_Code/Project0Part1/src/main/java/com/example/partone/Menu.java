@@ -148,7 +148,6 @@ public class Menu {
 								b.updateBankAccounts(bankAccounts.get(currKey));
 								menuOption();
 								break;
-
 							case "3":
 								// change password
 								System.out.println("\t\t\tEnter new Password Case Sensitive:  ");
@@ -156,8 +155,7 @@ public class Menu {
 								for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
 									i.setValue(userP);
 								}
-								System.out.println(
-										tempU + "'s password successfully updated ");
+								System.out.println(tempU + "'s password successfully updated ");
 								loggy.info(tempU + " Changed their password");
 								b.updateBankAccounts(bankAccounts.get(currKey));
 								menuOption();
@@ -175,8 +173,7 @@ public class Menu {
 						}
 					} else {
 						System.out.println("\t\t\tError. Your account is not active. Please speak witih employee\n");
-						loggy.info(
-								tempU + " Tried to log in but account is not active");
+						loggy.info(tempU + " Tried to log in but account is not active");
 						repeatMain = true;
 					}
 				} else if (repeatMain) { // should break out of repeat loop and restart
@@ -222,7 +219,7 @@ public class Menu {
 							for (Entry<String, String> i : bankAccounts.get(currKey).userPass.entrySet()) {
 								tempU2 += (" " + i.getKey());
 							}
-							//Set account status
+							// Set account status
 							bankAccounts.get(currKey).setAccountStatus();
 							if (bankAccounts.get(currKey).getApplicationStatus() == 1) {
 								loggy.info(tempU + " Approved " + tempU2 + "'s account");
@@ -230,7 +227,7 @@ public class Menu {
 								loggy.info(tempU + " Denied " + tempU2 + "'s account");
 							}
 							System.out.println(bankAccounts.get(currKey).getHashKey());
-							
+
 							System.out.println("hi");
 							b.updateBankAccounts(bankAccounts.get(currKey));
 							menuOption();
@@ -411,6 +408,8 @@ public class Menu {
 					Account cl = new Account(bankAccounts, choice);
 					createKey();
 					cl.setHashKey(accountKey);
+					int temp = 0;
+					temp = accountKey;
 					bankAccounts.put(accountKey, cl);
 					b.insertBankAccounts(cl);
 					System.out.println();
@@ -419,23 +418,24 @@ public class Menu {
 						tempU += (" " + i.getKey());
 					}
 					loggy.info(tempU + " Creted an Account");
-					int temp = 0;
-					temp = cl.apply(bankAccounts, accountKey);
-					int temp2 = accountKey;
-					if (temp > 0) {
-						Account jo = new Account(bankAccounts, accountKey, temp);
+					int tempyy = cl.apply(bankAccounts, accountKey);
+					int temp2 = accountKey; // ucer current
+					if (tempyy > 0) {
+						Account jo = new Account(bankAccounts, accountKey, tempyy);
 						createKey();
 						String tempU2 = "";
 						for (Entry<String, String> i : jo.userPass.entrySet()) {
 							tempU2 += (" " + i.getKey());
 						}
 						bankAccounts.put(accountKey, jo);
-						loggy.info(tempU + " Creted an Joint Account with " + tempU2);
-						bankAccounts.get(temp2).setJoint(accountKey);
-						bankAccounts.get(temp).setJoint(accountKey);
-						jo.setHashKey(accountKey)
-						;
+						loggy.info(tempU + " Created an Joint Account with " + tempU2);
+						bankAccounts.get(tempyy).setJoint(accountKey); // the person you are joining
+						cl.setJoint(accountKey); // current user creation
+						jo.setHashKey(accountKey);
+						// System.out.println("this is jo" + jo);
 						b.insertBankAccounts(jo);
+						b.updateBankAccounts(cl);
+						b.updateBankAccounts(bankAccounts.get(tempyy));
 					}
 					repeatMain = true;
 					break;
@@ -550,6 +550,8 @@ public class Menu {
 	}
 
 	private static void checkUser() { // checks if the user exists
+		
+		userExists = false;
 		while (true) {
 			userN = sc.nextLine();
 			userN = userN.toLowerCase();
@@ -563,12 +565,15 @@ public class Menu {
 				// check if accountKey is in map
 				// System.out.println(en.getValue().getUsername());
 				for (Entry<String, String> en2 : en.getValue().userPass.entrySet()) {
-					if (userN.equals(en2.getKey())) {
-						currKey = en.getKey();
-						userExists = true;
-						break;
+					if (en.getValue().userPass.size() < 2) {
+						if (userN.equals(en2.getKey())) {
+							currKey = en.getKey();
+							userExists = true;
+							break;
+						}
 					}
 				}
+
 				if (userExists) {
 					break;
 				}

@@ -18,6 +18,7 @@ public class Account implements Client, Employee, SystemAdmin {
 	public HashMap<String, String> userPass = new HashMap<String, String>();
 	private String username;
 	private String password;
+	private int trigger;
 	// private String fName;
 	// private String lName;
 	// private int birthD;
@@ -132,7 +133,6 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	@Override
-
 	public String toString() {
 		String info = null;
 		if (userType == 1) {
@@ -167,8 +167,9 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	// ****************** SQL ********************//
-	public Account(int hashKey, int appStat, String usern, String userp, String usern2, String userp2, int userType,
-			int joint, float checking, float savings) {
+	public Account(int trigger, int hashKey, int appStat, String usern, String userp, String usern2, String userp2,
+			int userType, int joint, float checking, float savings) {
+		this.setTrigger(trigger);
 		this.accountKey = hashKey;
 		this.hashKey = hashKey;
 		this.applicationStatus = appStat;
@@ -186,8 +187,9 @@ public class Account implements Client, Employee, SystemAdmin {
 	}
 
 	// emplyee/sysad
-	public Account(int hashKey, int appStat, String usern, String userp, String usern2, String userp2, int userType,
-			int joint) {
+	public Account(int trigger, int hashKey, int appStat, String usern, String userp, String usern2, String userp2,
+			int userType, int joint) {
+		this.setTrigger(trigger);
 		this.accountKey = hashKey;
 		this.applicationStatus = appStat;
 		this.userPass.put(usern, userp);
@@ -215,7 +217,9 @@ public class Account implements Client, Employee, SystemAdmin {
 			username = sc.nextLine();
 			username = username.toLowerCase();
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) { // iterate through all members in
-				accountExists = username.equals(en.getValue().getUsername());
+				for (Entry<String, String> i : en.getValue().userPass.entrySet()) {
+					accountExists = username.equals(i.getKey());
+				}
 				if (accountExists) {
 					break;
 				}
@@ -316,13 +320,13 @@ public class Account implements Client, Employee, SystemAdmin {
 		String p2 = "";
 
 		for (Entry<String, String> en2 : bankAccounts.get(accountKey).userPass.entrySet()) {
-			u1 += " " + en2.getKey();
-			p1 += " " + en2.getValue();
+			u1 += "" + en2.getKey();
+			p1 += "" + en2.getValue();
 
 		}
 		for (Entry<String, String> en2 : bankAccounts.get(temp).userPass.entrySet()) {
-			u2 += " " + en2.getKey();
-			p2 += " " + en2.getValue();
+			u2 += "" + en2.getKey();
+			p2 += "" + en2.getValue();
 
 		}
 		this.userPass.put(u1, p1);
@@ -468,6 +472,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 		if (choice.equals("1")) {
 			accounts.put(accountCur, deposit(accountCur));
+			
 		} else if (choice.equals("2")) {
 			accounts.put(accountCur, withdraw(accountCur));
 		}
@@ -509,11 +514,14 @@ public class Account implements Client, Employee, SystemAdmin {
 		checkClientAction();
 		if (choice.equals("1")) {
 			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).deposit(accountCur));
+			Menu.b.updateBankAccounts(bankAccounts.get(joint));
 		} else if (choice.equals("2")) {
 			(bankAccounts.get(joint).accounts).put(accountCur, bankAccounts.get(joint).withdraw(accountCur));
+			Menu.b.updateBankAccounts(bankAccounts.get(joint));
 		}
 		if (choice.equals("3")) {
 			bankAccounts.get(joint).transfer(joint, hashKey, bankAccounts);
+			Menu.b.updateBankAccounts(bankAccounts.get(joint));
 		}
 	}
 
@@ -570,6 +578,7 @@ public class Account implements Client, Employee, SystemAdmin {
 					joint = Integer.parseInt(temp);
 					System.out.println("\t\t\tAccountkey being passed to joint " + joint);
 					bankAccounts.get(joint).setJoint(accountKeyPassed);
+					// Menu.b.updateBankAccounts(bankAccounts.get(joint));
 				}
 				// loggy.info(username + " made a joint account with " +
 				// bankAccounts.get(temp).getUsername());
@@ -616,7 +625,6 @@ public class Account implements Client, Employee, SystemAdmin {
 			} else { // positive value was entered
 				break;
 			}
-
 		}
 		loggy.info(username + " made a deposit of" + amount);
 		System.out.println("\t\t\tYour new account balance is: " + (accounts.get(acc) + amount));
@@ -661,6 +669,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		} else {
 			System.out.println("\t\t\tYou only have $0 in your account");
 		}
+		Menu.b.updateBankAccounts(this);
 		return (accounts.get(acc));
 	}
 
@@ -689,9 +698,9 @@ public class Account implements Client, Employee, SystemAdmin {
 		} else {
 			System.out.println(key);
 			System.out.println(bankAccounts.get(key).accounts.size());
-			if (bankAccounts.get(key).accounts.size() < 2) {
-				createAccounts(bankAccounts.get(key).accounts);
-			}
+			// if (bankAccounts.get(key).accounts.size() < 2) {
+			// createAccounts(bankAccounts.get(key).accounts);
+			// }
 			System.out.println("\t\t\tPlease enter account you want to transfer from");
 			System.out.println(bankAccounts.get(key).accounts);
 			String accountOn = "";
@@ -776,6 +785,8 @@ public class Account implements Client, Employee, SystemAdmin {
 			bankAccounts.get(key).accounts.put(accountOn, (bankAccounts.get(key).accounts.get(accountOn)) - amount);
 			System.out.println(bankAccounts.get(key).accounts);
 		}
+		Menu.b.updateBankAccounts(this);
+
 	}
 
 	@Override // need to do
@@ -915,7 +926,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 		System.out.println(bankAccounts.get(key).accounts);
 		System.out.println(bankAccounts.get(otherKey).accounts);
-
+		Menu.b.updateBankAccounts(this);
 	}
 
 	// ******************************************************//
@@ -1025,5 +1036,13 @@ public class Account implements Client, Employee, SystemAdmin {
 				System.out.println("\t\t\tInvalid. Please enter 1, 2, or 3");
 			}
 		}
+	}
+
+	public int getTrigger() {
+		return trigger;
+	}
+
+	public void setTrigger(int trigger) {
+		this.trigger = trigger;
 	}
 }

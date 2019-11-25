@@ -23,8 +23,9 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 		System.out.println(acc);
 		int j = 0;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO AccountU(a_accountKey, a_accountStatus, a_userName1, a_passWord1, a_userName2, a_password2, a_userType, a_joint) VALUES(?,?,?,?,?,?,?,?)");
-		//	ps.setInt(j, acc.getHashKey()); // need to add in trigger
+			PreparedStatement ps = conn.prepareStatement(
+					"INSERT INTO AccountU(a_accountKey, a_accountStatus, a_userName1, a_passWord1, a_userName2, a_password2, a_userType, a_joint) VALUES(?,?,?,?,?,?,?,?)");
+			// ps.setInt(j, acc.getHashKey()); // need to add in trigger
 			ps.setInt(j + 1, acc.getHashKey());
 			ps.setInt(j + 2, acc.getApplicationStatus());
 			int temp = 1;
@@ -47,14 +48,15 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 				temp++;
 			}
 			ps.setInt(j + 7, acc.getUserType());
+			System.out.println(acc.getJoint());
 			ps.setInt(j + 8, acc.getJoint());
 			ps.executeUpdate();
 			// ****************Joint************************//
-			if (acc.userPass.size() > 1 && acc.getUserType() == 1 ) {// joint account {
+			if (acc.userPass.size() > 1 && acc.getUserType() == 1) {// joint account {
 				ps = conn.prepareStatement("INSERT INTO AccountM(a_checking, a_savings) VALUES(?,?)");
 				ps.setFloat(1, acc.accounts.get("shared checking"));
 				ps.setFloat(2, acc.accounts.get("shared savings"));
-	//			ps.setInt(3, acc.getHashKey());
+				// ps.setInt(3, acc.getHashKey());
 				ps.executeUpdate();
 			}
 			// ****************account with money************************//
@@ -62,7 +64,7 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 				ps = conn.prepareStatement("INSERT INTO AccountM(a_checking, a_savings) VALUES(?,?)");
 				ps.setFloat(1, acc.accounts.get("checking"));
 				ps.setFloat(2, acc.accounts.get("savings"));
-		//		ps.setInt(3, acc.getHashKey());
+				// ps.setInt(3, acc.getHashKey());
 				ps.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -81,13 +83,17 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 			PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM AccountM WHERE a_pKey_fk=?");
 			ps2.setInt(1, a_accountKey);
 			ResultSet rs2 = ps2.executeQuery();
-			while (rs.next() && rs2.next()) {
-				acc = new Account(rs.getInt("a_accountKey"), rs.getInt("a_accountStatus"), rs.getString("a_userName1"),
-						rs.getString("a_passWord1"), rs.getString("a_userName2"), rs.getString("a_passWord2"),
-						rs.getInt("a_userType"), rs.getInt("a_joint"), rs2.getFloat("a_checking"),
-						rs2.getFloat("a_savings"));
-				System.out.println("Printing this:" + acc);
+			while (rs.next()) {
+				if (rs2.next()) {
+					acc = new Account(rs.getInt("a_pKey"), rs.getInt("a_accountKey"), rs.getInt("a_accountStatus"),
+							rs.getString("a_userName1"), rs.getString("a_passWord1"), rs.getString("a_userName2"),
+							rs.getString("a_passWord2"), rs.getInt("a_userType"), rs.getInt("a_joint"),
+							rs2.getFloat("a_checking"), rs2.getFloat("a_savings"));
+
+					System.out.println("Printing this:" + acc);
+				}
 			}
+			System.out.println("IDK");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -104,17 +110,19 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 			ResultSet rs2 = ps2.executeQuery();
 			while (rs.next()) {
 				if (rs.getInt("a_userType") == 1) {
-					rs2.next(); // clients
-					Account acc = new Account(rs.getInt("a_accountKey"), rs.getInt("a_accountStatus"),
-							rs.getString("a_userName1"), rs.getString("a_passWord1"), rs.getString("a_userName2"),
-							rs.getString("a_passWord2"), rs.getInt("a_userType"), rs.getInt("a_joint"),
-							rs2.getFloat("a_checking"), rs2.getFloat("a_savings"));
+					if(rs2.next()) { // clients
+					Account acc = new Account(rs.getInt("a_pKey"), rs.getInt("a_accountKey"),
+							rs.getInt("a_accountStatus"), rs.getString("a_userName1"), rs.getString("a_passWord1"),
+							rs.getString("a_userName2"), rs.getString("a_passWord2"), rs.getInt("a_userType"),
+							rs.getInt("a_joint"), rs2.getFloat("a_checking"), rs2.getFloat("a_savings"));
 					bankAccounts.put(rs.getInt("a_accountKey"), acc); // bankAccounts.add(new Account(add in from
-				} // insert);
-				else {// employee/sysad
-					Account acc = new Account(rs.getInt("a_accountKey"), rs.getInt("a_accountStatus"),
-							rs.getString("a_userName1"), rs.getString("a_passWord1"), rs.getString("a_userName2"),
-							rs.getString("a_passWord2"), rs.getInt("a_userType"), rs.getInt("a_joint"));
+					// insert);
+					}
+				} else {// employee/sysad
+					Account acc = new Account(rs.getInt("a_pKey"), rs.getInt("a_accountKey"),
+							rs.getInt("a_accountStatus"), rs.getString("a_userName1"), rs.getString("a_passWord1"),
+							rs.getString("a_userName2"), rs.getString("a_passWord2"), rs.getInt("a_userType"),
+							rs.getInt("a_joint"));
 					bankAccounts.put(rs.getInt("a_accountKey"), acc); // bankAccounts.add(new Account(add in from
 				}
 			}
@@ -131,12 +139,12 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 	public void updateBankAccounts(Account acc) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps;
-			System.out.println(acc);
 			if (acc.getUserType() == 1) {// client
 				ps = conn.prepareStatement(
-						"UPDATE AccountU SET a_passWord1=?, a_passWord2=?, a_accountStatus=? WHERE a_accountKey=?");
+						"UPDATE AccountU SET a_passWord1=?, a_passWord2=?, a_accountStatus=?, a_joint=? WHERE a_accountKey=?");
 				ps.setInt(3, acc.getApplicationStatus());
-				ps.setInt(4, acc.getHashKey());
+				ps.setInt(4, acc.getJoint());
+				ps.setInt(5, acc.getHashKey());
 				int temp = 0;
 				for (Entry<String, String> i : (acc.userPass).entrySet()) {
 					if (temp == 0) {
@@ -151,7 +159,6 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 				}
 				ps.executeUpdate();
 			} else {// system/emp
-				System.out.println("hello");
 				ps = conn.prepareStatement("UPDATE AccountU SET a_passWord1=? WHERE a_accountKey=?");
 				ps.setInt(2, acc.getHashKey());
 				int temp = 0;
@@ -169,13 +176,13 @@ public class BankAccountsDaoImpl implements BankAccountsDao {
 				ps = conn.prepareStatement("UPDATE AccountM SET a_checking=?,a_savings=? WHERE a_pKey_fk=?");
 				ps.setFloat(1, acc.accounts.get("checking"));
 				ps.setFloat(2, acc.accounts.get("savings"));
-				ps.setInt(3, acc.getHashKey());
+				ps.setInt(3, acc.getTrigger());
 				ps.executeUpdate();
 			} else if (acc.getUserType() == 1) {
 				ps = conn.prepareStatement("UPDATE AccountM SET a_checking=?,a_savings=? WHERE a_pKey_fk=?");
 				ps.setFloat(1, acc.accounts.get("shared checking"));
 				ps.setFloat(2, acc.accounts.get("shared savings"));
-				ps.setInt(3, acc.getHashKey());
+				ps.setInt(3, acc.getTrigger());
 				ps.executeUpdate();
 			}
 		} catch (SQLException e) {
