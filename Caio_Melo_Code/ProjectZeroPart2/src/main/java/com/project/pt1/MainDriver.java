@@ -352,18 +352,28 @@ public class MainDriver {
 	public static void displayMain() {
 
 		try {
-			System.out.println(" █████╗ ████████╗██╗      █████╗ ███████╗    ██████╗  █████╗ ███╗   ██╗██╗  ██╗");
-			TimeUnit.MILLISECONDS.sleep(300);
-			System.out.println("██╔══██╗╚══██╔══╝██║     ██╔══██╗██╔════╝    ██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝");
-			TimeUnit.MILLISECONDS.sleep(300);
-			System.out.println("██╔══██╗╚══██╔══╝██║     ██╔══██╗██╔════╝    ██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝");
-			TimeUnit.MILLISECONDS.sleep(300);
-			System.out.println("███████║   ██║   ██║     ███████║███████╗    ██████╔╝███████║██╔██╗ ██║█████╔╝");
-			TimeUnit.MILLISECONDS.sleep(300);
-			System.out.println("██╔══██║   ██║   ██║     ██╔══██║╚════██║    ██╔══██╗██╔══██║██║╚██╗██║██╔═██╗ ");
-			TimeUnit.MILLISECONDS.sleep(300);
-			System.out.println("██║  ██║   ██║   ███████╗██║  ██║███████║    ██████╔╝██║  ██║██║ ╚████║██║  ██╗");
-			TimeUnit.MILLISECONDS.sleep(1000);
+			System.out.println();
+			System.out.println("         .8.    8888888 8888888888 8 8888                  .8.            d888888o.             8 888888888o          .8.          b.             8 8 8888     ,88' ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("        .888.         8 8888       8 8888                 .888.         .`8888:' `88.           8 8888    `88.       .888.         888o.          8 8 8888    ,88'  ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("       :88888.        8 8888       8 8888                :88888.        8.`8888.   Y8           8 8888     `88      :88888.        Y88888o.       8 8 8888   ,88'   ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("      . `88888.       8 8888       8 8888               . `88888.       `8.`8888.               8 8888     ,88     . `88888.       .`Y888888o.    8 8 8888  ,88'    ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("     .8. `88888.      8 8888       8 8888              .8. `88888.       `8.`8888.              8 8888.   ,88'    .8. `88888.      8o. `Y888888o. 8 8 8888 ,88'     ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("    .8`8. `88888.     8 8888       8 8888             .8`8. `88888.       `8.`8888.             8 8888888888     .8`8. `88888.     8`Y8o. `Y88888o8 8 8888 88'      ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("   .8' `8. `88888.    8 8888       8 8888            .8' `8. `88888.       `8.`8888.            8 8888    `88.  .8' `8. `88888.    8   `Y8o. `Y8888 8 888888<       ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println("  .8'   `8. `88888.   8 8888       8 8888           .8'   `8. `88888.  8b   `8.`8888.           8 8888      88 .8'   `8. `88888.   8      `Y8o. `Y8 8 8888 `Y8.     ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println(" .888888888. `88888.  8 8888       8 8888          .888888888. `88888. `8b.  ;8.`8888           8 8888    ,88'.888888888. `88888.  8         `Y8o.` 8 8888   `Y8.   ");  
+			TimeUnit.MILLISECONDS.sleep(200);
+			System.out.println(".8'       `8. `88888. 8 8888       8 888888888888 .8'       `8. `88888. `Y8888P ,88P'           8 888888888P .8'       `8. `88888. 8            `Yo 8 8888     `Y8. \n");
+			TimeUnit.MILLISECONDS.sleep(1000);	
+
 
 		} catch (InterruptedException e) {
 
