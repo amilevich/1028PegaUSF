@@ -199,6 +199,7 @@ public class Customer {
 			if (this.getJointStatus() == jStatus.NOT_JOINT) {
 				System.out.println("You do not currently have a joint bank account.");
 				MainDriver.promptContinue();
+				customerPrompt();
 			} else {
 				transferFunds();
 			}
@@ -358,6 +359,7 @@ public class Customer {
 			System.out.println("You currently have no open joint accounts.");
 			MainDriver.promptContinue();
 			customerPrompt();
+			
 		} else {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Which account would you like to transfer funds?");
