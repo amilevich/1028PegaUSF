@@ -6,19 +6,42 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class Employee implements Serializable {
-	/**
-	 * 
-	 */
+	
+	
+	 Scanner input = new Scanner(System.in);
+	
 	private static final long serialVersionUID = 7497019669544851685L;
 	//declare private employee variables
-	private String user= "leroy";
-	private String password="leroy";
-	private String fName;
-	private String lName;
-	private int employeeId;
+	private String user;
+	private String password;
 	
+	
+//	public void employeeSign() {
+//		
+//		System.out.println("Enter Employee id:  ");
+//		String tempUser = input.next();
+//	
+//		
+//		 setUser(input.next(tempUser));
+//		 getUser();
+//
+//		System.out.println("Enter Employee password:  ");
+//		String temPass = input.next();
+//		setPassword(temPass);
+//		getPassword();
+//		if (tempUser.equals("thor") && temPass.equals("thor")) {
+//			employeeSign();
+//		} else {
+//			System.out.println("Employee user and password are incorect");
+//		}
+//
+//		// Employee menu asking Employee to choose
+//
+//	}
+//	
 	//Create a constructor
 	public Employee() {
 		super();
@@ -39,20 +62,7 @@ public class Employee implements Serializable {
 		return password;
 	}
 	
-	//This method retrieves employee first name
-	public String getfName() {
-		return fName;
-	}
-	//This method retrieves employee last name
-	public String getlName() {
-		return lName;
-	}
 	
-	//This method retrieves employee id
-	public int getEmployeeId() {
-		return employeeId;
-		
-	}
 	
 	
 	//This method set the employee user name
@@ -63,18 +73,7 @@ public class Employee implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	//This method set the employee first name
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	//This method set the employee last name
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
-	//This method set the employee id
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
+	
 	
 	//creating method that read and write file
 		public static void writeEmployee(String name, Object object) {
