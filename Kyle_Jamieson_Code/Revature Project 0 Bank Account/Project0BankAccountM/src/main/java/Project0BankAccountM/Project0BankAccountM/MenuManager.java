@@ -174,6 +174,9 @@ public class MenuManager
 						if(customer.getPassword().contentEquals(password))
 						{
 							bValid = true;
+							m_curUser = customer;
+							AccountDaoImpt adao = new AccountDaoImpt();
+							m_curAccount = adao.selectAccountByNumber(m_curUser.getAccountNumber());
 							m_menuState = MENUSTATE.CUSTOMER;
 						}
 						else
@@ -202,6 +205,7 @@ public class MenuManager
 					{
 						if(employ.getPassword().contentEquals(password) && employ.isEmployee())
 						{
+							m_curUser = employ;
 							bValid = true;
 							m_menuState = MENUSTATE.EMPLOYEE;
 						}
@@ -230,6 +234,7 @@ public class MenuManager
 					{
 						if(admin.getPassword().contentEquals(password) && admin.isAdmin())
 						{
+							m_curUser = admin;
 							bValid = true;
 							m_menuState = MENUSTATE.ADMIN;
 						}
@@ -552,7 +557,6 @@ public class MenuManager
 			m_menuState = MENUSTATE.LOG_IN;
 			return;
 		}
-		System.out.println("current user index = " + m_curUser);
 		System.out.println("Welcome " + m_curUser.getFirstName() + " " + m_curUser.getLastName() + ", Make your selection");
 		if(null != m_curAccount)
 		{
@@ -608,18 +612,18 @@ public class MenuManager
 				System.out.println("4)  Withdrawal from savings");
 				System.out.println("5)  Deposit to savings");
 				System.out.println("6)  Transfer from savings");
-				System.out.println("7)  Transfer to savings");
-				System.out.println("8)  Withdrawal from checking");
-				System.out.println("9)  Deposit to checking");
-				System.out.println("10) Transfer from checking");
-				System.out.println("11) Transfer to checking");
-				System.out.println("12) Change name on account");
-				System.out.println("13) Close Account");
-				System.out.println("14) Delete User");
-				System.out.println("15) Freeze Account");
-				System.out.println("16) Unfreeze Account");
-				System.out.println("17) Logout");
-				System.out.println("18) Exit\n");
+				System.out.println("7)  Withdrawal from checking");
+				System.out.println("8)  Deposit to checking");
+				System.out.println("9) Transfer from checking");
+				System.out.println("10) Change name on account");
+				System.out.println("11) Close Account");
+				System.out.println("12) Delete User");
+				System.out.println("13) Freeze Account");
+				System.out.println("14) Unfreeze Account");
+				System.out.println("15) Logout");
+				System.out.println("16) Exit\n");
+//				System.out.println("7)  Transfer to savings");
+//				System.out.println("11) Transfer to checking");
 				System.out.print("Selection: ");
 
 				int option = this.getIntInput();
@@ -654,58 +658,47 @@ public class MenuManager
 					case 6:
 						this.transferFromSave();
 					break;
-					
-					//transfer to savings
-					case 7:
-						this.transferToSave();
-					break;
-					
 					//withdrawal from checking
-					case 8:
+					case 7:
 						this.withdrawCheck();
 					break;
 					
 					//deposit to checking
-					case 9:
+					case 8:
 						this.depositCheck();
 					break;
 					
 					//transfer from checking
-					case 10:
+					case 9:
 						this.transferFromCheck();
 					break;
-					
-					//transfer to checking
-					case 11:
-						this.transferToCheck();
-					break;
-					
 					//change name
-					case 12:
+					case 10:
 						this.changeName();
 					break;
 					
 					//close account
-					case 13:
+					case 11:
 						this.closeAccount();
 					break;
 					
-					case 14:
+					// delete a user
+					case 12:
 						deleteUser();
 					break;
 					
 					//Freeze Account
-					case 15:
+					case 13:
 						this.freezeAccount();
 					break;
 					
 					//Unfreeze account
-					case 16:
+					case 14:
 						this.unfreezeAccount();
 					break;
 					
 					//logout
-					case 17:
+					case 15:
 						logOut();
 					break;
 					
@@ -713,6 +706,18 @@ public class MenuManager
 					case 18:
 						exit();
 					break;
+					/*					
+					//transfer to savings
+					case 7:
+						this.transferToSave();
+					break;
+*/					
+					/*					
+					//transfer to checking
+					case 11:
+						this.transferToCheck();
+					break;
+*/					
 					
 					default:
 						System.out.println("ERROR: invalid option. try again");
@@ -1632,7 +1637,7 @@ public class MenuManager
 			for(int i = 0; i < accounts.size(); i++)
 			{
 				System.out.println("Account Number: " + accounts.get(i).getAccountNumber());
-				System.out.println("Name: " + accounts.get(i).getFirstName1() + accounts.get(i).getLastName1());
+				System.out.println("Name: " + accounts.get(i).getFirstName1() + ' ' + accounts.get(i).getLastName1());
 				if(accounts.get(i).getFlag(Account.FLAGS.JOINT))
 					System.out.println("Joint holder: " + accounts.get(i).getFirstName2() + accounts.get(i).getLastName2());
 				System.out.println("Savings: " + accounts.get(i).getSaveBalance());
@@ -1645,7 +1650,8 @@ public class MenuManager
 					System.out.println("Account has been closed");
 				if(accounts.get(i).getFlag(Account.FLAGS.FROZEN))
 					System.out.println("Account has been FROZEN");
-				
+			
+				System.out.println("\n---------------------------------------\n");
 			}
 			
 		}
