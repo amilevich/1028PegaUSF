@@ -1,5 +1,7 @@
 package com.project.saintsbank;
 
+import com.project.saintsdao.SaintsBankCImp;
+
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -98,53 +100,62 @@ public class SaintsBankMenu {
 			return 0;
 		}
 	}
-	public int menuChoiceAccount(int mode) {
+	public int menuChoiceAccount(int mode, int CustId) {
 		 int acctChoice1 = 0;
+		 int count = 1;
 		 
 		 Employee blue = new Employee();
 		 Account changeA = new Account();
 		 Customer send = new Customer();
-		
+
+		 if(mode == 3 || mode == 1) {
 		 System.out.println("********************************");
 		 System.out.println("Choose one of the Following:");
-		 System.out.println("1.Deposit");
-		 System.out.println("2.Withdraw");
-		 System.out.println("3.transfer");
-		 System.out.println("4.View balance");
-		 System.out.println("7.Exit");
-		 if(mode == 2) {
-		  acctChoice1 = blue.employMenuExtend();
-		 }
-		 else {
-			acctChoice1 = info.nextInt();
-		 }
+		 System.out.println("1. Deposit");
+		 count++;
+		 System.out.println("2. Withdraw");
+		 count++;
+		 System.out.println("3. Transfer");
+		 count++;
+		 System.out.println("4. View balance");
+		 count++;
+		 System.out.println("7 .Exit");
+		    if(mode == 3) {
+		     acctChoice1 = blue.employMenuExtend(count);
+		    }
+		   else {
+			 acctChoice1 = info.nextInt();
+		    }
 		 
-//		 Scanner info2 = new Scanner(System.in);
-//		 acctChoice1 = info2.nextInt();
-//	
-			
+		 }
+		 else if (mode == 2) {
+			 System.out.println("4. ViewBalance");
+			 count++;
+			 acctChoice1 = blue.employMenuExtend(count);
+		 }
+
+		
 		switch(acctChoice1){
 			case 1: 
 				 System.out.println("Ready for Deposit");
-				 changeA.deposit();
+				 changeA.deposit(CustId);
 				 break;
 			case 2:
 				 System.out.println("Ready for withdraw");
-				 changeA.withdraw();
+				 changeA.withdraw(CustId);
 				 break;
 			case 3: 
 				System.out.println("Ready for transfer");
+				changeA.transferBalance(CustId);
 				break;
 			case 4:
 				System.out.println("Ready for to view balance");
-				//Customer.retrieveAccount("./2Customer.txt", 2);
-				Employee.displayInfo(send, 2);
-				menuChoiceAccount(1);
+				changeA.viewBalance(CustId);
 				break;
 			case 5:
 				System.out.println("Ready to approve account");
-				Customer.retrieveAccount("./newCustomer.txt", 1);
-				blue.approval(blue);
+				//Customer.retrieveAccount("./newCustomer.txt", 1);
+				blue.approval();
 				break;
 			case 6:
 				System.out.println("Ready for cancel account");
@@ -176,32 +187,20 @@ public class SaintsBankMenu {
 		if(ckey == 1) {
 			Customer cLogin = new Customer();
 			cLogin.customerLogin(tempid);
-			EntryLoog.info("Customer Attemping to log in");
+			EntryLoog.info("Customer" + tempid+" Attemping to log in");
 		}
 		
 		else if(ckey == 2) {
 			Employee elogin = new Employee();
 			elogin.elogin(tempid);
-			EntryLoog.info("Employee Attemping to log in");
+			EntryLoog.info("Employee "+ tempid +" Attemping to log in");
 			}
 		
 		else if(ckey == 4) {
-			System.out.println("***************************");
-			System.out.println("******ADMIN LOGIN**********");
-			System.out.println("***************************");
-			System.out.println("\n\n");
-	
-			System.out.println("Please enter your Username?");
-			user = info.nextLine();
-			
-			if(user != " ") {
-			System.out.println("Please enter your password?");
-			code = info.nextLine();
-			}
-			else
-				invalidC();
-			}
-		
+			SaintsBankAdmin aLog = new SaintsBankAdmin();
+			aLog.alogin(tempid);
+			EntryLoog.info("Admin "+ tempid +" Attemping to log in");
+		   }
 		else {
 			invalidC();
 			loginInput(0);

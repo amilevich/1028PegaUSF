@@ -11,6 +11,8 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 
+import com.project.saintsdao.SaintsBankCImp;
+
 public class Employee extends Customer {
 	
 	/**
@@ -22,9 +24,11 @@ public class Employee extends Customer {
 
 	SaintsBankMenu emp1 = new SaintsBankMenu();
 	
-	private int eUserId = 534;
-	private String eUser = "bossmoves";
-	private String ePassword = "saints2";
+	 Account addin = new Account();
+	
+	private int eUserId;
+	private String eUser;
+	private String ePassword;
 	
 
 	
@@ -47,75 +51,13 @@ public class Employee extends Customer {
 		this.ePassword = ePassword;
 	}
 	public static void displayInfo(Customer details, int lvl) {
-	   // Customer details = new Customer();
-		int tempId = 0, tempAcct =0;
-		boolean tempApp= false;
-		float tempBal = 0;
-		String tempFirst = null, tempLast = null, tempUser = null;
-		String finaliD, asps, finalBal = null, finAcct =  null;
-		
-		if (lvl == 1) {
-	     tempId= client2.get(0).getCustomerID();
-	     tempFirst = client2.get(0).getFirstName();
-	     tempLast = client2.get(0).getLastName();
-	     tempUser = client2.get(0).getcUserName();
-	     tempApp = client2.get(0).isApprovalStatus();
-	     tempAcct = client2.get(0).getAccountNumber();
-	     tempBal = client2.get(0).getAccountBalance();
-	    
-	     finaliD = Integer.toString(tempId);
-	    //details.update();
-	    //details.isApprovalStatus();
-//	    String asps = Boolean.toString(details.isApprovalStatus());
-//	    String finalBal = Float.toString(details.getAccountBalance());
-//	    String finAcct = Integer.toString(details.getAccountNumber());
-//	    
-	     asps = Boolean.toString(details.isApprovalStatus());
-	     finalBal = Float.toString(details.getAccountBalance());
-	     finAcct = Integer.toString(details.getAccountNumber());
-	    
-	    Customer.client3.add(finaliD);
-	    Customer.client3.add(client2.get(0).getcUserName());
-	    Customer.client3.add(client2.get(0).getcPassword());
-	    Customer.client3.add(client2.get(0).getFirstName());
-	    Customer.client3.add(client2.get(0).getLastName());
-	    Customer.client3.add(asps);
-	    Customer.client3.add(finalBal);
-	    Customer.client3.add(finAcct);
-		}
-		if(lvl == 2) {
-			 tempId= client2.get(0).getCustomerID();
-			 finaliD = Integer.toString(tempId);
-			 asps = Boolean.toString(client2.get(0).isApprovalStatus());
-		     finalBal = Float.toString(client2.get(0).getAccountBalance());
-		     finAcct = Integer.toString(client2.get(0).getAccountNumber());
-		    
-		    Customer.client3.add(finaliD);
-		    Customer.client3.add(client2.get(0).getcUserName());
-		    Customer.client3.add(client2.get(0).getcPassword());
-		    Customer.client3.add(client2.get(0).getFirstName());
-		    Customer.client3.add(client2.get(0).getLastName());
-		    Customer.client3.add(asps);
-		    Customer.client3.add(finalBal);
-		    Customer.client3.add(finAcct);
-			
-		}
-		if(lvl == 3) {
-		tempId= client2.get(0).getCustomerID();
-		 finaliD = Integer.toString(tempId);
-		 asps = Boolean.toString(client2.get(0).isApprovalStatus());
-	     finalBal = Float.toString(client2.get(0).getAccountBalance());
-	     finAcct = Integer.toString(client2.get(0).getAccountNumber());
-	    
-	    Customer.client3.set(6, finalBal);
 	 
-	  
-		}
-	    System.out.println("Customer ID = " + tempId + "\nUsername = " + tempUser + "\nFirst name = " + tempFirst + "\nLast name = " + tempLast + "\nAccount Number: " + finAcct + "\nAccount Balance: " + finalBal + "\n\n\n");
-	   
-	    details.update();
 	 }
+	/*
+	 * Login for Employee account. This mpethod will check the input information against the 
+	 */
 	 public void elogin(int eKey) {
+		int efoundId = 0;
 		
 		 
 		 System.out.println("***************************");
@@ -123,17 +65,21 @@ public class Employee extends Customer {
 			System.out.println("***************************");
 			System.out.println("\n\n");
 			
-			
-			if(eKey == geteUserId()) {
+			SaintsBankCImp empl = new SaintsBankCImp();
+			//Searching the employee table for an employee id
+			  efoundId = empl.searchId(eKey, 2);
+					 
+			if(eKey == efoundId) {
+			 Employee ebankUser = empl.findByEmployee(eKey);
 				System.out.println("Please enter your Username?");
 				 String user = emp1.info.nextLine();
-				if(user.equals(eUser) == true) {
+				if(user.equals(ebankUser.geteUser()) == true) {
 					System.out.println("Please enter your Password?");
 						String ePass = emp1.info.nextLine();
-						if(ePass.equals(ePassword) == true) {
+						if(ePass.equals(ebankUser.ePassword) == true) {
 							System.out.println("Employee login Successful");
 							EntryLoog.info("Employee" + geteUserId() + "has logged in");
-							 emp1.menuChoiceAccount(2);
+							 emp1.menuChoiceAccount(2, eKey);
 						}// end of password check
 						else {
 							System.out.println("Password is incorrect");
@@ -142,114 +88,85 @@ public class Employee extends Customer {
 				}// end of username check
 					else {
 						System.out.println("Username doesn't match id ");
+						emp1.menuLevelOne();
 					}// end of username else
 				
 					
 			}// end of userid check
 			else{
 				System.out.println("UserID doesn't match");
+				emp1.menuLevelOne();
 			}
 	
 		 
 	 } 
 	
-	
-	 public boolean approval(Customer process) {
-		// String admChoice = " ";
+	// Process for approving the account for customer
+	 public boolean approval() {
+		int  admChoice1 = 0;
 		 boolean cause = false;
 		 
-		// Account createC = new Account();
+		 SaintsBankCImp slin = new SaintsBankCImp();
 		 
-		
 		 
-		 System.out.println("Account is Currently Pending"); 
+		 admChoice1 = pullAccountsPending();
+		 
+		// Customer process = new Customer();
+		 
+		Customer process = slin.findByCustomerId(admChoice1, 1);
+
+		 viewAccountInfo(process, 1);           
+		 
+		 System.out.println("********Account is Currently Pending*********"); 
 		 System.out.println("\n\n Will you like to continue with approval of this account? Y/N");
 		 String admChoice = scan.info.next();
 		 
 		 if(admChoice.equals("Y") || admChoice.equals("y")) {
 			 int tempAct = generateAcct();
 			 cause = true;
-			  String finalCause = Boolean.toString(cause);
+			  //String finalCause = Boolean.toString(cause);
 			  process.setApprovalStatus(cause);
-			  process.setAccountBalance(500);
-			  process.setAccountNumber(tempAct);
+			  addin.setAccountBalance(500);
+			  addin.setAccountNumber(tempAct);
+			  addin.setAccountType("Single");
+			 
+			  // adding the account number and balance to user account
+			  slin.FinSetUpNew(admChoice1,tempAct, 500, "Single", 1);
 
-			 System.out.println("The account was Approved !! " + "Your new account number is "  + tempAct);
-			 EntryLoog.info("Employee has Approved a new account");
-			 displayInfo(process, 1);
+			 System.out.println("ACCOUNT APPROVED!! " + "Customer # " + admChoice1 + " new account number is "  + tempAct);
+			 EntryLoog.info("Employee " + eUserId + " has approved a new account for user" + admChoice);
+			 //displayInfo(process, 1);
+			 viewAccountInfo(process, 2);
+			 emp1.menuChoiceAccount(2, admChoice1);
 			 return cause;
 		 }
 		 else if(admChoice.equals("N") || admChoice.equals("n")) {
-			 System.out.println("The account was not approved");
+			 System.out.println("*****USERID " + admChoice + "'s ACCOUNT WAS NOT APPROVED");
+			 emp1.menuChoiceAccount(2, admChoice1);
 			 cause = false;
 			 return cause;
 		 }
 		 else {
 			 System.out.println("invalid choice. Please try again");
+			 approval();
 			 return false;
 		 }
 	}
-	 
-	 public int employMenuExtend() {
+	 // Extended menu for admins and employees
+	 public int employMenuExtend(int cCount) {
 		 int choice;
 		 
-		 System.out.println("5)approval");
-		 System.out.println("6)cancel");
+		
+		 System.out.println("5. APPROVAL");
+		 cCount++;
+		 System.out.println("6. CANCEL");
 		 
 		  choice = scan.info.nextInt();
 		 
 		return choice;
 	 }
 
-//	 public static void retrieveAccount () {
-//		 Customer newAcct = new Customer();
-//		 
-//		 Employee l = new Employee();
-//		 String filename = "./newCustomer.txt";
-//		 
-//		Object newC  = readObject(filename);
-//		
-//		System.out.println("new: " + newC);
-//		
-//		String newCust = newC.toString();
-//
-//		String custSplit[] = newCust.split(",");
-//	
-//		
-//		for(int i = 0 ; i < custSplit.length ; i++) {
-//			
-//			System.out.println(custSplit[i]);
-//			StringBuilder build = new StringBuilder(custSplit[i]);
-//			build.deleteCharAt(0);
-//			custSplit[i] = build.toString();
-//		}
-//		
-//		//Parsing the String from the file for the ID;
-//		//String y  = custSplit[0];
-//		//StringBuilder build = new StringBuilder(y);
-//		//build.deleteCharAt(0);
-//		
-//		String y = custSplit[0];
-//		System.out.println(y);
-//		int g =Integer.parseInt(y);
-//		
-//		StringBuilder buildNb = new StringBuilder(custSplit[5]);
-//		buildNb.deleteCharAt(5);
-//		String t = buildNb.toString();
-//		System.out.println(t);
-//		boolean reslt = Boolean.parseBoolean(t);
-//		
-//		newAcct.setCustomerID(g);
-//		newAcct.setcUserName(custSplit[1]);
-//		newAcct.setcPassword(custSplit[2]);
-//		newAcct.setFirstName(custSplit[3]);
-//		newAcct.setLastName(custSplit[4]);
-//		newAcct.setApprovalStatus(reslt);
-//	
-//		//l.approval(newAcct);
-//		
-//		
-//		 }
+	 	//generates account number not in the database
 		public int generateAcct() {
 			
 
@@ -257,9 +174,9 @@ public class Employee extends Customer {
         	
         	int cusId = genId.nextInt(((8000000-7000000)+ 1 ) + 7000000);
         	
-        	//setID(cusId);
         	
-        	System.out.println("Your new id is " + cusId);
+        	
+        	System.out.println("NEW ACCOUNT NUMBER  : " + cusId);
         	
         	return cusId; 
 	 }
@@ -267,10 +184,7 @@ public class Employee extends Customer {
     		//String value[] = new String[6];
     		try(ObjectOutputStream goOut = new ObjectOutputStream(new FileOutputStream(filename))){
     			
-//    			for(int i = 0 ; i < name.length; i++ ) {
-//    			outStream.write
-//    			(name[i]);
-//    			}
+
     		goOut.writeObject(obj);
     		}catch(IOException io) {
     			io.printStackTrace();
@@ -292,4 +206,51 @@ public class Employee extends Customer {
     		return 0;
     	}
 
+    	// Will Print the list of all the new accounts pending approval
+    	// For the Employee and admin only
+    	public int pullAccountsPending() {
+    		int choiceId;
+    		
+    	//List<Integer>valuesId =
+    		
+    	SaintsBankCImp sfia = new SaintsBankCImp();
+    	
+    	List<Integer>valuesId = sfia.searchWApproval();
+    	
+    	System.out.println("*****USER ACCOUNTS CURRENTLY PENDING*****");
+    	
+    	for(int  x: valuesId) {
+    		System.out.println("UserID : " +  x);
+    	}
+    		
+    	System.out.println("Select the UserID from Above to contiune the process: ");
+    	 choiceId = scan.info.nextInt();
+    	
+    	
+			return choiceId;
+    		
+    	}
+
+    	public int viewAccountInfo(Customer info, int option) {
+    		
+    		System.out.print("*********Customer Info****************");
+    		
+    		System.out.println("\nUsername: " + info.getcUserName());
+    		System.out.println("Customer Id: " + info.getCustomerID());
+    		System.out.println("First Name: " + info.getFirstName());
+    		System.out.println("Last Name: " + info.getLastName());
+    		
+    		
+    		if(option == 2) {
+    			
+    			System.out.println("Account Number: " + addin.getAccountNumber());
+    			System.out.println("Account Type: " + addin.getAccountType());
+    			System.out.println("Account Balance:" + addin.getAccountBalance());
+    			
+    		}
+    		System.out.print("*********END OF INFO****************");
+    		System.out.println("\n\n");
+			return 0;
+    		
+    	}
 }

@@ -1,0 +1,171 @@
+2019-11-23 17:44:30 INFO  SaintsBankMenu:170 - Id input Attempt
+2019-11-23 17:45:09 INFO  Customer:246 - New Customer 36 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-23 18:03:37 INFO  Customer:246 - New Customer 42 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-23 18:06:16 INFO  Customer:246 - New Customer 111 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-23 18:09:42 INFO  Customer:246 - New Customer 123 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-23 19:43:13 INFO  Customer:247 - New Customer 315 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-23 19:44:36 INFO  Customer:247 - New Customer 69 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-23 19:45:57 INFO  Customer:247 - New Customer 244 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-24 16:07:14 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:07:21 INFO  SaintsBankMenu:181 - Customer Attemping to log in
+2019-11-24 16:07:55 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:08:00 INFO  SaintsBankMenu:181 - Customer Attemping to log in
+2019-11-24 16:09:07 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:09:12 INFO  SaintsBankMenu:181 - Customer Attemping to log in
+2019-11-24 16:09:34 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:09:39 INFO  SaintsBankMenu:181 - Customer Attemping to log in
+2019-11-24 16:11:53 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:11:59 INFO  SaintsBankMenu:181 - Customer Attemping to log in
+2019-11-24 16:12:55 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:14:18 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 16:26:28 INFO  Customer:247 - New Customer 332 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-24 16:42:11 INFO  Customer:260 - New Customer 0 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-24 16:45:03 INFO  Customer:260 - New Customer 87 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-24 16:46:41 INFO  Customer:260 - New Customer 131 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-24 17:23:23 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 17:23:30 INFO  SaintsBankMenu:187 - Employee Attemping to log in
+2019-11-24 17:23:40 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 17:53:18 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 17:56:57 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:04:15 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:05:29 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:05:50 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:06:51 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:07:08 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:10:59 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:12:04 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:12:16 INFO  SaintsBankMenu:187 - Employee Attemping to log in
+2019-11-24 18:13:16 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:16:02 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 18:16:18 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:06:48 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:07:02 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:09:11 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:09:34 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:10:55 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:11:17 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:11:29 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:13:58 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:14:11 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:15:36 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:15:47 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:21:08 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:21:20 INFO  Employee:146 - Employee0has logged in
+2019-11-24 19:23:14 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:24:53 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:25:21 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 19:25:34 INFO  Employee:146 - Employee0has logged in
+2019-11-24 20:03:55 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 20:04:07 INFO  Employee:146 - Employee0has logged in
+2019-11-24 20:09:47 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 20:09:59 INFO  Employee:146 - Employee0has logged in
+2019-11-24 20:10:19 INFO  Employee:196 - Employee has Approved a new account
+2019-11-24 20:11:23 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 20:11:36 INFO  Employee:146 - Employee0has logged in
+2019-11-24 20:11:47 INFO  Employee:196 - Employee has Approved a new account
+2019-11-24 20:11:47 INFO  SaintsBankMenu:187 - Employee Attemping to log in
+2019-11-24 20:27:48 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 20:28:05 INFO  Employee:146 - Employee0has logged in
+2019-11-24 21:04:28 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:04:41 INFO  Employee:146 - Employee0has logged in
+2019-11-24 21:05:00 INFO  Employee:201 - Employee has Approved a new account
+2019-11-24 21:05:00 INFO  SaintsBankMenu:187 - Employee Attemping to log in
+2019-11-24 21:09:11 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:09:23 INFO  Employee:146 - Employee0has logged in
+2019-11-24 21:09:34 INFO  Employee:201 - Employee has Approved a new account
+2019-11-24 21:09:34 INFO  SaintsBankMenu:187 - Employee Attemping to log in
+2019-11-24 21:15:45 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:15:57 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:16:07 INFO  Employee:146 - Employee0has logged in
+2019-11-24 21:16:20 INFO  Employee:201 - Employee has Approved a new account
+2019-11-24 21:16:36 INFO  Employee:201 - Employee has Approved a new account
+2019-11-24 21:32:43 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:32:58 INFO  Employee:146 - Employee0has logged in
+2019-11-24 21:33:12 INFO  Employee:201 - Employee 0 has approved a new account for usery
+2019-11-24 21:35:09 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:35:26 INFO  Employee:146 - Employee0has logged in
+2019-11-24 21:35:38 INFO  Employee:202 - Employee 0 has approved a new account for usery
+2019-11-24 21:54:42 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:58:34 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-24 21:58:48 INFO  Customer:451 - Customer 472has login into their account
+2019-11-25 00:37:23 INFO  Customer:223 - New Customer 214 has LOGGED OUT! ACCOUNT IS PENDING VERIFICATION
+2019-11-25 00:37:31 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 00:38:13 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 00:38:37 INFO  Employee:146 - Employee0has logged in
+2019-11-25 02:17:27 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:28:31 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:28:55 INFO  Customer:436 - Customer 131has login into their account
+2019-11-25 02:29:53 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:30:08 INFO  Customer:436 - Customer 131has login into their account
+2019-11-25 02:31:28 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:31:58 INFO  Customer:436 - Customer 244has login into their account
+2019-11-25 02:33:49 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:34:15 INFO  Customer:436 - Customer 244has login into their account
+2019-11-25 02:39:17 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:39:54 INFO  Customer:436 - Customer 244has login into their account
+2019-11-25 02:51:17 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:51:39 INFO  Customer:436 - Customer 244has login into their account
+2019-11-25 02:54:15 INFO  SaintsBankMenu:172 - Id input Attempt
+2019-11-25 02:54:48 INFO  Customer:436 - Customer 131has login into their account
+2019-11-25 11:24:08 INFO  SaintsBankMenu:173 - Id input Attempt
+2019-11-25 11:24:23 INFO  Customer:436 - Customer 472has login into their account
+2019-11-25 11:24:58 INFO  SaintsBankMenu:182 - Customer Attemping to log in
+2019-11-25 11:25:51 INFO  SaintsBankMenu:173 - Id input Attempt
+2019-11-25 11:26:23 INFO  SaintsBankMenu:173 - Id input Attempt
+2019-11-25 11:27:05 INFO  SaintsBankMenu:173 - Id input Attempt
+2019-11-25 11:27:23 INFO  Customer:436 - Customer 214has login into their account
+2019-11-25 11:27:44 INFO  SaintsBankMenu:173 - Id input Attempt
+2019-11-25 12:36:28 INFO  SaintsBankMenu:179 - Id input Attempt
+2019-11-25 12:36:45 INFO  Customer:436 - Customer 131has login into their account
+2019-11-25 12:38:10 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:38:35 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:38:47 WARN  Customer:458 - CUSTOMER 131 AUTOMATICALLY SENT TO MAIN MENU DUE TO USERNAME MISMATCH
+2019-11-25 12:39:14 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:39:26 WARN  Customer:458 - CUSTOMER 214 AUTOMATICALLY SENT TO MAIN MENU DUE TO USERNAME MISMATCH
+2019-11-25 12:39:43 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:39:57 INFO  Customer:436 - Customer 131has login into their account
+2019-11-25 12:40:03 INFO  SaintsBankMenu:191 - Customer Attemping to log in
+2019-11-25 12:40:03 INFO  SaintsBankMenu:191 - Customer Attemping to log in
+2019-11-25 12:41:54 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:42:11 INFO  Customer:436 - Customer 131has login into their account
+2019-11-25 12:44:48 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:45:06 INFO  Employee:146 - Employee0has logged in
+2019-11-25 12:48:22 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:48:40 INFO  Employee:146 - Employee0has logged in
+2019-11-25 12:49:26 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:49:59 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:50:16 INFO  Employee:146 - Employee0has logged in
+2019-11-25 12:54:46 INFO  SaintsBankMenu:182 - Id input Attempt
+2019-11-25 12:55:05 INFO  Employee:146 - Employee0has logged in
+2019-11-25 13:59:24 INFO  SaintsBankMenu:180 - Id input Attempt
+2019-11-25 13:59:44 INFO  SaintsBankAdmin:70 - Admin 1852 has logged in
+2019-11-25 14:14:38 INFO  SaintsBankMenu:180 - Id input Attempt
+2019-11-25 14:16:25 INFO  SaintsBankAdmin:70 - Admin 1852 has logged in
+2019-11-25 15:39:36 INFO  SaintsBankMenu:180 - Id input Attempt
+2019-11-25 15:39:52 WARN  Customer:450 - CUSTOMER 244 AUTOMATICALLY SENT TO MAIN MENU DUE TO USERNAME MISMATCH
+2019-11-25 15:40:13 INFO  SaintsBankMenu:180 - Id input Attempt
+2019-11-25 15:40:32 WARN  Customer:450 - CUSTOMER 244 AUTOMATICALLY SENT TO MAIN MENU DUE TO USERNAME MISMATCH
+2019-11-25 15:40:43 INFO  SaintsBankMenu:180 - Id input Attempt
+2019-11-25 15:41:02 INFO  Customer:428 - Customer 472has login into their account
+2019-11-25 15:41:23 INFO  SaintsBankMenu:189 - Customer472 Attemping to log in
+2019-11-25 15:41:23 INFO  SaintsBankMenu:189 - Customer244 Attemping to log in
+2019-11-25 15:41:23 INFO  SaintsBankMenu:189 - Customer244 Attemping to log in
+2019-11-25 15:42:59 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:43:32 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:43:47 INFO  Customer:428 - Customer 472has login into their account
+2019-11-25 15:44:29 INFO  SaintsBankMenu:190 - Customer472 Attemping to log in
+2019-11-25 15:44:52 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:45:01 WARN  Customer:450 - CUSTOMER 472 AUTOMATICALLY SENT TO MAIN MENU DUE TO USERNAME MISMATCH
+2019-11-25 15:45:15 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:45:19 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:45:30 INFO  Customer:428 - Customer 472has login into their account
+2019-11-25 15:47:22 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:47:56 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:48:13 INFO  Customer:428 - Customer 472has login into their account
+2019-11-25 15:48:42 INFO  SaintsBankMenu:190 - Customer472 Attemping to log in
+2019-11-25 15:53:21 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 15:53:34 INFO  Customer:428 - Customer 472has login into their account
+2019-11-25 16:01:07 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 16:01:48 INFO  Customer:428 - Customer 472has login into their account
+2019-11-25 16:03:14 INFO  SaintsBankMenu:181 - Id input Attempt
+2019-11-25 16:03:25 INFO  Customer:428 - Customer 472has login into their account
