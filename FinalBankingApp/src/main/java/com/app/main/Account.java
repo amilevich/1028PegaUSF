@@ -15,37 +15,59 @@ public class Account implements Serializable{
 	/**
 	 * 
 	 */
+	int serialNum;
 	float balance;
 	long accountNumber;
 	ArrayList<String> customers = new ArrayList<String>(); //Cust IDs
-	//long randomAccount = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
 
 	String accNum; 
-	
-	
 	public Account() {
-		super();
-		this.balance=0;
-		this.accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
-		//(long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
-		this.customers=  new ArrayList<String>();	
-		this.accNum = Long.toString(this.accountNumber);
-
+		
 	}
-
-	public Account(String accNum, String id) {
+	
+	public Account(int serialNum, String accNum, String id) {
 		super();
+		this.serialNum = serialNum;
 		this.balance = 0;
-		this.accountNumber = 12;
+		this.accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
 		this.customers.add(id);	
-		this.accNum = accNum;
-
+		this.accNum = Long.toString(this.accountNumber);
 	}
-
+	
+	public Account(int serialNum, String accNum, float balance) {
+		super();
+		this.serialNum = serialNum;
+		this.balance = balance;
+		this.accNum = accNum; 
+	}
+	
+//	public Account() {
+//		super();
+//		this.balance = 0;
+//		this.accountNumber = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
+//		this.customers=  new ArrayList<String>();	
+//		this.accNum = Long.toString(this.accountNumber);
+//	}
+//
+//	public Account(String accNum, String id) {
+//		super();
+//		this.balance = 0;
+//		this.accountNumber = 12;
+//		this.customers.add(id);	
+//		this.accNum = accNum;
+//	
+	
 	@Override
 	public String toString() {
-		//return "Account [balance=" + balance + ", accountNumber=" + accountNumber + "]";
 		return "Account Info- Account #: " + accountNumber + " Balance: $" + balance;
+	}
+
+	public int getSerialNum() {
+		return serialNum;
+	}
+
+	public void setSerialNum(int serialNum) {
+		this.serialNum = serialNum;
 	}
 
 	public float getBalance() {
@@ -72,8 +94,8 @@ public class Account implements Serializable{
 
 		}catch(Exception e) {
 			System.out.println("Re-initializing data base due to io error.");
-			Customer ID = new Customer("Prev.Acct", "0000", "Temp" );
-			Account acc = new Account("1", "Prev.Acct");
+			Customer ID = new Customer(0000, "Prev.Acct", "0000", "Temp" );
+			Account acc = new Account(0000, "1", "Prev.Acct");
 			ID.accounts.add(acc.accNum);
 			HashMap<String, Account> hashAcc = new HashMap<>();
 			HashMap<String, Customer> hashCust = new HashMap<>();

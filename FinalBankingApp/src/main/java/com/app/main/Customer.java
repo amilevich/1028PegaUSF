@@ -12,36 +12,32 @@ import java.util.HashMap;
 public class Customer implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	int serial_ID;
 	String userName;
 	String userPin;
 	String Name;
 	String Status;
-	ArrayList<String> accounts = new ArrayList<String>();	//Acct Number - joint
+	ArrayList<String> accounts = new ArrayList<String>(); //Acct Number - Joint
 	
-//	public ArrayList<Account> getCustomerAccount() {
-//		return customerAccount;
-//	}
 	public Customer() {
 		
 	}
 	
-	public Customer(String userName, String userPin, String Name) {
+	public Customer(int serial_ID, String userName, String userPin, String Name) {
+		this.serial_ID = serial_ID;
 		this.userName = userName;
 		this.userPin = userPin;
 		this.Name = Name;
 		this.accounts= new ArrayList<String>();
 		this.Status = "pending";
 	}
-//	public void setCustomerAccount(ArrayList<Account> customerAccount) {
-//		this.customerAccount = customerAccount;
-//	}
+
 	/**
 	 * 
 	 */
 	
 	@Override
 	public String toString() {
-		//return "Customer [userName=" + userName + ", userPin=" + userPin + ", Name=" + Name + "]";
 		return "Personal Info- Name: " + Name + " Username: "+ userName + " Userpin: " + userPin;
 	}
 	public String getUserName() {
@@ -64,7 +60,6 @@ public class Customer implements Serializable{
 	}	
 	
 	public void addAccount(String accNum) {
-		//this.customerAccount.add(this.getCustomerAccount().size(), account);
 		this.accounts.add(accNum);
 	}
 	
@@ -72,6 +67,14 @@ public class Customer implements Serializable{
 		this.accounts.remove(accNum);
 	}
 	
+	public int getSerial_ID() {
+		return serial_ID;
+	}
+
+	public void setSerial_ID(int serial_ID) {
+		this.serial_ID = serial_ID;
+	}
+
 	public static HashMap<String, Customer> readCustomers(){
 		HashMap<String, Customer> allCustomers = new HashMap<String, Customer>();
 		String filename = "customers.ser";
@@ -88,8 +91,8 @@ public class Customer implements Serializable{
 			}
 		} catch(Exception e) {
 			System.out.println("Re-initializing data base due to io error.");
-			Customer ID = new Customer("Prev.Acct", "0000", "Temp" );
-			Account acc = new Account("1", "Prev.Acct");
+			Customer ID = new Customer(0000, "Prev.Acct", "0000", "Temp" );
+			Account acc = new Account(0000, "1", "Prev.Acct");
 			ID.accounts.add(acc.accNum);
 			HashMap<String, Account> hashAcc = new HashMap<>();
 			HashMap<String, Customer> hashCust = new HashMap<>();

@@ -12,12 +12,8 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-
-
 public class Menu {
 	public final static Logger bankLog = Logger.getLogger(Logger.class);
-
-	//static long randomAccount = (long) Math.floor(Math.random() * 9000000000L) + 1000000000L;
 	
 	static float deposit = 0f;
 	static float withdraw = 0f;
@@ -30,19 +26,26 @@ public class Menu {
 	public static Employee employee = new Employee();// Employee Obj
 	static Account acct = new Account();
 	
-	
-	
 	public static ArrayList<Customer> pendingCust = new ArrayList<Customer>();// Pending Accts Arraylist
-	public static Map <String, Customer> validAccts = new HashMap<String, Customer>();// Approved Accts K=String, V=Customer obj
-	public static HashMap<String, Customer> allCustHash = Customer.readCustomers(); //Cust to Cust, auto fetches
-	public static HashMap<String, Account> allAccHash = Account.readAccounts();
+	public static Map <String, Customer> validAccts = new HashMap<String, Customer>();
+	//public static HashMap<String, Customer> allCustHash = Customer.readCustomers(); //Cust to Cust, auto fetches
+	//public static HashMap<String, Account> allAccHash = Account.readAccounts();
 	static String filename = "temp.ser";
 	
+	BankImpl bankDao = new BankImpl();
+	HashMap<String, Customer> allCustHash;
+	HashMap<String, Account> allAccHash; 
+	
+	Menu(){
+		this.allCustHash = bankDao.getCHashMap(); 
+		this.allAccHash = bankDao.getAHashMap(); 
+	}
+
 	public static void main(String[] args) {
 
 	}
 	
-	public static void runWelcomeMenu() { //Main Menu
+	public void runWelcomeMenu() { //Main Menu
 		
 		System.out.println("Welcome to your local bank." + '\n'+ "1. Register" + '\n' + "2. Login" + '\n' + "3. Exit");
 		String option = scan.nextLine(); //Scanner String
@@ -63,7 +66,7 @@ public class Menu {
 			System.out.println("Please enter a four digit pin number.");
 			String uPin = scan.nextLine();
 			int pinLimit = String.valueOf(uPin).length();
-			if(pinLimit > 4 || pinLimit <= 3) {//If not a sting of 4 digits, print this
+			if(pinLimit > 4 || pinLimit <= 3) {//If not a string of 4 digits, print this
 				runRegMenu();
 			}else{
 				ID.userPin = uPin;
@@ -73,8 +76,9 @@ public class Menu {
 			float uBalance = scan.nextFloat();
 			scan.nextLine();
 			allAccHash.get(acct1.accNum).balance = uBalance;
+			Menu.bankLog.info(allAccHash.get(acct1.accNum).balance = uBalance);
 
-			Customer newCustomer = new Customer(uUsername, uPin, uName);
+			Customer newCustomer = new Customer(0, uUsername, uPin, uName);
 			pendingCust.add(newCustomer);
 			
 			System.out.println("Is this a single or joint account?" + '\n' + "1. Joint" + '\n'+ "2. Single");
@@ -89,7 +93,7 @@ public class Menu {
 				System.out.println("Please enter a username.");
 				String jUsername = scan.nextLine();
 				ID.userName= (jUsername);
-				allAccHash.get(acct1.accNum).customers.add(jUsername); //acct
+				allAccHash.get(acct1.accNum).customers.add(jUsername);
 
 				System.out.println("Please enter a four digit pin number.");
 				String jPin = scan.nextLine();
@@ -98,7 +102,7 @@ public class Menu {
 					runRegMenu();
 				}else{
 					ID.userPin = jPin;
-					Customer newJointCustomer =  new Customer(jName, jUsername, jPin);
+					Customer newJointCustomer =  new Customer(1, jName, jUsername, jPin);
 					pendingCust.add(newJointCustomer);
 					allCustHash.put(newJointCustomer.userName, newJointCustomer);
 					System.out.println("Joint Account submitted and awaiting approval." + '\n');
@@ -109,9 +113,8 @@ public class Menu {
 			}
 			newCustomer.accounts.add(acct1.accNum);
 			allCustHash.put(newCustomer.userName, newCustomer);// stored into hashmap
-
 			System.out.println("Okay " + uName + ". Please await account approval and review your account details:" +'\n'
-			+ '\n' + " Personal Info- Name: " + uName + " Username: " + uUsername + " Userpin: " + uPin + '\n' + allAccHash.get(acct1.accNum) +'\n');
+			+ '\n' + "Personal Info- Name: " + uName + " Username: " + uUsername + " Userpin: " + uPin + '\n' + allAccHash.get(acct1.accNum) +'\n');
 			runWelcomeMenu();
 			break;
 			
@@ -121,6 +124,8 @@ public class Menu {
 		case "3" :
 			Account.writeAccounts(allAccHash);
 			Customer.writeCustomers(allCustHash);
+			bankDao.insertAllAccts(allAccHash);
+			bankDao.insertAllCusts(allCustHash);
 			System.exit(0);
 		break;
 		
@@ -130,9 +135,9 @@ public class Menu {
 		}
 	}
 	
-	public static void runRegMenu() {//Reg. menu recursive
+	public void runRegMenu() {//Reg. menu recursive
 		
-		String option1 = scan.nextLine(); //Scanner String
+		String option1 = scan.nextLine();
 		switch (option1) {
 		case "1": //Registration
 			Account acct = new Account();
@@ -159,8 +164,9 @@ public class Menu {
 			float uBalance = scan.nextFloat();
 			scan.nextLine();
 			allAccHash.get(acct.accNum).balance = uBalance;
+			Menu.bankLog.info(allAccHash.get(acct.accNum).balance = uBalance);
 
-			Customer newCustomer = new Customer(uUsername, uPin, uName);
+			Customer newCustomer = new Customer(0, uUsername, uPin, uName);
 			pendingCust.add(newCustomer);
 			
 			System.out.println("Is this a single or joint account?" + '\n' + "1. Joint" + '\n'+ "2. Single");
@@ -184,9 +190,9 @@ public class Menu {
 					runRegMenu();
 				}else{
 					ID.userPin = jPin;
-					Customer newJointCustomer =  new Customer(jName, jUsername, jPin);
-					pendingCust.add(newJointCustomer);
-					allCustHash.put(newJointCustomer.userName, newJointCustomer);
+//					Customer newJointCustomer =  new Customer(jName, jUsername, jPin);
+//					pendingCust.add(newJointCustomer);
+//					allCustHash.put(newJointCustomer.userName, newJointCustomer);
 					System.out.println("Joint Account submitted and awaiting approval." + '\n');
 				}
 			}
@@ -196,9 +202,8 @@ public class Menu {
 			
 			newCustomer.accounts.add(acct.accNum);
 			allCustHash.put(newCustomer.userName, newCustomer);// stored into hashmap
-			
 			System.out.println("Okay " + uName + ". Please await account approval and review your account details:" +'\n'
-			+ '\n' + " Personal Info- Name: " + uName + " Username: " + uUsername + " Userpin: " + uPin + '\n' + allAccHash.get(acct.accNum) +'\n');
+			+ '\n' + "Personal Info- Name: " + uName + " Username: " + uUsername + " Userpin: " + uPin + '\n' + allAccHash.get(acct.accNum) +'\n');
 			
 			runWelcomeMenu();
 			break;
@@ -212,21 +217,22 @@ public class Menu {
 		}	
 	}
 	
-	public static void runLoginMenu() {// Login for all accounts
+	public void runLoginMenu() {// Login for all accounts
 		System.out.println("Welcome to login, please enter your username.");
 		String uName0 = scan.nextLine();
-		
+
 		System.out.println("Enter pin number.");
 		String uPin0 = scan.nextLine();
-		
+
 		if(uName0.equals(admin.userName) && uPin0.equals(admin.userPin)){
 			runAmenu();
 		}else if(uName0.equals(employee.userName) && uPin0.equals(employee.userPin)){
 			runEmenu();
 		}
-		if(allCustHash.containsKey(uName0) && allCustHash.get(uName0).userPin.equals(uPin0)) {
+		if(allCustHash.containsKey(uName0) && allCustHash.get(uName0).userPin.equals(uPin0) && allCustHash.get(uName0).Status.equals("Approved")) {
 			System.out.println("Logging in...");
-			
+			runCmenu();
+
 			if((allCustHash.get(uName0).Status.equals("pending"))) {
 				System.out.println("This account is pending. Please wait for Admin approval.");
 				runWelcomeMenu();
@@ -241,12 +247,12 @@ public class Menu {
 				if(login.equals("1")) {
 					System.out.println("Ok you'll be using: " + allCustHash.get(uName0).accounts.get(0));
 					String jointAccNum = allCustHash.get(uName0).accounts.get(0);
-					runCmenu(jointAccNum);
+					runCmenu();
 
 				}else {
 					System.out.println("Ok you'll be using: " + allCustHash.get(uName0).accounts.get(1));
 					String singleAccNum = allCustHash.get(uName0).accounts.get(1);
-					runCmenu(singleAccNum);
+					runCmenu();
 				}
 			}
 		}else{ 
@@ -254,21 +260,13 @@ public class Menu {
 			runWelcomeMenu();
 		}
 
-//		if(!uName0.equals(employee.userName) && uPin0.equals(employee.userPin)) {
-//			System.out.println("Invalid Login.");
-//			runWelcomeMenu();
-//		}
-//		if(!uName0.equals(admin.userName) && uPin0.equals(admin.userPin)) {
-//			System.out.println("Invalid Login.");
-//			runWelcomeMenu();
-//		}
 	}
 	
-	public static void runCmenu(String accNum) {//Menu for customer banking
+	public void runCmenu() {//Menu for customer banking
 		
 		System.out.println("Welcome, how may I help you today?" + '\n' + "1. Deposit" + '\n' + "2. Withdraw" + '\n' + "3. Transfer" + '\n'+ "4. Exit");
 		
-		String option2 = scan.nextLine(); //Scanner String
+		String option2 = scan.nextLine();
 		switch (option2) {
 		
 		case "1": //Deposit
@@ -276,11 +274,11 @@ public class Menu {
 			float dep = scan.nextFloat();
 			
 			scan.nextLine();
-			allAccHash.get(accNum).balance += dep;
+			allAccHash.get(acct.accNum).balance += dep;
 			
-			System.out.println("New balance: $" + allAccHash.get(accNum).balance);
-			Menu.bankLog.info("New balance: $" + allAccHash.get(accNum).balance);
-			runCmenu(accNum);
+			System.out.println("New balance: $" + allAccHash.get(acct.accNum).balance);
+			Menu.bankLog.info("New balance: $" + allAccHash.get(acct.accNum).balance);
+			runCmenu();
 			break;
 			
 		case "2": //Withdrawl
@@ -288,16 +286,16 @@ public class Menu {
 			float wit = scan.nextFloat();
 			scan.next();
 			
-			if(allAccHash.get(accNum).balance < wit) {
+			if(allAccHash.get(acct.accNum).balance < wit) {
 				System.out.println("Overdraft. Not enough in account.");
-				runCmenu(accNum);
+				runCmenu();
 			}else {
 				scan.nextLine();
-				allAccHash.get(accNum).balance -= wit;
+				allAccHash.get(acct.accNum).balance -= wit;
 
-				System.out.println("New balance: $" + allAccHash.get(accNum).balance);
-				Menu.bankLog.info("New balance: $" + allAccHash.get(accNum).balance);
-				runCmenu(accNum);
+				System.out.println("New balance: $" + allAccHash.get(acct.accNum).balance);
+				Menu.bankLog.info("New balance: $" + allAccHash.get(acct.accNum).balance);
+				runCmenu();
 			}
 			break;
 			
@@ -311,20 +309,20 @@ public class Menu {
 				float trans = scan.nextFloat();
 				scan.nextLine();
 				
-				if(allAccHash.get(accNum).balance < trans) {
+				if(allAccHash.get(acct.accNum).balance < trans) {
 					System.out.println("Overdraft. Not enough in account.");
 					adminEdits();
 				}
-				allAccHash.get(target1).balance+= trans;
-				allAccHash.get(accNum).balance -= trans;
-				System.out.println(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(accNum).balance);
-				Menu.bankLog.info(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(accNum).balance);
+				allAccHash.get(target1).balance += trans;
+				allAccHash.get(acct.accNum).balance -= trans;
+				System.out.println(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(acct.accNum).balance);
+				Menu.bankLog.info(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(acct.accNum).balance);
 			}
 			if(!allCustHash.containsKey(target1)) {
 				System.out.println("Not a match, sorry.");
 				adminEdits();
 			}
-			runCmenu(accNum);
+			runCmenu();
 			break;
 
 		case "4": // Exit
@@ -334,11 +332,11 @@ public class Menu {
 			
 		default :
 			System.out.println("Invalid input.");
-			runCmenu(accNum);
+			runCmenu();
 			}
 		}
 
-	public static void runEmenu() {// Run Employee menu //login after admin null exception
+	public void runEmenu() {// Run Employee menu
 		System.out.println("Welcome Employee_0:" + '\n' + "1. View Open Accounts" + '\n' + "2. Exit"); // See personal info and balances
 		String choice = scan.nextLine();
 		if(choice.equals("1")) {
@@ -368,10 +366,10 @@ public class Menu {
 			runEmenu();
 		}
 	}
-	public static void runAmenu() {// Run admin menu
+	public void runAmenu() {// Run admin menu
 		System.out.println("Welcome "  + admin.Name + '\n' +"1. View Pending Accounts" + '\n' + "2. Edit Accounts" + '\n' + "3. Sign-Out");// Deposit, Withdraw, Transfer with all accounts
 
-			String option3 = scan.nextLine(); //Scanner String
+			String option3 = scan.nextLine();
 			switch (option3) {
 			
 			case "1": //Pending Accts
@@ -396,7 +394,7 @@ public class Menu {
 	public static void adminView() {
 		System.out.println("Show all customers");
 	}
-	public static void adminApproval() {
+	public void adminApproval() {
 		String options="";
 		for(int x = 0; x < pendingCust.size(); x++) {
 			System.out.println(pendingCust.size());
@@ -436,11 +434,11 @@ public class Menu {
 			}
 		}
 		pendingCust.removeAll(pendingCust);
-		System.out.println("No more accounts. Returning to previous menu.");
+		System.out.println("No more accounts. Returning to previous menu." +'\n');
 		runAmenu();
 	}
 		
-	public static void adminEdits() {
+	public void adminEdits() {
 		System.out.println("1. Deposit into Account" + '\n' + "2. Withdraw from Account" + '\n'+ "3. Transfer from Account" + '\n' +"4. Close Account" + '\n' + "5. Exit");
 		String options =scan.nextLine();
 
