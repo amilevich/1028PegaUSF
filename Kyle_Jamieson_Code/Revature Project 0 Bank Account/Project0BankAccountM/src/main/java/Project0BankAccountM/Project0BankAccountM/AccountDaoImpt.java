@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,7 +23,7 @@ public class AccountDaoImpt implements AccountDao
 	{
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO Accounts VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO Accounts VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setInt(1, _account.getAccountNumber());
 			ps.setString(2, _account.getFirstName1());
 			ps.setString(3, _account.getLastName1());
@@ -35,6 +36,10 @@ public class AccountDaoImpt implements AccountDao
 			ps.setDouble(10, _account.getLoanBalance());
 			ps.setShort(11, _account.getFlags());
 			ps.executeUpdate();
+		}
+		catch(SQLIntegrityConstraintViolationException e)
+		{
+			
 		}
 		catch(SQLException e)
 		{
@@ -227,8 +232,8 @@ public class AccountDaoImpt implements AccountDao
 	// Check if the inputed account name is unique.
 	public boolean isAccountNumberUnique(int _input)
 	{
-		String callerClassName = new Exception().getStackTrace()[1].getClassName();
-		System.out.println(callerClassName);
+//		String callerClassName = new Exception().getStackTrace()[1].getClassName();
+//		System.out.println(callerClassName);
 		return null == selectAccountByNumber(_input);
 	}
 

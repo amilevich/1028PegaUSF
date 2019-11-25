@@ -10,9 +10,10 @@ public class MainDriver
 		// Start the menu system
 		mainMenu.initMenuSystem();
 		
-		// Entering main game loop
+		//timers
 		long timePrevous = System.nanoTime();
 		long timeSlice = 0;
+		// Entering main game loop
 		while(mainMenu.update(timeSlice)) 
 		{
 			//update timeslice

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,10 @@ public class UserDaoImpt implements UserDao
 			ps.setString(5, _user.getLastName());
 			ps.setInt(6, _user.getAccountNumber());
 			ps.executeUpdate();
+		}
+		catch(SQLIntegrityConstraintViolationException e)
+		{
+			
 		}
 		catch(SQLException e)
 		{
@@ -265,8 +270,9 @@ public class UserDaoImpt implements UserDao
 	// returns a bool based on if the username is unique or not
 	public boolean isUsernameUnique(String _username)
 	{
-		User user = selectUserByUsername(_username);
-		return (null == user);
+		User user = null;
+		user = selectUserByUsername(_username);
+		return null == user;
 	}
 
 

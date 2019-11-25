@@ -724,10 +724,11 @@ public class MenuManager
 		{
 			System.out.println("1) Go to account by account number");
 			System.out.println("2) Go to account by customer name");
-			System.out.println("3) Create employee account");
-			System.out.println("4) Create admin account");
-			System.out.println("5) Logout");
-			System.out.println("6) Exit\n");
+			System.out.println("3) Display all accounts");
+			System.out.println("4) Create employee account");
+			System.out.println("5) Create admin account");
+			System.out.println("6) Logout");
+			System.out.println("7) Exit\n");
 			System.out.print("Selection: ");
 
 			int option = this.getIntInput();
@@ -743,23 +744,28 @@ public class MenuManager
 					this.findAccountByCustName();
 				break;
 				
-				// Create employee account
+				//Dispaly all accounts
 				case 3:
+					this.viewAllAccounts();
+				break;
+				
+				// Create employee account
+				case 4:
 					this.createEmployeeAccount();
 				break;
 				
 				// Create admin account
-				case 4:
+				case 5:
 					this.createAdminAccount();
 				break;
 				
 				// Logout
-				case 5:
+				case 6:
 					this.logOut();
 				break;
 				
 				// Exit
-				case 6:
+				case 7:
 					exit();
 				break;
 				
@@ -1400,7 +1406,7 @@ public class MenuManager
 		{
 			System.out.println("Enter Username");
 			uName1 = m_sc.nextLine();
-		}while(userDao.isUsernameUnique(uName1));
+		}while(!userDao.isUsernameUnique(uName1));
 		
 		System.out.println("Enter first name:");
 		String fName1 = getStringInput();
@@ -1438,7 +1444,7 @@ public class MenuManager
 			{
 				System.out.println("Enter Username");
 				uName2 = m_sc.nextLine();
-			}while(userDao.isUsernameUnique(uName2));
+			}while(!userDao.isUsernameUnique(uName2));
 			
 			System.out.println("Enter first name:");
 			String fName2 = getStringInput();
@@ -1469,7 +1475,7 @@ public class MenuManager
 		do
 		{
 			num = random.nextInt(Integer.MAX_VALUE);
-		}while(accountDao.isAccountNumberUnique(num));
+		}while(!accountDao.isAccountNumberUnique(num));
 		account1 = new Account();
 		account1.setAccountNumber(num);
 		account1.setFlag(Account.FLAGS.PENDING, true);
@@ -1548,7 +1554,7 @@ public class MenuManager
 		{
 			System.out.println("Enter Username");
 			userName = m_sc.nextLine();
-		}while(userDao.isUsernameUnique(userName));
+		}while(!userDao.isUsernameUnique(userName));
 
 		System.out.println("First name:");
 		String fName = getStringInput();
@@ -1587,7 +1593,7 @@ public class MenuManager
 			System.out.println("Enter user name:");
 			userName = getStringInput();
 		}
-		while(dao.isUsernameUnique(userName));
+		while(!dao.isUsernameUnique(userName));
 		System.out.println("First name:");
 		String fName = getStringInput();
 		System.out.println("Last name:");
@@ -1612,6 +1618,37 @@ public class MenuManager
 		loggy.info(timeStamp(date) + "Employee account " + newUser.getUserName() + " created for " + newUser.getFirstName() + ' ' + newUser.getLastName());
 
 		return true;
+	}
+	
+	private void viewAllAccounts()
+	{
+		if(this.m_curUser.isAdmin())
+		{
+			AccountDaoImpt dao = new AccountDaoImpt();
+			List<Account> accounts = dao.selectAllAccount();
+			
+			// Display everything
+			System.out.println("Showing all accounts\n-------------------------------------------------------------------------");
+			for(int i = 0; i < accounts.size(); i++)
+			{
+				System.out.println("Account Number: " + accounts.get(i).getAccountNumber());
+				System.out.println("Name: " + accounts.get(i).getFirstName1() + accounts.get(i).getLastName1());
+				if(accounts.get(i).getFlag(Account.FLAGS.JOINT))
+					System.out.println("Joint holder: " + accounts.get(i).getFirstName2() + accounts.get(i).getLastName2());
+				System.out.println("Savings: " + accounts.get(i).getSaveBalance());
+				System.out.println("Checking: " + accounts.get(i).getCheckBalance());
+				if(accounts.get(i).getFlag(Account.FLAGS.PENDING))
+					System.out.println("Account still pending approval");
+				if(accounts.get(i).getFlag(Account.FLAGS.DENIED))
+					System.out.println("Account has been denied");
+				if(accounts.get(i).getFlag(Account.FLAGS.CLOSED))
+					System.out.println("Account has been closed");
+				if(accounts.get(i).getFlag(Account.FLAGS.FROZEN))
+					System.out.println("Account has been FROZEN");
+				
+			}
+			
+		}
 	}
 	
 	private double getDoubleInput()
