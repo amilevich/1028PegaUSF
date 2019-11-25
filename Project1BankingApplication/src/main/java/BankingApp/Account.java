@@ -191,7 +191,6 @@ public class Account {
 	        fileOut.close();
 	        
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -203,7 +202,6 @@ public class Account {
 			writer = new PrintWriter(new FileWriter("account.txt", true));
 			reader = new BufferedReader(new FileReader("account.txt"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		StringBuffer inputBuffer = new StringBuffer();
@@ -242,7 +240,6 @@ public class Account {
 			writer = new PrintWriter(new FileWriter("account.txt", true));
 			reader = new BufferedReader(new FileReader("account.txt"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		StringBuffer inputBuffer = new StringBuffer();

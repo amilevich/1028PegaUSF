@@ -5,3 +5,10 @@ stanmarsh,Stan,Marsh,0,1
 usertest2,User,Two,0,0
 ba,ben,ara,100000,1
 shaypatel,Shaylen,Patel,9750,1
+shabs,Shaylen,Patel,0,0
+divaD,David,Prater,60346,1
+diva1,test,2,0,0
+test2,test2,test2,0,0
+test0,test0,test0,0,0
+test1,test1,test1,0,0
+employee1,Employee,one,0,1

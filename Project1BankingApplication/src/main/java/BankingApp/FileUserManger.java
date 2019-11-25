@@ -7,8 +7,8 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 
 /*
- * I made this file to move all the date i orignally coded in the Users.java.
- * this made my code much simpler to use and call in the main
+ * I made this file to move all the data i originally coded in the Users.java.
+ * this made my code much simpler to use and call in the main.
  */
 
 public class FileUserManger implements UserManager {
