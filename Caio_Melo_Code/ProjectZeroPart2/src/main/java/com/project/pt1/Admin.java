@@ -233,7 +233,6 @@ public class Admin {
 		String User = x.JointAppDetails[0];
 		String PW = x.JointAppDetails[1];
 
-		String fileName = "/Users/Caio/Documents/workspace-sts-3.9.4.RELEASE/ProjectZeroPart1/src/main/java/com/project/pt1/applications/customers.ser";
 		ArrayList<Customer> custCred = null;
 		custCred = MainDriver.cDAO.selectAllCustomers();
 
@@ -244,8 +243,8 @@ public class Admin {
 
 		MainDriver.cDAO.updateCustomer(z);
 		MainDriver.cDAO.updateCustomer(x);
-		System.out.println("Application Approved.");
-		Loggy.info("JointAccount has been approved.");
+		System.out.println("Joint Application Approved.");
+		Loggy.info("Joint Account has been approved.");
 	}
 
 	public static void denyJointApplication(Customer x) {
@@ -303,7 +302,6 @@ public class Admin {
 			break;
 		case 3:
 			viewApplications();
-			MainDriver.promptContinue();
 			adminPrompt();
 			break;
 		case 4:
@@ -338,7 +336,7 @@ public class Admin {
 			System.out.println("How much would you like to deposit?");
 			double deposit = scan.nextDouble();
 			x.setFunds((deposit + x.getFunds()));
-			System.out.println("$" + deposit + " has been deposited to" + x.getUsername());
+			System.out.println("$" + deposit + " has been deposited to " + x.getUsername());
 			System.out.println("New Balance....$" + x.getFunds());
 			MainDriver.cDAO.updateCustomer(x);
 			Loggy.info("Admin has deposited.");
@@ -366,6 +364,14 @@ public class Admin {
 			adminPrompt();
 			break;
 		case 4:
+			if(x.jointStatus == jStatus.APPROVED) { //Cascade delete by java ;)
+				Customer temp = MainDriver.cDAO.selectByID(x.getjBankID());
+				temp.setJointStatus(jStatus.NOT_JOINT);
+				temp.setjBankID(0);
+				temp.JointAppDetails[0] = null;
+				temp.JointAppDetails[1] = null;
+				MainDriver.cDAO.updateCustomer(temp);
+			}
 			MainDriver.cDAO.deleteCustomer(x);
 			System.out.println("Customer " + x.getUsername() + " deleted.");
 			Loggy.info("Account deleted by Admin! From: " + x.getUsername());
@@ -477,8 +483,11 @@ public class Admin {
 			System.out.println("No current employees!");
 			adminPrompt();
 		}
+		else if( empList.size() == 0) {
+			System.out.println("Which account would you like to view?[1]");
+		}
 		 else {
-			System.out.println("Which account would you like to view?[1 of " + (count-1) + "]");
+			System.out.println("Which account would you like to view?[1 - " + (count-1) + "]");
 		}
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
@@ -517,7 +526,7 @@ public class Admin {
 		System.out.println("Please make a selection: [1-4]");
 		int y = scan.nextInt();
 
-		while (y != 4) {
+		
 			switch (y) {
 			case 1:
 				x.setSalary(x.getSalary() + 5000);
@@ -542,6 +551,7 @@ public class Admin {
 				delete(x);
 				return;
 			case 4:
+				adminPrompt();
 				break;
 			default:
 				System.out.println("Invalid selection.");
@@ -549,7 +559,7 @@ public class Admin {
 
 			}
 
-		}
+		
 		MainDriver.aDAO.updateEmployee(x);
 	}
 
