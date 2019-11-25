@@ -5,14 +5,20 @@ public class MainDriver
 	public static void main(String[] arrgs)
 	{
 		// Create menu
-		Menu mainMenu = Menu.GetInstance();
+		MenuManager mainMenu = MenuManager.getInstance();
 		
 		// Start the menu system
 		mainMenu.initMenuSystem();
 		
 		// Entering main game loop
-		double timeSlice = 0.0;
-		while(mainMenu.update(timeSlice)) {}
+		long timePrevous = System.nanoTime();
+		long timeSlice = 0;
+		while(mainMenu.update(timeSlice)) 
+		{
+			//update timeslice
+			timeSlice = System.nanoTime() - timePrevous;
+			timePrevous = System.nanoTime();
+		}
 		
 		//Use exited, shut everything down
 		mainMenu.shutDown();
