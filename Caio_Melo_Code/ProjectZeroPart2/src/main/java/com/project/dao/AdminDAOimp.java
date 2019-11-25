@@ -42,7 +42,7 @@ public class AdminDAOimp implements AdminDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				eList.add(new Employee(rs.getString("user_name"), rs.getString("pass_word"), rs.getString("f_name"),
-						rs.getDouble("salary")));
+						rs.getDouble("salary"),rs.getInt("id_num")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Connection Failed!");

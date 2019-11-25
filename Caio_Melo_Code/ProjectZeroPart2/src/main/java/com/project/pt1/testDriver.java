@@ -48,15 +48,12 @@ public class testDriver {
 		String pw = "1234".toLowerCase();
 		System.out.println("TEST name = " + user + "TEST pw = " + pw);
 		
-	for(Customer x : custList) {
-		if (x.getUsername().equalsIgnoreCase(user) && x.getPassword().contentEquals(pw)) {
-			System.out.println("TRUE");
-			break;
-		}
-		else {
-			System.out.println("FALSE");
-		}
-	}
+		Customer temp = custList.get(0);
+		temp.setJointStatus(jStatus.NOT_JOINT);
+		temp.setjBankID(0);
+		temp.JointAppDetails[0] = null;
+		temp.JointAppDetails[1] = null;
+		MainDriver.cDAO.updateCustomer(temp);
 		
 		
 	}

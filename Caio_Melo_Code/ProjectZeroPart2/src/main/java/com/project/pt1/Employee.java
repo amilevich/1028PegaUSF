@@ -14,6 +14,7 @@ public class Employee {
 	public String name;
 	public String Date;
 	private double salary = 30000.00;
+	public int id_num = 0;
 	final static Logger Loggy = Logger.getLogger(Customer.class);
 
 	Employee() {
@@ -25,11 +26,12 @@ public class Employee {
 		this.password = y;
 	}
 
-	public Employee(String x, String y, String z, double d) {
+	public Employee(String x, String y, String z, double d,int e) {
 		this.username = x;
 		this.password = y;
 		this.name = z;
 		this.salary = d;
+		this.id_num = e;
 	}
 
 	public double getSalary() {

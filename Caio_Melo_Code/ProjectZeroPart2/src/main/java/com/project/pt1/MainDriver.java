@@ -312,10 +312,10 @@ public class MainDriver {
 
 		ArrayList<Admin> adminCred = null;
 		adminCred = aDAO.selectAllAdmin();
-
 		for (Admin temp : adminCred) {
 
 			if (temp.getUsername().contentEquals(x) && temp.getPassword().contentEquals(y)) {
+				System.out.println("--- Login Successful ---");
 				Admin.adminPrompt();
 				Loggy.info("Admin Login by:" + x);
 			}

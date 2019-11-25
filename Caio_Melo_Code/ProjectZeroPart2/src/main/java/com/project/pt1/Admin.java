@@ -551,6 +551,7 @@ public class Admin {
 				delete(x);
 				return;
 			case 4:
+				MainDriver.aDAO.updateEmployee(x);
 				adminPrompt();
 				break;
 			default:
