@@ -12,19 +12,18 @@ import java.util.HashMap;
 public class Customer implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	int serial_ID;
 	String userName;
 	String userPin;
 	String Name;
 	String Status;
 	ArrayList<String> accounts = new ArrayList<String>(); //Acct Number - Joint
+	ArrayList<Integer> serial_ID = new ArrayList<Integer>();
 	
 	public Customer() {
 		
 	}
 	
-	public Customer(int serial_ID, String userName, String userPin, String Name) {
-		this.serial_ID = serial_ID;
+	public Customer(String userName, String userPin, String Name) {
 		this.userName = userName;
 		this.userPin = userPin;
 		this.Name = Name;
@@ -32,9 +31,6 @@ public class Customer implements Serializable{
 		this.Status = "pending";
 	}
 
-	/**
-	 * 
-	 */
 	
 	@Override
 	public String toString() {
@@ -67,13 +63,7 @@ public class Customer implements Serializable{
 		this.accounts.remove(accNum);
 	}
 	
-	public int getSerial_ID() {
-		return serial_ID;
-	}
 
-	public void setSerial_ID(int serial_ID) {
-		this.serial_ID = serial_ID;
-	}
 
 	public static HashMap<String, Customer> readCustomers(){
 		HashMap<String, Customer> allCustomers = new HashMap<String, Customer>();
@@ -91,8 +81,8 @@ public class Customer implements Serializable{
 			}
 		} catch(Exception e) {
 			System.out.println("Re-initializing data base due to io error.");
-			Customer ID = new Customer(0000, "Prev.Acct", "0000", "Temp" );
-			Account acc = new Account(0000, "1", "Prev.Acct");
+			Customer ID = new Customer("Prev.Acct", "0000", "Temp" );
+			Account acc = new Account("1", "Prev.Acct");
 			ID.accounts.add(acc.accNum);
 			HashMap<String, Account> hashAcc = new HashMap<>();
 			HashMap<String, Customer> hashCust = new HashMap<>();

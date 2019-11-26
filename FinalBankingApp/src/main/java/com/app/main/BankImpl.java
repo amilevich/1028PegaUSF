@@ -13,15 +13,11 @@ import java.util.Map;
 
 public class BankImpl implements BankDao{
 
-	private static String url = "";
-	private static String username = "";
-	private static String password = "";
-
 	public HashMap<String, Customer> getCHashMap(){ //Get customer 
 		HashMap<String, Customer>hashMapC = selectAllCusts(); 
 		ArrayList<SqlKeys> keys_list = fetchSqlKeys();
 		for(SqlKeys tkey: keys_list) {
-			hashMapC.get(tkey.serial_ID).accounts.add(tkey.serialNum); 
+			hashMapC.get(tkey.id).accounts.add(tkey.accNum); 
 		}
 		return hashMapC;
 	}
@@ -30,7 +26,7 @@ public class BankImpl implements BankDao{
 		HashMap<String, Account>hashMapA = selectAllAccts(); 
 		ArrayList<SqlKeys> keys_list = fetchSqlKeys();
 		for(SqlKeys tkey: keys_list) {
-			hashMapA.get(tkey.serialNum).customers.add(tkey.serial_ID);
+			hashMapA.get(tkey.accNum).customers.add(tkey.id);
 		}
 		return hashMapA;
 	}
@@ -42,9 +38,8 @@ public class BankImpl implements BankDao{
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM KeySets");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				SqlKeys tkey = new SqlKeys(rs.getInt("serial_ID"), rs.getInt("serialNum"));
+				SqlKeys tkey = new SqlKeys(rs.getString("id"), rs.getString("accNum"));
 				keys_list.add(tkey);
-				conn.close();
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -58,9 +53,8 @@ public class BankImpl implements BankDao{
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Customer");
 			ResultSet rs = ps.executeQuery();
-			conn.close();
 			while(rs.next()) {
-				Customer cust = new Customer(rs.getInt("serial_ID"), rs.getString("userName"), rs.getString("userPin"), rs.getString("Name"));
+				Customer cust = new Customer(rs.getString("userName"), rs.getString("userPin"), rs.getString("Name"));
 				HashMapC.put(cust.userName, cust);
 			}
 		}catch(SQLException e) {
@@ -75,9 +69,8 @@ public class BankImpl implements BankDao{
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Accounts");
 			ResultSet rs = ps.executeQuery();
-			conn.close();
 			while(rs.next()) {
-				Account acct = new Account(rs.getInt("serialNum"), rs.getString("accNum"), rs.getFloat("balance"));
+				Account acct = new Account(rs.getString("AccountNumber"), rs.getFloat("balance"));
 				HashMapA.put(acct.accNum, acct);
 			}
 		}catch(SQLException e) {
@@ -91,7 +84,6 @@ public class BankImpl implements BankDao{
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("TRUNCATE TABLE Customer");
 			ps.executeUpdate();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Truncate fail.");
@@ -103,7 +95,6 @@ public class BankImpl implements BankDao{
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("TRUNCATE TABLE Account");
 			ps.executeUpdate();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Truncate fail.");
@@ -115,7 +106,6 @@ public class BankImpl implements BankDao{
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("TRUNCATE TABLE KeySets"); 
 			ps.executeUpdate();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Truncate fail.");
@@ -129,17 +119,15 @@ public class BankImpl implements BankDao{
 			while (hmIterator.hasNext()) { 
 				Map.Entry<String, Customer> mapElement = (Map.Entry<String, Customer>)hmIterator.next(); 
 				Customer cust = (Customer)mapElement.getValue();
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO Customer VALUES(?,?,?,?)");
-				ps.setInt(1, cust.getSerial_ID());
-				ps.setString(2, cust.getUserName());
-				ps.setString(3, cust.userPin);
-				ps.setString(4, cust.getName());
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO Customer VALUES(?,?,?)");
+				ps.setString(1, cust.userName);
+				ps.setString(2, cust.userPin);
+				ps.setString(3, cust.Name);
 				ps.executeUpdate();
-				conn.close();
 				for (String accNum: cust.accounts) {
 					PreparedStatement ps2 = conn.prepareStatement("INSERT INTO KeySets VALUES(?,?)");// Grab and pass key 
-					ps2.setString(1, accNum);
-					ps2.setInt(2, cust.serial_ID);
+					ps2.setString(1, cust.userName);
+					ps2.setString(2, accNum);
 					ps2.executeUpdate();
 				}
 			}
@@ -152,15 +140,13 @@ public class BankImpl implements BankDao{
 	@Override
 	public int insertAllAccts(HashMap<String, Account>hashMapA) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
-			Iterator<Map.Entry<String, Account>>hmIterator = hashMapA.entrySet().iterator(); 
-			conn.close();
+			Iterator<Map.Entry<String, Account>>hmIterator = hashMapA.entrySet().iterator();
 			while (hmIterator.hasNext()) { 
 				Map.Entry <String,Account> mapElement = (Map.Entry<String,Account>)hmIterator.next(); 
 				Account acct = (Account)mapElement.getValue();
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO Accounts VALUES(?,?,?)");
-				ps.setInt(1, acct.getSerialNum());
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO Accounts VALUES(?,?)");
+				ps.setString(1, acct.accNum);
 				ps.setFloat(2, acct.getBalance());
-				ps.setLong(3, acct.getAccountNumber());
 				ps.executeUpdate();
 			}
 		} catch (SQLException e) {

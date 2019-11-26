@@ -1,2 +1,53 @@
 2019-11-22 11:58:12 INFO  Logger:490 - New balance of: 102.0
 2019-11-25 00:36:02 INFO  Logger:277 - New balance: $500.0
+2019-11-25 18:41:45 INFO  Logger:79 - 1.0
+2019-11-25 18:43:30 INFO  Logger:79 - 1.0
+2019-11-25 18:49:10 INFO  Logger:79 - 100.0
+2019-11-25 18:49:44 INFO  Logger:79 - 1.0
+2019-11-25 18:52:46 INFO  Logger:79 - 1.0
+2019-11-25 18:54:50 INFO  Logger:79 - 1.0
+2019-11-25 18:57:23 INFO  Logger:79 - 2.0
+2019-11-25 19:02:11 INFO  Logger:79 - 90.0
+2019-11-25 19:05:55 INFO  Logger:79 - 200.0
+2019-11-25 19:22:01 INFO  Logger:79 - 1.0
+2019-11-25 19:28:13 INFO  Logger:79 - 20.0
+2019-11-25 19:28:43 INFO  Logger:283 - New balance: $119.0
+2019-11-25 19:28:57 INFO  Logger:300 - New balance: $63.0
+2019-11-25 19:31:25 INFO  Logger:79 - 99.0
+2019-11-25 19:35:53 INFO  Logger:79 - 5.0
+2019-11-25 19:38:26 INFO  Logger:79 - 67.0
+2019-11-25 19:38:43 INFO  Logger:79 - 90.0
+2019-11-25 20:02:34 INFO  Logger:80 - 1.0
+2019-11-25 20:02:47 INFO  Logger:80 - 2.0
+2019-11-25 20:03:21 INFO  Logger:285 - New balance: $12.0
+2019-11-25 20:03:32 INFO  Logger:302 - New balance: $6.0
+2019-11-25 20:04:22 INFO  Logger:324 - null has new balance of: $6.0
+2019-11-25 20:05:15 INFO  Logger:80 - 2.0
+2019-11-25 20:05:27 INFO  Logger:80 - 4.0
+2019-11-25 20:06:27 INFO  Logger:285 - New balance: $111.0
+2019-11-25 20:06:34 INFO  Logger:302 - New balance: $100.0
+2019-11-25 20:07:06 INFO  Logger:324 - null has new balance of: $92.0
+2019-11-25 20:10:42 INFO  Logger:80 - 33.0
+2019-11-25 20:10:54 INFO  Logger:80 - 55.0
+2019-11-25 20:11:51 INFO  Logger:302 - New balance: $46.0
+2019-11-25 20:11:55 INFO  Logger:285 - New balance: $56.0
+2019-11-25 20:12:53 INFO  Logger:80 - 55.0
+2019-11-25 20:13:05 INFO  Logger:80 - 66.0
+2019-11-25 20:14:20 INFO  Logger:324 - null has new balance of: $61.0
+2019-11-25 20:22:48 INFO  Logger:80 - 20.0
+2019-11-25 20:23:10 INFO  Logger:80 - 55.0
+2019-11-25 20:24:21 INFO  Logger:285 - New balance: $120.0
+2019-11-25 20:25:27 INFO  Logger:327 - null new balance of: $20.0
+2019-11-25 20:25:27 INFO  Logger:328 - null has new balance of: $155.0
+2019-11-25 20:27:30 INFO  Logger:80 - 4.0
+2019-11-25 20:27:45 INFO  Logger:80 - 66.0
+2019-11-25 20:49:15 INFO  Logger:79 - 1994.0
+2019-11-25 20:49:29 INFO  Logger:79 - 1991.0
+2019-11-25 20:49:56 INFO  Logger:79 - 1993.0
+2019-11-25 20:52:18 INFO  Logger:284 - New balance: $2000.0
+2019-11-25 20:52:59 INFO  Logger:471 - New balance of: $2100.0
+2019-11-25 20:53:14 INFO  Logger:492 - New balance of: $1900.0
+2019-11-25 20:54:10 INFO  Logger:516 - null new balance of: $1700.0
+2019-11-25 20:54:10 INFO  Logger:517 - null has new balance of: $2194.0
+2019-11-25 21:06:07 INFO  Logger:79 - 11.0
+2019-11-25 21:06:32 INFO  Logger:79 - 22.0

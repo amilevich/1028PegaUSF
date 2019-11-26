@@ -1,14 +1,12 @@
 package com.app.main;
 
-public class MainDriver extends Menu{
+public class MainDriver{
 
-	public static void main(String[] args) { //run full cycle
+	public static void main(String[] args) {
 		BankImpl bankDao = new BankImpl();
 		Menu menu =  new Menu(); 
 		menu.runWelcomeMenu();
-		bankDao.truncateAccounts();
-		bankDao.truncateCustomers();
-		bankDao.truncateSqlKeys();
+
 		bankDao.insertAllAccts(menu.allAccHash);
 		bankDao.insertAllCusts(menu.allCustHash);
 		

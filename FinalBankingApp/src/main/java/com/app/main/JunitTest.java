@@ -1,9 +1,5 @@
 package com.app.main;
-
-public class JunitTest {
-	package com.app.main;
-
-	import java.io.FileOutputStream;
+package com.app.main;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -12,10 +8,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
+import java.io.FileOutputStream;
 import org.apache.log4j.Logger;
 
-	public class Menu {
+public class JunitTest {
+
+
+
+
+
 		public final static Logger bankLog = Logger.getLogger(Logger.class);
 		
 		static float deposit = 0f;
@@ -555,4 +556,4 @@ import org.apache.log4j.Logger;
 	}
 
 
-}
+

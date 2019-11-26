@@ -24,7 +24,7 @@ public class Menu {
 	public static Customer ID = new Customer(); // Customer Obj
 	public static Admin admin = new Admin(); // Admin Obj
 	public static Employee employee = new Employee();// Employee Obj
-	static Account acct = new Account();
+	static String loggedInCustAccNum;
 	
 	public static ArrayList<Customer> pendingCust = new ArrayList<Customer>();// Pending Accts Arraylist
 	public static Map <String, Customer> validAccts = new HashMap<String, Customer>();
@@ -36,7 +36,7 @@ public class Menu {
 	HashMap<String, Customer> allCustHash;
 	HashMap<String, Account> allAccHash; 
 	
-	Menu(){
+	public Menu(){
 		this.allCustHash = bankDao.getCHashMap(); 
 		this.allAccHash = bankDao.getAHashMap(); 
 	}
@@ -78,7 +78,7 @@ public class Menu {
 			allAccHash.get(acct1.accNum).balance = uBalance;
 			Menu.bankLog.info(allAccHash.get(acct1.accNum).balance = uBalance);
 
-			Customer newCustomer = new Customer(0, uUsername, uPin, uName);
+			Customer newCustomer = new Customer(uUsername, uPin, uName);
 			pendingCust.add(newCustomer);
 			
 			System.out.println("Is this a single or joint account?" + '\n' + "1. Joint" + '\n'+ "2. Single");
@@ -102,7 +102,7 @@ public class Menu {
 					runRegMenu();
 				}else{
 					ID.userPin = jPin;
-					Customer newJointCustomer =  new Customer(1, jName, jUsername, jPin);
+					Customer newJointCustomer =  new Customer(jName, jUsername, jPin);
 					pendingCust.add(newJointCustomer);
 					allCustHash.put(newJointCustomer.userName, newJointCustomer);
 					System.out.println("Joint Account submitted and awaiting approval." + '\n');
@@ -124,6 +124,9 @@ public class Menu {
 		case "3" :
 			Account.writeAccounts(allAccHash);
 			Customer.writeCustomers(allCustHash);
+//			bankDao.truncateAccounts();
+//			bankDao.truncateCustomers();
+//			bankDao.truncateSqlKeys();
 			bankDao.insertAllAccts(allAccHash);
 			bankDao.insertAllCusts(allCustHash);
 			System.exit(0);
@@ -166,7 +169,7 @@ public class Menu {
 			allAccHash.get(acct.accNum).balance = uBalance;
 			Menu.bankLog.info(allAccHash.get(acct.accNum).balance = uBalance);
 
-			Customer newCustomer = new Customer(0, uUsername, uPin, uName);
+			Customer newCustomer = new Customer(uUsername, uPin, uName);
 			pendingCust.add(newCustomer);
 			
 			System.out.println("Is this a single or joint account?" + '\n' + "1. Joint" + '\n'+ "2. Single");
@@ -231,6 +234,7 @@ public class Menu {
 		}
 		if(allCustHash.containsKey(uName0) && allCustHash.get(uName0).userPin.equals(uPin0) && allCustHash.get(uName0).Status.equals("Approved")) {
 			System.out.println("Logging in...");
+			loggedInCustAccNum = allCustHash.get(uName0).accounts.get(0);
 			runCmenu();
 
 			if((allCustHash.get(uName0).Status.equals("pending"))) {
@@ -274,53 +278,56 @@ public class Menu {
 			float dep = scan.nextFloat();
 			
 			scan.nextLine();
-			allAccHash.get(acct.accNum).balance += dep;
+			allAccHash.get(loggedInCustAccNum).balance += dep;
 			
-			System.out.println("New balance: $" + allAccHash.get(acct.accNum).balance);
-			Menu.bankLog.info("New balance: $" + allAccHash.get(acct.accNum).balance);
+			System.out.println("New balance: $" + allAccHash.get(loggedInCustAccNum).balance);
+			Menu.bankLog.info("New balance: $" + allAccHash.get(loggedInCustAccNum).balance);
 			runCmenu();
 			break;
 			
 		case "2": //Withdrawl
 			System.out.println("How much would you like to withdraw?");
 			float wit = scan.nextFloat();
-			scan.next();
 			
-			if(allAccHash.get(acct.accNum).balance < wit) {
+			if(allAccHash.get(loggedInCustAccNum).balance < wit) {
 				System.out.println("Overdraft. Not enough in account.");
 				runCmenu();
 			}else {
 				scan.nextLine();
-				allAccHash.get(acct.accNum).balance -= wit;
+				allAccHash.get(loggedInCustAccNum).balance -= wit;
 
-				System.out.println("New balance: $" + allAccHash.get(acct.accNum).balance);
-				Menu.bankLog.info("New balance: $" + allAccHash.get(acct.accNum).balance);
+				System.out.println("New balance: $" + allAccHash.get(loggedInCustAccNum).balance);
+				Menu.bankLog.info("New balance: $" + allAccHash.get(loggedInCustAccNum).balance);
 				runCmenu();
 			}
 			break;
 			
 		case "3": //Transfer
-			System.out.println("Enter Acct# for transfer.");
+			System.out.println("Enter Acct# to transfer from.");
+			String targetFrom = scan.nextLine();
+			System.out.println("Enter Acct# to transfer into.");
 			String target1 = scan.nextLine();
 
 			if(allAccHash.containsKey(target1)) {
-				
 				System.out.println("Enter amount of transfer.");
 				float trans = scan.nextFloat();
 				scan.nextLine();
 				
-				if(allAccHash.get(acct.accNum).balance < trans) {
+				if(allAccHash.get(targetFrom).balance < trans) {
 					System.out.println("Overdraft. Not enough in account.");
-					adminEdits();
+					runCmenu();
 				}
-				allAccHash.get(target1).balance += trans;
-				allAccHash.get(acct.accNum).balance -= trans;
-				System.out.println(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(acct.accNum).balance);
-				Menu.bankLog.info(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(acct.accNum).balance);
+				allAccHash.get(target1).balance+= trans;
+				allAccHash.get(targetFrom).balance -= trans;
+				System.out.println("You have a new balance of: $" + allAccHash.get(targetFrom).balance);
+				System.out.println(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(target1).balance);
+				
+				Menu.bankLog.info(allAccHash.get(ID.getName()) +" new balance of: $" + allAccHash.get(targetFrom).balance);
+				Menu.bankLog.info(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(target1).balance);
 			}
 			if(!allCustHash.containsKey(target1)) {
 				System.out.println("Not a match, sorry.");
-				adminEdits();
+				runCmenu();
 			}
 			runCmenu();
 			break;
@@ -367,7 +374,7 @@ public class Menu {
 		}
 	}
 	public void runAmenu() {// Run admin menu
-		System.out.println("Welcome "  + admin.Name + '\n' +"1. View Pending Accounts" + '\n' + "2. Edit Accounts" + '\n' + "3. Sign-Out");// Deposit, Withdraw, Transfer with all accounts
+		System.out.println("Welcome "  + admin.Name + '\n' +"1. View Pending Accounts" + '\n' + "2. Edit Accounts" + '\n' + "3. Sign-Out" + '\n');// Deposit, Withdraw, Transfer with all accounts
 
 			String option3 = scan.nextLine();
 			switch (option3) {
@@ -444,65 +451,68 @@ public class Menu {
 
 		switch(options) {
 		case "1" :
-			System.out.println("Enter Username ID for deposit.");
+			System.out.println("Enter account number for deposit.");
 			String target = scan.nextLine();
 			
-			if(allCustHash.containsKey(target)) {
+			if(allAccHash.containsKey(target)) {
 				System.out.println("Enter amount of deposit.");
 				float dep = scan.nextFloat();
 				scan.nextLine();
 
-				allAccHash.get(acct.accNum).balance += dep;
+				allAccHash.get(target).balance += dep;
 			}
-			if(!allCustHash.containsKey(target)) {
+			if(!allAccHash.containsKey(target)) {
 				System.out.println("Not a match, sorry.");
 				adminEdits();
 			}
 			
-			System.out.println("New balance of: $"+ allAccHash.get(acct.accNum).balance);
-			Menu.bankLog.info("New balance of: $"+ allAccHash.get(acct.accNum).balance);
+			System.out.println("New balance of: $"+ allAccHash.get(target).balance);
+			Menu.bankLog.info("New balance of: $"+ allAccHash.get(target).balance);
 			adminEdits();
 			break;
 			
 		case "2" :
-			System.out.println("Enter Username ID for withdrawl.");
+			System.out.println("Enter account number for withdrawl.");
 			String target2 = scan.nextLine();
 			
-			if(allCustHash.containsKey(target2)) {
+			if(allAccHash.containsKey(target2)) {
 				System.out.println("Enter amount of withdrawl.");
 				float wit = scan.nextFloat();
-				scan.nextLine();
 
-				allAccHash.get(acct.accNum).balance -= wit;
+				allAccHash.get(target2).balance -= wit;
 			}
-			if(!allCustHash.containsKey(target2)) {
+			if(!allAccHash.containsKey(target2)) {
 				System.out.println("Not a match, sorry.");
 				adminEdits();
 			}
 			
-			System.out.println("New balance of: $"+ allAccHash.get(acct.accNum).balance);
-			Menu.bankLog.info("New balance of: $"+ allAccHash.get(acct.accNum).balance);
+			System.out.println("New balance of: $"+ allAccHash.get(target2).balance);
+			Menu.bankLog.info("New balance of: $"+ allAccHash.get(target2).balance);
 			adminEdits();
 			break;
 			
 		case "3" : 
-			System.out.println("Enter Acct# for transfer.");
+			System.out.println("Enter Acct# to transfer from.");
+			String targetFrom = scan.nextLine();
+			System.out.println("Enter Acct# to transfer into.");
 			String target1 = scan.nextLine();
 
 			if(allAccHash.containsKey(target1)) {
-				
 				System.out.println("Enter amount of transfer.");
 				float trans = scan.nextFloat();
 				scan.nextLine();
 				
-				if(allAccHash.get(acct.accNum).balance < trans) {
+				if(allAccHash.get(targetFrom).balance < trans) {
 					System.out.println("Overdraft. Not enough in account.");
 					adminEdits();
 				}
 				allAccHash.get(target1).balance+= trans;
-				allAccHash.get(acct.accNum).balance -= trans;
-				System.out.println(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(acct.accNum).balance);
-				Menu.bankLog.info(allAccHash.get(ID.getName()) +" has new balance of: $" + allAccHash.get(acct.accNum).balance);
+				allAccHash.get(targetFrom).balance -= trans;
+				System.out.println("New balance of: $" + allAccHash.get(targetFrom).balance);
+				System.out.println("Transferee has new balance of: $" + allAccHash.get(target1).balance);
+				
+				Menu.bankLog.info(allAccHash.get("New balance of: $" + allAccHash.get(targetFrom).balance));
+				Menu.bankLog.info("Transferee has new balance of: $" + allAccHash.get(target1).balance);
 			}
 			if(!allCustHash.containsKey(target1)) {
 				System.out.println("Not a match, sorry.");
@@ -518,7 +528,7 @@ public class Menu {
 			String target4 = scan.nextLine();
 
 			if(allAccHash.containsKey(target3) && allCustHash.containsKey(target4)) {
-				allAccHash.remove(acct.accNum);
+				allAccHash.remove(target3);
 				allCustHash.containsKey(target4);
 				System.out.println("Account closed.");
 				adminEdits();
