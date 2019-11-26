@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +24,17 @@ public class UserDaoImpt implements UserDao
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO Users2 VALUES(?,?,?,?,?,?)");
-			ps.setString(2, _user.getUserName());
-			ps.setByte(1, (byte)_user.getUserType());
+			ps.setString(1, _user.getUserName());
+			ps.setByte(2, (byte)_user.getUserType());
 			ps.setString(3, _user.getPassword());
 			ps.setString(4, _user.getFirstName());
 			ps.setString(5, _user.getLastName());
 			ps.setInt(6, _user.getAccountNumber());
 			ps.executeUpdate();
+		}
+		catch(SQLSyntaxErrorException e)
+		{
+			
 		}
 		catch(SQLIntegrityConstraintViolationException e)
 		{
@@ -55,7 +60,8 @@ public class UserDaoImpt implements UserDao
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) 
 			{
-				users.add(new User(rs.getString("user_username"), rs.getString("user_password"), rs.getByte("user_type"), rs.getString("user_firstname"), rs.getString("user_lastname"), rs.getInt("user_accountNumber")));
+				users.add(new User(rs.getString("user_username"), rs.getString("user_password"), rs.getByte("user_type"), 
+								   rs.getString("user_firstname"), rs.getString("user_lastname"), rs.getInt("user_accountNumber")));
 			}
 
 		}
@@ -78,6 +84,7 @@ public class UserDaoImpt implements UserDao
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users2 WHERE user_username=?");
+//			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users2 WHERE user_username=" + _username);
 			//putting in a native SQL query utilizing a prepared statement
 			ps.setString(1, _username);
 			ResultSet rs = ps.executeQuery();

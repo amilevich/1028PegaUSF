@@ -232,14 +232,14 @@ public class MenuManager
 					User admin = userDao.selectUserByUsername(name);
 					if(admin != null)
 					{
-						if(admin.getPassword().contentEquals(password) && admin.isAdmin())
+						if(admin.getPassword().contentEquals(password) /*&& admin.isAdmin()*/)
 						{
 							m_curUser = admin;
 							bValid = true;
 							m_menuState = MENUSTATE.ADMIN;
 						}
 						else
-							System.out.println("ERROR: Invalid login");
+							System.out.println("ERROR: Invalid password");
 					}
 					else
 					{
@@ -522,12 +522,12 @@ public class MenuManager
 			{
 				// Access account by number
 				case 1:
-					this.findAccountByNum();
+					m_curAccount = this.findAccountByNum();
 				break;
 				
 				// Access account by legal name of customer
 				case 2:
-					this.findAccountByCustName();
+					m_curAccount = this.findAccountByCustName().get(0);
 				break;
 				
 				// Logout
@@ -728,12 +728,13 @@ public class MenuManager
 		else
 		{
 			System.out.println("1) Go to account by account number");
-			System.out.println("2) Go to account by customer name");
-			System.out.println("3) Display all accounts");
-			System.out.println("4) Create employee account");
-			System.out.println("5) Create admin account");
-			System.out.println("6) Logout");
-			System.out.println("7) Exit\n");
+//			System.out.println("2) Go to account by customer name");
+			System.out.println("2) Display all accounts");
+//			System.out.println("4) Display all users");
+			System.out.println("3) Create employee account");
+			System.out.println("4) Create admin account");
+			System.out.println("5) Logout");
+			System.out.println("6) Exit\n");
 			System.out.print("Selection: ");
 
 			int option = this.getIntInput();
@@ -741,36 +742,41 @@ public class MenuManager
 			{
 				// Access account by number
 				case 1:
-					this.findAccountByNum();
+					m_curAccount = this.findAccountByNum();
 				break;
 				
 				// Access account by legal name of customer
-				case 2:
-					this.findAccountByCustName();
-				break;
+//		case 2:
+//					m_curAccount = this.findAccountByCustName().get(0);
+//				break;
 				
 				//Dispaly all accounts
-				case 3:
+				case 2:
 					this.viewAllAccounts();
 				break;
-				
-				// Create employee account
+/*				
+				//Display all users
 				case 4:
+					this.viewAllUsers();
+				break;
+*/				
+				// Create employee account
+				case 3:
 					this.createEmployeeAccount();
 				break;
 				
 				// Create admin account
-				case 5:
+				case 4:
 					this.createAdminAccount();
 				break;
 				
 				// Logout
-				case 6:
+				case 5:
 					this.logOut();
 				break;
 				
 				// Exit
-				case 7:
+				case 6:
 					exit();
 				break;
 				
@@ -948,7 +954,7 @@ public class MenuManager
 			}
 			return false;
 		}
-		System.out.println("ERROR: user does not exist");
+		System.out.println("ERROR: account does not exist");
 		return false;
 	}
 	
@@ -1580,7 +1586,7 @@ public class MenuManager
 		}
 
 		// Add the new admin account to the database
-		User newUser = new User(userName, word1, User.getAdminCode(), fName, lName);
+		User newUser = new User(userName, word1, User.getAdminCode(), fName, lName, 0);
 		userDao.insertUser(newUser);
 		loggy.info(timeStamp(date) + "Admin account " + newUser.getUserName() + " created for " + newUser.getFirstName() + ' ' + newUser.getLastName());
 		
@@ -1618,7 +1624,7 @@ public class MenuManager
 		}
 		
 		//add new user to database
-		User newUser = new User(userName, word1, User.getEmployeeCode(), fName, lName);
+		User newUser = new User(userName, word1, User.getEmployeeCode(), fName, lName,0);
 		dao.insertUser(newUser);
 		loggy.info(timeStamp(date) + "Employee account " + newUser.getUserName() + " created for " + newUser.getFirstName() + ' ' + newUser.getLastName());
 
@@ -1650,6 +1656,8 @@ public class MenuManager
 					System.out.println("Account has been closed");
 				if(accounts.get(i).getFlag(Account.FLAGS.FROZEN))
 					System.out.println("Account has been FROZEN");
+				if(accounts.get(i).getFlag(Account.FLAGS.APPROVED))
+					System.out.println("Account has been APPROVED");
 			
 				System.out.println("\n---------------------------------------\n");
 			}
@@ -1657,6 +1665,31 @@ public class MenuManager
 		}
 	}
 	
+	private void viewAllUsers()
+	{
+		if(this.m_curUser.isAdmin())
+		{
+			UserDaoImpt dao = new UserDaoImpt();
+			List<User> users = dao.selectAllUsers();
+			
+			// Display everything
+			System.out.println("Showing all users\n-------------------------------------------------------------------------");
+			for(int i = 0; i < users.size(); i++)
+			{
+				if(users.get(i).isCustomer())
+					System.out.println("CUSTOMER:");
+				else if(users.get(i).isEmployee())
+					System.out.println("Employee:");
+				else if(users.get(i).isAdmin())
+					System.out.println("Admin:");
+				
+				System.out.println("User Name: " + users.get(i).getUserName());
+				System.out.println("Name: " + users.get(i).getFirstName() + ' ' + users.get(i).getLastName());
+				System.out.println("\n---------------------------------------\n");
+			}
+		}
+	}
+
 	private double getDoubleInput()
 	{
 		double input = Double.MIN_VALUE;
