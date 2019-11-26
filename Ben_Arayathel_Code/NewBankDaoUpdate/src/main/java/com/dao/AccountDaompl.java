@@ -12,10 +12,6 @@ import com.backend.Account;
 
 public class AccountDaompl implements AccountDao{
 	
-	private static String url = "jdbc:oracle:thin:@dbtest1028.c24r46j1ibxl.us-east-1.rds.amazonaws.com:1521:orcl";
-	private static String username = "BankUser";
-	private static String password = "p4ssw0rd";
-	
 
 	public void Insert(Account a) {
 		try(Connection conn = DriverManager.getConnection(url,username,password)){

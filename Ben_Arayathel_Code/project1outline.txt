@@ -1,0 +1,30 @@
+
+
+employees
+	login
+	submit tickets
+	view tickets
+		past tickets
+		pending tickets
+
+finance managers
+	login
+	view all tickets
+		past
+		pending
+	approve/deny
+
+
+ticket types
+	LODGING
+	TRAVEL
+	FOOD 
+	OTHER
+
+
+Requirements
+	DAO Design pattern
+	3NF
+	JDBC to Oracle SQL
+
+	
