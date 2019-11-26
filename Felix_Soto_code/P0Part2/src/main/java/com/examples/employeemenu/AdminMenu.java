@@ -10,29 +10,29 @@ import com.examples.dao.CustomersDaoImpl;
 import com.examples.dao.EmployeeDaoImpl;
 import com.examples.employeesandadmins.Employees;
 import com.examples.menu.MainMenu;
-public class EmpMenu {
+public class AdminMenu {
 	
 
-	 public static void employeeSignIn() {
+	 public static void adminSignIn() {
 	
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 	    Employees empl = new Employees();
 			String username;
 			System.out.println();
-			System.out.println("Please enter your employee username: ");
+			System.out.println("Please enter your admin username: ");
 			username = sc.next();
 			EmployeeDaoImpl.emplExist(username);
 			if (username.equals(empl.getEmpUsername())) {
-				EmployeeSigninpass();
+				adminSigninpass();
 		} else {
-			System.out.println("Employee user or password is incorrect!");
-			MainMenu.menu();
+			System.out.println("Employee user or password is incorrect.");
+			adminSignIn();
 		}
 		
 	 }
 	 
-	 private static void EmployeeSigninpass() {
+	 private static void adminSigninpass() {
 		    Employees emp = new Employees();
     	 String password;
    		@SuppressWarnings("resource")
@@ -43,13 +43,13 @@ public class EmpMenu {
    		CustomersDaoImpl.custExist2(password);
    		
    		if (password.equals(emp.getEmpPassword())) {
-			      employeeMenu();
+			      adminMenu();
 		} else {
-			System.out.println("Employee user or password incorrect");
-			employeeSignIn();
+			System.out.println("Admin username or password incorrect");
+			adminSignIn();
 		}
 	}// end customer pass
-		public static void approval() {
+		public static void adminapproval() {
 			AccountsDaoImpl acct = new AccountsDaoImpl();
 			CustomersDaoImpl cImpl = new CustomersDaoImpl();
 			Customers cust = new Customers();
@@ -73,67 +73,28 @@ public class EmpMenu {
 		    		 System.out.println("Account: " + accID + " has been approved");
 		    		 cImpl.updateCustomers(cust);
 		    		 cust.setStatus(app);
-		    		 employeeMenu();
+		    		 adminMenu();
 		    	 }else if(option.equals("n")){
-		    		 System.out.println("Ok. going back to the employee menu.");
-		    		 employeeMenu();
+		    		 System.out.println("Ok. going back to the admin menu.");
+		    		 adminMenu();
 
 		    	 }else {
 		    		 System.out.println("Please enter a valid option. going back to the menu");
-		    		 employeeMenu();
+		    		 adminMenu();
 		    	 }    
 		     }
 		
-		public static void deny() {
-			AccountsDaoImpl acct = new AccountsDaoImpl();
-			CustomersDaoImpl cImpl = new CustomersDaoImpl();
-			Customers cust = new Customers();
-			@SuppressWarnings("resource")
-			Scanner sc = new Scanner(System.in);
-			System.out.println();
-			System.out.println("Please enter the account ID for the account you want to deny: ");
-			System.out.println();
-			int accID = sc.nextInt();
-		    Accounts acc = new Accounts();
-		    acc = acct.selectAccountsByAccountID(accID);
-		    System.out.println(acc);
-		    	 System.out.println();
-		    	 System.out.println("Do you want to deny this account, (y) or (n)?");
-		    	 String option = sc.next();
-		    	 if(option.equals("y")) {
-		    		String app = "denied";
-		    		 acc.setStatus(app);
-		    		 System.out.println(acc.getStatus());
-		    		 acct.updateAccounts(acc);
-		    		 System.out.println("Account: " + accID + " has been denied");
-		    		 cImpl.updateCustomers(cust);
-		    		 cust.setStatus(app);
-		    		 employeeMenu();
-		    	 }else if(option.equals("n")){
-		    		 System.out.println("Ok. going back to the employee menu.");
-		    		 employeeMenu();
-
-		    	 }else {
-		    		 System.out.println("Please enter a valid option. going back to the menu");
-		    		 employeeMenu();
-		    	 }    
-		     }
-		
-		
-		
-		
-		
-	public static void employeeMenu() {
+	
+	public static void adminMenu() {
 		System.out.println("========================================");
 		System.out.println("");
-		System.out.println("          Employee Menu:");
-		System.out.println("========================================");
+		System.out.println("          Admin Menu:");
 		System.out.println("");
         System.out.println(" Press 1 to get a list of all customers");
-        System.out.println(" Press 2 to approve an account");
+        System.out.println(" Press 2 to approve an Account");
         System.out.println(" Press 3 to deny an account");
         System.out.println(" Press 4 to go back to the previous menu");
-        System.out.println(" Press 5 to log off");
+        System.out.println(" Press 5 to exit");
         System.out.println();
 		int option;
 		@SuppressWarnings("resource")
@@ -147,15 +108,12 @@ public class EmpMenu {
 				CustomersDaoImpl emplViewcust1 = new CustomersDaoImpl();
 				List<Customers> custViewList1 = emplViewcust1.selectAllCustomers();
 				for(int j = 0; j < custViewList1.size(); j++) {
-					System.out.println("\n");
 					System.out.println(custViewList1.get(j).toString().replaceAll("^.|.$","").replace(", ", "\n"));
 					System.out.println("\n");
 
 				}
 				System.out.println();
-				 System.out.println("Press 4 to return to the employee menu");
-				
-				
+				 System.out.println("Press 0 to return to the admin menu");
 				break;
 			case 2:
 				AccountsDaoImpl emplViewcust = new AccountsDaoImpl();
@@ -165,15 +123,16 @@ public class EmpMenu {
 					System.out.println("\n");
 
 				}
-				approval();
+				adminapproval();
                 
                 break;
             case 3:
-            	deny();
+             // deny();
             	
                 break;
             case 4:
-            	 employeeMenu();
+                //Go back to employee menu
+            	 adminMenu();
             	
                 break;
             case 5:

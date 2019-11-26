@@ -4,69 +4,69 @@ import java.util.Random;
 
     public class Admins {
 	Random generator = new Random();
-	private String empFirstName;
-	private String empLastName;
-	private String empUsername ="employee";
-	private String empPassword="employeepass";
-	private int empID =  generator.nextInt(300);
+	private String adminFirstName;
+	private String adminLastName;
+	private String adminUsername ="admin";
+	private String adminPassword="adminpass";
+	private int adminID =  generator.nextInt(200);
 	 
 	public Admins() {
 		super();
 	}
 
-	public String getEmpFirstName() {
-		return empFirstName;
+	public String getAdminFirstName() {
+		return adminFirstName;
 	}
 
-	public void setEmpFirstName(String empFirstName) {
-		this.empFirstName = empFirstName;
+	public void setAdminFirstName(String adminFirstName) {
+		this.adminFirstName = adminFirstName;
 	}
 
-	public String getEmpLastName() {
-		return empLastName;
+	public String getAdminLastName() {
+		return adminLastName;
 	}
 
-	public void setEmpLastName(String empLastName) {
-		this.empLastName = empLastName;
+	public void setAdminLastName(String adminLastName) {
+		this.adminLastName = adminLastName;
 	}
 
-	public String getEmpUsername() {
-		return empUsername;
+	public String getAdminUsername() {
+		return adminUsername;
 	}
 
-	public void setEmpUsername(String empUsername) {
-		this.empUsername = empUsername;
+	public void setAdminUsername(String adminUsername) {
+		this.adminUsername = adminUsername;
 	}
 
-	public String getEmpPassword() {
-		return empPassword;
+	public String getAdminPassword() {
+		return adminPassword;
 	}
 
-	public void setEmpPassword(String empPassword) {
-		this.empPassword = empPassword;
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
 	}
 
-	public int getEmpID() {
-		return empID;
+	public int getAdminID() {
+		return adminID;
 	}
 
-	public void setEmpID(int empID) {
-		this.empID = empID;
+	public void setAdminID(int adminID) {
+		this.adminID = adminID;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee empFirstName=" + empFirstName + ", empLastName=" + empLastName
-				+ ", empUsername=" + empUsername + ", empPassword=" + empPassword + ", empID=" + empID + "]";
+		return "Admin adminFirstName=" + adminFirstName + ", adminLastName=" + adminLastName
+				+ ", adminUsername=" + adminUsername + ", adminPassword=" + adminPassword + ", adminID=" + adminID + "]";
 	}
 
-	public Admins(String empFirstName, String empLastName, String empUsername, String empPassword,
-			int empID) {
+	public Admins(String adminFirstName, String adminLastName, String adminUsername, String adminPassword,
+			int adminID) {
 		super();
-		this.empFirstName = empFirstName;
-		this.empLastName = empLastName;
-		this.empUsername = empUsername;
-		this.empPassword = empPassword;
-		this.empID = empID;
+		this.adminFirstName = adminFirstName;
+		this.adminLastName = adminLastName;
+		this.adminUsername = adminUsername;
+		this.adminPassword = adminPassword;
+		this.adminID = adminID;
 	}	
 }

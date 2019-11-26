@@ -79,8 +79,8 @@ public class Accounts {
 
 	@Override
 	public String toString() {
-		return "Accounts [accID=" + accID + ", isJoint=" + isJoint + ", status=" + status + ", balance=" + balance
-				+ ", accCustFname=" + accCustFname + ", accCustLname=" + accCustLname + ", CustID=" + CustID + "]";
+		return " Account ID: " + accID  + ", Is it a joint account? (0 means no, 1 means yes) : " + isJoint + ", Account status: " + status +", Account balance: " + balance
+				 + ", First name: " + accCustFname  + ", Last name: " + accCustLname  + ", Customer ID: " + CustID;
 	}
 
 	public Accounts(int accID, int isJoint, String status, double balance, String accCustFname, String accCustLname, int custID) {
@@ -93,9 +93,4 @@ public class Accounts {
 		this.accCustLname = accCustLname;
 		CustID = custID;
 	}
-
-
-	
-	
-	
-}// end class
+}

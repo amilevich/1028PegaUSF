@@ -78,9 +78,9 @@ public class Customers {
 	// toString
 	@Override
 	public String toString() {
-		return "Customers custFname=" + custFname + ", custLname=" + custLname
-				+ ", userName=" + userName + ", password=" + password + ", custID=" + custID
-				+ ", status=" + status + ", bal=" + bal;
+		return " Customer's First name: " + custFname + "." + ", customer's last name: " + custLname
+				+ "." + ", username: " + userName + "." + ", password: " + password + "." + ", customer ID: " + custID
+				+ "." + ", customer' status: " + status + "." + ", customer's balance: " + bal;
 	}
 
 	// Parametrized constructor 

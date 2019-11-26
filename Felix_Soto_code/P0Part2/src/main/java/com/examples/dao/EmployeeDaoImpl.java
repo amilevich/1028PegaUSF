@@ -137,7 +137,7 @@ try(Connection conn = DriverManager.getConnection(url, username, password)){
 		while(rs.next()) {
 			if(rs.getString(4).equals(passWord)) {
 				emplUsernameTaken = true;
-				AccountMenu.bankingMenu();
+				AccountMenu.bankingMenu(0);
 				break;
 			}
 		}

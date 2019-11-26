@@ -17,8 +17,7 @@ public class CustomersMenu {
 		int counter =0;
 
 		Customers cust = new Customers();
-		System.out.println("Press 1. to register for a single account");
-		System.out.println("Press 2. to register for a joint account");
+		System.out.println("Press 1 to register for an account");
 		option = input.nextInt();
 		if (option == 1) {
 			counter++;
@@ -26,7 +25,7 @@ public class CustomersMenu {
 				System.out.println("Please enter user first name: ");
 				cust.setCustFname(input.next());
 			
-				System.out.println("Please enter your last name: " + counter);
+				System.out.println("Please enter your last name: ");
 				cust.setCustLname(input.next());
 
 			while (true) {
@@ -45,15 +44,11 @@ public class CustomersMenu {
 					System.out.println("Your user name must be 5 or 10 characters long");
 					System.out.println();
 				}
-				// Asking customer to create password
-				
-			}// end user name while loop
-			
-			
+			}
+		
 			while (true) {
 
 				System.out.println("Please create a password:");
-				System.out.println("Your password should not contain no more than 10 characters!");
 				System.out.println();
 				cust.setPassword(input.next());
 				if (cust.getPassword().length() > 5 && cust.getPassword().length() <= 10) {
@@ -74,7 +69,6 @@ public class CustomersMenu {
 			 System.out.println(cust.getCustFname() + ", Your account has been created");
 			 System.out.println("The status of your account is: " + cust.getStatus());
 			 System.out.println();
-//			 cust.serializedCustomer(CustomersList);
 			 CustomersDaoImpl  custImpl = new CustomersDaoImpl();
 			 custImpl.insertCustomers(cust);
 			 Accounts newacc = new  Accounts();
@@ -133,17 +127,35 @@ public class CustomersMenu {
 		CustomersDaoImpl.custExist(username);
 		customerSignpass();
 
-	}// end customer sign in
+	}
 	
-       private static void customerSignpass() {
-    	 String password;
-   		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-   		System.out.println();
-   		System.out.println("Please enter your password: ");
-   		password = sc.next();
-   		CustomersDaoImpl.custExist2(password);
-   		AccountMenu.bankingMenu();
-	}// end customer pass
+	private static void customerSignpass() {
+   	 String password;
+  		Scanner sc = new Scanner(System.in);
+  		Accounts act = new Accounts();
+  		System.out.println();
+  		System.out.println("Please enter your password: ");
+  		password = sc.next();
+  		CustomersDaoImpl.custExist2
+  		(password);
 
-}// end class
+  		Scanner scanner = new Scanner(System.in);
+  		Customers cust = new Customers();
+		AccountsDaoImpl acct = new AccountsDaoImpl();
+		System.out.println("Please enter your account ID");
+		int accID = scanner.nextInt();
+	    Accounts acc = new Accounts();
+	    acc = acct.selectAccountsByAccountID(accID);
+	    System.out.println("=====================================================================================================================================================================================");
+	    System.out.println("                                                    Customer details");
+	    System.out.println(acc);
+	    System.out.println("=====================================================================================================================================================================================");
+
+	    if(acc.getStatus().equals("approved")) {
+	    	AccountMenu.bankingMenu(accID);
+  		}else {
+  			System.out.println("your account's status is still pending. Logging out . . .");
+  			MainMenu.menu();
+  		}
+	}
+}
