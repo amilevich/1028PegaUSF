@@ -66,8 +66,9 @@ public class CustomersMenu {
 					System.out.println();
 				
 				}
-			}// end pass while loop
+			}
 			
+			 cust.setStatus("Pending");
 			 System.out.println("Your ID is: " + cust.getCustID());
 			 System.out.println();
 			 System.out.println(cust.getCustFname() + ", Your account has been created");

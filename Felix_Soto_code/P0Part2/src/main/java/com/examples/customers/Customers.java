@@ -9,7 +9,7 @@ public class Customers {
 	private String userName;
 	private String password;
 	private int custID= generator.nextInt(1000);
-	private String status = "Pending";
+	private String status;
 	private double bal = 0.00;
 	
 	// constructor
@@ -95,9 +95,9 @@ public class Customers {
 		this.status = status;
 		this.bal = bal;
 	}
-	
-	
-	
 
-
-}// end class
+	public void withdraw(float withdrawal) {
+		// TODO Auto-generated method stub
+		
+	}
+}

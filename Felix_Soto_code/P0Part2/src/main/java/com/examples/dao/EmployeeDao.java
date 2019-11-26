@@ -2,23 +2,22 @@ package com.examples.dao;
 
 import java.util.List;
 
-import com.examples.employeesandadmins.Employees;
+import com.examples.accounts.Accounts;
 
 
 public interface EmployeeDao {
 	
-	//Create
-    public int insertEmployee(Employees e);
+public int insertAccounts(Accounts a);
 	
 	//read
-	public Employees selectEmployeeByEmpID(int emplID);// select your primary key
-	public List<Employees> selectAllEmployees();
+	public Accounts selectAccountsByAccountID(int accountID);// select your primary key
+	public List<Accounts> selectAllAccounts();
 	
 	//update
-	public int updateEmployee(Employees e);
+	public int updateAccounts(Accounts a);
 	
 	//delete
-	public int deleteEmployee(Employees e);
+	public int deleteAccounts(Accounts a);
 
 
 }// end interface

@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.examples.customers.Customers;
+import com.examples.customers.CustomersMenu;
 import com.examples.dao.AccountsDaoImpl;
 import com.examples.dao.CustomersDaoImpl;
+import com.examples.employeemenu.EmpMenu;
 import com.examples.menu.MainMenu;
 public class AccountMenu {
 	
@@ -94,7 +96,7 @@ public class AccountMenu {
 				if(c.getCustID() == customerID) {
 				
 					c.setBal(c.getBal() - amount1);
-					System.out.println("The amount of $" + amount1 + " was succesfully deposited!");
+					System.out.println("The amount of $" + amount1 + " was succesfully withdraw");
 					cusDao.updateCustomers(i);
 					//cust.writeCustObject(filename, CustomersList);
 					System.out.println("Your balance  is $: " + c.getBal());
@@ -107,23 +109,19 @@ public class AccountMenu {
 	}//end withdraw
 	
 	// Deposit method
-	static public void Deposit(List<Customers> custList, int customerID) {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-		int amount1 = sc.nextInt();
+	static public void Deposit() {
+		Accounts acct = new Accounts();
+		Scanner cs = new Scanner(System.in);
+		CustomersMenu cm = new CustomersMenu();
+		EmpMenu empl = new EmpMenu();
+		int amount = 0;
 		
-		if(amount1 > 0) {
-				for(Customers i : custList) {
-					System.out.println(i);
-				System.out.println(c.getCustID());
-				if(c.getCustID() == customerID) {
-				
-					c.setBal(c.getBal() + amount1);
-					System.out.println("The amount of $" + amount1 + " was succesfully deposited!");
-					cusDao.updateCustomers(i);
-					//cust.writeCustObject(filename, CustomersList);
-					System.out.println("Your balance  is $: " + c.getBal());
-				}
+		System.out.println("Enter your account id: ");
+		int acid = input.nextInt();
+		acct = AccountsDaoImpl.getAccountById(acid);
+		System.out.println("Enter the amount you want to deposit: ");
+		
+			}
 		}
 		
 	}

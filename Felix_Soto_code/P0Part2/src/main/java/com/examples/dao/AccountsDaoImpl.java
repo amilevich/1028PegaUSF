@@ -79,14 +79,14 @@ public class AccountsDaoImpl implements AccountsDao{
 	public int updateAccounts(Accounts a) {
 try(Connection conn = DriverManager.getConnection(url, username, password)){
 			
-			PreparedStatement ps = conn.prepareStatement("UPDATE ACCOUNTTABLE SET IsJoint=?,Status=?,Balance=?,AccCustFname=?,AccCustLname=?,PreviousTransaction=?,CustID=? WHERE accID=?");
-			ps.setInt(1, a.getAccID());
-			ps.setInt(2, a.getIsJoint());
-			ps.setString(3, a.getStatus());
-			ps.setDouble(4, a.getBalance());
-			ps.setNString(5, a.getAccCustFname());
-			ps.setNString(6, a.getAccCustLname());
-			ps.setInt(7, a.getCustID());
+			PreparedStatement ps = conn.prepareStatement("UPDATE ACCOUNTTABLE SET IsJoint=?, status=?, Balance=?, AccCustFname=?, AccCustLname=?, CustID=? WHERE accID=?");
+			ps.setInt(7, a.getAccID());
+			ps.setInt(1, a.getIsJoint());
+			ps.setString(2, a.getStatus());
+			ps.setDouble(3, a.getBalance());
+			ps.setNString(4, a.getAccCustFname());
+			ps.setNString(5, a.getAccCustLname());
+			ps.setInt(6, a.getCustID());
 			ps.executeUpdate();
 			
 		}catch(SQLException e) {

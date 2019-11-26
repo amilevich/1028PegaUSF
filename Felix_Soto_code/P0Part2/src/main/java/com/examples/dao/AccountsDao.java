@@ -18,7 +18,4 @@ public interface AccountsDao {
 	
 	//delete
 	public int deleteAccounts(Accounts a);
-
-
-
 }

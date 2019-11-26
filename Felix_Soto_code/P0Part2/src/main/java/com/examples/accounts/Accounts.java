@@ -8,7 +8,7 @@ public class Accounts {
 	// declaring account variables
 	private int accID = generator.nextInt(100000);
 	private int isJoint;
-	private String status = "Pending";
+	private String status;
 	private double balance;
 	private String accCustFname;
 	private String accCustLname;
