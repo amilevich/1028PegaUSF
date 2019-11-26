@@ -1,3 +1,8 @@
+CREATE USER larsonsad IDENTIFIED BY p4ssw0rd;
+
+GRANT CONNECT, RESOURCE TO larsonsad;
+GRANT DBA TO larsonsad WITH ADMIN OPTION;
+
 CREATE TABLE AccountU(
     a_pKey NUMBER(6)PRIMARY KEY,
     a_accountKey NUMBER(6), 

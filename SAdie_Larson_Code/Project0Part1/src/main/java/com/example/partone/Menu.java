@@ -41,21 +41,21 @@ public class Menu {
 		while (repeatMain) { // will repeat continuously unless user wants to end completely
 			bankAccounts = b.selectBankAccounts();
 			System.out.println(
-					"---------------------------------------------------------------------------------------------------");
+					"------------------------------------------------------------------------------------------------------");
 			System.out.println(
 					"|$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$|");
 			System.out.println(
-					"---------------------------------------------------------------------------------------------------");
+					"------------------------------------------------------------------------------------------------------");
 			System.out.println("\t\t\tThese are the bank Accounts stored:");
 			for (Entry<Integer, Account> en : bankAccounts.entrySet()) {
 				System.out.println(en.toString());
 			}
 			System.out.println(
-					"---------------------------------------------------------------------------------------------------");
+					"------------------------------------------------------------------------------------------------------");
 			System.out.println(
 					"|$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$🏦$|");
 			System.out.println(
-					"---------------------------------------------------------------------------------------------------");
+					"------------------------------------------------------------------------------------------------------");
 			repeatMain = false;
 			repeatOptions = true;
 			System.out.println("\t\t\tHello, welcome to Revature Banking.");
@@ -193,7 +193,7 @@ public class Menu {
 					while (repeatOptions) {
 						System.out.println("\t\t\t\t\t\tWelcome employee: " + tempU);
 						System.out.println("\t\t\tWhat would you like to do?");
-						String options = "1: Check Account Application Status, 2: Check Account Information, 3: Change Password 4: Return to main";
+						String options = "1: Check Account Application Status, 2: Check Account Information, 3: Change Password, 4: Return to main";
 						System.out.println(options);
 						System.out.println("\t\t\tEnter 1, 2, 3, or 4");
 						// implement options
@@ -226,10 +226,7 @@ public class Menu {
 							} else if (bankAccounts.get(currKey).getApplicationStatus() == 2) {
 								loggy.info(tempU + " Denied " + tempU2 + "'s account");
 							}
-							System.out.println(bankAccounts.get(currKey).getHashKey());
-
-							System.out.println("hi");
-							b.updateBankAccounts(bankAccounts.get(currKey));
+														b.updateBankAccounts(bankAccounts.get(currKey));
 							menuOption();
 							break;
 						case "2": // view information

@@ -472,7 +472,7 @@ public class Account implements Client, Employee, SystemAdmin {
 		}
 		if (choice.equals("1")) {
 			accounts.put(accountCur, deposit(accountCur));
-			
+
 		} else if (choice.equals("2")) {
 			accounts.put(accountCur, withdraw(accountCur));
 		}
@@ -580,8 +580,10 @@ public class Account implements Client, Employee, SystemAdmin {
 					bankAccounts.get(joint).setJoint(accountKeyPassed);
 					// Menu.b.updateBankAccounts(bankAccounts.get(joint));
 				}
-				// loggy.info(username + " made a joint account with " +
-				// bankAccounts.get(temp).getUsername());
+				// for(Entry<String, String> i : userPass.entrySet()) {
+				// loggy.info(i.getKey() + " made a joint account with "
+				// +bankAccounts.get(temp));
+				// }
 			}
 			System.out.println(
 					"Fantastic, your account is pending employee approval. Log in after employee approval has been confirmed");
@@ -626,7 +628,9 @@ public class Account implements Client, Employee, SystemAdmin {
 				break;
 			}
 		}
-		loggy.info(username + " made a deposit of" + amount);
+		for (Entry<String, String> i : userPass.entrySet()) {
+			loggy.info(i.getKey() + " made a deposit of" + amount);
+		}
 		System.out.println("\t\t\tYour new account balance is: " + (accounts.get(acc) + amount));
 		float tempy = accounts.get(acc) + amount;
 		accounts.put(acc, tempy);
@@ -661,7 +665,9 @@ public class Account implements Client, Employee, SystemAdmin {
 					break;
 				}
 			}
-			loggy.info(username + " made a withdraw of" + amount);
+			for (Entry<String, String> i : userPass.entrySet()) {
+				loggy.info(i.getKey() + " made a withdraw of" + amount);
+			}
 			System.out.println("\t\t\tYour new account balance is: " + (accounts.get(acc) - amount));
 			float tempy = accounts.get(acc) - amount;
 			accounts.put(acc, tempy);
@@ -778,8 +784,11 @@ public class Account implements Client, Employee, SystemAdmin {
 					break;
 				}
 			}
-			loggy.info(username + " made a transfer of" + amount + "from their " + accountOn + " account to their "
-					+ accountCur + " account.");
+			for (Entry<String, String> i : userPass.entrySet()) {
+
+				loggy.info(i.getKey() + " made a transfer of" + amount + "from their " + accountOn
+						+ " account to their " + accountCur + " account.");
+			}
 			// System.out.println(key);
 			bankAccounts.get(key).accounts.put(accountCur, (amount + bankAccounts.get(key).accounts.get(accountCur)));
 			bankAccounts.get(key).accounts.put(accountOn, (bankAccounts.get(key).accounts.get(accountOn)) - amount);
@@ -913,8 +922,10 @@ public class Account implements Client, Employee, SystemAdmin {
 				break;
 			}
 		}
-		loggy.info(username + " made a transfer of" + amount + "from their " + accountOn + " account to their "
-				+ accountCur + " account.");
+		for (Entry<String, String> i : userPass.entrySet()) {
+			loggy.info(i.getKey() + " made a transfer of" + amount + "from their " + accountOn + " account to their "
+					+ accountCur + " account.");
+		}
 		if (jOrR == 1) {
 			bankAccounts.get(otherKey).accounts.put(accountOn,
 					(amount + bankAccounts.get(otherKey).accounts.get(accountOn)));
@@ -954,7 +965,7 @@ public class Account implements Client, Employee, SystemAdmin {
 																				// empoyee
 		// can't go in to edit anything else
 		if (applicationStatus == 0) {
-			System.out.println("\t\t\tDo you wnat to approve the account?");
+			System.out.println("\t\t\tDo you want to approve the account?");
 			checkYN();
 			if (yn.equals("1")) {
 				applicationStatus = 1; // approved

@@ -14,9 +14,7 @@ import com.example.partone.Account;
 
 public class BankAccountsDaoImpl implements BankAccountsDao {
 	private static String url = "jdbc:oracle:thin:@db1028.cdvifhysxq7a.us-east-1.rds.amazonaws.com:1521:orcl";
-	private static String username = "larson_sadie";
-	private static String password = "passw4rd";
-	// need to change these above values
+// need to change these above values
 
 	@Override
 	public void insertBankAccounts(Account acc) {
