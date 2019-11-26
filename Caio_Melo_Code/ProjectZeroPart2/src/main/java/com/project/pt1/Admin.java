@@ -65,6 +65,7 @@ public class Admin {
 
 		if (openApplications.isEmpty()) {
 			System.out.println("No Pending Applications");
+			adminPrompt();
 
 		} else if (openApplications.size() == 1) {
 			System.out.println("[1]\t Which application would you like to view?");
@@ -323,11 +324,13 @@ public class Admin {
 	}
 
 	public static void money(Customer x) {
+		
 		System.out.println("[1]\t Deposit Funds");
 		System.out.println("[2]\t Withdraw Funds");
 		System.out.println("[3]\t Transfer Funds");
 		System.out.println("[4]\t Delete Account");
 		System.out.println("[5]\t Return to Menu");
+		System.out.println("Please make a selection.[1-5]");
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
 
@@ -340,6 +343,7 @@ public class Admin {
 			System.out.println("New Balance....$" + x.getFunds());
 			MainDriver.cDAO.updateCustomer(x);
 			Loggy.info("Admin has deposited.");
+			money(x);
 			break;
 		case 2:
 			System.out.println("How much would you like to withdraw?");
@@ -350,6 +354,7 @@ public class Admin {
 				System.out.println("New Balance....$" + x.getFunds());
 				MainDriver.cDAO.updateCustomer(x);
 				Loggy.info("Money withdrawn by Admin! From: " + x.getUsername());
+				money(x);
 
 			} else {
 				System.out.println("Insufficient funds.");
@@ -361,7 +366,7 @@ public class Admin {
 			transferFunds(x);
 			Loggy.info("Money transfered by Admin! From: " + x.getUsername());
 			MainDriver.promptContinue();
-			adminPrompt();
+			money(x);
 			break;
 		case 4:
 			if(x.jointStatus == jStatus.APPROVED) { //Cascade delete by java ;)
@@ -385,6 +390,7 @@ public class Admin {
 			money(x);
 			break;
 		}
+		
 
 	}
 
@@ -397,6 +403,7 @@ public class Admin {
 			if (!(temp.getUsername().contentEquals(x.getUsername()))) {
 				System.out.println(
 						"[" + count + "] \t User: [" + temp.getUsername() + "] Balance: [" + temp.getFunds() + "]");
+			count++;
 			}
 		}
 		if (custList.size() == 0) {

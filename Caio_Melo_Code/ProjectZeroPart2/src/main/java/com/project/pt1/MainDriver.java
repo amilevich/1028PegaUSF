@@ -61,8 +61,8 @@ public class MainDriver {
 				System.out.println("Password attempt unsuccessful \nWould you like to try again? ");
 				Loggy.info("Failed Login! By: " + x);
 
-				System.out.println("1\tYes");
-				System.out.println("2\tNo");
+				System.out.println("[1]\tYes");
+				System.out.println("[2]\tNo");
 				System.out.println("Please make a selection(1-2)");
 				@SuppressWarnings("resource")
 				Scanner sc = new Scanner(System.in);

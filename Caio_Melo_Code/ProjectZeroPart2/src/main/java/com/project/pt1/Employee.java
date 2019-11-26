@@ -70,24 +70,44 @@ public class Employee {
 			if (temp.appStatus == Status.PENDING) {
 
 				openApplications.add(temp);
-				System.out.println(count + "---" + temp.toString());
+				System.out.println("[" + count + "] - " + temp.toString());
 				count++;
 			}
 		}
 		if (openApplications.isEmpty()) {
 			System.out.println("No Pending applications");
-		} else {
-
-			Scanner scanMan = new Scanner(System.in);
-			System.out.println("Which application would you like to view?");
-			System.out.println();
-
-			int input = scanMan.nextInt();
-
-			System.out.println(openApplications.get(input - 1).toString());
-			System.out.println("[1]-Approve  [2]-Deny");
+		} else if(openApplications.size() == 1){
+			System.out.println("One Pending Application");
+			MainDriver.promptContinue();
+			System.out.println(openApplications.get(0).toString());
+			System.out.println("[1]-Approve\n[2]-Deny\n[3]-Return");
 			Scanner sc = new Scanner(System.in);
 
+			int dec = sc.nextInt();
+			switch (dec) {
+			case 1:
+				Customer temp = openApplications.get(0);
+				approveApplication(temp);
+				break;
+			case 2:
+				Customer temp1 = openApplications.get(0);
+				denyApplication(temp1);
+			case 3: employeePrompt();
+			default:
+				employeePrompt();
+				break;
+			}
+		
+			
+		}
+		else {
+			System.out.println("Which application would you like to view? [1-" + count +"]");
+			Scanner scanMan = new Scanner(System.in);
+			System.out.println();
+			int input = scanMan.nextInt();
+			System.out.println(openApplications.get(input - 1).toString());
+			System.out.println("[1]-Approve\n[2]-Deny\n[3]-Return");
+			Scanner sc = new Scanner(System.in);
 			int dec = sc.nextInt();
 
 			switch (dec) {
@@ -98,8 +118,12 @@ public class Employee {
 			case 2:
 				Customer temp1 = openApplications.get(input - 1);
 				denyApplication(temp1);
+			case 3: employeePrompt();
+			break;
+			default: employeePrompt();
+			break;
 			}
-		}
+	}
 
 	}
 
@@ -115,7 +139,7 @@ public class Employee {
 			if (temp.jointStatus == jStatus.PENDING) {
 
 				openApplications.add(temp);
-				System.out.println(count + "---" + temp.toString());
+				System.out.println("[" + count + "] - " + temp.toString());
 				count++;
 			}
 		}
@@ -181,15 +205,14 @@ public class Employee {
 			for (Customer temp : custCred) {
 
 				detList.add(temp);
-				System.out.println(count + "---" + temp.toString());
+				System.out.println("["+count + "] - " + temp.toString());
 				count++;
 
 			}
 			if (count == 1) {
 				System.out.println("For which Customer would you like to view additional details? [1]");
 			} else {
-				System.out.println(
-						"For which Customer would you like to view additional details? [1-" + (count - 1) + "]");
+				System.out.println("For which Customer would you like to view additional details? [1-" + (count - 1) + "]");
 			}
 
 			int input1 = sc.nextInt();
@@ -197,8 +220,7 @@ public class Employee {
 			System.out.println(tempy.toDetailedString());
 			System.out.println("");
 			denyApprove(tempy);
-			MainDriver.promptContinue();
-
+			
 			break;
 		case 2:
 			employeePrompt();
@@ -209,7 +231,7 @@ public class Employee {
 			break;
 
 		}
-		employeePrompt();
+		//employeePrompt();
 
 	}
 
@@ -337,7 +359,7 @@ public class Employee {
 			System.out.println("------ Applications Pending! -------");
 			System.out.println("[1]Approve Account Application.");
 			System.out.println("[2]Deny Account Application.");
-			System.out.println("[3]Return");
+			System.out.println("[3]Continue to menu.");
 			int input1 = sc.nextInt();
 			switch (input1) {
 			case 1:
@@ -351,8 +373,7 @@ public class Employee {
 				denyApplication(x);
 				MainDriver.cDAO.updateCustomer(x);
 				break;
-			case 3:
-				employeePrompt();
+			case 3://System.out.println(x.toDetailedString());
 				break;
 			default:
 				System.out.println("None input detected.");
@@ -372,10 +393,10 @@ public class Employee {
 			case 2:
 				denyJointApplication(x);
 				break;
-			case 3:
+			case 3:System.out.println(x.toDetailedString());
 				break;
 			default:
-				System.out.println("Noninput detected. Continuing to menu...");
+				//System.out.println("Noninput detected. Continuing to menu...");
 				break;
 			}
 		}

@@ -145,8 +145,8 @@ public class Customer {
 	public void reDisplay() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Would you like to make another transaction?");
-		System.out.println("1 \t Yes");
-		System.out.println("2 \t No");
+		System.out.println("[1] \t Yes");
+		System.out.println("[2] \t No");
 
 		int input = sc.nextInt();
 		switch (input) {
@@ -155,7 +155,8 @@ public class Customer {
 			break;
 		case 2:
 			System.out.println("Thank you for using Atlas Bank, Goodbye.");
-			System.exit(0);
+			MainDriver.prompt();
+
 		}
 
 	}
@@ -220,7 +221,6 @@ public class Customer {
 			break;
 		case 6:
 			System.out.println("Thank you for banking with Atlas");
-			System.exit(0);
 			MainDriver.prompt();
 
 			break;
@@ -256,8 +256,8 @@ public class Customer {
 					MainDriver.cDAO.updateCustomer(this);
 
 					System.out.println("Joint Account Application Successfully Sent.");
-					System.out.println("1 \t Continue");
-					System.out.println("2 \t Logout");
+					System.out.println("[1] \t Continue");
+					System.out.println("[2] \t Logout");
 					Scanner sc = new Scanner(System.in);
 					int cont = sc.nextInt();
 					switch (cont) {
@@ -269,10 +269,10 @@ public class Customer {
 						MainDriver.prompt();
 
 					}
-				} else {
+				}
+				} 
 
 					System.out.println("Secondary Account Password Incorrect. \nWould you like to try again? ");
-
 					System.out.println("1\tYes");
 					System.out.println("2\tNo");
 					System.out.println("Please make a selection(1-2)");
@@ -293,9 +293,9 @@ public class Customer {
 					default:
 						customerPrompt();
 					}
-				}
+				
 
-			}
+			
 
 		}
 	}
