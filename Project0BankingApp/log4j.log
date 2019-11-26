@@ -102,3 +102,34 @@
 2019-11-18 16:13:09 INFO  BankDriver:191 - Application exit.
 2019-11-18 16:13:49 INFO  BankDriver:317 - Client null null logged in.
 2019-11-18 16:13:53 INFO  BankDriver:191 - Application exit.
+2019-11-26 00:10:35 INFO  BankDriver:145 - Application exit.
+2019-11-26 09:12:20 INFO  BankDriver:160 - Admin John Doe logged in.
+2019-11-26 09:24:29 INFO  BankDriver:135 - New user account created.
+2019-11-26 09:35:30 INFO  BankDriver:138 - New user account created.
+2019-11-26 09:41:41 INFO  BankDriver:138 - New user account created.
+2019-11-26 09:48:50 INFO  BankDriver:138 - New user account created.
+2019-11-26 10:08:32 INFO  BankDriver:138 - New user account created.
+2019-11-26 10:43:30 INFO  BankDriver:163 - Admin John Doe logged in.
+2019-11-26 10:43:33 INFO  BankDriver:142 - Application exit.
+2019-11-26 10:51:54 INFO  BankDriver:351 - Deposit made to 104 of $250.0
+2019-11-26 10:53:39 INFO  BankDriver:372 - Withdrawal made from 104 of $50.0
+2019-11-26 11:39:15 INFO  BankDriver:138 - New user account created.
+2019-11-26 11:41:04 INFO  BankDriver:163 - Admin John Doe logged in.
+2019-11-26 11:41:38 INFO  BankDriver:351 - Deposit made to 105 of $500.0
+2019-11-26 11:42:03 INFO  BankDriver:372 - Withdrawal made from 105 of $250.0
+2019-11-26 11:42:11 INFO  BankDriver:262 - Client JohnSmith logged in.
+2019-11-26 11:43:19 INFO  BankDriver:244 - Employee JaneDoe logged in.
+2019-11-26 11:43:24 INFO  BankDriver:142 - Application exit.
+2019-11-26 12:06:54 INFO  BankDriver:262 - Client BobSmith logged in.
+2019-11-26 12:07:01 INFO  BankDriver:142 - Application exit.
+2019-11-26 13:49:44 INFO  BankDriver:163 - Admin John Doe logged in.
+2019-11-26 13:54:22 INFO  BankDriver:163 - Admin John Doe logged in.
+2019-11-26 13:54:24 INFO  BankDriver:142 - Application exit.
+2019-11-26 14:24:43 INFO  BankDriver:163 - Admin John Doe logged in.
+2019-11-26 14:24:51 INFO  BankDriver:142 - Application exit.
+2019-11-26 14:33:15 INFO  BankDriver:138 - New user account created.
+2019-11-26 14:34:37 INFO  BankDriver:163 - Admin John Doe logged in.
+2019-11-26 14:35:28 INFO  BankDriver:351 - Deposit made to 106 of $500.5
+2019-11-26 14:35:44 INFO  BankDriver:372 - Withdrawal made from 106 of $200.0
+2019-11-26 14:35:54 INFO  BankDriver:262 - Client MikeLee logged in.
+2019-11-26 14:35:57 INFO  BankDriver:142 - Application exit.
