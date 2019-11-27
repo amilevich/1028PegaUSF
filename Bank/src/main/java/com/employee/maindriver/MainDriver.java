@@ -4,8 +4,8 @@ import java.util.Scanner;
 import com.accounts.AccountMenu;
 import com.bankmenu.BankMenu;
 import com.customers.CustomersMenu;
-import com.customers.dao.CustomersDaoImpl;
-import com.customers.dao.EmployeeDaoImpl;
+import com.daos.CustomersDaoImpl;
+import com.daos.EmployeeDaoImpl;
 import com.employee.Employee;
 import com.mainmenu.MainMenu;
 

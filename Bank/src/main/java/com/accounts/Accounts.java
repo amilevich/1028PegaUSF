@@ -8,7 +8,7 @@ public class Accounts {
 	// declaring account variables
 	private int accID = generator.nextInt(100000);
 	private int isJoint;
-	private String status = "Pending";
+	private String status;
 	private double balance;
 	private String accCustFname;
 	private String accCustLname;
@@ -87,9 +87,9 @@ public class Accounts {
 
 	@Override
 	public String toString() {
-		return "Accounts [accID=" + accID + ", isJoint=" + isJoint + ", status=" + status + ", balance=" + balance
-				+ ", accCustFname=" + accCustFname + ", accCustLname=" + accCustLname + ", previousTransaction="
-				+ previousTransaction + ", CustID=" + CustID + "]";
+		return "AAccounts ID: " + accID + "\n IsJoint: " + isJoint + "\n Status: " + status + "\n Balance: " + balance
+				+ "\n Customer First Name: " + accCustFname + "\n Customer Last Name: " + accCustLname + "\n Previous Transaction: "
+				+ previousTransaction + "\n Customer ID: " + CustID + "\n";
 	}
 
 	public Accounts(int accID, int isJoint, String status, double balance, String accCustFname, String accCustLname,
@@ -106,7 +106,7 @@ public class Accounts {
 	}
 
 
-	
+
 	
 	
 }// end class

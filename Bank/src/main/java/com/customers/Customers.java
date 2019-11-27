@@ -9,7 +9,7 @@ public class Customers {
 	private String userName;
 	private String password;
 	private int custID= generator.nextInt(1000);
-	private String status = "Pending";
+	private String status;
 	private double bal = 0.00;
 	
 	// constructor
@@ -78,9 +78,9 @@ public class Customers {
 	// toString
 	@Override
 	public String toString() {
-		return "Customers custFname=" + custFname + ", custLname=" + custLname
-				+ ", userName=" + userName + ", password=" + password + ", custID=" + custID
-				+ ", status=" + status + ", bal=" + bal;
+		return "Customers First Name=" + custFname + "\n Customer Last Name=" + custLname
+				+ "\n User Name=" + userName + "\n Password=" + password + "\n Customer ID=" + custID
+				+ "\n Status=" + status + "\n Balance=" + bal + "\n";
 	}
 
 	// Parametrized constructor 

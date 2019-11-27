@@ -7,7 +7,7 @@ import com.employee.Employee;
 import com.mainmenu.MainMenu;
 import com.accounts.Accounts;
 import com.customers.Customers;
-import com.customers.dao.*;
+import com.daos.*;
 public class BankMenu {
 	
 
@@ -19,7 +19,7 @@ public class BankMenu {
 			System.out.println();
 			System.out.println("Please enter your username: ");
 			username = sc.next();
-			EmployeeDaoImpl.emplExist(username);
+			//EmployeeDaoImpl.emplExist(username);
 			if (username.equals(empl.getEmplUserName())) {
 				EmployeeSigninpass();
 		} else {
@@ -47,13 +47,14 @@ public class BankMenu {
 	}// end customer pass
 		public static void approval() {
 			AccountsDaoImpl acct = new AccountsDaoImpl();
-			
+			CustomersDaoImpl cImpl = new CustomersDaoImpl();
+			Customers cust = new Customers();
 			Scanner sc = new Scanner(System.in);
 			System.out.println();
-			System.out.println("Please enter the account ID you want to approve: ");
+			System.out.println("Please enter the account ID for the account you want to approve: ");
 			System.out.println();
 			int accID = sc.nextInt();
-			System.out.println(acct.selectAccountsByAccountID(accID));
+			//System.out.println(acct.selectAccountsByAccountID(accID));
 			System.out.println("******************************************************************************************");
 		    Accounts acc = new Accounts();
 		    acc = acct.selectAccountsByAccountID(accID);
@@ -62,18 +63,61 @@ public class BankMenu {
 		    	 System.out.println("Do you want to approve, (yes) or (No)?");
 		    	 String option = sc.next();
 		    	 if(option.equals("yes")) {
-		    		 acc.setStatus("approved");
+		    		String app = "approved";
+		    		 acc.setStatus(app);
+		    		 //System.out.println(acc.getStatus());
+		    		 //cImpl.updateCustomers(cust);
 		    		 acct.updateAccounts(acc);
-		    		 System.out.println("Account: " + accID + "has been approved");
+		    		 System.out.println("Account: " + accID + " has been approved");
+		    		 cImpl.updateCustomers(cust);
+		    		 cust.setStatus(app);
+		    		 employeeMenu();
                     
 		    	 }else {
 		    		 System.out.println("Status still pending!");
 		    	 
-		    	 
+		    		 employeeMenu();
 		            
 		        }// end for each
 		     
 		}// end approval
+		
+		public static void deny() {
+			AccountsDaoImpl acct = new AccountsDaoImpl();
+			CustomersDaoImpl cImpl = new CustomersDaoImpl();
+			Customers cust = new Customers();
+			Scanner sc = new Scanner(System.in);
+			System.out.println();
+			System.out.println("Please enter the account ID for the account you want to deny: ");
+			System.out.println();
+			int accID = sc.nextInt();
+			//System.out.println(acct.selectAccountsByAccountID(accID));
+			System.out.println("******************************************************************************************");
+		    Accounts acc = new Accounts();
+		    acc = acct.selectAccountsByAccountID(accID);
+		    System.out.println(acc);
+		    	 System.out.println();
+		    	 System.out.println("Do you want to deny, (yes) or (No)?");
+		    	 String option = sc.next();
+		    	 if(option.equals("yes")) {
+		    		String app = "denied";
+		    		 acc.setStatus(app);
+		    		 //System.out.println(acc.getStatus());
+		    		 //cImpl.updateCustomers(cust);
+		    		 acct.updateAccounts(acc);
+		    		 System.out.println("Account: " + accID + " has been denied");
+		    		 cImpl.updateCustomers(cust);
+		    		 cust.setStatus(app);
+		    		 employeeMenu();
+                    
+		    	 }else {
+		    		 System.out.println("Your account has been denied!");
+		    	 
+		    		 employeeMenu();
+		            
+		        }// end for each
+		     
+		}// end deny
 	
 	public static void employeeMenu() {
 		System.out.println("_________________________________________________________________________");
@@ -100,7 +144,9 @@ public class BankMenu {
 				CustomersDaoImpl emplcust = new CustomersDaoImpl();
 				List<Customers> custList = emplcust.selectAllCustomers();
 				for(int j = 0; j < custList.size(); j++) {
+					System.out.println("\n");
 					System.out.println(custList.get(j).toString().replaceAll("^.|.$","").replace(", ", "\n"));
+					System.out.println("\n");
 				}
 				System.out.println();
 				 System.out.println(" (4) : Go Back");
@@ -112,11 +158,16 @@ public class BankMenu {
 ////				for(Customer cst : Account.CustomersList) {
 //					System.out.println(cst);
 //				}
+				AccountsDaoImpl emplViewcust = new AccountsDaoImpl();
+				List<Accounts> custViewList = emplViewcust.selectAllAccounts();
+				for(int j = 0; j < custViewList.size(); j++) {
+					System.out.println(custViewList.get(j).toString().replaceAll("^.|.$","").replace(", ", "\n"));
+				}
 				approval();
                 
                 break;
             case 3:
-             // deny();
+            	deny();
             	
                 break;
             case 4:
