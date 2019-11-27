@@ -1,6 +1,7 @@
 
 -- Log in information
 CREATE TABLE Customers(
+    customer_pk NUMBER,
     customerID NUMBER,
     accountType VARCHAR2(50),
     username VARCHAR2(50),
@@ -10,7 +11,7 @@ CREATE TABLE Customers(
     );
     
 CREATE TABLE Employee(
-    e_id NUMBER(6) PRIMARY KEY,
+    e_id NUMBER,
     e_username VARCHAR2(50),
     e_passwords VARCHAR2(50)
 );
@@ -22,8 +23,6 @@ CREATE TABLE Admins(
 );
 
 SELECT * FROM Customers;
-INSERT INTO Employee VALUES(1,'eM','eM');
-INSERT INTO Admins VALUES(1,'admin','admin');
 
 SELECT * FROM Customers;
 SELECT * FROM Employee;
@@ -67,12 +66,14 @@ CREATE SEQUENCE cus_seq
 --Trigger
 --An object/entity that we can create that waits for actions to occur and performs the designated code
 CREATE OR REPLACE TRIGGER cus_seq_trigger
-BEFORE INSERT ON customers
+BEFORE INSERT ON Customers
 FOR EACH ROW
 BEGIN
-    IF :new.customerID is NULL THEN 
-    SELECT cus_seq.nextval INTO :new.customerID FROM dual;
+    IF :new.customer_pk is NULL THEN 
+    SELECT cus_seq.nextval INTO :new.customer_pk FROM dual;
     END IF;
 END;
 /
-        
+
+--******************************************************************************************************************************
+
