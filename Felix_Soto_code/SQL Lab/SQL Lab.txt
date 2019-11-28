@@ -1,0 +1,222 @@
+--2.0 SQL Queries
+
+--2.1 SELECT
+SELECT * FROM Employee;
+SELECT * FROM Employee where LastName = 'King';
+SELECT * FROM Employee where FirstName = 'Andrew' AND Reportsto is null;
+
+--2.2 ORDER BY
+SELECT * FROM Album order by Title DESC;
+SELECT Firstname FROM Customer order by City ASC;
+
+--2.3 INSERT INTO
+INSERT INTO Genre VALUES (26, 'Dembow');
+INSERT INTO Genre VALUES (27, 'Bachata');
+
+INSERT INTO Employee VALUES (9, 'Soto', 'Felix', 'CEO', null, '09-DEC-93', '01-JAN-18', '255 Easy Street', 'Bronx', 'NY', 'USA', 'T6K 5N2', '+1 (347) 123-4567', '+1 (987) 654-3219', 'felix@hotmail.com');
+INSERT INTO Employee VALUES (10, 'Lopez', 'Pepe', 'Sales support Agent', null, '02-DEC-73', '01-NOV-03', '255 Tough Street', 'Bronx', 'NY', 'USA', 'T9K 5N8', '+1 (252) 123-4667', '+1 (987) 454-9219', 'pepe@gmail.com');
+
+INSERT INTO Customer VALUES (60, 'Pedro', 'Soto', 'Revature', '255 Easy Street', 'Bronx', 'NY', 'USA', '15082', '+1 (347) 123-4567', '+1 (987) 654-3219', 'Pedro@hotmail.com', 4);
+INSERT INTO Customer VALUES (61, 'Luis', 'Smith', 'Apple Inc', '255 Tough Street', 'Brooklyn', 'NY', 'USA', '15542', '+1 (347) 135-4567', '+1 (941) 654-3219', 'AyyLmao@hotmail.com', 2);
+
+--2.4 UPDATE
+UPDATE Customer SET Firstname = 'Robert', lastname = 'Walter' WHERE  Firstname = 'Aaron' AND Lastname = 'Mitchell';
+UPDATE Artist SET Name = 'CCR' WHERE  Name = 'Creedence Clearwater Revival';
+
+--2.5 LIKE
+SELECT Billingaddress FROM Invoice WHERE Billingaddress like 'T%';
+
+--2.6 BETWEEN
+SELECT * FROM Invoice WHERE Total BETWEEN 15 AND 50;
+SELECT * FROM employee WHERE hiredate BETWEEN '01-JUN-03' AND '01-MAR-04';
+
+--2.7 DELETE
+DELETE FROM Invoiceline WHERE Invoiceid IN (SELECT Invoiceid FROM Invoice WHERE Customerid = (SELECT Customerid FROM Customer WHERE Firstname ='Robert' AND Lastname = 'Walter'));
+DELETE FROM Invoice WHERE Customerid = (SELECT Customerid FROM Customer WHERE Firstname ='Robert' AND Lastname = 'Walter');
+DELETE FROM Customer WHERE Firstname ='Robert' AND Lastname = 'Walter';
+
+
+--3.0 SQL Functions
+
+--3.1 System Defined Functions
+--Current time
+ALTER SESSION SET nls_date_format = 'HH12:MI:SS';
+
+CREATE OR REPLACE function get_time
+
+RETURN DATE
+
+IS cur_time DATE;
+
+BEGIN
+
+  SELECT CURRENT_TIMESTAMP
+
+    INTO cur_time
+
+    FROM dual;
+
+  RETURN cur_time;
+
+END;
+
+/
+SELECT get_time() FROM dual;
+
+-- Second task
+create or replace function getlength(x in varchar2) 
+return integer as z varchar(200);
+begin 
+    z := length(x);
+    return z;
+end;
+/
+select getlength(name) from mediatype;
+
+--3.2 System Defined Aggregate Functions
+--Avg
+create or replace function myavg
+return number as totavg number(3,2);
+begin 
+    select avg(total) into totavg from invoice;
+    return totavg;
+end;
+/
+select myavg from dual;
+
+--Task – Create a function that returns the most expensive track
+CREATE OR REPLACE TYPE high_object AS OBJECT (
+    name  VARCHAR(200),
+    price   NUMBER(10,2)
+);
+/
+
+CREATE OR REPLACE TYPE high_table AS TABLE OF high_object;
+/
+
+CREATE or replace function get_high_price 
+return high_table
+
+AS
+v_high_table high_table;
+highest_price NUMBER(10,2);
+
+BEGIN
+SELECT MAX(unitprice) INTO highest_price
+FROM track;
+SELECT high_object(A.name,A.unitprice)
+BULK COLLECT INTO v_high_table
+FROM (SELECT name, unitprice FROM track WHERE unitprice = highest_price) A; RETURN v_high_table;
+END;
+/
+
+SELECT * FROM TABLE(get_high_price);
+
+--3.3 User Defined Scalar Functions
+CREATE or replace function get_avg_price 
+return NUMBER IS
+avg_price NUMBER(10,2);
+
+BEGIN
+SELECT AVG(unitprice) INTO avg_price
+FROM invoiceline;
+RETURN avg_price;
+END;
+/
+
+SELECT get_avg_price() FROM DUAL;
+
+--3.4 User Defined Table Valued Functions
+create or replace function bornafter(x date)
+return sys_refcursor is refcur sys_refcursor;
+begin
+    open refcur for 'select firstname, lastname from employee 
+    where birthdate >= :x' using x;
+    return refcur;
+end;
+/
+
+declare 
+x date;
+fn employee.firstname%type;
+ln employee.lastname%type;
+returncur sys_refcursor;
+begin
+x := to_date('1968', 'yyyy');
+select bornafter(x) into returncur from dual;
+dbms_output.put_line('here');
+    Loop
+        fetch returncur into fn, ln;
+        exit when returncur%notfound;
+        DBMS_OUTPUT.PUT_LINE(fn || ' ' || ln);
+    end loop;
+end;
+/
+
+--5.0 Transactions
+--delete Invoice
+CREATE OR REPLACE PROCEDURE pro_del_invoice
+
+(v_invoiceid IN invoice.invoiceid%TYPE) IS
+
+BEGIN
+
+DELETE FROM invoiceline WHERE invoiceid = v_invoiceid;
+
+DELETE FROM invoice WHERE invoiceid = v_invoiceid;
+
+DBMS_OUTPUT.PUT_LINE('Record with invoice id: ' || v_invoiceid || ' has been deleted from invoice and invoiceline table.');
+
+COMMIT;
+
+END;
+
+/
+
+--nested
+CREATE OR REPLACE PROCEDURE pro_insert_cust (v_customerid IN customer.customerid%TYPE, 
+v_firstname IN customer.firstname%TYPE,
+v_lastname IN customer.lastname%TYPE,
+v_email IN customer.email%TYPE) IS BEGIN
+INSERT INTO CUSTOMER (customerid, firstname, lastname, email) 
+VALUES (v_customerid, v_firstname, v_lastname, v_email);
+COMMIT;
+DBMS_OUTPUT.PUT_LINE('Id: ' || v_customerid || ' First name: ' ||
+v_firstname || ' Last name: ' || v_lastname || ' Email: ' || v_email || ' inserted into Customer table.');
+END pro_insert_cust;
+/
+
+--6.0 Triggers
+
+--6.1 AFTER/FOR
+CREATE OR REPLACE TRIGGER trg_insert
+AFTER INSERT ON employee
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Trigger fired  after insert because new row inserted.');
+END;
+/
+
+--7.0 JOINS
+
+--7.1 INNER
+SELECT customer.firstname, customer.lastname, invoice.invoiceid
+
+FROM customer
+
+INNER JOIN invoice
+
+ON customer.customerid = invoice.customerid;
+
+--7.2 OUTER
+SELECT customer.customerid, customer.firstname, customer.lastname, invoice.invoiceid, invoice.total
+FROM customer FULL OUTER JOIN invoice ON customer.customerid = invoice.customerid;
+
+--7.3 RIGHT
+SELECT artist.name, album.title FROM album RIGHT JOIN artist ON artist.artistid = album.artistid;
+
+--7.4 CROSS
+SELECT * FROM album CROSS JOIN artist ORDER BY artist.name ASC;
+
+--7.5 SELF
+SELECT a.firstname, a.lastname, b.firstname || ' ' || b.lastname AS "Manager"
+FROM employee a, employee b WHERE a.reportsto = b.employeeid;
