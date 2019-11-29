@@ -9,44 +9,24 @@ public class Calculator {
 		}
 	}
 
-	public boolean isThisSum(int x, int y, int z) {
-		if ((x + y) == z) {
-			return true;
-		} else {
-			return false;
-		}
+	public double isThisSum(double x, double y) {
+		return x+y;
 	}
 
-	public boolean isThisSubtract(int x, int y, int z) {
-		if ((x - y) == z) {
-			return true;
-		} else {
-			return false;
-		}
+	public double isThisSubtract(double x, double y) {
+		return x-y;
 	}
 	
-	public boolean isThisMultiply(int x, int y, int z) {
-		if ((x * y) == z) {
-			return true;
-		} else {
-			return false;
-		}
+	public double isThisMultiply(double x, double y) {
+			return x*y;
 	}
 	
-	public boolean isThisDivision(int x, int y, int z) {
-		if ((x / y) == z) {
-			return true;
-		} else {
-			return false;
-		}
+	public double isThisDivision(double x, double y) {
+		return x/y;
 	}
 	
-	public boolean isThisSquareRoot(int x, int y) {
-		if (Math.sqrt(x) == y) {
-			return true;
-		} else {
-			return false;
-		}
+	public double isThisSquareRoot(int x) {
+		return Math.sqrt(x);
 	}
 
 	/*

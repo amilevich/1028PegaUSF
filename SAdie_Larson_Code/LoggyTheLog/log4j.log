@@ -1,0 +1,4 @@
+2019-11-14 14:57:31 INFO  MyClass:11 - this is info
+2019-11-14 14:57:31 ERROR MyClass:12 - message about error
+2019-11-14 14:57:31 FATAL MyClass:13 - fatal
+2019-11-14 14:57:31 WARN  MyClass:14 - warning message

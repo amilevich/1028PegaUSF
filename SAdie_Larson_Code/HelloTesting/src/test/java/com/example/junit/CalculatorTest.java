@@ -2,6 +2,8 @@ package com.example.junit;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.example.calulator.Calculator;
@@ -40,24 +42,42 @@ public class CalculatorTest {
 	}
 	@Test
 	public void isThisSum() {
-		assertEquals("should retrun true", true, calc.isThisSum(4, 4, 8));
+		assertEquals("should retrun true", 8, calc.isThisSum(4, 4), 0.1);
 	}
 	@Test
 	public void isThisSubtract() {
-		assertEquals("should retrun true", true, calc.isThisSubtract(4, 4, 0));
+		assertEquals("should retrun true", 0, calc.isThisSubtract(4, 4), 0.1);
 	}
 	
 	@Test
 	public void isThisMultiply() {
-		assertEquals("should retrun true", true, calc.isThisMultiply(4, 4, 16));
+		assertEquals("should retrun true", 16, calc.isThisMultiply(4, 4), 0.1);
 	}
 	@Test
 	public void isThisDivision() {
-		assertEquals("should retrun true", true, calc.isThisDivision(4, 4, 1));
+		assertEquals("should retrun true", 1, calc.isThisDivision(4, 4), 0.1);
 	}
 	@Test
 	public void isThisSquareRoot() {
-		assertEquals("should retrun true", true, calc.isThisSquareRoot(4, 2));
+		assertEquals("should retrun true", 2, calc.isThisSquareRoot(4), 0.1);
 	}
 	
+	
+	/*
+	 * @Ignore - ignores the method test that has this annotation
+	 * @After - have a method that will run after each test
+	 * @Before - have a method that will run before each test
+	 * @AfterClass - have a method that will run after the entire class 
+	 * @BeforeClass - have a method that will run before the whole class
+	 */
+	
+	@After
+	public void afterMethod() {
+		System.out.println("*********************After each method*********************");
+	}
+	
+	@BeforeClass
+	public static void methodCalledBeforeAllOther() {
+		System.out.println("*********************Welcome to Junit*********************");
+	}
 }

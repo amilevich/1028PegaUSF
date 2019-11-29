@@ -21,11 +21,6 @@ CREATE TABLE AccountM(
     CONSTRAINT a_pKey_fk FOREIGN KEY (a_pKey_fk) REFERENCES AccountU (a_pKey) ON DELETE CASCADE
 );
 
---DROP STATMENTS
-DROP TABLE AccountM;
-DROP TABLE AccountU;
-
-
 --SELET STAMTENTS
 SELECT * FROM AccountU;
 SELECT * FROM AccountM;
@@ -44,7 +39,6 @@ CREATE SEQUENCE accountU_seq
    INCREMENT BY 1;
     --this sequence will be used to handle the id field for employees
 /
-
 
 CREATE OR REPLACE TRIGGER account_seq_trigger
 BEFORE INSERT ON AccountU -- when and what action happens ('after')
@@ -66,3 +60,7 @@ BEGIN
     END IF;
 END;
 /
+
+--DROP STATMENTS
+DROP TABLE AccountM;
+DROP TABLE AccountU;

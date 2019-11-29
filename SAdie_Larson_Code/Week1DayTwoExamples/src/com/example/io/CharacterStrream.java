@@ -74,7 +74,7 @@ public class CharacterStrream {
 		try (FileReader reader = new FileReader(filename)) {
 			int i;
 			while ((i = reader.read()) != -1) {
-				System.out.print(i);
+				System.out.print((char)i);
 				// explicitly type casting an int to a character
 			}
 		} catch (IOException ioe) {
