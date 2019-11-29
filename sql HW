@@ -1,0 +1,120 @@
+
+2.1
+Task
+SELECT * FROM employee;
+Task
+SELECT * FROM employee where lastname = 'King'; 
+Task
+SELECT * FROM employee WHERE firstname = 'Andrew' AND REPORTSTO IS null;
+
+2.2
+Task
+SELECT * FROM album ORDER BY title DESC;
+Task
+SELECT firstname FROM customer ORDER BY city ASC;
+
+2.3
+Task
+INSERT INTO genre VALUES(26, 'kpop'); 
+Task
+INSERT INTO employee VALUES(9, 'kim', 'daniel', 'ceo', 7, '01-JAN-93', '11-AUG-03', '123 brome way', 'San Diego','CA', 'USA', '92126', '1 (669) 249-9668', '1 (669) 249-9668', 'dksd93@gmail.com' ); 
+INSERT INTO employee VALUES(10, 'cho', 'david', 'president', 7, '01-FEB-93', '11-AUG-04', '123 chrome way', 'Castle','PA', 'USA', '92156', '1 (669) 249-1111', '1 (669) 249-9358', 'dk3@gmail.com' ); 
+Task
+INSERT INTO customer VALUES(61, 'kio', 'david', 'revature', '123 donny way', 'cast', 'CA', 'USA', '92116', '1 (659) 219-2722', '1 (659) 111-1228', 'david@gmail.com', 4 ); 
+INSERT INTO customer VALUES(60, 'cho', 'david', 'revature', '123 chrome way', 'Castle','PA', 'USA', '92156', '1 (669) 249-222', '1 (669) 249-1118', 'daniel@gmail.com', 3 ); 
+
+2.4
+Task
+UPDATE customer SET firstname='Robert', lastname='Walter' WHERE firstname='Aaron' AND lastname='Mitchell';
+Task
+UPDATE artist SET name='CCR' WHERE name='Creedence Clearwater Revival'; 
+
+2.5
+Task
+SELECT * FROM invoice WHERE billingaddress LIKE 'T%';
+Task
+SELECT * FROM invoice WHERE total BETWEEN 15 AND 50;
+Task
+SELECT * FROM employee; WHERE hiredate BETWEEN '01-Jun-03' AND '01-MAR-04';
+
+2.6
+Task
+DELETE FROM invoiceline WHERE invoiceid = 245 OR invoiceid = 268 OR invoiceid = 290 OR invoiceid = 342 OR invoiceid = 50 OR invoiceid = 61 OR invoiceid = 116;
+DELETE FROM invoice WHERE customerid = 32;
+DELETE FROM customer WHERE firstname = 'Robert' AND lastname='Walter';
+
+3.1
+Task
+CREATE OR REPLACE FUNCTION getSysdate
+return date 
+is 
+    l_sysdate date;
+begin
+    select sysdate into l_sysdate from dual;
+return l_sysdate;
+end;
+/
+select getSysdate() from dual;
+
+Task
+CREATE OR REPLACE FUNCTION getlength
+    return NUMBER 
+IS
+    rowlength NUMBER;
+BEGIN 
+    select count(*) INTO rowlength from mediatype;
+    return rowlength;
+END;
+/
+SELECT getlength() from mediatype;
+
+
+3.2
+Task
+SELECT avg(total) from invoice; 
+Task
+select max(unitprice) from track;
+
+3.3
+Task
+CREATE OR REPLACE FUNCTION getavg
+    return NUMBER 
+IS
+    avgprice NUMBER;
+BEGIN 
+    select (unitprice*quantity) INTO avgprice from invoiceline;
+    return avgprice;
+END;
+/
+3.4
+Task
+select * from employee where birthdate > '31-DEC-67' INTO birthday;
+
+7.1
+Task
+SELECT customer.firstname || customer.lastname AS name, invoice.invoiceid
+FROM customer
+INNER JOIN invoice ON customer.customerid = invoice.invoiceid;
+
+7.2
+Task
+SELECT  customer.customerid as id, customer.firstname || customer.lastname as name, invoice.invoiceid as invoice, invoice.total as total FROM customer
+LEFT OUTER JOIN invoice on customer.customerid = invoice.customerid;
+
+7.3
+Task
+SELECT album.title, artist.name FROM artist RIGHT OUTER JOIN album ON ALBUM.artistid = artistid.artistid;
+
+7.4
+Task
+SELECT * FROM album CROSS JOIN artist ORDER BY artist.name;
+7.5
+Task
+SELECT first.employed, first.lastname || first.firstname AS name, second.REPORTSTO FROM employee first, employee second WHERE first.employeed = second.reporsto; 
+
+
+
+
+
+
+
