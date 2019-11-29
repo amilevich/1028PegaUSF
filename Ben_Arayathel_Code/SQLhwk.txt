@@ -52,4 +52,108 @@ Delete a record from Customer Table where the name is Robert Walter.
 		--Deleting customer ID finally
 		DELETE FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter';
 
+3.1 System Defined Functions
+Create a fucntion that returns the current time.
+	--setting time to local East Coast time
+	ALTER SESSION SET TIME_ZONE = '-5:0';
+	SELECT LOCALTIMESTAMP
+	--I assume "dual" is a temporay table 
+	from dual;
+
+Create a function that returns the length of a mediatype from the mediatype table
+	CREATE Or REPLACE FUNCTION get_mediatype(id_no IN NUMBER)
+    		RETURN NUMBER 
+    		IS medianame VARCHAR2(50);
+    		BEGIN
+        		SELECT name
+       			INTO medianame
+        		FROM mediatype
+        		WHERE mediatypeid = id_no;
+        	RETURN (LENGTH(medianame));
+    	END;
+	/
+	--Finding the length of the 5th element on that column
+	SELECT get_mediatype(5) FROM DUAL
+
+3.2 System Defined Aggregate Functions
+Create a function that returns the average total of all invoices
+	SELECT AVG(total) FROM invoice;
+
+Creat a function that returns the most expensive track 
+	SELECT MAX(total) FROM invoice;
+
+3.3 User Defined Scalar Functions
+Create a function that return the average price of invoiceline items in the invoiceline table
+	SELECT AVG(unitprice) FROM invoiceline
+
+3.4 User defined Table Valued Functions
+Create a function that returns all employees who are born after 1968
+	SELECT * FROM employee WHERE BIRTHDATE > '31-DEC-68';
+
+5.0 Transactions
+Create a transaction that given a invoiceID will delete that invoice (with some constraints)
+	CREATE OR REPLACE PROCEDURE removeInvoiceID(idToBeDeleted NUMBER)
+    		IS
+    		BEGIN
+       			DELETE FROM invoiceline WHERE invoiceid IN 
+        		(SELECT invoiceID FROM invoice WHERE invoiceID = idToBeDeleted);
+       	 		DELETE FROM invoice WHERE invoiceID = idToBeDeleted;
+    		END;
+		/
+
+	EXECUTE removeinvoiceid(324);
+	
+Create a transaction nested within a stored procedure that inserts a new record in the Customer table.
+	
+	CREATE OR REPLACE PROCEDURE nestedAddStuff
+	(
+	nid NUMBER,
+	fname VARCHAR2,
+	lname VARCHAR2,
+	ncompany VARCHAR2,
+	naddress VARCHAR2,
+	ncity VARCHAR2,
+	nstate VARCHAR2,
+	ncountry VARCHAR2,
+	npostalcode NUMBER,
+	nphone NUMBER,
+	nfax NUMBER,
+	nemail VARCHAR2,
+	nsupportrepid NUMBER)
+	IS
+	BEGIN 
+    		INSERT INTO customer VALUES (nid,fname,lname,ncompany,naddress,ncity,nstate,ncountry,npostalcode,nphone,nfax,nemail,nsupportrepid);
+	END;
+	/
+
+EXECUTE removeinvoiceid(324);
+
+
+6.0 Triggers
+6.1 AFTER/FOR
+Create an insert trigger on the employee table fired after a new record is inserted into the table
+	CREATE TRIGGER employeeTrigger
+    	AFTER INSERT ON employee
+    	BEGIN
+        	DBMS_OUTPUT.PUT_LINE('this is a REALLY fun hwk');
+    	END;
+	/
+
+7.0 JOINS
+7.1 INNER
+Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceID
+	--I might be blind and am unable to find what orders mean exactly.
+7.2 OUTER
+Create an outer join that joins the custonmer and invoice table, specifying the CustomerID, firstname, lastname, invoiceID and total.
+	SELECT * FROM customer FULL OUTER JOIN invoice ON customer.customerID = invoice.customerid;
+7.3 RIGHT
+Create a right join that joins the album and artist specifying artist name and title.
+	SELECT * FROM  album RIGHT JOIN artist ON album.artistid = artist.artistid;
+7.4 CROSS
+Create a cross join that joins album and artist and sorts by artist name in ascending order
+	SELECT * FROM  album CROSS JOIN artist ORDER BY artist.name ASC;
+7.5 SELF
+Perform a self-join on the employee table, joining the reportsto column.
+	SELECT * FROM employee a, employee b WHERE a.reportsto = b.reportsto;
+
 

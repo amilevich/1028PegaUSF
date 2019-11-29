@@ -129,6 +129,7 @@ What is a sequence?
 What is a stored procedure?
 
 Function vs Stored procedure?
+	
 
 What is a cursor?
 
