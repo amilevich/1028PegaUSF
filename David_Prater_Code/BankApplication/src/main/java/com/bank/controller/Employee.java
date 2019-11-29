@@ -54,7 +54,7 @@ public class Employee {
 		switch (actionChoice) {
 		case "1":
 			viewAllAccounts();
-			employeeMenu();
+			employeeActions();
 			break;
 		case "2":
 			System.out.println("Logout succesful.");

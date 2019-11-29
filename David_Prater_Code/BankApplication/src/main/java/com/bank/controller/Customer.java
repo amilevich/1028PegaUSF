@@ -29,11 +29,19 @@ public class Customer {
 		System.out.println("Please Enter Your Password.");
 		String password = sc.next().toString();
 		// Combine the username and password because this is their key in the customer HashMap
+		//System.out.println(currentAccount.getPassword());
+		
 		currentAccount = AccountDaoImpl.selectAccountByID(username);
 		
-		String passwordCheck = currentAccount.getPassword();
+		if(currentAccount == null) {
+			System.out.println("Invalid login credentials. You have been returned to the main menu");
+			BankMenu.getMainMenu();
+		}
 		
+		currentAccount = AccountDaoImpl.selectAccountByID(username);
+		String passwordCheck = currentAccount.getPassword();
 		//If the users submitted a correct key log them in to the customer menu
+		
 		if(password.equals(passwordCheck)) {
 			// Set the current customer to access that Account details
 			customerActions(currentAccount);
@@ -57,6 +65,7 @@ public class Customer {
 		switch (actionChoice) {
 		case "1":
 			// Print account number and balance for customer
+			AccountDaoImpl.updateAccount(currentAccount);
 			System.out.println("Account Number: " + currentAccount.getAccountNumber());
 			System.out.println("Balance: $" + currentAccount.getAccountBalance());
 			break;
@@ -92,7 +101,7 @@ public class Customer {
 	// Method to withdrawal funds from account
 	public static void withdrawalFunds(Account Account) {
 		
-		// For administrator account if their inpus is invalid return to admin actions
+		// For administrator account if their inputs is invalid return to admin actions
 		if(Account == null) {
 			System.out.println("Invalid Account Number");
 			Administrator.administratorActions();
@@ -117,7 +126,7 @@ public class Customer {
 
 	// Method to deposit funds into account
 	public static void depositFunds(Account Account) {
-		// For administrator account if their inpus is invalid return to admin actions
+		// For administrator account if their inputs is invalid return to admin actions
 		if(Account == null) {
 			System.out.println("Invalid Account Number");
 			Administrator.administratorActions();
@@ -134,7 +143,7 @@ public class Customer {
 	// Method to transfer funds to an account
 	public static void transferFunds() {
 		// Get transferrers account from accountNumber
-		System.out.println("What is the account number for the trasferer?");
+		System.out.println("What is the account number for the transferer?");
 		String transfererAccountNumber = sc.next().toString();
 		transferAccount = AccountDaoImpl.selectAccountByNumber(transfererAccountNumber);
 		
@@ -144,7 +153,12 @@ public class Customer {
 		receiverAccount = AccountDaoImpl.selectAccountByNumber(receiverAccountNumber);
 		
 		// If the accounts exist perform a transfer
-		if(receiverAccountNumber.equals(receiverAccount.getAccountNumber()) && transfererAccountNumber.equals(transferAccount.getAccountNumber())) {
+		if(receiverAccount == null || transferAccount == null) {
+			// If account(s) doesn't exist return to main menu
+			System.out.println("Invalid account choices.");
+			System.out.println("For safety purposes you have been returned to the main menu");
+			BankMenu.getMainMenu();
+		} else if(receiverAccountNumber.equals(receiverAccount.getAccountNumber()) && transfererAccountNumber.equals(transferAccount.getAccountNumber())) {
 			System.out.println("How much money would you like to transfer?");
 			double funds = getPositiveDouble();
 			if (transferAccount.getAccountBalance() >= funds) {
@@ -164,6 +178,7 @@ public class Customer {
 			// If account(s) doesn't exist return to main menu
 			System.out.println("Invalid account choices.");
 			System.out.println("For safety purposes you have been returned to the main menu");
+			BankMenu.getMainMenu();
 		}
 
 	}

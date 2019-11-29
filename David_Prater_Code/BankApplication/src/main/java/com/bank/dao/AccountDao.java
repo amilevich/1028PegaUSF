@@ -9,7 +9,8 @@ public abstract class AccountDao {
 	//CREATE
 	public abstract int insertAccount(Account a);
 	//READ
-	public abstract Account selectAccountByName(Account a);
+	public abstract Account selectAccountByNumber(Account a);
+	public abstract Account selectAccountByID(String a);
 	public abstract List<Account> selectAllAccounts();
 	//UPDATE
 	public abstract int updateAccount(Account a);

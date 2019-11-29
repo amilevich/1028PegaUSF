@@ -114,6 +114,7 @@ public class Administrator {
 			administratorActions();
 			break;
 		default:
+			System.out.println("Invalid choice. Try again");
 			cancelAccount();
 			;
 		}
@@ -125,7 +126,7 @@ public class Administrator {
 	// This method allows the administrator to delete accounts
 	public static void removeAccount() {
 		System.out
-				.println("Whats is the account number for the account you wish to delete? (key = username + password)");
+				.println("Whats is the account number for the account you wish to delete?");
 		String accountNumber = sc.next().toString();
 		Account accountToDelete;
 		// If this key is in the customer HashMap delete its corresponding Account

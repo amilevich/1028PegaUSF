@@ -198,3 +198,139 @@ Account Number: 11748
 Account Balance: 0.0
 Name: banana banana
 Address: asdf
+2019-11-25 16:00:33 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 278
+Account Balance: 0.0
+Name: caio something
+Address: 1272 Bruce
+2019-11-25 21:42:52 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 66404
+Account Balance: 0.0
+Name: Grape Seed
+Address: Grade Ave
+2019-11-25 21:44:16 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 95691
+Account Balance: 0.0
+Name: Benji Benjis
+Address: Uk Some place
+2019-11-25 21:45:08 INFO  Customer:131 - Account #95691 deposited $100.0
+2019-11-25 21:46:07 INFO  Customer:156 - $350.0 Transferred from Account #42864 to account number #24909
+2019-11-25 21:46:37 INFO  Customer:114 - Account #24909 withdrew $50.0
+2019-11-25 21:54:14 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 41715
+Account Balance: 0.0
+Name: David Prater
+Address: 906 William Way
+2019-11-25 21:56:31 INFO  Customer:131 - Account #41715 deposited $100.0
+2019-11-25 21:56:41 INFO  Customer:114 - Account #41715 withdrew $50.0
+2019-11-25 21:57:52 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 60827
+Account Balance: 0.0
+Name: Shaylyn Patel
+Address: Memphis, TN
+2019-11-25 21:58:24 INFO  Customer:131 - Account #60827 deposited $1000.0
+2019-11-25 21:58:51 INFO  Customer:156 - $300.0 Transferred from Account #60827 to account number #41715
+2019-11-25 21:59:18 INFO  Customer:131 - Account #41715 deposited $50.0
+2019-11-25 21:59:36 INFO  Customer:114 - Account #60827 withdrew $200.0
+2019-11-25 22:00:05 INFO  Customer:114 - Account #41715 withdrew $50.0
+2019-11-25 22:00:21 INFO  Customer:131 - Account #41715 deposited $100.0
+2019-11-25 22:00:50 INFO  Customer:156 - $69.0 Transferred from Account #41715 to account number #60827
+2019-11-25 22:05:03 INFO  Customer:115 - Account #41715 withdrew $31.0
+2019-11-25 22:05:11 INFO  Customer:132 - Account #41715 deposited $50.0
+2019-11-25 22:11:35 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 54956
+Account Balance: 0.0
+Name: Caoio Caio
+Address: Atlanta Georgia
+2019-11-25 22:12:47 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 5746
+Account Balance: 0.0
+Name: Daniel Prater
+Address: KAnsas Mia
+2019-11-25 22:13:22 INFO  Customer:132 - Account #41715 deposited $100000.0
+2019-11-25 22:13:47 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 7376
+Account Balance: 0.0
+Name: 1 1
+Address: 1
+2019-11-25 22:14:08 INFO  Customer:115 - Account #41715 withdrew $400.0
+2019-11-25 22:14:19 INFO  Customer:132 - Account #41715 deposited $900000.0
+2019-11-25 22:39:41 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 7143
+Account Balance: 0.0
+Name: Ben Arethyal
+Address: UK somehwer
+2019-11-25 22:40:34 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 57952
+Account Balance: 0.0
+Name: qwe qwe
+Address: qwe place
+2019-11-25 22:41:01 INFO  Customer:132 - Account #57952 deposited $500.0
+2019-11-25 22:44:17 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 7402
+Account Balance: 0.0
+Name: Ben Areythal
+Address: Uk Somewhere
+2019-11-25 22:46:21 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 24567
+Account Balance: 0.0
+Name: Eric gordon
+Address: kansas
+2019-11-25 22:46:59 INFO  Customer:132 - Account #24567 deposited $5000.0
+2019-11-25 22:47:24 INFO  Customer:115 - Account #41715 withdrew $5000.0
+2019-11-25 22:47:34 INFO  Customer:132 - Account #41715 deposited $50000.0
+2019-11-25 22:48:10 INFO  Customer:162 - $500.0 Transferred from Account #41715 to account number #7402
+2019-11-26 08:56:51 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 1116
+Account Balance: 0.0
+Name: Caio Last
+Address: Tampa, FL
+2019-11-26 09:26:35 INFO  Customer:140 - Account #1116 deposited $100.0
+2019-11-26 09:26:42 INFO  Customer:123 - Account #1116 withdrew $50.0
+2019-11-26 09:27:27 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 24815
+Account Balance: 0.0
+Name: Ben Jamin
+Address: UK Somewhere
+2019-11-26 09:27:59 INFO  Customer:140 - Account #24815 deposited $5000.0
+2019-11-26 09:28:38 INFO  Customer:140 - Account #24815 deposited $316.0
+2019-11-26 12:41:16 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 15217
+Account Balance: 0.0
+Name: Caio Last
+Address: Tampa, FL
+2019-11-26 12:42:10 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 22300
+Account Balance: 0.0
+Name: Ben Areythal
+Address: UK, Somewhere
+2019-11-26 12:42:39 INFO  Customer:140 - Account #15217 deposited $100.0
+2019-11-26 12:42:47 INFO  Customer:123 - Account #15217 withdrew $50.0
+2019-11-26 12:43:26 INFO  Customer:170 - $54681.0 Transferred from Account #41715 to account number #22300
+2019-11-26 12:50:47 INFO  Customer:123 - Account #41715 withdrew $65.0
+2019-11-26 12:51:01 INFO  Customer:123 - Account #41715 withdrew $50.0
+2019-11-26 12:52:05 INFO  Customer:140 - Account #41715 deposited $54.0
+2019-11-26 12:54:46 INFO  Customer:123 - Account #41715 withdrew $50.0
+2019-11-26 13:24:46 INFO  NewCustomer:38 - New account created succesfully. Account ID: 0
+Account Number: 18308
+Account Balance: 0.0
+Name: Ben Benjamin
+Address: UK, Somewhere
+2019-11-26 13:25:44 INFO  Customer:123 - Account #41715 withdrew $1000.0
+2019-11-26 13:25:53 INFO  Customer:140 - Account #41715 deposited $2500.0
+2019-11-26 13:26:54 INFO  NewCustomer:80 - New joint account created succesfully.
+Account ID: 0
+Account Number: 23802
+Account Balance: 0.0
+Name: Jonny Prater
+Address: Wichita, KS
+2019-11-26 13:27:28 INFO  Customer:140 - Account #23802 deposited $10000.0
+2019-11-26 13:28:03 INFO  Customer:123 - Account #23802 withdrew $50.0
+2019-11-26 13:28:46 INFO  Customer:170 - $450.0 Transferred from Account #23802 to account number #18308

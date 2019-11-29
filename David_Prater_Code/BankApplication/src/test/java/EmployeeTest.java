@@ -14,12 +14,6 @@ public class EmployeeTest {
 	int outOfRangeAccountNumber = 10000000;
 	
 
-	/*
-	 * No Testable Methods.
-	 * All methods are either void or take in no parameters
-	 * 
-	 */
-
 	@Test
 	public void generateRandomAccountNumberTrue() {
 		assertTrue("account is in range: " + randomAccountNumber, randomAccountNumber > 0 && randomAccountNumber < 100000);
