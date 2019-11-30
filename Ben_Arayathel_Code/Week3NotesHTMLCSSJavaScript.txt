@@ -1,0 +1,64 @@
+HTML, CSS and JAVASCRPIT notes
+
+HTML - Hyper Text Markup Language
+	Designed for web displaying documents, HTML tags elements within the document.
+	Not a programming language
+Examples of tags:
+	<head> contains the meta data of the document (not displayed in the actual webpage). Examples being the title of the document.
+	<body> contains the elements that will be displayed on the webpage
+	<div> creates a container within the webpage. 
+	<span> creates an inline element
+	<p> <h1> <button> <href> (<ol> & <ul> : <li>) : paragraph, header, button, link, ordered and unordered list, list element
+
+CSS - Cascading Style Sheet
+	Adds more stylelisation to webdocuments, the syntax is of the form : element { attribute:set property}
+	Examples of defining elements within CSS:
+		* , selects all elements within webpage
+		p , selects all tagged element, in this case <p> paragraph elements.
+		#id , selects the element with the id = 'id'
+		.class , selects the elements with the class = 'class'
+		p.class , selects paragraph element with class = 'class'
+		div, p , selects all <div> and <p> elements  
+		div p , selects all <p> elements within <div> elements
+		div > p , select all <p> elements that have <div> has their parent class
+		div + p , select all <div> and <p> element next to each other 
+
+	Examples of attributes:
+		backgroun-color: red
+		text-align: center
+		font-size: ...
+
+JavaScript 
+	Loosely typed, dynamic scripting language natively supported in web browsers. Language with (arguable) support for Object oriented coding.
+	Lossely typed - data type of variables can change on the fly e.g. from number to string.
+	Dynamic language - 
+	Data Types within Java:
+			Null - represents "nothing" or "empty".
+			Undefined - represents "value not defined".
+			Number - floating point number or integer.
+			String - character typed (no primitive character type).
+			Object - contains properties, properties are key, value pairs.
+			Symbol - introduced recently in ES6, is an immutable data type used to uniquely identify objects.
+			Function - data type function, once in an object is defined as a method.
+			Booleans - boolean value, can be "true" or "false".
+			Arrays - written with square brackets, elements don't need to be of same data type. 
+	== compares data value i.e. "2" == 2 return true.
+	=== compares value and data type.
+	
+	Declaring keywords:
+			var - Global and local scopes
+			let - Global, local and block scopes (used within blocks as it does not escape scopes)
+			const -  Global, local and block scope, data is immutable once assigned 
+
+	Discount rate OOP:
+		Inheritence: is not acheived via class based inheritence but via object based inheritance. This is specified as prototypical 
+			inheritance where objects inherit traits from other instantiated objects.	 
+		Encapsulation: no access modifiers in Javascript, we have to use scopes to limit access. This is called "closure".
+
+	Interesting principles:
+	Prototyping - Can declare and assign a field outside a class (or once an object has been instantiated)
+	Hoisting - variable declaration are brought to the top of the script, so a variable can be assigned before it's declared in the script.
+	Prototypical Inheritance - Javascript's form of inheritance 
+
+	
+	 
