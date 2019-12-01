@@ -31,7 +31,8 @@ CSS - Cascading Style Sheet
 JavaScript 
 	Loosely typed, dynamic scripting language natively supported in web browsers. Language with (arguable) support for Object oriented coding.
 	Lossely typed - data type of variables can change on the fly e.g. from number to string.
-	Dynamic language - 
+	Dynamic language - instead of being constrained to compile time, you can create new variables, functions and objects during runtime.
+	
 	Data Types within Java:
 			Null - represents "nothing" or "empty".
 			Undefined - represents "value not defined".
@@ -44,21 +45,38 @@ JavaScript
 			Arrays - written with square brackets, elements don't need to be of same data type. 
 	== compares data value i.e. "2" == 2 return true.
 	=== compares value and data type.
+
+	Truth and Falsy values:
+		Data types in Javascript can have inherent boolean values if you used in a logic statements.
+		Falsy values:
+			Boolean, 'false' (obviously)
+			String, "" (empty string, non empty strings are 'true')
+			Number, 0 (all other numbers, inculding negatives are 'true')
+			null 
+			undefined 
+			NaN , (not a number)
+		Truthy values:
+			Basically everything else mate.
 	
 	Declaring keywords:
 			var - Global and local scopes
-			let - Global, local and block scopes (used within blocks as it does not escape scopes)
+			let - Global, local and block scopes (used within blocks as it does not escape scopes), introduced in ES6
 			const -  Global, local and block scope, data is immutable once assigned 
 
 	Discount rate OOP:
 		Inheritence: is not acheived via class based inheritence but via object based inheritance. This is specified as prototypical 
-			inheritance where objects inherit traits from other instantiated objects.	 
-		Encapsulation: no access modifiers in Javascript, we have to use scopes to limit access. This is called "closure".
+			inheritance where objects inherit traits from other instantiated objects. Each object stores a private field, which reference 
+			another object, called its prototype. (this chains all the way until an object with prototype = null is found.)
+						 
+		Encapsulation: no access modifiers in Javascript, we have to use scopes to limit access. This is called "closure", which is
+			declaring functions within functions (lexical scoping), the inner function has access to outer functions local scope variables. 
+			(as well as its own scope and global scope variables).
 
-	Interesting principles:
+	Interesting features:
 	Prototyping - Can declare and assign a field outside a class (or once an object has been instantiated)
 	Hoisting - variable declaration are brought to the top of the script, so a variable can be assigned before it's declared in the script.
-	Prototypical Inheritance - Javascript's form of inheritance 
+	Prototypical Inheritance - Javascript's form of inheritance, object based instead of class based.
+	Template Literals - allow embedded expressions, the syntax is 'blah blah blah ${expression} more blah blah'.
 
 	
 	 
