@@ -6,6 +6,7 @@ public class EmployeeUser extends Reimburse {
 	private String userName;
 	private String uFirstName;
 	private String uLastName;
+	private String uPassword;
 	private String uEmail;
 	private int userRoleId;
 	private String userRole;
@@ -52,6 +53,12 @@ public class EmployeeUser extends Reimburse {
 	}
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
+	}
+	public String getuPassword() {
+		return uPassword;
+	}
+	public void setuPassword(String uPassword) {
+		this.uPassword = uPassword;
 	}
 	
 	

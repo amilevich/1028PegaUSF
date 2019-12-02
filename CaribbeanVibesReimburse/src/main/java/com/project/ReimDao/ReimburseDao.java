@@ -14,13 +14,19 @@ public interface ReimburseDao {
 	
 	public Reimburse getAllTickById (int userId);
 	
-
+	public String pullByRoleName (int roleId);
+	
+	public String pullStatusName(int statId);
+	
+	public String PullReimType(int reimId);
 	
 	//For finance managers only
 	//Pull accounts that are still pending
-	public Reimburse pullAllPending(int getAll);
+	//public List<Reimburse> pullAllPendingReimburse();
 	
 	public List<Reimburse> pullAllAccounts();
+
+	public int UpdateInfo(int userId,int fUserId,int RemiNum);
 	
 	
 }
