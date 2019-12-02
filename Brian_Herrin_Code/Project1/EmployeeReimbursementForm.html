@@ -4,29 +4,43 @@
 <meta charset="ISO-8859-1">
 <title>Project 1 Employee Reimbursement System</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+<link rel="shortcut icon" href="favicon.ico" type="image/icon"> 
+<link rel="icon" href="favicon.ico" type="image/icon"> 
 </head>
 <body>
 
-<div class="container">
+<div class="bodyHeading">
 	<div class="jumbotron text-center">
-		<h3>Project 1 Employee Reimbursement System</h3>
+		<h3>Reimbursement Form</h3>
 		<h5>
-		<span class="label label-success">Welcome, Please Login:</span>
+		<span class="label label-success">Please fill the form completely to ensure a timely response</span>
 		</h5>
 	</div>
 </div>
 
 <div class="container">
-	<input type="text" name="txtUsernameQuery" value=username>
+	<center>
+	<form>
+		<input type="radio" name="reimbursementTypes" value="lodging"> LODGING&nbsp
+		<input type="radio" name="reimbursementTypes" value="travel"> TRAVEL&nbsp
+		<input type="radio" name="reimbursementTypes" value="food"> FOOD&nbsp
+		<input type="radio" name="reimbursementTypes" value="other"> OTHER <br>
+	</form>
+	</form>
+	<form id = "uploadbanner" method = "post" action = "#">
+		<input id = "fileupload" type = "file" /> 
+	</form>
 	<br>
-	<input type="text" name="txtPasswordQuery" value=password>
-	<input type="submit" id="LoginSubmit" class="form-control btn btn-info"/>
+	<input type = "submit" value = "Apply" id = "submitReimbursement" class="form-control btn btn-info"/>
+	<!--
+	
+	/-->
+	<br>
+	<form action="EmployeeMainMenu.html" method="get">
+		<input type="submit" value="Back" id="FormToMainSubmit" class="form-control btn btn-info"/>
+	</form>
+	</center>
 </div>
-
-<div class="info">
-	<h3 id="logingQueryCheckMessage"></h3>
-</div>
-
 
 <!--
 <script type="text/javascript" src="Login.js"></script>
