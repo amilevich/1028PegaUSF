@@ -1,0 +1,11 @@
+Doga "Doa" Akata 
+akatadoga@gmail.com
+8624488797
+akatadoga
+
+My responsibilities are general to front-end development.
+
+if you implement OAuth - plus 20 pts, 
+Spring Security = plus 20 pts, 
+pictures through blobs - 15 pts, 
+pictures through AWS: S3 - 30 pts 
