@@ -1,0 +1,160 @@
+@charset "ISO-8859-1";
+
+body {
+	background-image: url("images/background.png");
+}
+
+.wrapper {
+	width: 940px;
+	margin: 20px auto 20px auto;
+	border: 2px, solid, #000000;
+	background-color: #ffffff;
+}
+
+header {
+	height: 160px;
+	background-image: url("images/header.png");
+}
+
+nav {
+	color: white;
+	background-color: #3c59a5;
+	height: 50px;
+}
+
+nav ul {
+	margin: 0px;
+	padding: 5px 0px 5px 30px;
+}
+
+nav li {
+	display: inline;
+	margin-right: 40px;
+	font-size: 20px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+nav li a {
+	color: white;
+	transition: 0.3s;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+nav li a:hover, nav li a.current {
+	color: yellow;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.body {
+	background-color: white;
+}
+
+.login {
+	float: left;
+	margin: 25px;
+	background-color: white;
+}
+
+fieldset {
+	width: 310px;
+	margin-top: 20px;
+	border: 1px solid #d6d6d6;
+	background-color: #ffffff;
+	line-height: 1.6em;
+}
+
+legend {
+	font-weight: bold;
+	color: #666666;
+}
+
+input[type="text"] {
+	width: 200px;
+	border: 1px solid #d6d6d6;
+	padding: 2px;
+	outline: none;
+	transition: 0.3s;
+}
+
+input[type="text"]:focus, input[type="text"]:hover {
+	background-color: #f6f6f6;
+	border: 1px solid #999999;
+}
+
+input[type="password"] {
+	width: 200px;
+	border: 1px solid #d6d6d6;
+	padding: 2px;
+	outline: none;
+	transition: 0.3s;
+}
+
+input[type="password"]:focus, input[type="password"]:hover {
+	background-color: #f6f6f6;
+	border: 1px solid #999999;
+}
+
+input[type="submit"] {
+	border: 1px solid #000000;
+	background-color: #000000;
+	color: #ffffff;
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 10px;
+	width: 100px;
+	transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+	border: 1px solid #ee0000;
+	background-color: #ee0000;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.submit {
+	width: 200px;
+	text-align: right;
+}
+
+.signUpLink {
+	text-decoration: none;
+	color: #000000;
+	transition: 0.3s;
+}
+
+.signUpLink:hover {
+	text-decoration: none;
+	color: #ee0000;
+}
+
+.footer {
+	background-color: white;
+	text-align: right;
+	margin: 25px;
+}
+
+.signup {
+	float: left;
+	margin: 25px;
+	background-color: white;
+}
+
+.signupInfo {
+	width: 200px;
+	text-align: right;
+}
+
+select {
+	width: 200px;
+	border: 1px solid #d6d6d6;
+	padding: 2px;
+	outline: none;
+}
+
+/*
+#3c59a5
+*/
