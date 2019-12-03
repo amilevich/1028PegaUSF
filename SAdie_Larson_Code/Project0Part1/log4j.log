@@ -13,3 +13,18 @@
 2019-11-26 15:40:37 INFO  Account:926 - c. made a transfer of250.0from their shared checking account to their checking account.
 2019-11-26 15:40:46 INFO  MainDriver:283 -  s Logged in
 2019-11-26 15:40:57 INFO  MainDriver:314 -  s Approved  c.'s account
+2019-11-30 19:46:41 INFO  MainDriver:417 -  lindapinda21 Creted an Account
+2019-11-30 19:46:55 INFO  MainDriver:176 -  lindapinda21 Tried to log in but account is not active
+2019-11-30 19:47:03 INFO  MainDriver:192 -  e Logged in
+2019-11-30 19:47:13 INFO  MainDriver:225 -  e Approved  lindapinda21's account
+2019-11-30 19:47:48 INFO  MainDriver:118 -  lindapinda21 Logged in
+2019-11-30 19:48:09 INFO  Account:632 - lindapinda21 made a deposit of500.0
+2019-11-30 19:48:58 INFO  MainDriver:417 -  steveieweevie22 Creted an Account
+2019-11-30 19:49:24 INFO  MainDriver:428 -  steveieweevie22 Created an Joint Account with  steveieweevie22 lindapinda21
+2019-11-30 19:49:37 INFO  MainDriver:192 -  e Logged in
+2019-11-30 19:50:21 INFO  MainDriver:225 -  e Approved  steveieweevie22's account
+2019-11-30 19:50:30 INFO  MainDriver:118 -  steveieweevie22 Logged in
+2019-11-30 19:51:19 INFO  Account:632 - steveieweevie22 made a deposit of10000.0
+2019-11-30 19:51:19 INFO  Account:632 - lindapinda21 made a deposit of10000.0
+2019-11-30 19:51:38 INFO  MainDriver:118 -  lindapinda21 Logged in
+2019-11-30 19:52:06 INFO  Account:926 - lindapinda21 made a transfer of10000.0from their checking account to their shared checking account.
