@@ -2,18 +2,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Employee: Pending Tickets</title>
+<title>Employee: Past Reimbursements</title>
 <link rel="stylesheet" href="LoginC.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
 	integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
 	crossorigin="anonymous">
 <link rel="shortcut icon" href="pega.ico" />
-<title>Pending Tickets</title>
+<title>Past Tickets</title>
 </head>
 
 <body>
-	<div class="container-full">
+		<div class="container-full">
 		<!-- Carousel Properties -->
 		<div id="carouselExampleCaptions" class="carousel slide"
 			data-ride="carousel">
@@ -35,8 +35,7 @@
 					</div>
 				</div>
 				<div class="carousel-item" data-interval="3000">
-					<img
-						src="http://itnewsbuzz.com/wp-content/uploads/2019/06/Pega-presents-Real-Time-AI-Connectors-for-Pega-AI-Software.jpg"
+					<img src="http://itnewsbuzz.com/wp-content/uploads/2019/06/Pega-presents-Real-Time-AI-Connectors-for-Pega-AI-Software.jpg"
 						class="d-block w-100" alt="..." id="changeWidthAndHeight">
 					<div class="carousel-caption d-none d-md-block">
 						<h1 class="changeColor">PEGA FOR A BETTER BUSINESS</h1>
@@ -44,8 +43,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="pos-f-t">
+	</div>	<div class="pos-f-t">
 		<div class="collapse" id="navbarToggleExternalContent">
 			<div class="bg-dark p-4">
 				<h5 class="text-white h4">Pega Employee Reimbursement System</h5>
@@ -83,11 +81,9 @@
 			</button>
 		</nav>
 	</div>
-
 	<div id="titleId">
-		<h1>Pending Tickets</h1>
+		<h1>Past Ticket Requests</h1>
 	</div>
-
 	<div class="info">
 		<table class="table table-striped table-dark">
 			<thead>
@@ -96,6 +92,7 @@
 					<th scope="col">ID #</th>
 					<th scope="col">Subject</th>
 					<th scope="col">Description</th>
+					<th scope="col">Status</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,6 +109,10 @@
 					<td>
 						<h3 id="ticketDescription"></h3>
 					</td>
+					<td>
+						<h3 id="ticketStatus"></h3>
+					</td>
+
 				</tr>
 			</tbody>
 		</table>
