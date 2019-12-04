@@ -20,5 +20,39 @@
   	<url-pattern>/hwUrl</url-pattern>
   </servlet-mapping>
   
+  <!-- Servlet Context(Global) -->
+  <!-- its parameters are specified for an entire application outside
+  of any particular servlet and are available to all servlets within
+  the application -->
+  <servlet>
+  	<servlet-name>servletContextExample</servlet-name>
+  	<servlet-class>com.example.co.ServletContextExample</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <context-param>
+  	<param-name>databaseUrl</param-name>
+  	<param-value>https://database.aws.amazon.com</param-value>
+  </context-param>
+  
+  <!-- Servlet Config(local) -->
+  <!-- its parameters are speficied for a particular servlet and are
+  unknown to other servlets -->
+  <servlet>
+  	<servlet-name>servletConfigExample</servlet-name>
+  	<servlet-class>com.example.co.ServletConfigExample</servlet-class>
+  	
+  	
+  	<init-param>
+  		<param-name>favoriteFood</param-name>
+  		<param-value>banh xeo</param-value>
+  	</init-param>	
+  	<init-param>
+  		<param-name>bestDessert</param-name>
+  		<param-value>(cheesecake) ice cream</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  	
+  </servlet>
+  
   
 </web-app>

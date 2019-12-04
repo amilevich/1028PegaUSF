@@ -6,5 +6,6 @@ public interface PetDao {
 	
 	public int insertPet(Pet p);
 	public Pet selectPetByName(String name);
+	public void updatePet(Pet p);
 
 }

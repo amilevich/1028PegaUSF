@@ -59,4 +59,18 @@ public class PetDaoImpl implements PetDao {
 		return pet;
 	}
 
+	@Override
+	public void updatePet(Pet p) {
+		try(Connection conn = DriverManager.getConnection(url, username, password)){
+			
+			PreparedStatement ps = conn.prepareStatement("UPDATE Pets SET type=? WHERE name=?");
+			ps.setString(1, p.getType());
+			ps.setString(2, p.getName());
+			ps.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

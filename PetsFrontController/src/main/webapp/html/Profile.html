@@ -9,14 +9,12 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<h1>Welcome home</h1>
-<h4>Here is your pet's information: </h4>
-<div id="name"></div>
-<div id="type"></div>
 
-<a href="http://localhost:8080/PetsFrontController/html/Profile.html"
-class="btn btn-success">Click To Update Profile</a>
+<h2>Please enter your new pet's type below:</h2>
+<form method="POST" action="Update.do">
+	<input type="text" name="type" placeholder="Enter your pet's new type"/>
+	<input type="submit" class="btn btn-success" value="Submit"/>
+</form>
 
-<script type="text/javascript" src="../js/Home.js"></script>
 </body>
 </html>
