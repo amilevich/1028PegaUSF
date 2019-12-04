@@ -10,15 +10,18 @@ public class RequestHelper {
 	 */
 
 	public static String process(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Hello");
+		System.out.println(request.getRequestURI());
 		switch(request.getRequestURI()) {
-		case "/Project1Sadie/Login.do":
-			return LoginController.Login(request);
+//		case "/Project1Sadie/Login.do":
+//			return LoginController.Login(request);
 		case "/Project1Sadie/Register.do":
+			System.out.println("in request helper");
 			return RegisterController.Register(request);
-		case "/Project1Sadie/Home.do":
-			return HomeController.Home(request, response);
+//		case "/Project1Sadie/Home.do":
+//			return HomeController.Home(request, response);
 		default:
-			return "/html/Login.html";
+			return "/Login.html";
 			//if all else fails this will load up the html login page
 			
 		}

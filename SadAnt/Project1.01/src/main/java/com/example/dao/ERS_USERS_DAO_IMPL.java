@@ -8,23 +8,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pega.dao.ERS_USERS_DAO;
+import com.example.dao.ERS_USERS_DAO;
 import com.pega.models.ERS_USERS;
 
-public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO{
+public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
-	private static String url = "jdbc:oracle:thin:@db1028pega.chunhpttrxjn.us-east-1.rds.amazonaws.com:1521:orcl";
-	private static String username = "";
-	private static String password = "";
-	
+	private static String Url = "jdbc:oracle:thin:@db1028.cdvifhysxq7a.us-east-1.rds.amazonaws.com:1521:ORCL";
+	private static String Username = "user1028";
+	private static String Password = "p4ssw0rd";
+
 	@Override
 	public int insertUser(ERS_USERS user) {
-		
+
+		System.out.println("hello");
 		int insertedReimbs = 0;
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement(
-					"INSERT INTO ERS_USERS(ERS_USERS_ID, ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME,"
-					+ " USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID_FK) VALUES (?,?,?,?,?,?,?)");
+		try (Connection conn = DriverManager.getConnection(Url, Username, Password)) {
+			System.out.println("inside dao try");
+			PreparedStatement ps = conn
+					.prepareStatement("INSERT INTO ERS_USERS(ERS_USERS_ID, ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME,"
+							+ " USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID_FK) VALUES (?,?,?,?,?,?,?)");
 			ps.setInt(1, user.getERS_USERS_ID());
 			ps.setString(2, user.getERS_USERNAME());
 			ps.setString(3, user.getERS_PASSWORD());
@@ -32,128 +41,123 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO{
 			ps.setString(5, user.getUSER_LAST_NAME());
 			ps.setString(6, user.getUSER_EMAIL());
 			ps.setInt(7, user.getUSER_ROLE_ID_FK());
-			insertedReimbs = ps.executeUpdate();
+			System.out.println("after sending over");
+			//insertedReimbs = ps.executeUpdate();
+			ps.executeUpdate();
+			System.out.println(insertedReimbs);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return insertedReimbs;
-		
+
 	}
 
 	@Override
 	public ERS_USERS selectById(int ERS_USER_ID) {
-		
+
 		ERS_USERS user = null;
-		
-		try(Connection con = DriverManager.getConnection(url,username,password)){
-			
+
+		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
+
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_USERS WHERE ERS_USERS_ID=?");
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"),rs.getString("ERS_USERNAME"),
-									 rs.getString("ERS_PASSWORD"),rs.getString("USER_FIRST_NAME"),
-									 rs.getString("USER_LAST_NAME"),rs.getString("USER_EMAIL"),rs.getInt("USER_ROLE_ID_FK"));
+
+			while (rs.next()) {
+				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
+						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
+						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK"));
 			}
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return user;
 	}
 
 	@Override
 	public ERS_USERS selectByUsername(String USER_USERNAME) {
-		
+
 		ERS_USERS user = null;
-		
-		try(Connection con = DriverManager.getConnection(url,username,password)){
-			
+
+		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
+
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_USERS WHERE ERS_USERNAME=?");
-			
+
 			ps.setString(1, USER_USERNAME);
-			
+
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"),rs.getString("ERS_USERNAME"),
-						 rs.getString("ERS_PASSWORD"),rs.getString("USER_FIRST_NAME"),
-						 rs.getString("USER_LAST_NAME"),rs.getString("USER_EMAIL"),rs.getInt("USER_ROLE_ID_FK")); 
+
+			while (rs.next()) {
+				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
+						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
+						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK"));
 			}
-			
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return user;
 	}
 
 	@Override
 	public ERS_USERS selectByPassword(String USER_PASSWORD) {
-		
-ERS_USERS user = null;
-		
-		try(Connection con = DriverManager.getConnection(url,username,password)){
-			
+
+		ERS_USERS user = null;
+
+		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_USERS WHERE ERS_PASSWORD=?");
-			
+
 			ps.setString(1, USER_PASSWORD);
-			
+
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"),rs.getString("ERS_USERNAME"),
-						 rs.getString("ERS_PASSWORD"),rs.getString("USER_FIRST_NAME"),
-						 rs.getString("USER_LAST_NAME"),rs.getString("USER_EMAIL"),rs.getInt("USER_ROLE_ID_FK")); 
+
+			while (rs.next()) {
+				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
+						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
+						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK"));
 			}
-			
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return user;
 	}
 
-	
-
-
-
 	@Override
 	public List<ERS_USERS> selectAllUsers() {
-		
+
 		List<ERS_USERS> user = new ArrayList<ERS_USERS>();
-		
-		try(Connection con = DriverManager.getConnection(url,username,password)){
-			
+
+		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
+
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_USERS");
-			
+
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				user.add(new ERS_USERS(rs.getInt("ERS_USERS_ID"),rs.getString("ERS_USERNAME"),
-						 rs.getString("ERS_PASSWORD"),rs.getString("USER_FIRST_NAME"),
-						 rs.getString("USER_LAST_NAME"),rs.getString("USER_EMAIL"),rs.getInt("USER_ROLE_ID_FK"))); 
+
+			while (rs.next()) {
+				user.add(new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
+						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
+						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK")));
 			}
-			
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return user;
 	}
 
 	@Override
 	public int updateUserById(ERS_USERS user) {
-		
-		try(Connection con = DriverManager.getConnection(url,username,password)){
-			
-			PreparedStatement ps = con.prepareStatement("UPDATE ERS_USERS ERS_USERNAME=?, ERS_PASSWORD=?, USER_FIRST_NAME=?, USER_LAST_NAME=?, USER_EMAIL=?, USER_ROLE_ID_FK=?, WHERE ERS_USERS_ID=? ");
-			
+
+		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
+
+			PreparedStatement ps = con.prepareStatement(
+					"UPDATE ERS_USERS ERS_USERNAME=?, ERS_PASSWORD=?, USER_FIRST_NAME=?, USER_LAST_NAME=?, USER_EMAIL=?, USER_ROLE_ID_FK=?, WHERE ERS_USERS_ID=? ");
+
 			ps.setInt(1, user.getERS_USERS_ID());
 			ps.setString(2, user.getERS_USERNAME());
 			ps.setString(3, user.getERS_PASSWORD());
@@ -161,22 +165,20 @@ ERS_USERS user = null;
 			ps.setString(5, user.getUSER_LAST_NAME());
 			ps.setString(6, user.getUSER_EMAIL());
 			ps.setInt(7, user.getUSER_ROLE_ID_FK());
-			
+
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"),rs.getString("ERS_USERNAME"),
-						 rs.getString("ERS_PASSWORD"),rs.getString("USER_FIRST_NAME"),
-						 rs.getString("USER_LAST_NAME"),rs.getString("USER_EMAIL"),rs.getInt("USER_ROLE_ID_FK")); 
+
+			while (rs.next()) {
+				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
+						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
+						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK"));
 			}
-			
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
-
 
 }

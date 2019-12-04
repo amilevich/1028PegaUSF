@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pega.dao.ERS_REIMBURSEMENT_DAO;
+import com.example.dao.ERS_REIMBURSEMENT_DAO;
 import com.pega.models.ERS_REIMBURSEMENT;
 import com.pega.models.ERS_USERS;
 
@@ -27,9 +27,9 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO{
 		}
 
 	}
-	private static String url = "jdbc:oracle:thin:@db1028pega.chunhpttrxjn.us-east-1.rds.amazonaws.com:1521:orcl";
-	private static String username = "";
-	private static String password = "";
+	private static String url = "jdbc:oracle:thin:@db1028.cdvifhysxq7a.us-east-1.rds.amazonaws.com:1521:orcl";
+	private static String username = "user1028";
+	private static String password = "p4ssw0rd";
 	
 	@Override
 	public int insertReimbursement(ERS_REIMBURSEMENT reimb) {

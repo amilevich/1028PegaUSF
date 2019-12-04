@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.controller.RequestHelper;
+
 public class TestServlets extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-			PrintWriter pWriter = response.getWriter();
-			String fColor = "PurpleRedBlackBlue";
-			pWriter.write("<h1>Hello</h1>");
-			pWriter.write("<h2>My Favorite color is: " + fColor + "</h2>");
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		RequestHelper.process(req, res);
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-//		//forward
-//		request.getRequestDispatcher("Home.html").forward(request, response);
-		
-		//redirect
-		response.sendRedirect("https://github.com/amilevich/1028PegaUSF/tree/SadAnt/SadAnt");
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String targetURL = RequestHelper.process(req, res);
+		System.out.println(targetURL);
+		req.getRequestDispatcher(targetURL).forward(req, res);
 	}
+
 	
 }
