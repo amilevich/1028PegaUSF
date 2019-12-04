@@ -10,27 +10,6 @@ import java.util.List;
 
 import comp.example.model.Pet;
 
-/*
- * JDBC
- * Java Database Connectivity
- * 
- * Important Interfaces:
- * - Connection -> allows us to connect to our DB
- * - Statement -> raw SQL query
- * - PreparedStatement -> precompiles the SQL string without parameters, once
- * parameters are added, they are only treated as values, never keywords
- * - CallableStatement -> same idea as PreparedStatement but is used
- * for stored procedures
- * 
- * Both PreparedStatement and CallableStatement prevent SQL injections
- * 
- * To connect to our database, we need 4 things:
- * 1) URL (endpoint + port number + database name)
- * 2) Username
- * 3) Password
- * 4) Driver (jar that implements JDBC)
- */
-
 public class PetDaoImpl implements PetDao {
 
 	private static String url = "jdbc:oracle:thin:@db1028.cdvifhysxq7a.us-east-1.rds.amazonaws.com:1521:orcl";
@@ -55,20 +34,11 @@ public class PetDaoImpl implements PetDao {
 		Pet pet = null;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Pets WHERE name=?");
-			// putting in a native SQL query utilizing a prepared statement
 			ps.setString(1, name);
-			// we are setting the question mark to be the name that is passed as
-			// a parameter to this method
-			// number 1 corresponds to the first question mark in the query
 			ResultSet rs = ps.executeQuery();
-			// we are executing the query and storing the result set in
-			// a ResultSet type (object)
 			while (rs.next()) {
 				pet = new Pet(rs.getString("name"), rs.getString("type"));
 			}
-			// we are iterating through our result set and populating
-			// our pet object with the values that are coming from the
-			// table's columns
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,14 +52,10 @@ public class PetDaoImpl implements PetDao {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Pets");
-			// SQL query goes into our prepared statement
-			// we have no question marks, so no setting the values
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				pets.add(new Pet(rs.getString(1), rs.getString(2)));
 			}
-			// iterating through the result set, while we still have the next value
-			// we populate the new Pet object and add it to the ArrayList
 
 		} catch (SQLException e) {
 			e.printStackTrace();

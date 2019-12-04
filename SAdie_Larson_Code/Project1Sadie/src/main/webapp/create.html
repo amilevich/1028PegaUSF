@@ -43,33 +43,33 @@ body {
 	</div>
 	<div class="container-full">
 		<form
-			style="width: 65%; height: 65vh; margin: auto; background-color: #2B3856;"
+			method="POST" action="Register.do" style="width: 65%; height: 65vh; margin: auto; background-color: #2B3856;"
 			class="needs-validation" validate>
 			<div class="form-group col-md-6" id="createA">
 				<label style="color: white" for="inputEmail4" >Email</label>
-				<input type="email" class="form-control" id="inputEmail4">
+				<input type="email" class="form-control" id="inputEmail4" name="email">
 			</div>
 			<div class="form-group col-md-6" id="createA">
 				<label style="color: white" for="inputUsername4" >Username</label>
-				<input type="username" class="form-control" id="inputUsername4">
+				<input type="username" class="form-control" id="inputUsername4" name="username">
 			</div>
 			<div class="form-group col-md-6" id="createA">
 				<label style="color: white" for="inputPassword4" >Password</label>
-				<input type="password" class="form-control" id="inputPassword4">
+				<input type="password" class="form-control" id="inputPassword4" name="password">
 			</div>
 			<div class="form-group col-md-6" id="createA">
 				<label style="color: white" for="inputFirstname4" >First
-					Name</label> <input type="text" class="form-control" id="inputFirstname4">
+					Name</label> <input type="text" class="form-control" id="inputFirstname4" name="fName">
 			</div>
 			<div class="form-group col-md-6" id="createA">
 				s <label style="color: white" for="inputLastname4" >Last
-					Name</label> <input type="text" class="form-control" id="inputLastname4">
+					Name</label> <input type="text" class="form-control" id="inputLastname4" name="lName">
 			</div>
 			<div class="form-group col-md-6" id="createA">
 				<label style="color: white" for="dropdownUser" >User
 					Role</label> <select>
-					<option id="e" value="Employee">Employee</option>
-					<option id="f" value="FinanceManager">Finance Manager</option>
+					<option id="e" value="Employee" name="employee">Employee</option>
+					<option id="f" value="FinanceManager" name="financeM">Finance Manager</option>
 				</select>
 			</div>
 			<div class="form-group">

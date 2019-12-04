@@ -110,10 +110,16 @@
 			<h10>Date of Receipt/Invoice:</h10>
 			<input type="text" id="dateSubmit"
 				placeholder="Enter the date money was spent" class="form-control" />
+
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+				Select image to upload: <input type="file" name="fileToUpload"
+					id="fileToUpload"> <input type="submit"
+					value="Upload Image" name="submit">
+			</form>
+			<br>
 			<!-- automatically add configure the current date and time for submission purposes - maybe back end? -->
 			<input type="submit" id="ticketSubmit"
 				class="form-control btn btn-info" />
-		</h5>
 	</div>
 	<footer>
 		<div id="footer">

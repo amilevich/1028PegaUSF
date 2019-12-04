@@ -17,12 +17,10 @@ public class TestServlets extends HttpServlet {
 			String fColor = "PurpleRedBlackBlue";
 			pWriter.write("<h1>Hello</h1>");
 			pWriter.write("<h2>My Favorite color is: " + fColor + "</h2>");
-		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-			
 //		//forward
 //		request.getRequestDispatcher("Home.html").forward(request, response);
 		
