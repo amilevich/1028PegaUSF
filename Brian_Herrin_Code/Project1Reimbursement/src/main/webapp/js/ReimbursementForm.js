@@ -1,8 +1,7 @@
 // HTML Control
 window.onload = function(){
-	//document.getElementByName("radioTypes").addEventListener('click', getTicket);
 	document.getElementById("submitReimbursement").addEventListener('click', getTicket);
-	//console.log("set the listener");
+	//console.log("");
 }
 
 function getTicket(){
@@ -16,8 +15,12 @@ function getTicket(){
 	} else if(document.getElementById("otherType").checked == true){
 		Ticket.setType("Other");
 	}
-	alert("Recieved, Id:" + Ticket.getId() + " Type: " + Ticket.getType());
-	
+	let path = document.getElementById("fileupload");
+	if(path.value != null && path.value != undefined){
+		alert("Recieved, Id:" + Ticket.getId() + " Type: " + Ticket.getType() + " Receipt: " + path.value);
+	} else {
+		alert("Recieved, Id:" + Ticket.getId() + " Type: " + Ticket.getType());
+	}
 	return Ticket;
 }
 

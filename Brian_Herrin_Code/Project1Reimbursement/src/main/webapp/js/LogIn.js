@@ -1,29 +1,6 @@
 window.onload = function(){
-	document.getElementById("LoginSubmit").addEventListener('click', getQuery);
+	//document.getElementById("LoginSubmit").addEventListener('click', getQuery);
 }
-// Noticed that getQuery ran twice
-var running = false,
-    div = document.getElementById('response'),
-    limit = 5,
-    current = 0;
-
-$('#trigger').click(function () {
-    if (running === true) {
-        alert('Error: The cycle was running. Aborting.');
-        running = false;
-        return false;
-    }
-    running = true;
-    var end = setInterval(function () {
-        if (current >= limit || running == false) {
-            running = false;
-            clearInterval(end);
-        }
-        div.innerHTML += 'Hello World<br />';
-        current++;
-    }, 500);
-
-});
 
 function getQuery() {
 	Query.setUsername(document.getElementById("txtUsernameQuery").value);
