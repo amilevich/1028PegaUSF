@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+body{
+	background-image:
+	url(https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/pwnwwmtja89vs7rycbvn);
+}
+#changeWidthAndHeight{
+	height: 65vh;
+	
+}
+
+#logform{
+	height:300px;
+	width: 50%;
+	background-color: #120547    ;
+	margin: auto;
+	border-radius: 5px;
+	padding: 20px;
+}
+#fullform{
+	
+}
+label{
+	font-color:white;
+}
