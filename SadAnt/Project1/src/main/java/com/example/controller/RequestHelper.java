@@ -18,7 +18,7 @@ public class RequestHelper {
 		case "/Project1Sadie/Home.do":
 			return HomeController.Home(request, response);
 		default:
-			return "/html/Login.html";
+			return "/Login.html";
 			//if all else fails this will load up the html login page
 			
 		}

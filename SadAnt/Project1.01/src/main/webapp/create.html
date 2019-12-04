@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Revature: Creating Account</title>
+<title>Pega Reimbursement: Creating Account</title>
 <style>
 body {
 	background-image:
@@ -42,45 +42,48 @@ body {
 		</div>
 	</div>
 	<div class="container-full">
-		<form
-			method="POST" action="Register.do" style="width: 65%; height: 65vh; margin: auto; background-color: #2B3856;"
+		<form method="POST" action="Register.do" id="createAccount"
+			style="width: 65%; height: 65vh; margin: auto; background-color: #2B3856;"
 			class="needs-validation" validate>
 			<div class="form-group col-md-6" id="createA">
-				<label style="color: white" for="inputEmail4" >Email</label>
-				<input type="email" class="form-control" id="inputEmail4" name="email">
+				<label style="color: white" for="inputEmail4">Email</label> <input
+					type="email" class="form-control" id="inputEmail4" name="email">
 			</div>
 			<div class="form-group col-md-6" id="createA">
-				<label style="color: white" for="inputUsername4" >Username</label>
-				<input type="username" class="form-control" id="inputUsername4" name="username">
+				<label style="color: white" for="inputUsername4">Username</label> <input
+					type="username" class="form-control" id="inputUsername4"
+					name="username">
 			</div>
 			<div class="form-group col-md-6" id="createA">
-				<label style="color: white" for="inputPassword4" >Password</label>
-				<input type="password" class="form-control" id="inputPassword4" name="password">
+				<label style="color: white" for="inputPassword4">Password</label> <input
+					type="password" class="form-control" id="inputPassword4"
+					name="password">
 			</div>
 			<div class="form-group col-md-6" id="createA">
-				<label style="color: white" for="inputFirstname4" >First
-					Name</label> <input type="text" class="form-control" id="inputFirstname4" name="fName">
+				<label style="color: white" for="inputFirstname4">First Name</label>
+				<input type="text" class="form-control" id="inputFirstname4"
+					name="fName">
 			</div>
 			<div class="form-group col-md-6" id="createA">
-				s <label style="color: white" for="inputLastname4" >Last
-					Name</label> <input type="text" class="form-control" id="inputLastname4" name="lName">
+				s <label style="color: white" for="inputLastname4">Last Name</label>
+				<input type="text" class="form-control" id="inputLastname4"
+					name="lName">
 			</div>
 			<div class="form-group col-md-6" id="createA">
-				<label style="color: white" for="dropdownUser" >User
-					Role</label> <select>
-					<option id="e" value="Employee" name="employee">Employee</option>
-					<option id="f" value="FinanceManager" name="financeM">Finance Manager</option>
-				</select>
+				<label style="color: white">User Role</label> <input type="radio"
+					name="userRole" value="Employee"> Employee <br> <input
+					type="radio" name="userRole" value="FinanceManager">
+				Finance Manager <br>
 			</div>
 			<div class="form-group">
 				<div class="form-check" id="createA">
-					<input class="form-check-input" type="checkbox" id="gridCheck" >
+					<input class="form-check-input" type="checkbox" id="gridCheck">
 					<label style="color: white" class="form-check-label"
 						for="gridCheck"> I am not a robot</label>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary" id="createA" value="Register">Create
-				Account</button>
+			<button type="submit" class="btn btn-primary" id="createA"
+				value="Register">Create Account</button>
 		</form>
 	</div>
 	<div id="footer">

@@ -42,7 +42,7 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 			ps.setString(6, user.getUSER_EMAIL());
 			ps.setInt(7, user.getUSER_ROLE_ID_FK());
 			System.out.println("after sending over");
-			//insertedReimbs = ps.executeUpdate();
+			// insertedReimbs = ps.executeUpdate();
 			ps.executeUpdate();
 			System.out.println(insertedReimbs);
 		} catch (SQLException e) {
@@ -50,6 +50,26 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 		}
 		return insertedReimbs;
 
+	}
+
+	@Override
+	public boolean isUsernameUnique(String username) {
+		boolean customerExists = false;
+		try (Connection conn = DriverManager.getConnection(Url, Username, Password)) {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_USERS WHERE ERS_USERNAME=?");
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				customerExists = false;
+				}
+			else {
+				customerExists = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customerExists;
 	}
 
 	@Override

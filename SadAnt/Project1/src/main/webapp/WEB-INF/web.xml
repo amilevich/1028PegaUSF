@@ -12,12 +12,12 @@
   
   <!-- Servlet Configuration -->
 	<servlet>
-		<servlet-name>testServlet</servlet-name>
-		<servlet-class>com.example.servlets.TestServlets</servlet-class>
+		<servlet-name>MasterServlet</servlet-name>
+		<servlet-class>com.example.servlet.MasterServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>testServlet</servlet-name>
-		<url-pattern>/testUrl</url-pattern>
+		<servlet-name>MasterServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
   
 </web-app>

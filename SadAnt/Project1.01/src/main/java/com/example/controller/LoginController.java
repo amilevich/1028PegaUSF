@@ -2,8 +2,8 @@ package com.example.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.example.dao.DaoImpl;
-import com.example.main.Employee;
+import com.example.dao.ERS_USERS_DAO_IMPL;
+import com.pega.models.ERS_USERS;
 
 
 public class LoginController {
@@ -12,8 +12,8 @@ public class LoginController {
 
 		String name = req.getParameter("name");
 		String type = req.getParameter("type");
-		DaoImpl p = new DaoImpl();
-		Employee em = new Employee();
+		ERS_USERS_DAO_IMPL p = new ERS_USERS_DAO_IMPL();
+		ERS_USERS em = new ERS_USERS();
 		//em = p.selectByUsername(name);
 		
 //		we are retrieving an existing record by the pets name that the 

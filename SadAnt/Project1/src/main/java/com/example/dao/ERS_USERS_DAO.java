@@ -1,4 +1,4 @@
-package com.pega.dao;
+package com.example.dao;
 
 import java.util.List;
 

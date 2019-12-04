@@ -1,4 +1,5 @@
 package com.example.servlets;
+
 /*
  * change the actual values being doPost and doGet
  */
@@ -22,8 +23,15 @@ public class TestServlets extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String targetURL = RequestHelper.process(req, res);
 		System.out.println(targetURL);
-		req.getRequestDispatcher(targetURL).forward(req, res);
+		PrintWriter out = res.getWriter();
+		if (targetURL.equals("invalid")) {
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('User or email has to be unique');");
+			out.println("location='/Project1Sadie/create.html';");
+			out.println("</script>");
+		} else {
+			req.getRequestDispatcher(targetURL).forward(req, res);
+		}
 	}
 
-	
 }
