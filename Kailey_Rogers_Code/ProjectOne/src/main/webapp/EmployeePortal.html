@@ -7,7 +7,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-	<link rel="shortcut icon" href="favicon.ico" />
+<link rel="shortcut icon" href="favicon.ico" />
 <title>Employee Portal: PokéPawn Reimbursement Portal</title>
 </head>
 <body>
@@ -17,23 +17,31 @@
 
 			<nav>
 				<ul>
-					<li><a href="EmployeePortal.html" class="current">Home</a></li>
-					<li><a href="">Add Reimbursement Request</a></li>
-					<li><a href="">View Past Tickets</a></li>
-					<li><a href="">Logout</a></li>
+					<li id="employeeHome"><a href="EmployeePortal.html"
+						class="current">Home</a></li>
+					<li id="addTickets"><a href="">Add Reimbursement Request</a></li>
+					<li id="pastTickets"><a href="">View Past Tickets</a></li>
+					<li id="logout"><a href="">Logout</a></li>
 				</ul>
 			</nav>
 
 		</header>
 		<div class="body">
 			<br />
-			<h3>Welcome (INSERT NAME HERE)</h3>
+			<div id="userNameHere"></div>
+
+
+			<div id="employeeTicketsBody">
+				<h1>All Employee tickests are here</h1>
+			</div>
 		</div>
 		<div class="footer">
-		<h6>&copy 2019 PokéPawn </h6>
-		<br/>
+			<h6>&copy 2019 PokéPawn</h6>
+			<br />
 		</div>
 	</div>
+
+	<script src="user.js"></script>
 
 	<!-- JavaScript Links -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

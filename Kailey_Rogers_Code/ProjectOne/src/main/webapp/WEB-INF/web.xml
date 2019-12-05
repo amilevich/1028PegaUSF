@@ -11,5 +11,13 @@
   </welcome-file-list>
   
   <!-- Hello World Servlet Configuration -->
-
+      <servlet>
+  <servlet-name>masterServlet</servlet-name>
+  <servlet-class>com.servlet.MasterServlet</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>masterServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+    <!-- any URL that ends with ".do" -->
+  </servlet-mapping>
 </web-app>

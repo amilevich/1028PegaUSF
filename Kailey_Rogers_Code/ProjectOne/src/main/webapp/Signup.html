@@ -8,8 +8,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-<link rel="shortcut icon" href="favicon.ico" />
-<title>Sign Up: PokéPawn Reimbursement Portal</title>
+	<!--
+<link rel="shortcut icon" href="favicon.ico" />-->
+<title>Sign Up: Pokï¿½Pawn Reimbursement Portal</title>
 </head>
 <body>
 	<div class="wrapper">
@@ -27,28 +28,29 @@
 		</header>
 		<div class="body">
 			<br />
-			<form class="signup">
+			<form class="signup" method="POST" action="Register.do" >
 				<fieldset>
 					<legend>Sign Up</legend>
-					<Input type="text" placeholder="First Name" required="required" /> <br /> <br /> <Input
-						type="text" placeholder="Last Name" required="required"/> <br /> <br /> <Input
-						type="text" placeholder="Email" required="required"/><br /> <br /> <Input
-						type="text" placeholder="Username" required="required"/><br /> <br /> <Input
-						type="text" placeholder="Password" required="required"/><br />
+					<Input type="text" name="firstName" id="signUpFirstName" placeholder="First Name"  /> <br /> <br /> <Input
+						type="text" name="secondName" id="signUplastName" placeholder="Last Name" /> <br /> <br /> <Input
+						type="text" name="email" id="signUpEmail" placeholder="Email" /><br /> <br /> <Input
+						type="text" name= "userName" id="signUpUserName" placeholder="Username" /><br /> <br /> <Input
+						type="text" name="password" id="signUpPassword" placeholder="Password"/><br />
 						<p>Type of Account:</p>
-						<select name="role" id="user-role">
+						<select name="status" id="status" name="role" id="user-role">
 						<option value="Employee">Employee</option>
-						<option value="Finance Mananger">Finance Manager</option>
+						<option value="FinanceMananger">Finance Manager</option>
 						</select><br/><br/>
+						
 				</fieldset>
 				<div class="signupInfo">
-					<input type="submit" value="Sign Up">
+					<input id="signupButton" type="submit" value="Sign Up">
 				</div>
 				<br />
 			</form>
 			<br />
 			<h4>
-				<b>Thank you for creating an employee account with PokéPawn!</b>
+				<b>Thank you for creating an employee account with Pokï¿½Pawn!</b>
 			</h4>
 			<br/>
 			<h6>After creating an account, you will be allowed to submit
@@ -57,12 +59,15 @@
 											
 		</div>
 		<div class="footer">
-			<h6>&copy 2019 PokéPawn</h6>
+			<h6>&copy 2019 Pokï¿½Pawn</h6>
 			<br />
 		</div>
 	</div>
 
+	<script src="app.js"></script>
+
 	<!-- JavaScript Links -->
+	<!--
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
@@ -74,5 +79,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
+		-->
 </body>
 </html>
