@@ -53,8 +53,8 @@ body {
 	<br>
 	<div class="container-full">
 		<div class="row-full"></div>
-		<form
-			method="POST" action="Login.do" style="width: 65%; height: 50vh; margin: auto; background-color: #2B3856;"
+		<form method="POST" action="Login.do"
+			style="width: 65%; height: 50vh; margin: auto; background-color: #2B3856;"
 			class="needs-validation" validate>
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
@@ -64,7 +64,7 @@ body {
 							<span class="input-group-text"
 								id="validationTooltipUsernamePrepend"></span>
 						</div>
-						<input type="text" class="form-control" name="username"
+						<input type="text" class="form-control" name="username" value =""
 							id="validationTooltipUsername"
 							aria-describedby="validationTooltipUsernamePrepend" required>
 						<div class="invalid-tooltip">Please choose a unique and
@@ -80,17 +80,15 @@ body {
 							<span class="input-group-text"
 								id="validationTooltipPasswordPrepend"></span>
 						</div>
-						<input type="text" class="form-control" name="password"
+						<input type="text" class="form-control" name="password" value =""
 							id="validationTooltipPassword"
 							aria-describedby="validationTooltipPasswordPrepend" required>
-						<div class="invalid-tooltip">Please choose a unique and
-							valid password.</div>
+						<div class="invalid-tooltip">Please enter a valid password.</div>
 					</div>
 				</div>
 			</div>
 			<div>
-				<button id="log" class="btn btn-primary" type="submit">Submit
-					form</button>
+				<button id="log" class="btn btn-primary" type="submit">Login</button>
 				<h5 style="color: white">Or</h5>
 			</div>
 			<button id="create" class="btn btn-primary" type="submit">Create
@@ -103,7 +101,7 @@ body {
 				System</h5>
 		</div>
 	</footer>
-	<script type="text/javascript" src="LoginJ.js"></script>
+	<script type="text/javascript" src="./js/LoginJ.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>

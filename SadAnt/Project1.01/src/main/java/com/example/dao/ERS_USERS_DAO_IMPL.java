@@ -32,15 +32,15 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 		try (Connection conn = DriverManager.getConnection(Url, Username, Password)) {
 			System.out.println("inside dao try");
 			PreparedStatement ps = conn
-					.prepareStatement("INSERT INTO ERS_USERS(ERS_USERS_ID, ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME,"
-							+ " USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID_FK) VALUES (?,?,?,?,?,?,?)");
-			ps.setInt(1, user.getERS_USERS_ID());
-			ps.setString(2, user.getERS_USERNAME());
-			ps.setString(3, user.getERS_PASSWORD());
-			ps.setString(4, user.getUSER_FIRST_NAME());
-			ps.setString(5, user.getUSER_LAST_NAME());
-			ps.setString(6, user.getUSER_EMAIL());
-			ps.setInt(7, user.getUSER_ROLE_ID_FK());
+					.prepareStatement("INSERT INTO ERS_USERS(ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME,"
+							+ " USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID_FK) VALUES (?,?,?,?,?,?)");
+			// ps.setInt(1, user.getERS_USERS_ID());
+			ps.setString(1, user.getERS_USERNAME());
+			ps.setString(2, user.getERS_PASSWORD());
+			ps.setString(3, user.getUSER_FIRST_NAME());
+			ps.setString(4, user.getUSER_LAST_NAME());
+			ps.setString(5, user.getUSER_EMAIL());
+			ps.setInt(6, user.getUSER_ROLE_ID_FK());
 			System.out.println("after sending over");
 			// insertedReimbs = ps.executeUpdate();
 			ps.executeUpdate();
@@ -62,8 +62,7 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 
 			if (rs.next()) {
 				customerExists = false;
-				}
-			else {
+			} else {
 				customerExists = true;
 			}
 		} catch (SQLException e) {
@@ -105,9 +104,7 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_USERS WHERE ERS_USERNAME=?");
 
 			ps.setString(1, USER_USERNAME);
-
 			ResultSet rs = ps.executeQuery();
-
 			while (rs.next()) {
 				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
 						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
@@ -117,7 +114,9 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		if (user == null) {
+			user = new ERS_USERS(0, "", "", "", "", "", 0);
+		}
 		return user;
 	}
 
@@ -142,7 +141,6 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return user;
 	}
 
