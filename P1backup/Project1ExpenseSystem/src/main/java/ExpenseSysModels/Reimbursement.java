@@ -1,7 +1,5 @@
 package ExpenseSysModels;
 
-import java.util.Date;
-
 public class Reimbursement {
 	int reimbID;
 	double amount;

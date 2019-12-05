@@ -11,8 +11,7 @@ public class LoginController {
 		String pass = request.getParameter("pass");
 		
 		UsersDaoImp usersDaoImp = new UsersDaoImp();
-		User user = new User();
-		user = usersDaoImp.selectUserByUserName(userName);
+		User user = usersDaoImp.selectUserByUserName(userName);
 		//retrieving an existing record by name that the user provided on the login page and stored it into a pet object
 		
 		if(userName.contentEquals(user.getUserName()) && pass.equals(user.getPassword()) && user.getRole()==1) {
