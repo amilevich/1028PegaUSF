@@ -21,6 +21,9 @@ public class RequestHelper {
 		case "/PetsFrontController/html/Home.do":
 			return HomeController.Home(request, response);
 			
+		case "/PetsFrontController/html/Update.do":
+			return ViewerController.Update(request);
+			
 		default:
 			return "/html/Login.html";
 		}

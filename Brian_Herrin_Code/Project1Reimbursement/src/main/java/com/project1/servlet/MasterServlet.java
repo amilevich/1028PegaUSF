@@ -11,6 +11,11 @@ import com.project1.controller.RequestHelper;
 
 public class MasterServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException{

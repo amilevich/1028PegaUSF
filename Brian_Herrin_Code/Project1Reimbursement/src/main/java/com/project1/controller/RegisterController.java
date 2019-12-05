@@ -2,8 +2,8 @@ package com.project1.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.project1.dao.PetDaoImpl;
-import com.project1.model.Pet;
+import com.example.dao.PetDaoImpl;
+import com.example.model.Pet;
 
 public class RegisterController {
 
@@ -16,7 +16,7 @@ public class RegisterController {
 		pet.setName(name);
 		pet.setType(type);
 		
-		PetDaoImpl petDaoImpl = new PetDaoImpl();
+		SystemDaoImpl petDaoImpl = new SystemDaoImpl();
 		petDaoImpl.insertPet(pet);
 		
 		return "/html/Login.html";
