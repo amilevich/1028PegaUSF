@@ -1,0 +1,38 @@
+Servlet - a Java class used to extend the capabilities of the server that host applications accessed by means of request-response model.
+
+Servlets run in a servlet container, which handles the networking site (e.g. parsing a HTTP request and connection handling)
+	Such container is Tomcat.
+
+	SERVLET HIERACY		|		Methods associated 
+	Servlet (i)		|	init(), destroy(), service(), getServiceContainer(), getServletConfs()
+	    ||			|
+	Generic Servlet (ac)	|
+	    ||			|
+	HttpServlet (ac)	|
+	    ||			|
+	Custom Servlet (c)	|
+	
+	--LIFECYCLE OF A SERVLET--
+	init() - initialises the servlet, called once 2 ways/scenario when the init is called:
+		1) When the user first involves the URL corresponding to new servlet (lazy loading)
+		2) When the server starts (eager loading)
+	service() - main method to perform the actual task. Called as many times as there are requests.
+	destroy() - terminates the servlet. (Only called once)
+
+	URL (Uniform Resource Locator) [http://website.com/login]
+	URI (Uniform Resource Identifier) [/login]
+
+	3 Ways a Servlet can respond to a request:
+		1) Redirect - transferred to a different domain (outside the server)
+		2) Forward - transferred within the same domain (same server)
+		3) Direct Response - same URL/URI, send message back without changing webpage (typically acheived through text/html tags).
+
+
+Front-Controller Design Pattern 
+	Only 1 Master Servlet necessary. If you have multiple URI (endpoints), you can append another URI to it i.e.
+		/login.do	]
+		/register.do	]= *do is the URI we've appended on 
+		/home.do	] 
+
+Clientside -> Tomcat (server) -> Web.xml (directory for servlets) -> Master Servlet (Processes the request and response)-> 
+Request Helper (filters out via URI) -> Controllers (Java Logic) ->Master Server -> Clientside

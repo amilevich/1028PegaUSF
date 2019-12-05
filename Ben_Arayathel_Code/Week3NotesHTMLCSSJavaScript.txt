@@ -46,7 +46,7 @@ JavaScript
 	== compares data value i.e. "2" == 2 return true.
 	=== compares value and data type.
 
-	Truth and Falsy values:
+	Truthy and Falsy values:
 		Data types in Javascript can have inherent boolean values if you used in a logic statements.
 		Falsy values:
 			Boolean, 'false' (obviously)
@@ -77,6 +77,8 @@ JavaScript
 	Hoisting - variable declaration are brought to the top of the script, so a variable can be assigned before it's declared in the script.
 	Prototypical Inheritance - Javascript's form of inheritance, object based instead of class based.
 	Template Literals - allow embedded expressions, the syntax is 'blah blah blah ${expression} more blah blah'.
-
+	
+	AJAX - AJAX is a technique used to send and retrieve data from client to server, benefits being simple to implement and does not intefere with 
+		display and behaviour of the existing page.
 	
 	 

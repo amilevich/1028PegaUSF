@@ -91,7 +91,7 @@ What is a view?
 	A view is a temporary virtual table that shows querys completed by the user.
 
 What is set opertations?
-	A set operator combines queries from 2 tables into a single view. (It extends the rows)
+	A set operator combines queries from 2 tables into a single view. (It extends the rows, extends vertically)
 		The Keywords are:
 			UNION - All distinct rows in both tables
 			UNION ALL - All rows in both tables (allows duplicates)
@@ -99,12 +99,13 @@ What is set opertations?
 			MINUS - All distinct rows, that are in the first query but not in the second query
 
 What are joins?
-	A join clause combines rows from multiple tables into a single related colunms (It extends the columns)
+	A join clause combines rows from multiple tables into a single related colunms (It extends the columns, extends horizontally)
 		The Keywords are:
 			INNER JOIN - Returns records from both tables (queries)
 			LEFT JOIN - Returns records from the left table and matching records from the right
 			RIGHT JOIN - Return records from the right table and matching records from the left.
 			FULLL OUTER JOIN - Returns all records when there is a match in either left or right.
+			CROSS JOIN - Returns all records, with each record from left being associated with every record in the right.
 
 How are joins different to set operations?
 	A join allows the user to agregates records into a "super" column (i.e. it extends vertically). A set operations extends the table horizontally 
@@ -125,9 +126,9 @@ What is PL/SQL?
 	It's SQL with added functionality, allows us to do procedural programming methods (like functions) but not OOP
 
 What is a sequence?
-
+	Generates a sequence of numerical values, to create a unique 
 What is a stored procedure?
-
+	Prepared sql statement that can be reused, it's a sequence of sql statements. Parameter can be passed into it 
 Function vs Stored procedure?
 	
 

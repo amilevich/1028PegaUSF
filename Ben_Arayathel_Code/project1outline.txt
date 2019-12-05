@@ -27,4 +27,9 @@ Requirements
 	3NF
 	JDBC to Oracle SQL
 
+Front End shizzle:
+	HTTP - Hyper Text Transfer Protocol, "request-response protocol" between client and server  
+	Only HTTP methods required is GET and POST
+	GET - request data from a specified resource (unsecure, can be cached and bookmarked)
+	POST - similar to GET, more secure (used for passwords for example).
 	

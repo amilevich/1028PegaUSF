@@ -1,0 +1,20 @@
+Quiz Errors
+
+HTML attribute values are case sensitive 
+
+ID selectors in CSS uses #
+
+Selecting the element id = 'test' via #test {}
+
+By default event listeners are set to the bubbling phase (look up)
+
+=== compares value and data type
+
+XMLHttpRequest object will have a value of 200 is 'onreadystatechange'.
+
+Adding a new Div element dynamically via document.createElement('div')
+
+Bubble Propagation - when a nested element triggers on an event, the outside elements will activate it. 
+
+DOM - Document Object Model 
+

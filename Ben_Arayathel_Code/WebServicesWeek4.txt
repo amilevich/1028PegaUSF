@@ -1,0 +1,81 @@
+Web Services
+
+-software that makes itself available over the web 
+-simply put, a dependency 
+
+SOA - Service Oriented Architecture 
+-technique for building applications using loosely coupled services.
+
+REST - Representational State Transfer 
+-web service that follows SOA, allows for any data format and writes HTTP as its protocol 
+-HTTP Request message 
+
+	HTTP	||	Request	||	message || Can only contain either a Head or a Body 
+	Web 	|| 	URL 	|| 	Version ||
+-HTTP Response message 
+
+	||State Code|| Version || - Can also only contain Head or body 
+		
+Types of verbs:
+	GET 
+	POST
+	PUT
+	DELETE
+	PATCH
+	OPTIONS
+	TRACE
+	CONNECT
+
+ITEM POTENCY - verbs that can be reused repeatedly (i.e. delete is not potent, it's all about the outcome)
+
+RESTFUL API is a API that follows REST constraints 
+1) Uniform Interface - each entity's API should follow the same patter, no operations should have no more than 1 URL 
+2) Stateless - servers do not store any data about the latest HTTP requests
+3) Layerd System - client cannot tell whether it is connected to the original server or another one
+4) Client-Server - client/server are seperate entities 
+5)Cacheable - resource must declare themselves as cacheable
+6)OPTIONAL - Code on Demand. Able to send executable code to the original server or another srever.
+
+
+SOAP - Simple Object Access Protocol 
+XML only 
+any protocol
+if using HTTP only POST 
+WSDL -Web Service Description Language - descrive web services, how to use SOAP
+	<WSDL>
+	<types>
+	<message>
+	<portType>
+	<binding>
+	<service>
+	<operation>
+	</WSDL>
+
+To create a SOAP service:
+	1)Contract First ( WSDL ->implementation code)
+	2) Contract Last (code -> WSDL)
+
+To generate a WSDL
+	1) JAX - WS (Marshalling tool, converts object to string (i.e. JSON or XML, in this case XML file format)
+	2) Apache CFX (SOAP engine)
+
+Marshalling Tools 
+Jackson 
+JSON <--> POJO ]
+		|
+		--REST
+JAX-B		|
+XML <--> POJO  ]
+		|
+		--SOAP
+JAX-WS		|
+WSDL <--> Java ]
+
+
+
+	Tools		Exception Handling 		Contract 		Message			Atomicity 			Protocol	Security 
+
+SOAP	JAX-WS		Inbuilt				WSDL			XML		Can make SOAP messages atomic		any		any,allows for 
+	ApacheCXF																	any additional security 
+
+REST	tool-less	external resources		not contract bound 	any		not-atmoic,can be ACID compliant	HTTP		HTTPS	
