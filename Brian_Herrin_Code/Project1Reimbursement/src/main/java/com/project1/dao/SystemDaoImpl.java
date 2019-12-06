@@ -18,7 +18,8 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao 
 			e.printStackTrace();
 		}
 	}
-	private static String url = "jdbc:oracle:thin:@revaturepega1028.c6hcjsxpeox2.us-east-1.rds.amazonaws.com:1521:orcl";
+	private static String url = "jdbc:oracle:thin:@revaturepega1028.c6hcjsxpeox2.us-east-1.rds.amazonaws.com:1521:ORCL";
+	//private static String url = "jdbc:oracle:thin:@revaturepega1028.c6hcjsxpeox2.us-east-1.rds.amazonaws.com:1521:orcl";
 	private static String username = "Project1";
 	private static String password = "p4ssw0rd";
 	
@@ -27,9 +28,9 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao 
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO Reimbursements VALUES(?,?,?,?,?)");
 			
-			ps.setString(1, r.getExpense().name());
-			ps.setString(2, r.getStatus().name());
-			ps.setDouble(3,r.getAmount());
+			ps.setString(1, r.getExpense());
+			ps.setString(2, r.getStatus());
+			ps.setDouble(3, r.getAmount());
 			ps.setString(4, r.getDescription());
 			ps.setString(5, r.getImageData());
 			System.out.println(r);

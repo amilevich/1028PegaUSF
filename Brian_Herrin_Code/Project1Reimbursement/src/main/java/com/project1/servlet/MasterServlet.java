@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.project1.controller.RequestHelper;
 
 public class MasterServlet extends HttpServlet{
-	
 	/**
 	 * 
 	 */
