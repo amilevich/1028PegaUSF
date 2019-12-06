@@ -48,8 +48,8 @@ public class ReimbursementDaoImp implements ReimbursementDao{
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				reimb = new Reimbursement(rs.getInt("reimbID"), rs.getDouble("amount"), rs.getDate("submitted"), rs.getDate("resolved"), 
-						rs.getString("description"), rs.getInt("author"), rs.getInt("resolver"), rs.getInt("status"), rs.getInt("type"));	
+				reimb = new Reimbursement(rs.getInt(1), rs.getDouble(2), rs.getDate(3), rs.getDate(4), 
+						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9));	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -111,5 +111,22 @@ public class ReimbursementDaoImp implements ReimbursementDao{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+    public ArrayList<Reimbursement> filterReimbByStatus(int status) {
+        ArrayList<Reimbursement> reimbs = new ArrayList<Reimbursement>();
+        try (Connection conn = DriverManager.getConnection(url, username, password)){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Ers_Reimbursements WHERE status=?"); 
+            ps.setInt(1, status); 
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                reimbs.add(new Reimbursement(rs.getInt(1), rs.getDouble(2), rs.getDate(3), rs.getDate(4), rs.getString(5),rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9) ));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reimbs;
+
+    }
 	
 }

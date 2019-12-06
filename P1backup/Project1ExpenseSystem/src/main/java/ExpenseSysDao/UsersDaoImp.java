@@ -103,8 +103,8 @@ public class UsersDaoImp implements UsersDao{
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				user = new User(rs.getInt("userId"), rs.getString("userName"), rs.getString("password"),
-						rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getInt("role"));	
+				user = new User(rs.getInt("ers_user_id"), rs.getString("ers_username"), rs.getString("ers_password"),
+						rs.getString("user_first_name"), rs.getString("user_last_name"), rs.getString("user_email"), rs.getInt("user_role_id"));	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

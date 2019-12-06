@@ -19,4 +19,6 @@ public interface ReimbursementDao {
 	
 	//DELETE
 	public void deleteReimb(Reimbursement r);
+
+	ArrayList<Reimbursement> filterReimbByStatus(int status);
 }

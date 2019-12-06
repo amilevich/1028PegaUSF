@@ -23,6 +23,18 @@ public class Reimbursement {
 		this.status = sts;
 		this.type = typ;
 	}
+	public Reimbursement(double amt, java.sql.Date sub, java.sql.Date resd, String desc, int auth,
+			int resr, int sts, int typ) {
+		this.reimbID = 0;
+		this.amount = amt;
+		this.submitted = sub;
+		this.resolved = resd;
+		this.description = desc;
+		this.author = auth;
+		this.resolver = resr;
+		this.status = sts;
+		this.type = typ;
+	}
 	public int getReimbID() {
 		return reimbID;
 	}

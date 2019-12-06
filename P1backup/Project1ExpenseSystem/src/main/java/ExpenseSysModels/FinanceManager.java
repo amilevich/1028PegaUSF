@@ -2,8 +2,8 @@ package ExpenseSysModels;
 
 public class FinanceManager extends User{
 
-	FinanceManager(int userID, String userName, String password, String firstName, String lastName, String email) {
-		super(userID, userName, password, firstName, lastName, email);
+	FinanceManager(String userName, String password, String firstName, String lastName, String email) {
+		super(userName, password, firstName, lastName, email);
 		this.role = 1;
 	}
 	

@@ -1,7 +1,7 @@
 package ExpenseSysModels;
 
 public class User {
-	//static int highestID;
+
 	int userID;
 	String userName;
 	String password;
@@ -10,22 +10,11 @@ public class User {
 	String email;
 	int role;
 	
-	//login
-	
-//	public static int getHighestID() {
-//		return highestID;
-//	}
-//	public static void setHighestID() {
-//		//look up highest ID from user table
-//		User.highestID = highestID;
-//	}
-	
 	public String getUserName() {
 		return userName;
 	}
-	public User(int userID, String userName, String password, String firstName, String lastName, String email) {
+	public User(String userName, String password, String firstName, String lastName, String email) {
 		super();
-		this.userID = userID;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;

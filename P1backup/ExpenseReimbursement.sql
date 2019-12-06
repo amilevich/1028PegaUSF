@@ -44,6 +44,9 @@ CONSTRAINT ers_user_roles_fk FOREIGN KEY (user_role_id) REFERENCES Ers_Users_Rol
 );
 
 INSERT INTO Ers_Users VALUES (101, 'BillL', 'p4ssw0rd', 'Bill', 'Lumbergh', 'billlumbergh@somecompany.com', 1);
+INSERT INTO Ers_Users VALUES (201, 'MikeB', 'p4ssw0rd', 'Mike', 'Bolton', 'mikebolton@somecompany.com', 0);
+
+INSERT INTO Ers_Reimbursements VALUES (10, 50.50, '06-DEC-19', null, 'business lunch with client', 201, 0, 1, 3);
 
 CREATE TABLE Ers_Reimbursements(
 reimb_id NUMBER(6),
@@ -74,7 +77,7 @@ CREATE TRIGGER reimb_seq_trigger
 BEFORE INSERT ON Ers_Reimbursements
 FOR EACH ROW
 BEGIN
-    IF :new.reimb_id IS NULL THEN
+    IF :new.reimb_id IS 0 THEN
     SELECT reimb_seq.nextval INTO :new.reimb_id FROM dual;
     END IF;
 END;
@@ -89,3 +92,5 @@ BEGIN
     END IF;
 END;
 /
+
+SELECT * FROM Ers_Users WHERE ers_username='BillL';
