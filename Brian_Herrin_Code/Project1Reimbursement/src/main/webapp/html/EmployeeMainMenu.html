@@ -22,19 +22,19 @@ form { accept-charset : utf-8; }
 </div>
 
 <div style="text-align:center" class="container">
-	<form accept-charset=utf-8 action="EmployeeReimbursementForm.html" method="get">
+	<form accept-charset=utf-8 method="get" action="EmployeeReimbursementForm.html" >
 		<input type="submit" value="Create Reimbursement Request" id="CreateReimburseSubmit" class="form-control btn btn-info"/>
 	</form>
 	<br>
-	<form accept-charset=utf-8 action="EmployeeHistoryViewer.html" method="get">
+	<form accept-charset=utf-8 method="POST" action="EmployeeHistoryViewer.do" >
 		<input type="submit" value="View History" id="ViewHistorySubmit" class="form-control btn btn-info"/>
 	</form>
 	<br>
-	<form accept-charset=utf-8 action="EmployeeProfile.html" method="get">
+	<form accept-charset=utf-8 method="get" action="EmployeeProfile.html">
 		<input type="submit" value="Edit Profile Info" id="EmpProfileSubmit" class="form-control btn btn-info"/>
 	</form>
 	<br>
-	<form accept-charset=utf-8 action="Index.html" method="get">
+	<form accept-charset=utf-8 method="POST" action="Logout.do">
 		<input type="submit" value="Log Out" id="LogoutSubmit" class="form-control btn btn-info"/>
 	</form>
 </div>

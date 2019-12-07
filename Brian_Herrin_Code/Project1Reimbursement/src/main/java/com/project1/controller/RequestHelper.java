@@ -11,15 +11,25 @@ public class RequestHelper {
 	public static String process(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("RequestHelper request: " + request.getRequestURI());
 		switch(request.getRequestURI()) {
+		//case "/Project1Reimbursement/html/Login.do":
+		//	System.out.println("RequestHelper Login.do");
+		//	return LoginController.Login(request);
 		case "/Project1Reimbursement/html/Login.do":
-			System.out.println("RequestHelper Login.do");
-			return LoginController.Login(request);
+			return LoginUsersController.Login(request);
+		case "/Project1Reimbursement/html/Logout.do":
+			return LoginUsersController.Logout(request);
 		case "/Project1Reimbursement/html/EmployeeApply.do":
-			return RegisterController.Register(request);
+			return RegisterController.empRegister(request);
+		case "/Project1Reimbursement/html/ManagerApply.do":
+			return RegisterController.manRegister(request);
 		case "/Project1Reimbursement/html/EmployeeUpdate.do":
-			return ProfileController.Update(request);
-		case "/Project1Reimbursement/html/EmpHistViewer.do":
+			return ProfileController.empUpdate(request);
+		case "/Project1Reimbursement/html/ManagerUpdate.do":
+			return ProfileController.manUpdate(request);
+		case "/Project1Reimbursement/html/EmployeeHistoryViewer.do":
 			return EmployeeViewerController.Show(request, response);
+		case "/Project1Reimbursement/html/ManagerRecordsViewer.do":
+			return ManagerViewerController.Show(request, response);
 		default:
 			return "/html/Index.html";
 		}
