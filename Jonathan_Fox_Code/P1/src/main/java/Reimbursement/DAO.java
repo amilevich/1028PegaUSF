@@ -27,22 +27,29 @@ public class DAO {
 
 	//c = commit changes to database? false is for testing
 	public DAO(boolean c) throws SQLException {
-		
-		System.out.printf("Connecting...\n");
-		con = DriverManager.getConnection(url, uname, pass);
-		con.close();
-		con = DriverManager.getConnection(url, uname, pass);
+		try {
+			System.out.printf("Connecting...\n");
+			con = DriverManager.getConnection(url, uname, pass);
+			con.close();
+			con = DriverManager.getConnection(url, uname, pass);
 
-		System.out.printf("Connected!\n");
-		commit = c;
-		
-		if(commit) con.setAutoCommit(true);
-		else con.setAutoCommit(false);
-		
-		con.prepareStatement("SAVEPOINT A").execute();
+			System.out.printf("Connected!\n");
+			commit = c;
+
+			if (commit)
+				con.setAutoCommit(true);
+			else
+				con.setAutoCommit(false);
+
+			con.prepareStatement("SAVEPOINT A").execute();
+		} catch (SQLException e) {
+			System.out.printf("%s\n", e.getMessage());
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 	
-	public User getUser(String email) throws SQLException {
+	public User getUser(String email) {
 		try {
 			ResultSet response;
 			String pass, first, last;
@@ -106,13 +113,19 @@ public class DAO {
 				if(status == -1) t.deny();
 				if(status == 1) t.approve();
 				
-				tickets.put(response.getInt(1), t);
-				
+				tickets.put(response.getInt(1), t);	
 			}
 			
 			return tickets;
-		} catch (SQLException e) { return null; }
-		catch (InstantiationException e) { return null; }
+			
+		} catch (SQLException e) {
+			System.out.printf("%s\n", e.getMessage());
+			return null;
+		}
+		catch (InstantiationException e) {
+			System.out.printf("%s\n", e.getMessage());	
+			return null;
+		}
 	}
 	
 	
@@ -129,10 +142,13 @@ public class DAO {
 			ps.executeUpdate();
 			
 		}catch(SQLTimeoutException e) {
-			e.printStackTrace();
+			System.out.printf("%s\n", e.getMessage());	
 			return false;
 		}
-		catch (SQLException e) { return false; }
+		catch (SQLException e) {
+			System.out.printf("%s\n", e.getMessage());	
+			return false;
+		}
 
 		return true;
 	}
@@ -150,7 +166,10 @@ public class DAO {
 			
 			ps.executeUpdate();
 		
-		} catch (SQLException e) { return false; }
+		} catch (SQLException e) {
+			System.out.printf("%s\n", e.getMessage());	
+			return false;
+		}
 
 		return true;
 	}
@@ -164,15 +183,14 @@ public class DAO {
 			
 			response = ps.executeQuery();
 			response.next();
+			if(response.getInt("status") != 0) return false;
 			
-			if(response.getInt("status") == 0) ps = con.prepareStatement("UPDATE Tickets SET status = ? WHERE id = ?");
-			else return false;
+			ps = con.prepareStatement("UPDATE Tickets SET status = ? WHERE id = ?");
 			
 			if(approve) ps.setInt(1, 1);
 			else ps.setInt(1, -1);
 			
 			ps.setInt(2, id);
-			
 			ps.executeUpdate();
 			
 		}catch (SQLException e) {
