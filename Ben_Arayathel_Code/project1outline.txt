@@ -33,3 +33,16 @@ Front End shizzle:
 	GET - request data from a specified resource (unsecure, can be cached and bookmarked)
 	POST - similar to GET, more secure (used for passwords for example).
 	
+
+com.model:
+	employee
+	tickets
+
+com.model.controller:
+	RequestHelper (filter)
+	LoginController (select)
+	RegisterTicketController (insert)
+	**RegisterEmpController (insert)
+	SetStatusController (update)
+	**ShowAllTickets
+

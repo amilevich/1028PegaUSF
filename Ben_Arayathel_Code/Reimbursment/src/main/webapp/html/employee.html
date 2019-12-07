@@ -4,47 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>EMPLOYEE LOGIN</title>
 
     <link rel = "stylesheet"  type = "text/css" href="../css/UserStyle.css">
 </head>
 <body>
-    <div class="container">
+    <div class="flex-container">
         <div class = "row">
-            <div class = "col">
-                <form method="POST" action="RegisterTicket.do">
-                    <table>
-                        <tr>
-                        <input type = "radio" name = "ttype" value = "LODGE">LODGING
-                        <input type = "radio" name = "ttype" value = "TRAVEL">TRAVEL
-                        <input type = "radio" name = "ttype" value = "FOOD">FOOD
-                        <input type = "radio" name = "ttype" value = "OTHER">OTHER
-                        </tr>
-                    </table>
+            <div class = "col-sm-4">
+                <div class = "container pt-3">
+                <form method="POST" action="RegisterTicket.do" id="RegisterForm">
+                    <select name="status">
+                        <option value = "0">LODGE</option>
+                        <option value = "1">TRAVEL</option>
+                        <option value = "2">FOOD</option>
+                        <option value = "3">OTHER</option>
+                    </select><br>
                     <input class = "textsubmit" type="number" name = "price" placeholder="How much did you spend in dollars?"><br>
-                    <input class = "textsubmit" type="text" name = "Description" placeholder="description"><br>
-                    <button type="submit">SUBMIT!!</button>
+                    <textarea name = "Description" placeholder="description"></textarea><br>
+                    <button type="submit" class="btn btn-primary" id="but">SUBMIT!!</button>
                 </form>
                 <br>
-                <button ><a href ="file:///C:/Users/benBF/OneDrive/Documents/VisualStudioCode/MainLogin.html" >LOGOUT</a></button>
+                <button class = "btn btn-secondary" id = "logout"><a href ="file:///C:/Users/benBF/OneDrive/Documents/VisualStudioCode/MainLogin.html" >LOGOUT</a></button>
             </div>
-            <div class="col-6">
-                <table>
-                    <tr>
-                        <td>Each entry will go in a new row</td>
+            </div>
+            <div class=".col-sm-8">
+                <table class = "table table-bordered" id = "tickets-table">
+                    <thead class = "thread-dark">
+                        <tr>
+                            <th class = "status">Status</th>
+                            <th class = "ID">ID</th>
+                            <th class = "cost">Cost</th>
+                            <th class = "type">Type</th>
+                            <th class = "timestamp">TIMESTAMP</th>
+                            <th class = "email">Email</th>
+                            <th class = "description">Description</th>
+                        </tr>
+                    </thead>
+                    <tr id = "4" class = "table-warning">
+                        <td>
+                            <form method = "POST" class="statusD" action = "SetStatus.do">
+                                <select name="status" id = "asdf"> 
+                                    <option value = "1">Approve</option>
+                                    <option value = "0">Deny</option>
+                                </select>
+                                <button type="button" class="btn btn-primary" id = "but2">SUBMIT!!</button>
+                            </form>
+                        </td>
+                        <td>3</td>
+                        <td>£12</td>
+                        <td>TRAVEL</td>
+                        <td>12/12/12</td>
+                        <td>blah@blah.com</td>
+                        <td>blah blah blahasdfa </td>
                     </tr>
-                    <tr>
-                        <td>Format[ id::type::description::cost::status</td>
+                    <tr class = "table-success">
+                        <td>Approved</td>
+                        <td>3</td>
+                        <td>£12</td>
+                        <td>TRAVEL</td>
+                        <td>12/12/12</td>
+                        <td>blah@blah.com</td>
+                        <td>blah blah blah</td>
                     </tr>
+                </tr>
+                <tr class = "table-danger">
+                    <td>DENIED!!!</td>
+                    <td>3</td>
+                    <td>£12</td>
+                    <td>TRAVEL</td>
+                    <td>12/12/12</td>
+                    <td>blah@blah.com</td>
+                    <td>blah blah blah</td>
+                </tr> 
                 </table>
             </div>
         </div>
     </div>
 
-    <script type = "text/javascript" src = "Ajaxexample.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+    <script type = "text/javascript" src = "../js/employee.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
