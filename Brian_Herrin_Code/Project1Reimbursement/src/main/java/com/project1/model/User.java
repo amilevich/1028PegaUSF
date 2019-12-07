@@ -1,13 +1,20 @@
 package com.project1.model;
 
 public class User {
+	private int userId;
 	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private int isManager;
+	private int roleId;
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -38,17 +45,17 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getIsManager() {
-		return isManager;
+	public int getRoleId() {
+		return roleId;
 	}
-	public void setIsManager(int isManager) {
-		if(isManager > 1) {
-			isManager = 1;
-		} else if(isManager < 0) {
-			isManager = 0;
+	public void setRoleId(int roleId) {
+		if(roleId > 2) {
+			roleId = 2;
+		} else if(roleId < 1) {
+			roleId = 1;
 		} else {
-			isManager = 0;
+			roleId = 1;
 		}
-		this.isManager = isManager;
+		this.roleId = roleId;
 	}
 }

@@ -11,7 +11,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>MasterServlet</servlet-name>
-    <servlet-class>com.example.servlet.MasterServlet</servlet-class>
+    <servlet-class>com.project1.servlet.MasterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MasterServlet</servlet-name>

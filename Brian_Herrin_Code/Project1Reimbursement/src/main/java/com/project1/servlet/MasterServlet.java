@@ -24,9 +24,11 @@ public class MasterServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException{
-		
+		System.out.println("MasterServer A");
 		String targetURL = RequestHelper.process(req, res);
+		System.out.println("MasterServer B");
 		req.getRequestDispatcher(targetURL).forward(req, res);
+		System.out.println("MasterServer C");
 		//chose to respond with a forward for every POST request
 	}
 
