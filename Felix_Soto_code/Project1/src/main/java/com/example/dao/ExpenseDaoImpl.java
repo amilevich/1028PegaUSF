@@ -38,18 +38,19 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public int insertExpense(Expense exp) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO ers_reimbursement "
-					+ "(employee_id,firstname,lastname,type,amount,date_submitted,date_resolved,status,description) "
-					+ "VALUES(?,?,?,?,?,?,?,?,?)");
-			ps.setInt(1, exp.getEmployeeId());
-			ps.setString(2, exp.getFirstname());
-			ps.setString(3, exp.getLastname());
-			ps.setInt(4, exp.getType().getValue());
-			ps.setDouble(5, exp.getAmount());
-			ps.setDate(6, exp.getSubmitted());
-			ps.setDate(7, exp.getResolved());
-			ps.setInt(8, exp.getStatus().getValue());
-			ps.setString(9, exp.getDescription());
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ers_reimbursement"
+					+ "(ticket_id, employee_id,firstname,lastname,type,amount,date_submitted,date_resolved,status,description) "
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?)");
+			ps.setInt(1, exp.getTicketId());
+			ps.setInt(2, exp.getEmployeeId());
+			ps.setString(3, exp.getFirstname());
+			ps.setString(4, exp.getLastname());
+			ps.setInt(5, exp.getType().getValue());
+			ps.setDouble(6, exp.getAmount());
+			ps.setDate(7, exp.getSubmitted());
+			ps.setDate(8, exp.getResolved());
+			ps.setInt(9, exp.getStatus().getValue());
+			ps.setString(10, exp.getDescription());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			loggy.error(e);
