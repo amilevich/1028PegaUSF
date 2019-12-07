@@ -11,18 +11,20 @@ public class Employee {
 	String password;
 	String firstname;
 	String lastname;
+	String email;
 	String type; // for determining if is employee of finance manager.
 
 	public Employee() {
 
 	}
 
-	public Employee(int usedId, String username, String password, String firstname, String lastname, String type) {
+	public Employee(int usedId, String username, String password, String firstname, String lastname, String email, String type) {
 		this.usedId = usedId;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.email = email;
 		this.type = type;
 	}
 
@@ -61,9 +63,17 @@ public class Employee {
 	public String getLastName() {
 		return lastname;
 	}
-
+	
 	public void setLastName(String lastName) {
 		this.lastname = lastName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getType() {
@@ -77,6 +87,6 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [usedId=" + usedId + ", username=" + username + ", password=" + password + ", firstname="
-				+ firstname + ", lastname=" + lastname + "]";
+				+ firstname + ", lastname=" + lastname + ", email=" + email + "]";
 	}
 }

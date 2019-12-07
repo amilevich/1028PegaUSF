@@ -12,6 +12,7 @@ public class RegisterController {
 		String lastname = request.getParameter("lastname");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String email = request.getParameter("email");
 		String type = request.getParameter("type");
 		
 		Employee emplo = new Employee();
@@ -20,6 +21,7 @@ public class RegisterController {
 		emplo.setLastName(lastname);
 		emplo.setUsername(username);
 		emplo.setPassword(password);
+		emplo.setEmail(email);
 		emplo.setType(type);
 
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();

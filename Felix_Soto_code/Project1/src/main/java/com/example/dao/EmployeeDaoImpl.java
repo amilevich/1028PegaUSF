@@ -36,13 +36,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public int insertEmployee(Employee emplo) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
 
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO employee VALUES(?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO employee VALUES(?,?,?,?,?,?,?)");
 			ps.setInt(1, emplo.getUsedId());
 			ps.setString(2, emplo.getUsername());
 			ps.setString(3, emplo.getPassword());
 			ps.setString(4, emplo.getFirstName());
 			ps.setString(5, emplo.getLastName());
-			ps.setString(6, emplo.getType());
+			ps.setString(6, emplo.getEmail());
+			ps.setString(7, emplo.getType());
 			System.out.println(emplo);
 			ps.executeUpdate();
 
@@ -54,23 +55,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return 0;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public Employee selectEmployeeByUsername(String u_name) {
 		Employee emp = null;
@@ -80,7 +64,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				emp = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6));
+						rs.getString(6), rs.getString(7));
 			}
 		} catch (SQLException e) {
 			loggy.error(e);
@@ -97,7 +81,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				emps.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6)));
+						rs.getString(6), rs.getString(7)));
 			}
 		} catch (SQLException e) {
 			loggy.error(e);
@@ -109,12 +93,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void updateEmployee(Employee emp) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement(
-					"UPDATE employee SET username=?, password=?, first_name=?, last_name?, type=? WHERE user_id=?");
+					"UPDATE employee SET username=?, password=?, first_name=?, last_name?, user_email, type=? WHERE user_id=?");
 			ps.setString(2, emp.getUsername());
 			ps.setString(3, emp.getPassword());
 			ps.setString(4, emp.getFirstName());
 			ps.setString(5, emp.getLastName());
-			ps.setString(6, emp.getType());
+			ps.setString(6, emp.getEmail());
+			ps.setString(7, emp.getType());
 			ps.setInt(1, emp.getUsedId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
