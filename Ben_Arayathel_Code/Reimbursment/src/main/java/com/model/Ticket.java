@@ -60,5 +60,13 @@ public class Ticket {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Ticket [status=" + status + ", amount=" + amount + ", email=" + email + ", description=" + description
+				+ ", type=" + type + ", time=" + time + "]";
+	}
+	
+	
+
 }
 

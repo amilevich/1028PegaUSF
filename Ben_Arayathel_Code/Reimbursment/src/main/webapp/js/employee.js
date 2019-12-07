@@ -2,30 +2,60 @@ window.onload = function(){
     document.getElementById("but").addEventListener("click",UploadTicket);
     console.log("set the listener");
 
-    var buttons = document.getElementsByClassName("btn btn-primary");
-
-    for(var i =0;i<buttons.length;i++){
-
-        buttons[i].addEventListener("click",this.StatusTicket);
-
-    }
-    
-    
-    console.log("set the listener");
+//    var buttons = document.getElementsByClassName("btn btn-primary");
+//
+//    for(var i =0;i<buttons.length;i++){
+//
+//        buttons[i].addEventListener("click",this.StatusTicket);
+//
+//    }
+//    
+//    
+//    console.log("set the listener");
 
     // this.document.getElementsByClassName("but2").addEventListener("click",StatusTicket);
     // this.console.log("happy days");
 }
 
-function UploadTicket(){
-
-    var ticketID = 3;
+function UploadTicket(e){
+	
+	
+	let ticketobj = {
+			price: document.getElementById("price").value,
+			ttype: document.getElementById("ticketType").value,
+			desc: document.getElementById("description").value
+	}
+  
+    let xhttp = new XMLHttpRequest();
+	
+    xhttp.onreadystatechange = function(){
+    	
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			
+			console.log(xhttp.response);
+    		let ticket = JSON.parse(xhttp.response);
+    		
+    		
+		}
+    	
+    }
+	xhttp.open("POST", 'http://localhost:9001/Reimbursment/html/RegisterTicket.do', true);
+	
+	xhttp.setRequestHeader("data","json");
+	let tet = JSON.stringify(ticketobj);
+	xhttp.send(tet);
+	console.log(ticket);
+	
+	
+	
+	
+    var ticketID = 7;
     var IDh = ticketID;
-    var costh = 100;
-    var typeh = "LODGE";
-    var timestamph = "12/11/13"
-    var emailh = "asdf@asdf.com"
-    var descriptionh = "blah blah blah"
+    var costh = ticketobj.price;
+    var typeh = ticketobj.ttype;
+    var timestamph = "12/11/13";
+    var emailh = "asdf@asdf.com";
+    var descriptionh = ticketobj.desc;
 
     var table = document.getElementById("tickets-table")
     var row = table.insertRow(1);
@@ -33,7 +63,7 @@ function UploadTicket(){
     row.setAttribute("class","table-warning");
     var status = row.insertCell(0);
     status.setAttribute("class","status");
-    status.innerHTML = '<form method = "POST" class="statusD" action = "SetStatus.do"><select name="status"><option value = "approve">Approve</option><option value = "deny">Deny</option></select><button type="button" class="btn btn-primary">SUBMIT!!</button></form>'
+    status.innerText = "Pending";
     var ID = row.insertCell(1);
     ID.setAttribute("class","ID");
     ID.innerText = IDh;
@@ -52,16 +82,6 @@ function UploadTicket(){
     var description = row.insertCell(6);
     description.setAttribute("class","description");
     description.innerText = descriptionh;
-
-    var buttons = document.getElementsByClassName("btn btn-primary");
-
-    for(var i =0;i<buttons.length;i++){
-        console.log("i")
-        buttons[i].addEventListener("click",this.StatusTicket);
-
-    }
-
-
 
 }
 

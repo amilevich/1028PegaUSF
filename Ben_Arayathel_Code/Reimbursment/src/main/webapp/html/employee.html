@@ -14,19 +14,19 @@
         <div class = "row">
             <div class = "col-sm-4">
                 <div class = "container pt-3">
-                <form method="POST" action="RegisterTicket.do" id="RegisterForm">
-                    <select name="status">
+                <div class = "submit">
+                    <select name="status" id = "ticketType">
                         <option value = "0">LODGE</option>
                         <option value = "1">TRAVEL</option>
                         <option value = "2">FOOD</option>
                         <option value = "3">OTHER</option>
                     </select><br>
-                    <input class = "textsubmit" type="number" name = "price" placeholder="How much did you spend in dollars?"><br>
-                    <textarea name = "Description" placeholder="description"></textarea><br>
-                    <button type="submit" class="btn btn-primary" id="but">SUBMIT!!</button>
-                </form>
+                    <input class = "textsubmit" id = "price" type="number" name = "price" placeholder="How much did you spend in dollars?"><br>
+                    <textarea name = "Description" placeholder="description" id = "description"></textarea><br>
+                    <button class="btn btn-primary" id="but">SUBMIT!!</button>
+                </div>
                 <br>
-                <button class = "btn btn-secondary" id = "logout"><a href ="file:///C:/Users/benBF/OneDrive/Documents/VisualStudioCode/MainLogin.html" >LOGOUT</a></button>
+                <button class = "btn btn-secondary" id = "logout"><a href ="http://localhost:9001/Reimbursment/html/login.html" >LOGOUT</a></button>
             </div>
             </div>
             <div class=".col-sm-8">
@@ -42,42 +42,6 @@
                             <th class = "description">Description</th>
                         </tr>
                     </thead>
-                    <tr id = "4" class = "table-warning">
-                        <td>
-                            <form method = "POST" class="statusD" action = "SetStatus.do">
-                                <select name="status" id = "asdf"> 
-                                    <option value = "1">Approve</option>
-                                    <option value = "0">Deny</option>
-                                </select>
-                                <button type="button" class="btn btn-primary" id = "but2">SUBMIT!!</button>
-                            </form>
-                        </td>
-                        <td>3</td>
-                        <td>£12</td>
-                        <td>TRAVEL</td>
-                        <td>12/12/12</td>
-                        <td>blah@blah.com</td>
-                        <td>blah blah blahasdfa </td>
-                    </tr>
-                    <tr class = "table-success">
-                        <td>Approved</td>
-                        <td>3</td>
-                        <td>£12</td>
-                        <td>TRAVEL</td>
-                        <td>12/12/12</td>
-                        <td>blah@blah.com</td>
-                        <td>blah blah blah</td>
-                    </tr>
-                </tr>
-                <tr class = "table-danger">
-                    <td>DENIED!!!</td>
-                    <td>3</td>
-                    <td>£12</td>
-                    <td>TRAVEL</td>
-                    <td>12/12/12</td>
-                    <td>blah@blah.com</td>
-                    <td>blah blah blah</td>
-                </tr> 
                 </table>
             </div>
         </div>

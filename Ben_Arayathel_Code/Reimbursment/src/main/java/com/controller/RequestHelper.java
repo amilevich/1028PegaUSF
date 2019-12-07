@@ -16,8 +16,8 @@ public class RequestHelper {
 		case "/Reimbursment/html/RegisterTicket.do":
 			return RegisterTicketController.register(request, response);
 			
-//		case "/Reimbursment/html/SetStatus.do":
-//			return SetStatusController.setStatus(request, response);
+		case "/Reimbursment/html/SetStatus.do":
+			return SetStatusController.setStatus(request, response);
 			
 		default:
 			return "./employee.html";
