@@ -13,16 +13,16 @@ import org.apache.log4j.Logger;
 import com.example.ers.Employee;
 
 public class EmployeeDaoImpl implements EmployeeDao {
-	
+
 	final static Logger loggy = Logger.getLogger(EmployeeDaoImpl.class);
-	
+
 	static {
 
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-		} catch (ClassNotFoundException e) {			
+		} catch (ClassNotFoundException e) {
 			loggy.error(e);
 		}
 
@@ -34,7 +34,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public int insertEmployee(Employee emplo) {
-		try (Connection conn = DriverManager.getConnection(url, username, password)){
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO employee VALUES(?,?,?,?,?,?,?)");
 			ps.setInt(1, emplo.getUsedId());
@@ -69,6 +69,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 			loggy.error(e);
 		}
+		loggy.info("in dao + emp: " + emp);
 		System.out.println("in dao + emp: " + emp);
 		return emp;
 	}

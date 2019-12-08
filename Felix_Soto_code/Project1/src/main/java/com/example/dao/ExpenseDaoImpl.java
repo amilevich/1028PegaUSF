@@ -55,6 +55,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		} catch (SQLException e) {
 			loggy.error(e);
 		}
+		loggy.info("in dao + expense: " + exp);
+
 		return 0;
 	}
 
@@ -108,6 +110,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		} catch (SQLException e) {
 			loggy.error(e);
 		}
+		loggy.info("This has been updated: " + ticket_id);
+
 	}
 
 	@Override
@@ -126,5 +130,5 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@Override
 	public void deleteExpense(Expense exp) {
-	}
+	}	
 }

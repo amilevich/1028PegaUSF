@@ -35,11 +35,11 @@ function setValues(list) {
                        <th>User Id</th>
                        <th>First Name</th>
                        <th>Last Name</th>
-                       <th>Type</th>
+                       <th>Expense Type</th>
                        <th>Amount</th>
-                       <th>Date submitted</th>
-                       <th>Date resolved</th>
-                       <th>Status</th>
+                       <th>Date Submitted</th>
+                       <th>Date Resolved</th>
+                       <th>Reimbursement Status</th>
                        <th>Description</th>
                        <th>Ticket Id</th>
                        <th></th>

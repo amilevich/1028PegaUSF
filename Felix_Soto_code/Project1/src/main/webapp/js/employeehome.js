@@ -7,8 +7,7 @@ window.onload = function() {
 }
 
 function getRequests() {
-	// this object allows us to make requests
-	// and get data back
+	// this object allows us to make requests and get data back
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 			
@@ -23,18 +22,18 @@ function getRequests() {
     xhttp.send();
 }
 /*
- * Used to set the values in the table (populate the table)
+ * Used to populate the table
  */
 function setValues(list) {
     
     let table = document.getElementById("reimbtable");
     table.innerHTML = `<tr>
                        <th>Ticket Id</th>
-                       <th>Type</th>
+                       <th>Expense Type</th>
                        <th>Amount</th>
-                       <th>Date submitted</th>
-                       <th>Date resolved</th>
-                       <th>Status</th>
+                       <th>Date Submitted</th>
+                       <th>Date Resolved</th>
+                       <th>Reimbursement Status</th>
                        <th>Description</th>
                        </tr>`
     

@@ -11,6 +11,7 @@ public class RequestHelper {
 		switch (request.getRequestURI()) {
 		case "/Project1/html/Register.do":
 			System.out.println("in request helper");
+			loggy.info("in request helper");
 			return RegisterController.Register(request);
 		case "/Project1/html/Login.do":
 			return LoginController.Login(request);
@@ -25,7 +26,7 @@ public class RequestHelper {
 		case "/Project1/html/LoadExpensesById.do":
 			return EmployeeExpenseController.loadExpensesById(request, response);
 		default:
-			loggy.info("Not a valid .do string recieved");
+			loggy.info("Not a valid .do string");
 			return null;
 		}
 	}

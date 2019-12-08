@@ -11,8 +11,8 @@ import com.example.controllers.RequestHelper;
 
 public class MasterServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -3303380103882284097L;
-	
+	private static final long serialVersionUID = 9108372633037616455L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
