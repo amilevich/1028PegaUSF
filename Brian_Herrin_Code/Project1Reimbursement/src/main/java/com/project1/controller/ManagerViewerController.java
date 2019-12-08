@@ -11,10 +11,15 @@ import com.project1.model.Reimbursement;
 import com.project1.model.Users;
 
 public class ManagerViewerController {
-	public static String Show(HttpServletRequest request, HttpServletResponse response) {
+	public static String postManRecPage(HttpServletRequest request, HttpServletResponse response) {
+		return "/html/ManagerHistoryViewer.html";
+	}
+	
+	public static String postManHistTable(HttpServletRequest request, HttpServletResponse response) {
 		SystemDaoImpl sysDaoImpl = new SystemDaoImpl();
-		Users userLoggedIn = (Users)request.getSession().getAttribute("Users");
-		List<Reimbursement> reimbursements = sysDaoImpl.selectEmployeeReimbursementsById(sysDaoImpl.selectEmployeeByName(userLoggedIn.getName()).getUserId());
+		Users usersLoggedIn = (Users)request.getSession().getAttribute("Users");
+		List<Reimbursement> reimbursements = sysDaoImpl.selectReimbursementsByUsersId(sysDaoImpl.selectUsers(usersLoggedIn.getName()).getUsersId());
+		
 		// For Reimbursement Table
 		PrintWriter pWriter;
 		try {
@@ -31,7 +36,6 @@ public class ManagerViewerController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return "/html/ManagerHistoryViewer.html";
+		return "/html/EmployeeHistoryViewer.html";
 	}
 }

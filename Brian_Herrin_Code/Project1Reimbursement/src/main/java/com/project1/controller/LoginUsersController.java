@@ -5,7 +5,7 @@ import com.project1.model.Users;
 public class LoginUsersController {
 
 	public static String Login(HttpServletRequest request) {
-		//System.out.println(request.getParameterMap().size() + " " + request.getParameterMap().values());
+		//System.out.println(request.getParameterValues().size() + " " + request.getParameterValues());
 		String name = request.getParameter("txtUsernameQuery");
 		String password = request.getParameter("txtPasswordQuery");
 		//System.out.println("Login name: "+ name + ", password: " + password);
@@ -23,7 +23,7 @@ public class LoginUsersController {
 			//System.out.println("LoginController: null values for name or password");
 		} else if(name.equals(users.getName()) && password.equals(users.getPassword())) {
 			request.getSession().setAttribute("Users", users);
-			if(users.getRole()==1)
+			if(users.getRole()==2)
 				return "/html/EmployeeMainMenu.html";
 			else
 				return "/html/ManagerMainMenu.html";

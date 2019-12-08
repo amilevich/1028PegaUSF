@@ -22,19 +22,15 @@ form { accept-charset : utf-8; }
 </div>
 <!-- /-->
 <div id="divManApplication" style="text-align:center" class="container">
-	<input type="text" id="txtUsernameApply" placeholder="Type username here">
-	<br>
-	<input type="password" id="txtPasswordApply" placeholder="Type password here"><br>
-	<input type="password" id="txtPasswordApply1" placeholder="Type password again"><br>
-	<input type="text" id="txtFirstNameApply" placeholder="Type your first name here"> &#160;
-	<input type="text" id="txtLastNameApply" placeholder="Type your last name here"> <br>
-	<input type="text" id="txtEMailApply" placeholder="Type your e-mail here">
-	<br><br>
+	<input type="text" name="txtUsernameApply" placeholder="Type username here">
+	<input type="password" name="txtPasswordApply" placeholder="Type password here">
+	<input type="text" name="txtFirstNameApply" placeholder="Type your first name here"> 
+	<input type="text" name="txtLastNameApply" placeholder="Type your last name here"> 
+	<input type="text" name="txtEMailApply" placeholder="Type your e-mail here">
 	<input type = "submit" value = "Apply" id = "submitAccount" class="form-control btn btn-info"/>
-	<br>
 </div>
-<form action="Index.html" method="get">
-		<input type="submit" value="Cancel" id="ApplyToLoginSubmit" class="form-control btn btn-info"/>
+<form action="http://localhost:8080/Project1Reimbursement/html/Index.html" method="get">
+		<input type="submit" value="Back" id="ApplyToLoginSubmit" class="form-control btn btn-info"/>
 </form>
 
 <script type="text/javascript" src="../js/ApplicationManager.js"></script>

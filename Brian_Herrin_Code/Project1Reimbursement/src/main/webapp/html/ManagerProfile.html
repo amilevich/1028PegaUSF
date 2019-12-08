@@ -22,15 +22,15 @@ form { accept-charset : utf-8; }
 </div>
 <!-- /-->
 <div id="divManProfile" style="text-align:center" class="container">
-	<input type="password" id="txtPasswordEdit" placeholder="Type password here"><br>
-	<input type="text" id="txtFirstNameEdit" placeholder="Type your first name here"> &#160;
-	<input type="text" id="txtLastNameEdit" placeholder="Type your last name here"> <br>
-	<input type="text" id="txtEMailEdit" placeholder="Type your e-mail here">
-	<br><br>
-	<input type = "submit" value = "Finish" id = "submitManProfile" class="form-control btn btn-info"/>
-	<br>
-	<form action="Index.html" method="get">
-		<input type="submit" value="Cancel" id="ApplyToLoginSubmit" class="form-control btn btn-info"/>
+	<form method="POST" action="ManagerUpdate.do" accept-charset=utf-8>
+		<p><input type="password" name="txtPasswordEdit" placeholder="Type password here"></p>
+		<p><input type="text" name="txtFirstNameEdit" placeholder="Type your first name here">
+		<input type="text" name="txtLastNameEdit" placeholder="Type your last name here"></p>
+		<p><input type="text" name="txtEMailEdit" placeholder="Type your e-mail here"></p>
+		<input type = "submit" value = "Finish" class="form-control btn btn-info"/>
+	</form>
+	<form action="Index.html" method="get" accept-charset=utf-8>
+		<input type="submit" value="Cancel" class="form-control btn btn-info"/>
 	</form>
 </div>
 

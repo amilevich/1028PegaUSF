@@ -9,7 +9,8 @@ public interface UsersDao {
 	public Users selectUsersByPassword(String userPassword);
 	public Users selectUsersByID(int userId);
 	public List<Users> selectAllUsers();
-	public Users updateUsers(Users user);
+	//public Users updateUsers(Users user);
+	public void updateUsers(Users user);
 	public Users updateUsersById(int userId);
 	public Users updateUsersByName(String userName);
 }

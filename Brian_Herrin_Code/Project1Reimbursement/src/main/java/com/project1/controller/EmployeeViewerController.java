@@ -7,18 +7,35 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project1.dao.SystemDaoImpl;
 //import com.project1.model.Employee;
 import com.project1.model.Reimbursement;
 import com.project1.model.Users;
 
 public class EmployeeViewerController {
-	public static String Show(HttpServletRequest request, HttpServletResponse response) {
+	public static String postEmpHistPage(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "/html/EmployeeHistoryViewer.html";
+	}
+	public static String postEmpHistTable(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(request.getParameterMap().size() + " " + request.getParameterValues("EmpHistoryViewerTable"));
 		SystemDaoImpl sysDaoImpl = new SystemDaoImpl();
 		Users usersLoggedIn = (Users)request.getSession().getAttribute("Users");
-		List<Reimbursement> reimbursements = sysDaoImpl.selectEmployeeReimbursementsById(sysDaoImpl.selectUsers(usersLoggedIn.getName()).getUsersId());
+		List<Reimbursement> reimbursements = sysDaoImpl.selectReimbursementsByUsersId(sysDaoImpl.selectUsers(usersLoggedIn.getName()).getUsersId());
+		
 		// For Reimbursement Table
 		PrintWriter pWriter;
+		/*
+		try {
+			response.getWriter().write(new ObjectMapper().writeValueAsString(reimbursements));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 		try {
 			pWriter = response.getWriter();
 			for(int i = 0; i < reimbursements.size(); i++){
@@ -33,7 +50,6 @@ public class EmployeeViewerController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return "/html/EmployeeHistoryViewer.html";
 	}
 	/*

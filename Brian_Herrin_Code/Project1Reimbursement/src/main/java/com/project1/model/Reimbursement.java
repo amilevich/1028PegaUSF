@@ -1,6 +1,9 @@
 package com.project1.model;
 
 import java.sql.Blob;
+import java.sql.Timestamp;
+
+//import oracle.sql.TIMESTAMP;
 
 public class Reimbursement {
 	/*
@@ -13,8 +16,8 @@ public class Reimbursement {
 	*/
 	private int id;
 	private double amount;
-	private String dateSubmitted;
-	private String dateResolved;
+	private Timestamp dateSubmitted;
+	private Timestamp dateResolved;
 	private String description;
 	private Blob receipt;
 	private int employeeId;
@@ -22,7 +25,8 @@ public class Reimbursement {
 	private int statusId;
 	private int typeId;
 	
-	public Reimbursement(int id, double amount, String submitted, String resolved, String description, Blob receipt, int author, int resolver, int status, int typeId) {
+	// Resolved, with all values
+	public Reimbursement(int id, double amount, Timestamp submitted, Timestamp resolved, String description, Blob receipt, int author, int resolver, int status, int typeId) {
 		 setId(id);
 		 setAmount(amount); 
 		 setDateSubmitted(submitted);
@@ -31,6 +35,39 @@ public class Reimbursement {
 		 setReceipt(receipt);
 		 setEmployeeId(author);
 		 setManagerId(resolver);
+		 setStatusId(status);
+		 setTypeId(typeId);
+	}
+	// Resolved, but no receipt
+	public Reimbursement(int id, double amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int status, int typeId) {
+		 setId(id);
+		 setAmount(amount); 
+		 setDateSubmitted(submitted);
+		 setDateResolved(resolved);
+		 setDescription(description);
+		 setEmployeeId(author);
+		 setManagerId(resolver);
+		 setStatusId(status);
+		 setTypeId(typeId);
+	}
+	// Pending, doesn't have resolver or resolved timestamp
+	public Reimbursement(int id, double amount, Timestamp submitted, String description, Blob receipt, int author, int status, int typeId) {
+		 setId(id);
+		 setAmount(amount); 
+		 setDateSubmitted(submitted);
+		 setDescription(description);
+		 setReceipt(receipt);
+		 setEmployeeId(author);
+		 setStatusId(status);
+		 setTypeId(typeId);
+	}
+	// Pending, no receipt no resolver & timestamp-resolved
+	public Reimbursement(int id, double amount, Timestamp submitted, String description, int author, int status, int typeId) {
+		 setId(id);
+		 setAmount(amount); 
+		 setDateSubmitted(submitted);
+		 setDescription(description);
+		 setEmployeeId(author);
 		 setStatusId(status);
 		 setTypeId(typeId);
 	}
@@ -51,19 +88,19 @@ public class Reimbursement {
 		this.amount = amount;
 	}
 	
-	public String getDateSubmitted() {
+	public Timestamp getDateSubmitted() {
 		return dateSubmitted;
 	}
 
-	public void setDateSubmitted(String dateSubmitted) {
+	public void setDateSubmitted(Timestamp dateSubmitted) {
 		this.dateSubmitted = dateSubmitted;
 	}
 
-	public String getDateResolved() {
+	public Timestamp getDateResolved() {
 		return dateResolved;
 	}
 
-	public void setDateResolved(String dateResolved) {
+	public void setDateResolved(Timestamp dateResolved) {
 		this.dateResolved = dateResolved;
 	}
 	

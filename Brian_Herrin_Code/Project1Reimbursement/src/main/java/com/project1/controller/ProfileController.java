@@ -1,42 +1,45 @@
 package com.project1.controller;
-
 import javax.servlet.http.HttpServletRequest;
-
 import com.project1.dao.SystemDaoImpl;
-//import com.project1.model.Employee;
-import com.project1.model.Manager;
 import com.project1.model.Users;
-
 public class ProfileController {
-	
 	public static String empUpdate(HttpServletRequest request) {
-		Users employee = (Users)request.getSession().getAttribute("Users");
-		//getting the attribute from the session that was set upon
-		//login in LoginController
-		
-		String type = request.getParameter("txtPasswordQuery");
-		employee.setFirstName(type);
-		
-		SystemDaoImpl sysDaoImpl = new SystemDaoImpl();
-		sysDaoImpl.updateUsers(employee);
-		if(employee.getRole()==1)
-			return "/html/EmployeeMainMenu.html";
-		else
-			return "/html/ManagerMainMenu.html";
+		Users user = new Users();
+		request.getSession().setAttribute("Users", user);
+		//System.out.println("empUpdate Session User: " + user.toString());
+		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstName");
+		String lastname = request.getParameter("lastName");
+		String email = request.getParameter("email");
+		//System.out.println("empRegister: " + password + " " + firstname + " " + lastname + " " + email);
+		Users emplo = new Users();
+		emplo.setPassword(password);
+		emplo.setFirstName(firstname);
+		emplo.setLastName(lastname);
+		emplo.setEmail(email);
+		//System.out.println("empRegister: " + emplo.toString());
+		SystemDaoImpl systemDaoImpl = new SystemDaoImpl();
+		systemDaoImpl.updateUsers(user);
+		return "/html/EmployeeMainMenu.html";
 	}
 	
 	public static String manUpdate(HttpServletRequest request) {
-		Manager employee = (Manager)request.getSession().getAttribute("Manager");
-		//getting the attribute from the session that was set upon
-		//login in LoginController
-		
-		String type = request.getParameter("txtPasswordQuery");
-		employee.setFirstName(type);
-		
-		SystemDaoImpl sysDaoImpl = new SystemDaoImpl();
-		sysDaoImpl.updateManager(employee);
-		
+		Users user = new Users();
+		request.getSession().setAttribute("Users", user);
+		//System.out.println("empUpdate Session User: " + user.toString());
+		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstName");
+		String lastname = request.getParameter("lastName");
+		String email = request.getParameter("email");
+		//System.out.println("empRegister: " + password + " " + firstname + " " + lastname + " " + email);
+		Users emplo = new Users();
+		emplo.setPassword(password);
+		emplo.setFirstName(firstname);
+		emplo.setLastName(lastname);
+		emplo.setEmail(email);
+		//System.out.println("empRegister: " + emplo.toString());
+		SystemDaoImpl systemDaoImpl = new SystemDaoImpl();
+		systemDaoImpl.updateUsers(user);
 		return "/html/ManagerMainMenu.html";
 	}
-
 }

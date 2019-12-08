@@ -9,5 +9,7 @@ public interface ReimbursementDao {
 	public void updateReimbursement(Reimbursement r);
 	public void updateReimbursementReceipt(Reimbursement r);
 	public void updateReimbursementResolved(Reimbursement r);
-	public List<Reimbursement> selectEmployeeReimbursementsById(int userId);
+	public List<Reimbursement> selectReimbursementsByUsersId(int userId);
+	void updateReimbursement(int id, int statid, int resolverid);
+	List<Reimbursement> selectReimbursementPending();
 }

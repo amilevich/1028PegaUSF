@@ -1,19 +1,21 @@
 package com.project1.dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project1.model.Employee;
-import com.project1.model.Manager;
+//import com.project1.model.Employee;
+//import com.project1.model.Manager;
 import com.project1.model.Reimbursement;
 import com.project1.model.Users;
 
-public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao, UsersDao  {
+public class SystemDaoImpl implements ReimbursementDao, UsersDao  {
 	static{
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -47,9 +49,33 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao,
 		}
 		return 0;
 	}
-	
+	/*
+	// inserts Reimbursement parameters 
+		@Override
+		public void insertReimbursement(Reimbursement p) {
+			try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				//int insertUpdate = 0;
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_REIMBURSEMENT VALUES(?,?,?,?,?,?,?)");
+				ps.setInt(1,p.getId());
+				ps.setDouble(2, p.getAmount());
+				ps.setTimestamp(3, p.getDateSubmitted());
+				ps.setTimestamp(4, p.getDateResolved());
+				ps.setString(5, p.getDescription());
+				ps.setBlob(6, p.getReceipt());
+				ps.setInt(7, p.getEmployeeId());
+				ps.setInt(8, p.getManagerId());
+				ps.setInt(9, p.getStatusId());
+				ps.setInt(10, p.getTypeId());
+				//System.out.println(p);
+				ps.executeUpdate();
+				// insertUpdate = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	*/
 	@Override
-	public List<Reimbursement> selectEmployeeReimbursementsById(int id) {
+	public List<Reimbursement> selectReimbursementsByUsersId(int id) {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_AUTHOR=?");
@@ -62,7 +88,18 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao,
 			//we are executing the query and storing the result set in 
 			//a ResultSet type (object)
 			while(rs.next()) {
-				reimbursements.add(new Reimbursement(rs.getInt("REIMB_ID"), rs.getDouble("REIMB_AMOUNT"), rs.getString("REIMB_SUBMITTED"), rs.getString("REIMB_RESOLVED"), rs.getString("REIMB_DESCRIPTION"), rs.getBlob("REIMB_RECIEPT"), rs.getInt("REIMB_AUTHOR"), rs.getInt("REIMB_RESOLVER"), rs.getInt("REIMB_STATUS_ID"), rs.getInt("REIMB_TYPE_ID")));
+				//System.out.println(rs.getRow() + ": " + rs.next());
+				int newId = rs.getInt("REIMB_ID");
+				double newAmount = rs.getDouble("REIMB_AMOUNT");
+				Timestamp newSubmission = rs.getTimestamp("REIMB_SUBMITTED");
+				Timestamp newResolved = rs.getTimestamp("REIMB_RESOLVED");
+				String newDescription = rs.getString("REIMB_DESCRIPTION");
+				Blob newReciept = rs.getBlob("REIMB_RECEIPT");
+				int newAuthor = rs.getInt("REIMB_AUTHOR");
+				int newResolver =rs.getInt("REIMB_RESOLVER");
+				int newStatusId = rs.getInt("REIMB_STATUS_ID");
+				int newTypeId = rs.getInt("REIMB_TYPE_ID");
+				reimbursements.add(new Reimbursement(newId, newAmount, newSubmission, newResolved, newDescription, newReciept, newAuthor, newResolver, newStatusId, newTypeId));
 			}
 			//we are iterating through our result set and populating
 			//our Employee object with the values that are coming from the
@@ -80,25 +117,58 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao,
 		
 	}
 	@Override
-	public int insertManager(Manager m) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public List<Reimbursement> selectReimbursementPending(){
+			List<Reimbursement> obj = new ArrayList<Reimbursement>();
+			try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID=1");
+				//ps.setInt(1, USER_ID);
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					int id = rs.getInt("id");
+					double amount = rs.getDouble("REIMB_AMOUNT");
+					Timestamp dateSubmitted = rs.getTimestamp("REIMB_SUBMITTED");
+					Timestamp dateResolved = rs.getTimestamp("REIMB_RESOLVED");
+					String description = rs.getString("REIMB_DESCRIPTION");
+					Blob receipt = rs.getBlob("REIMB_RECEIPT");
+					int employeeId = rs.getInt("REIMB_AUTHOR");
+					int managerId = rs.getInt("REIMB_RESOLVER");
+					int statusId = rs.getInt("REIMB_STATUS_ID");
+					int typeId = rs.getInt("REIMB_TYPE_ID");
+//						UserRoles role = null;
+//						if(roleId != 0){
+//							UserRolesImpl roleDAO = new UserRolesImpl();
+//							role = roleDAO.createRoleObj(roleId);
+//						}	
+//						if (users == null) {
+//							users= new Users(0,",",",",",",",",",",0);
+//						}
+					obj.add(new Reimbursement(id,amount,dateSubmitted,dateResolved,description,receipt,employeeId,managerId,statusId,typeId));
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			//System.out.println("Users object: " + userArray);
+			return obj;
+		}
 	@Override
-	public Manager selectManagerByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateReimbursement(int id, int statid, int resolverid) {
+		System.out.println(" id "+ id + "statid " + statid + "resolverid " + resolverid );
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			//int insertUpdate = 0;
+			PreparedStatement ps = conn.prepareStatement
+			("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVER=?,REIMB_STATUS_ID=? WHERE REIMB_ID=?");
+			ps.setInt(1,resolverid);
+			ps.setInt(2,statid);
+			ps.setInt(3,id);
+			ps.executeUpdate();
+			// insertUpdate = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	@Override
-	public void updateManager(Manager m) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public int insertEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	/*
 	@Override
 	public Employee selectEmployeeByName(String name) {
 		Employee employee = null;
@@ -127,11 +197,7 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao,
 		}
 		return employee;
 	}
-	@Override
-	public void updateEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		
-	}
+	*/
 
 	@Override
 	public void updateReimbursementResolved(Reimbursement r) {
@@ -178,7 +244,7 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao,
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Users object: " + users);
+		//System.out.println("Users object: " + users);
 		return users;
 	}
 
@@ -287,15 +353,41 @@ public class SystemDaoImpl implements EmployeeDao, ManagerDao, ReimbursementDao,
 	}
 
 	@Override
-	public void insertUsers(Users users) {
-		// TODO Auto-generated method stub
-		
+	public void insertUsers(Users p) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			//int insertUpdate = 0;
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_USERS VALUES(?,?,?,?,?,?,?)");
+			ps.setInt(1,p.getUsersId());
+			ps.setString(2, p.getName());
+			ps.setString(3, p.getPassword());
+			ps.setString(4, p.getFirstName());
+			ps.setString(5, p.getLastName());
+			ps.setString(6, p.getEmail());
+			ps.setInt(7, p.getRole());
+			//System.out.println(p);
+			ps.executeUpdate();
+			// insertUpdate = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
 	@Override
-	public Users updateUsers(Users user) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateUsers(Users user) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			//int insertUpdate = 0;
+			PreparedStatement ps = conn.prepareStatement
+			("UPDATE ERS_USERS SET ERS_PASSWORD=?,USER_FIRST_NAME=?,USER_LAST_NAME=?,USER_EMAIL=? WHERE ERS_USERS_ID=?");
+			ps.setInt(5,user.getUsersId());
+			ps.setString(1,user.getPassword());
+			ps.setString(2,user.getFirstName());
+			ps.setString(3,user.getLastName());
+			ps.setString(4,user.getEmail());
+			ps.executeUpdate();
+			// insertUpdate = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
