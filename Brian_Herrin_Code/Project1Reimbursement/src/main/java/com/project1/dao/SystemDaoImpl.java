@@ -31,7 +31,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao  {
 	@Override
 	public int insertReimbursement(Reimbursement r) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO Reimbursements VALUES(?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_REIMBURSEMENT VALUES(?,?,?,?,?,?,?)");
 			// the reimbursement id is assumed to be prepared server-side
 			ps.setDouble(1, r.getAmount());
 			// Submission Date is assumed to be prepared server-side
@@ -398,6 +398,11 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao  {
 
 	@Override
 	public Users updateUsersByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Reimbursement> selectAllReimbursements() {
 		// TODO Auto-generated method stub
 		return null;
 	}

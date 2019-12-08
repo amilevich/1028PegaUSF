@@ -11,5 +11,6 @@ public interface ReimbursementDao {
 	public void updateReimbursementResolved(Reimbursement r);
 	public List<Reimbursement> selectReimbursementsByUsersId(int userId);
 	void updateReimbursement(int id, int statid, int resolverid);
-	List<Reimbursement> selectReimbursementPending();
+	public List<Reimbursement> selectReimbursementPending();
+	public List<Reimbursement> selectAllReimbursements();
 }

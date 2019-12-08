@@ -25,17 +25,17 @@ public class ManagerViewerController {
 		try {
 			pWriter = response.getWriter();
 			for(int i = 0; i < reimbursements.size(); i++){
-				pWriter.write("<tr><td>" + reimbursements.get(i).getAmount() + "</td>");
+				pWriter.write("<table style=\"width:100%\"><tr><td> " + reimbursements.get(i).getAmount() + "</td>");
 				pWriter.write("<td>"+ reimbursements.get(i).getStatusId() + "</td>");
 				pWriter.write("<td>" + reimbursements.get(i).getTypeId() + "</td>");
 				pWriter.write("<td>" + reimbursements.get(i).getDescription() + "</td>");
 				pWriter.write("<td>" + reimbursements.get(i).getReceipt() + "</td>");
 				pWriter.write("<td>" + reimbursements.get(i).getDateSubmitted() + "</td>");
-				pWriter.write("<td>" + reimbursements.get(i).getDateResolved() + "</td></tr>");
+				pWriter.write("<td>" + reimbursements.get(i).getDateResolved() + "</td></tr></table>");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "/html/EmployeeHistoryViewer.html";
+		return "/html/ManagerHistoryViewer.html";
 	}
 }

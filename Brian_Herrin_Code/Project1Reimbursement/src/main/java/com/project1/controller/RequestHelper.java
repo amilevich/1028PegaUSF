@@ -26,7 +26,7 @@ public class RequestHelper {
 		case "/Project1Reimbursement/html/EmployeeHistoryViewer.do":
 			return EmployeeViewerController.postEmpHistPage(request, response);
 		case "/Project1Reimbursement/html/EmpHistTable.do":
-			return EmployeeViewerController.postEmpHistTable(request, response);
+			return EmployeeViewerController.getEmpHistTable(request, response);
 		case "/Project1Reimbursement/html/ManagerRecordsViewer.do":
 			return ManagerViewerController.postManHistTable(request, response);
 		default:

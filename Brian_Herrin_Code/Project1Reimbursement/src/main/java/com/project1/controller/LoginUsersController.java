@@ -1,6 +1,10 @@
 package com.project1.controller;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import com.project1.dao.SystemDaoImpl;
+import com.project1.model.Reimbursement;
 import com.project1.model.Users;
 public class LoginUsersController {
 
@@ -10,23 +14,30 @@ public class LoginUsersController {
 		String password = request.getParameter("txtPasswordQuery");
 		//System.out.println("Login name: "+ name + ", password: " + password);
 		SystemDaoImpl sysImpl = new SystemDaoImpl();
+		// Getting user personal details from the DB
 		Users users = new Users();
 		users = sysImpl.selectUsers(name);
-		//we are retrieving an existing record by username
-		//that the user provided on the login page
-		//and we are storing it into a users object
-		
 		//System.out.println(users.getName()+" "+users.getPassword());
-		
 		
 		if(name == null || password == null || name.equals("") || password.equals("")) {
 			//System.out.println("LoginController: null values for name or password");
 		} else if(name.equals(users.getName()) && password.equals(users.getPassword())) {
 			request.getSession().setAttribute("Users", users);
-			if(users.getRole()==2)
+			if(users.getRole()==2) {
+				//
+				List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+				reimbursements = sysImpl.selectReimbursementsByUsersId(users.getUsersId());
+				request.getSession().setAttribute("Reimbursements", reimbursements);
+				//
 				return "/html/EmployeeMainMenu.html";
-			else
+			} else {
+				//
+				List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+				reimbursements = sysImpl.selectAllReimbursements();
+				request.getSession().setAttribute("Reimbursements", reimbursements);
+				//
 				return "/html/ManagerMainMenu.html";
+			}
 			
 		}
 		

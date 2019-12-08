@@ -29,7 +29,6 @@ public class MasterServlet extends HttpServlet{
 		//System.out.println("MasterServer B");
 		req.getRequestDispatcher(targetURL).forward(req, res);
 		//System.out.println("MasterServer C");
-		//chose to respond with a forward for every POST request
 	}
 
 }

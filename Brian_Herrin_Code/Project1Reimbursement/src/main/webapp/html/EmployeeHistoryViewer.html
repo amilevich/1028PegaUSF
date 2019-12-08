@@ -19,6 +19,12 @@ form { accept-charset : utf-8; }
 </div>
 
 <div style="text-align:center" class="bodyList">
+		<!--
+		<form accept-charset=utf-8 method="POST" action="http://localhost:8080/Project1Reimbursement/html/EmpHistTable.do">
+			<input type="submit" value="See Active First" class="form-control btn btn-info"/>
+			<table id="EmpHistoryViewerTable" style="width:100%"></table>
+		</form>
+		/-->
 		<!-- Time Stamp Submitted/Resolved, typeOfTicket, Description, status, pictures /-->
 	 	<table style="width:100%">
 			<tr>
@@ -31,16 +37,10 @@ form { accept-charset : utf-8; }
 				<th>Time Resolved</th>
 			</tr>
 		</table>
-		<form accept-charset=utf-8 method="POST" action="http://localhost:8080/Project1Reimbursement/html/EmpHistTable.do">
-			<input type="submit" value="See Active First" name="ViewActiveSubmit" class="form-control btn btn-info"/>
-			<table id="EmpHistoryViewerTable" style="width:100%">
-				
-			</table>
-		</form>
 </div>
 <div style="text-align:center" class="container">
 	<form accept-charset=utf-8 action="http://localhost:8080/Project1Reimbursement/html/EmployeeMainMenu.html" method="get">
-		<input type="submit" value="Back" id="ViewToMainSubmit" class="form-control btn btn-info"/>
+		<input type="submit" value="Back" class="form-control btn btn-info"/>
 	</form>
 </div>
 
