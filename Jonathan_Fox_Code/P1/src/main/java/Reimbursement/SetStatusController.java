@@ -1,11 +1,12 @@
 package Reimbursement;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class SetStatusController {
 
-	public static String setStatus(HttpServletRequest request) {
+	public static String setStatus(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			HttpSession session = request.getSession();
 			DAO dao = (DAO) session.getAttribute("dao");

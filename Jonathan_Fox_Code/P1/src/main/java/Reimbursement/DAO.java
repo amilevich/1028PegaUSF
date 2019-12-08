@@ -79,7 +79,7 @@ public class DAO {
 	}
 	
 	//if user is advisor, get all tickets, otherwise, get tickets for users
-	public TreeMap<Integer, Ticket> getTickets(User u) throws SQLException {
+	public TreeMap<Integer, Ticket> getTickets(User u) {
 		try {
 			ResultSet response;
 			PreparedStatement ps;

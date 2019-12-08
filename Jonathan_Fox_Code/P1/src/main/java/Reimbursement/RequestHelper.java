@@ -1,25 +1,39 @@
 package Reimbursement;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class RequestHelper {
 
-	public static String process(HttpServletRequest request, HttpServletResponse response) {
+	public static void process(HttpServletRequest request, HttpServletResponse response) {
 		switch(request.getRequestURI()) {
-		case "/Reimbursement/html/Login.do":
-			return LoginController.login(request);
-		case "/Reimbursment/html/RegisterTicket.do":
+		case "/P1/html/welcome.fhtagn":
+			//WelcomeController.welcome(request, response);
+			break;
+		case "/P1/html/login.fhtagn":
+			LoginController.login(request, response);
+			break;
+		case "/P1/html/RegisterTicket.fhtagn":
 			try {
-				return RegisterTicketController.register(request);
+				RegisterTicketController.register(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "./login.html";
 			}
-		case "/Reimbursment/html/SetStatus.do":
-			return SetStatusController.setStatus(request);
+			break;
+		case "/P!/html/SetStatus.fhtagn":
+			SetStatusController.setStatus(request, response);
+			break;
+		case "/P1/html/home.fhtagn":
+			try {
+				HomeController.homepage(request, response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
 		default:
-			return "./login.html";
+			
 		}
 	}
 

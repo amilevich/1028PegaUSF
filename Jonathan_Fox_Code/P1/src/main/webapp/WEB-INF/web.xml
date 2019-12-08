@@ -19,4 +19,14 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MasterServlet</display-name>
+    <servlet-name>MasterServlet</servlet-name>
+    <servlet-class>Reimbursement.MasterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MasterServlet</servlet-name>
+    <url-pattern>*.fhtagn</url-pattern>
+  </servlet-mapping>
 </web-app>

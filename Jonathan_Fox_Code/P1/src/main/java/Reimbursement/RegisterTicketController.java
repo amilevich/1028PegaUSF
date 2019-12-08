@@ -1,13 +1,15 @@
 package Reimbursement;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class RegisterTicketController {
 
-	public static String register(HttpServletRequest request) throws NumberFormatException, InstantiationException {
+	public static void register(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, InstantiationException, IOException {
 		HttpSession session = request.getSession();
 		DAO dao = (DAO)session.getAttribute("dao");
 		User u = (User)session.getAttribute("user");
@@ -17,14 +19,16 @@ public class RegisterTicketController {
 		Ticket t;
 		
 		if(dao == null || u == null) {
-			System.out.printf("LOGIN FIRST");
-			return "./login.html";
+			System.out.printf("LOGIN FIRST\n");
+			response.sendRedirect("./login.html");
+			return;
 		}
 		
 		t = new Ticket(u.getEmail(), Double.valueOf(price), description, Byte.valueOf(type), new Timestamp(System.currentTimeMillis()));
 		
 		if(!dao.storeTicket(t))  System.out.printf("STORE TICKET FAIL\n");
 		
-		return request.getRequestURI();	
+		response.sendRedirect("./home.fhtagn");
+		return;	
 	}
 }
