@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Project 1 Employee Reimbursement System</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/icon"> 
+<link rel="icon" href="img/favicon.ico" type="image/icon"> 
+<style>
+form { accept-charset : utf-8; }
+</style>
+</head>
+<body>
+
+<div class="bodyHeading">
+	<div class="jumbotron text-center">
+		<h3>Employee Account Application Form</h3>
+		<h5>
+		<span class="label label-success">Tell us who you are!</span>
+		</h5>
+	</div>
+</div>
+<!-- /-->
+<div id="divloginInput" style="text-align:center" class="container">
+	<form method="POST" action="http://localhost:8080/Project1Reimbursement/html/EmployeeApply.do">
+		<input type="text" name="txtUsernameApply" placeholder="Type username here">
+		<input type="password" name="txtPasswordApply" placeholder="Type password here">
+		<input type="text" name="txtFirstNameApply" placeholder="Type your first name here">
+		<input type="text" name="txtLastNameApply" placeholder="Type your last name here">
+		<input type="text" name="txtEMailApply" placeholder="Type your e-mail here">
+		<input type = "submit" value = "Apply" class="form-control btn btn-info"/>
+	</form>
+</div>
+<form method="get" action="http://localhost:8080/Project1Reimbursement/html/Index.html">
+		<input type="submit" value="Back" id="ApplyToLoginSubmit" class="form-control btn btn-info"/>
+</form>
+
+
+<script type="text/javascript" src="../js/ApplicationEmployee.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

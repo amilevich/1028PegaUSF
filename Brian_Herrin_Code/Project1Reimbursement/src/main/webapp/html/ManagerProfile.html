@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Project 1 Employee Reimbursement System</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/icon"> 
+<link rel="icon" href="img/favicon.ico" type="image/icon"> 
+<style>
+form { accept-charset : utf-8; }
+</style>
+</head>
+<body>
+
+<div class="bodyHeading">
+	<div class="jumbotron text-center">
+		<h3>Financial Manager Account Application Form</h3>
+		<h5>
+		<span class="label label-success">Tell us who you are!</span>
+		</h5>
+	</div>
+</div>
+<!-- /-->
+<div id="divManProfile" style="text-align:center" class="container">
+	<form method="POST" action="ManagerUpdate.do" accept-charset=utf-8>
+		<p><input type="password" name="txtPasswordEdit" placeholder="Type password here"></p>
+		<p><input type="text" name="txtFirstNameEdit" placeholder="Type your first name here">
+		<input type="text" name="txtLastNameEdit" placeholder="Type your last name here"></p>
+		<p><input type="text" name="txtEMailEdit" placeholder="Type your e-mail here"></p>
+		<input type = "submit" value = "Finish" class="form-control btn btn-info"/>
+	</form>
+	<form action="Index.html" method="get" accept-charset=utf-8>
+		<input type="submit" value="Cancel" class="form-control btn btn-info"/>
+	</form>
+</div>
+
+
+<script type="text/javascript" src="../js/ManagerProfile.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
