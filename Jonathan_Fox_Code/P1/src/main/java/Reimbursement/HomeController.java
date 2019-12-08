@@ -26,33 +26,45 @@ public class HomeController {
 		
 		if(u == null || dao == null) {
 			System.out.printf("LOGIN FIRST\n");
-			response.sendRedirect("./login.html");
+			response.sendRedirect("./welcome.fhtagn");
 			return;
 		}
 
 		tmap = dao.getTickets(u);
-		
-		if (tmap != null && tmap.size() != 0) {
-			tickets = new html[tmap.size()];
-			int j = 0;
-			
-			for (Integer i = tmap.firstKey(); i != null; i = tmap.higherKey(i)) {
-				Ticket t = tmap.get(i);
 
-				tickets[j++] = new tr(String.format("class=\"%s\"", statusColour(t.getStatus())), "", new td("", String.format("%d", i)), new td("", t.getEmail()),
-						new td("", String.format("%f", t.getAmount())), new td("", t.getDesc()),
-						new td("", typeString(t.getType())), new td("", t.getTime().toString()));
-			}
-		} else tickets = new html[0];
+		if (tmap != null && tmap.size() != 0) tickets = new html[tmap.size() + 1];
+		else tickets = new html[1];
 		
+		int j = 1;
+
+		tickets[0] = new tr("class=\"purple\"", "", new td("", "ID"), new td("", "STATUS"), new td("", "EMAIL"),
+				new td("", "AMOUNT"), new td("", "DESCRIPTION"), new td("", "TYPE"), new td("", "TIMESTAMP"));
+
+		
+		for (Integer i = (tickets.length==1)?null:tmap.lastKey(); i != null; i = tmap.lowerKey(i)) {
+			Ticket t = tmap.get(i);
+
+			tickets[j++] = new tr(String.format("class=\"%s\"", statusColour(t.getStatus())), "",
+					new td("", "", (u.isAdvisor()&&t.getStatus()==0) ? new form("method=\"POST\" action=\"SetStatus.fhtagn\"", "",
+									new div("", String.format("%d", i)),
+									new select("name=\"mod\"", "", new option("value=-1", "DENY"),
+											new option("value=1", "APPROVE")),
+									new button(String.format("type=\"submit\" name=\"id\" value=\"%d\"", i), "<i>SUBMIT!</i>"))
+							: new div("", String.format("%d", i))),
+					new td("", statusString(t.getStatus())), new td("", t.getEmail()),
+					new td("", String.format("%.2f", t.getAmount())), new td("", t.getDesc()),
+					new td("", typeString(t.getType())), new td("", t.getTime().toString()));
+		}
+
 		s = s + String.format("%s\n%s\n", new head("", "", new style("",
-				".yellow {background-color:yellow;} .red {background-color:red;} .green {background-color:green} .purple {background-color:purple} ")).write(),
+				".yellow {background-color:#ffff66;} .red {background-color:red;} .green {background-color:#99ff66} .purple {background-color:#cc33ff} *{font-size: 26px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}"))
+						.write(),
 				new body("", "", new title("", String.format("User: %s", u.getEmail())),
 						new h1("text-align=\"center\"", String.format("YOU ARE %s %s", u.getName()[0], u.getName()[1]),
 								new div("", (u.isAdvisor()) ? "ADVISOR" : "EMPLOYEE")),
 						new form("method = \"POST\" action = \"RegisterTicket.fhtagn\"", "REGISTER TICKET",
 								new div("", "", statusInputs),
-								new input("class = \"textsubmit\" type=\"number\" name = \"price\" placeholder=\"How much did you spend in dollars?\"", ""),
+								new input("class = \"textsubmit\" type=\"number\" name=\"price\" step=.01 placeholder=\"How much did you spend in dollars?\"", ""),
 								new input("class = \"textsubmit\" type=\"text\" name = \"Description\" placeholder=\"description\"", ""),
 								new button("type=\"submit\"", "<i>SUBMIT!</i>")),
 						new br("",""),
@@ -82,6 +94,15 @@ public class HomeController {
 		case 1: return "green";
 		case -1: return "red";
 		default: return "purple";
+		}
+	}
+	
+	private static String statusString(int status) {
+		switch(status) {
+		case 0: return "PENDING";
+		case 1: return "APPROVED";
+		case -1: return "DENIED";
+		default: return "ELDRITCH";
 		}
 	}
 }

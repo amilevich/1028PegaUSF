@@ -20,7 +20,7 @@ public class RegisterTicketController {
 		
 		if(dao == null || u == null) {
 			System.out.printf("LOGIN FIRST\n");
-			response.sendRedirect("./login.html");
+			response.sendRedirect("./welcome.fhtagn");
 			return;
 		}
 		

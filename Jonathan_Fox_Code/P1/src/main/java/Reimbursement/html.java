@@ -52,5 +52,12 @@ class option extends html{option(String a, String i, html ...c){super("option",a
 class textarea extends html{textarea(String a, String i, html ...c){super("textarea",a,i,c);}}
 class br extends html{br(String a, String i, html ...c){super("br",a,i,c);}}
 class style extends html{style(String a, String i, html ...c){super("style",a,i,c);}}
+class link extends html{link(String a, String i, html ...c){super("link",a,i,c);}}
+class meta extends html{meta(String a, String i, html ...c){super("meta",a,i,c);}}
+class label extends html{label(String a, String i, html ...c){super("label",a,i,c);}}
+
+
+
+
 
 

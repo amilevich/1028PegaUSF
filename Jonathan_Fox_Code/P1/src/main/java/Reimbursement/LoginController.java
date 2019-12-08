@@ -26,13 +26,13 @@ public class LoginController {
 
 			if (u == null) {
 				System.out.printf("%s, YOU DONT EXIST\n", name);
-				response.sendRedirect("./login.html");
+				response.sendRedirect("./welcome.fhtagn");
 				return;
 			}
 
 			if (!u.isPass(password)) {
 				System.out.printf("WRONG PASSWORD\n");
-				response.sendRedirect("./login.html");
+				response.sendRedirect("./welcome.fhtagn");
 				return;
 			}
 
