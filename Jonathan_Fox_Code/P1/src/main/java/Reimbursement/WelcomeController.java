@@ -11,11 +11,11 @@ public class WelcomeController {
 		
 		s += String.format("%s\n%s\n", new head("", "", new title("", "REIMBURSEMENT LOGIN")).write(),
 				new body("", "", new h1("", "LOGIN FOR REIMBURSEMENT!!"),
-						new form("method = \"POST\" action=\"login.fhtagn\"", "",
+						new form(String.format("method = \"POST\" action=\"%s\"", Rhylehian.incant(Rhylehian.LOGIN)), "",
 								new input("type=\"text\" name=\"email\" placeholder=\"USERNAME!!\"", ""),
 								new input("type=\"password\" name=\"password\" placeholder=\"PASSWORD!!\"", ""),
 								new button("class=\"superbotton\" type=\"submit\", id=\"login\"", "<i>SUBMIT!</i>")),
-						new form("method=\"POST\", action=\"registration.fhtagn\"", "",
+						new form(String.format("method=\"POST\", action=\"%s\"", Rhylehian.incant(Rhylehian.REGISTRATION)), "",
 								new button("action=\"submit\" id=\"register\"", "<i>SELL SOUL FOR EMPLOYMENT!!</i>"))).write());
 		
 		response.setContentType("text/html");

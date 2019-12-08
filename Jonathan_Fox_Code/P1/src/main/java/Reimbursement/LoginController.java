@@ -26,39 +26,20 @@ public class LoginController {
 
 			if (u == null) {
 				System.out.printf("%s, YOU DONT EXIST\n", name);
-				response.sendRedirect("./welcome.fhtagn");
+				response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
 				return;
 			}
 
 			if (!u.isPass(password)) {
 				System.out.printf("WRONG PASSWORD\n");
-				response.sendRedirect("./welcome.fhtagn");
+				response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
 				return;
 			}
 
 			session.setAttribute("user", u);
-
-			response.setContentType("text/html");
-
-			response.getWriter().printf("%s%s", "<!DOCTYPE html>\n",
-					new head("", "").write() + new body("title=\"LOGGED IN\"",
-							String.format("YOU ARE %s %s", u.getName()[0], u.getName()[1]),
-							new h1("", (u.isAdvisor()) ? "advisor" : "employee"), new form("action = \"home.fhtagn\"", "",
-									new button("type = \"submit\"", "<i>CONTINUE!<i>"))).write());
 			
-			response.sendRedirect("./home.fhtagn");
-
-			//
-			// if(name == e.name && password == e.password){
-			// return "/Reimbursment/html/employee.html";}
-
-			// else if(name == m.name && password == m.password{
-			// return "/Reimbursment/html/manager.html";}
-			//
-			// else{
-			// return "/Reimbursment/html/login.html";}
-			//
-
+			response.sendRedirect(Rhylehian.incant(Rhylehian.HOME));
+			
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 			System.out.printf("%s\n", e.getMessage());

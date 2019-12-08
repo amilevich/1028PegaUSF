@@ -3,7 +3,7 @@ package Reimbursement;
 import java.util.Random;
 
 public class Rhylehian {	
-	public static final int WELCOME = 10;
+	public static final int WELCOME = 15;
 	public static final int LOGIN = WELCOME+1;
 	public static final int REGISTER_TICKET = LOGIN+1;
 	public static final int REGISTRATION = REGISTER_TICKET+1;
@@ -24,9 +24,9 @@ public class Rhylehian {
 	private static String word() {
 		Random r = new Random();
 				
-		return (((r.nextInt() % 100) < 30) ? prefixes[(r.nextInt()&0x7fffffff) % prefixes.length] : "")
+		return ((((r.nextInt()&0x7fffffff) % 100) < 30) ? prefixes[(r.nextInt()&0x7fffffff) % prefixes.length] : "")
 				+ words[(r.nextInt()&0x7fffffff) % words.length]
-				+ (((r.nextInt() % 100) < 15) ? suffixes[(r.nextInt()&0x7fffffff) % suffixes.length] : "");
+				+ ((((r.nextInt()&0x7fffffff) % 100) < 15) ? suffixes[(r.nextInt()&0x7fffffff) % suffixes.length] : "");
 	}
 	
 	public static String incant(int num) {

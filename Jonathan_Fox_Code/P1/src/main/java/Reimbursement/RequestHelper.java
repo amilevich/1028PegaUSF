@@ -8,34 +8,34 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestHelper {
 
 	public static void process(HttpServletRequest request, HttpServletResponse response) {
-		switch(request.getRequestURI()) {
-		case "/P1/html/welcome.fhtagn":
+		switch(Rhylehian.interpret(request.getRequestURI())) {
+		case Rhylehian.WELCOME:
 			WelcomeController.welcome(request, response);
 			break;
-		case "/P1/html/login.fhtagn":
+		case Rhylehian.LOGIN:
 			LoginController.login(request, response);
 			break;
-		case "/P1/html/RegisterTicket.fhtagn":
+		case Rhylehian.REGISTER_TICKET:
 			try { RegisterTicketController.register(request, response); }
 			catch (Exception e) { e.printStackTrace(); }
 			break;
-		case "/P1/html/registration.fhtagn":
+		case Rhylehian.REGISTRATION:
 			try { RegistrationController.welcome(request, response); }
 			catch (Exception e1) { e1.printStackTrace(); }
 			break;
-		case "/P1/html/register_user.fhtagn":
+		case Rhylehian.REGISTER_USER:
 			try { RegisterUserController.register(request, response); }
 			catch (Exception e) { e.printStackTrace(); }
 			break;
-		case "/P1/html/SetStatus.fhtagn":
+		case Rhylehian.SET_STATUS:
 			SetStatusController.setStatus(request, response);
 			break;
-		case "/P1/html/home.fhtagn":
+		case Rhylehian.HOME:
 			try { HomeController.homepage(request, response); }
 			catch (IOException e) { e.printStackTrace(); }
 			break;
 		default:
-			try { response.sendRedirect("./welcome.fhtagn"); }
+			try { response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME)); }
 			catch (IOException e) { e.printStackTrace(); }
 		}
 	}

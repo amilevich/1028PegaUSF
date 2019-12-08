@@ -19,28 +19,28 @@ public class SetStatusController {
 
 			if (dao == null || u == null) {
 				System.out.printf("LOGIN FIRST\n");
-				response.sendRedirect("./welcome.fhtagn");
+				response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
 				return;
 			}
 
 			if (id == null || status == null) {
 				System.out.printf("PARAMETERS NOT PASSED IN PROPERLY\nid: %s status: %s\n", id, status);
-				response.sendRedirect("./home.fhtagn");
+				response.sendRedirect(Rhylehian.incant(Rhylehian.HOME));
 				return;
 			}
 
 			if (!dao.modTicket(Integer.valueOf(id), (Integer.valueOf(status)==1)?true:false)) {
 				System.out.printf("TICKET MODIFICATION FAILURE\n");
-				response.sendRedirect("./home.fhtagn");
+				response.sendRedirect(Rhylehian.incant(Rhylehian.HOME));
 				return;
 			}
 			
-			response.sendRedirect("./home.fhtagn");
+			response.sendRedirect(Rhylehian.incant(Rhylehian.HOME));
 			return;
 			
 		}catch(Exception e) {
 			System.out.printf("%s\n", e.getMessage());
-			try { response.sendRedirect("./home.fhtagn"); }
+			try { response.sendRedirect(Rhylehian.incant(Rhylehian.HOME)); }
 			catch (IOException e1) { e1.printStackTrace(); }
 			return;
 		}

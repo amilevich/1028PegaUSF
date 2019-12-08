@@ -26,7 +26,7 @@ public class HomeController {
 		
 		if(u == null || dao == null) {
 			System.out.printf("LOGIN FIRST\n");
-			response.sendRedirect("./welcome.fhtagn");
+			response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
 			return;
 		}
 
@@ -45,14 +45,14 @@ public class HomeController {
 			Ticket t = tmap.get(i);
 
 			tickets[j++] = new tr(String.format("class=\"%s\"", statusColour(t.getStatus())), "",
-					new td("", "", (u.isAdvisor()&&t.getStatus()==0) ? new form("method=\"POST\" action=\"SetStatus.fhtagn\"", "",
+					new td("", "", (u.isAdvisor()&&t.getStatus()==0) ? new form(String.format("method=\"POST\" action=\"%s\"", Rhylehian.incant(Rhylehian.SET_STATUS)), "",
 									new div("", String.format("%d", i)),
 									new select("name=\"mod\"", "", new option("value=-1", "DENY"),
 											new option("value=1", "APPROVE")),
 									new button(String.format("type=\"submit\" name=\"id\" value=\"%d\"", i), "<i>SUBMIT!</i>"))
 							: new div("", String.format("%d", i))),
 					new td("", statusString(t.getStatus())), new td("", t.getEmail()),
-					new td("", String.format("%.2f", t.getAmount())), new td("", t.getDesc()),
+					new td("", String.format("$%.2f", t.getAmount())), new td("", t.getDesc()),
 					new td("", typeString(t.getType())), new td("", t.getTime().toString()));
 		}
 
@@ -62,11 +62,13 @@ public class HomeController {
 				new body("", "", new title("", String.format("User: %s", u.getEmail())),
 						new h1("text-align=\"center\"", String.format("YOU ARE %s %s", u.getName()[0], u.getName()[1]),
 								new div("", (u.isAdvisor()) ? "ADVISOR" : "EMPLOYEE")),
-						new form("method = \"POST\" action = \"RegisterTicket.fhtagn\"", "REGISTER TICKET",
+						new form(String.format("method = \"POST\" action = \"%s\"", Rhylehian.incant(Rhylehian.REGISTER_TICKET)), "REGISTER TICKET",
 								new div("", "", statusInputs),
 								new input("class = \"textsubmit\" type=\"number\" name=\"price\" step=.01 placeholder=\"How much did you spend in dollars?\"", ""),
 								new input("class = \"textsubmit\" type=\"text\" name = \"Description\" placeholder=\"description\"", ""),
 								new button("type=\"submit\"", "<i>SUBMIT!</i>")),
+						new form(String.format("method = \"POST\" action=\"%s\"", Rhylehian.incant(Rhylehian.WELCOME)),"",
+							new button("type='submit'","LOGOUT")),
 						new br("",""),
 						new table("border=1", "", tickets)).write());
 

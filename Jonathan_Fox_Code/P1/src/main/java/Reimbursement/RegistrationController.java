@@ -46,7 +46,7 @@ public class RegistrationController {
 				new body("", "",
 						new div("class=\"container\"", "", 
 							new h2("", "REGISTRATION FORM"),
-							new form("style='display:flex; justify-content: center; align-items: center;' class=\"form-group\" action=\"register_user.fhtagn\"", "",
+							new form(String.format("style='display:flex; justify-content: center; align-items: center;' class=\"form-group\" action=\"%s\"",Rhylehian.incant(Rhylehian.REGISTER_USER)), "",
 									new div("style='display:inline-block;flex-grow: 1'","",
 											new div("class='form-group'","",
 													new label("class=\"control-label col-sm-2\" for=\"email\"","Email"),

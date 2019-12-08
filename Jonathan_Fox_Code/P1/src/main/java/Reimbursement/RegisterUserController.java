@@ -29,7 +29,7 @@ public class RegisterUserController {
 
 			if(email == null || first_name == null || last_name == null || password == null) {
 				System.out.printf("PARAMETERS PASSED IN IMPROPERLY\n email:%s password:%s first_name:%s last_name:%s\n", email, password, first_name, last_name);
-				response.sendRedirect("./registration.fhtagn");
+				response.sendRedirect(Rhylehian.incant(Rhylehian.REGISTRATION));
 				return;
 			}
 			
@@ -42,16 +42,16 @@ public class RegisterUserController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.printf("%s\n", e.getMessage());
-			response.sendRedirect("./registration.fhtagn");
+			response.sendRedirect(Rhylehian.incant(Rhylehian.REGISTRATION));
 			return;
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 			System.out.printf("%s\n", e.getMessage());
-			response.sendRedirect("./registration.fhtagn");
+			response.sendRedirect(Rhylehian.incant(Rhylehian.REGISTRATION));
 			return;
 		}
 
-		response.sendRedirect("./welcome.fhtagn");
+		response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
 		return;
 	}
 }
