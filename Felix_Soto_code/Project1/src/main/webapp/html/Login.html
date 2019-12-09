@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Revature ERS Login</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -17,7 +17,10 @@
 
 <div id="sideBar" class="sidenav">
 	<div class="login-main-text">
-		<h2 style= "text-align: right;">Application Register</h2>
+		<h2 style= "text-align: right;">Welcome to Revature's</h2>
+	    <br>
+	    <br>
+		<h2 style= "text-align: right; ">Account Registration</h2>
 		<div class="gimspace">
 			<div class="login-form">
 		<h4>Register Here</h4>
@@ -41,8 +44,9 @@
 				</select></span>
 		    	<br>	
 		    	<br>
-				<input type="submit" class="btn btn-white" value="Register"/>
+				<input type="submit" class="btn btn-white" value="Register" onclick="successFunction()"/>
 			</form>
+					<h5 id="nice" style="color:white"></h5>
 		</div>
 			</div>
 	</div>
@@ -52,14 +56,18 @@
 <div class="main">
 <div class="login-main-text">
 
-	<h2 style="color: black; margin-top: -17px;margin-left: -17px;">And Login Page</h2>
+	<h2 style="color: black; margin-top: -20px;margin-left: -17px;">Expense Reimbursement System</h2>
+	<br>
+	<br>
+	<br>
+	<h2 style="color: black; margin-top: -22px;margin-left: -17px;">And Login Page</h2>
 	<br>
 	<br>
 	<br>
 
 	<div class="col-md-6 col-sm-12">
 		<div class="login-form">
-			<h3 style=color:black>Login Here</h3>
+			<h3 style="color:black; margin-top: -9.5%;">Login Here</h3>
 	<form id="login-form" method="POST" action="Login.do" role="form" style="display: block;">
 		<div class="form-group">
 		<input type="text" name="username" id="username" tabindex="1"
@@ -92,15 +100,16 @@
 		let man = document.getElementById("formMan").value;
 		let man2 = document.getElementById("formMan2").value;
 
-		console.log(firstName, lastName, userName, password, man);
-		if(firstName.length!=0&&lastName.length!=0&&userName.length!=0&&password.length!=0&&man.length!=0){
+		if(firstName.length!=0&&lastName.length!=0&&userName.length!=0&&password.length!=0&&man2.length!=0){
 			document.getElementById("sideBar").style.backgroundColor="red";
 		}else{
 			document.getElementById("sideBar").style.backgroundColor="black";
 		}
 	}
-
-
+	
+	function successFunction(){
+		document.getElementById("nice").innerHTML = "You have successfuly created an account! redirecting. . .";
+	}
 </script>
 </body>
 </html>

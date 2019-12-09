@@ -108,7 +108,7 @@ function setValues(list) {
             btnApprove.setAttribute("value", list[r].ticketId);
             btnApprove.style.width = "100px";
             btnApprove.style.background = "green";
-            btnApprove.style.color = "white";
+            btnApprove.style.color = "black";
             btnApprove.style.fontSize = "16px";
             btnApprove.innerText = "APPROVE";
             btnApprove.addEventListener('click', approveExpense);
