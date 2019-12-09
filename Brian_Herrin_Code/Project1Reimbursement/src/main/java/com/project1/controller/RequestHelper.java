@@ -11,7 +11,7 @@ public class RequestHelper {
 	//based on the URI that comes along with the request
 	
 	public static String process(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("RequestHelper request: " + request.getRequestURI());
+		//System.out.println("RequestHelper request: " + request.getRequestURI());
 		switch(request.getRequestURI()) {
 		case "/Project1Reimbursement/html/Login.do":
 			return LoginUsersController.Login(request);
@@ -29,6 +29,8 @@ public class RequestHelper {
 			return ProfileController.empUpdate(request);
 		case "/Project1Reimbursement/html/ManagerUpdate.do":
 			return ProfileController.manUpdate(request);
+		case "/Project1Reimbursement/html/CreateReimbursement.do":
+			return LoadReimbursementController.makeReimbursement(request, response);
 		case "/Project1Reimbursement/html/EmployeeHistoryViewer.do":
 			return EmployeeViewerController.postEmpHistPage(request, response);
 		case "/Project1Reimbursement/html/ManagerHistoryViewer.do":

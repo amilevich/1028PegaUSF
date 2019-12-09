@@ -16,8 +16,10 @@ import com.project1.model.SessionData;
 
 public class ManagerViewerController {
 	public static String postManHistPage(HttpServletRequest request, HttpServletResponse response) {
+		SystemDaoImpl sysImpl = new SystemDaoImpl();
 		SessionData data = (SessionData)request.getSession().getAttribute("SessionData");
-		System.out.println("postManHistPage SessionData: "+data.getUser().toString());
+		data.setReimbursements(sysImpl.selectAllReimbursements()); 
+		//System.out.println("postManHistPage SessionData: "+data.getUser().toString());
 		try {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(data));
 		} catch (JsonProcessingException e) {
@@ -30,7 +32,9 @@ public class ManagerViewerController {
 	}
 	
 	public static String postManTicketPage(HttpServletRequest request, HttpServletResponse response) {
+		SystemDaoImpl sysImpl = new SystemDaoImpl();
 		SessionData data = (SessionData)request.getSession().getAttribute("SessionData");
+		data.setReimbursements( sysImpl.selectReimbursementPending() );
 		//System.out.println("postManHistPage SessionData: "+data.getUser().toString());
 		//System.out.println("postManHistPage SessionData: "+data.getReimbursements().toString());
 		try {

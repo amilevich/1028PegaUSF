@@ -33,18 +33,18 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 	@Override
 	public int insertReimbursement(Reimbursement r) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_REIMBURSEMENT VALUES(?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_REIMBURSEMENT (REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_DESCRIPTION, REIMB_RECEIPT, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) VALUES(?,?,?,?,?,?,?,?)");
 			// the reimbursement id is assumed to be prepared server-side
-			ps.setDouble(1, r.getAmount());
-			// Submission Date is assumed to be prepared server-side
+			ps.setInt(1, 0);
+			ps.setDouble(2, r.getAmount());
+			ps.setDate(3, new Date(System.currentTimeMillis()));
 			// Resolved Date is assumed to be prepared server-side
-			ps.setString(2, r.getDescription());
-			ps.setBlob(3, r.getReceipt());
-			ps.setInt(4, r.getEmployeeId());
-			ps.setInt(5, r.getManagerId());
-			ps.setInt(6, r.getStatusId());
-			ps.setInt(7, r.getTypeId());
-			System.out.println(r);
+			ps.setString(4, r.getDescription());
+			ps.setBlob(5, r.getReceipt());
+			ps.setInt(6, r.getEmployeeId());
+			ps.setInt(7, r.getStatusId());
+			ps.setInt(8, r.getTypeId());
+			//System.out.println("insertReimbursement " + r);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,10 +164,11 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			//int insertUpdate = 0;
 			PreparedStatement ps = conn.prepareStatement
-			("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVED=?,REIMB_STATUS_ID=? WHERE REIMB_ID=?");
+			("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVED=?, REIMB_RESOLVER=?, REIMB_STATUS_ID=? WHERE REIMB_ID=?");
 			ps.setDate(1,new Date(System.currentTimeMillis()));
-			ps.setInt(2,status);
-			ps.setInt(3,id);
+			ps.setInt(2,resolved);
+			ps.setInt(3,status);
+			ps.setInt(4,id);
 			ps.executeUpdate();
 			// insertUpdate = ps.executeUpdate();
 		} catch (SQLException e) {

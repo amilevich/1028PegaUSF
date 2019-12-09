@@ -22,21 +22,24 @@
 </div>
 
 <div style="text-align:center" class="container">
-	Basic Type:
-	<form accept-charset=utf-8>
-		<input type="radio" name="radioTypes" id="lodgingType" value="lodging"> LODGING
-		<input type="radio" name="radioTypes" id="travelType" value="travel"> TRAVEL 
-		<input type="radio" name="radioTypes" id="foodType" value="food"> FOOD
-		<input type="radio" name="radioTypes" id="otherType" value="other"> OTHER 
-		<input type="text" id="txtAmountQuery" placeholder="Type $ amount here"> Description:
-		<textarea id="ReimDescriptionText" cols="50" rows="5" placeholder="Type description here"></textarea>
+	<form accept-charset=utf-8 name="ticketForm" method = "POST" action="http://localhost:8080/Project1Reimbursement/html/CreateReimbursement.do">
+		<p>
+		Basic Type:
+		<input type="radio" name="radioTypes" value="1"> LODGING
+		<input type="radio" name="radioTypes" value="2"> TRAVEL 
+		<input type="radio" name="radioTypes" value="3"> FOOD
+		<input type="radio" name="radioTypes" value="4"> OTHER 
+		</p><p>
+		<input type="text" name="txtAmountQuery" placeholder="Type $ amount here"> Description:
+		</p><p>
+		<textarea name="ReimDescriptionText" cols="50" rows="5" placeholder="Type description here"></textarea>
+		</p>
+		<input type = "submit" value = "Apply" class="form-control btn btn-info"/>
 	</form>
-	Receipts:
-	<form accept-charset=utf-8 id = "uploadbanner" method = "post" action = "GetReceipt.do">
+	<form accept-charset=utf-8 name="upLoadBanner" method="POST" action="http://localhost:8080/Project1Reimbursement/html/GetReceipt.do">
+		Receipt:
 		<input name = "fileupload" type = "file" /> 
 	</form>
-	<br>
-	<input type = "submit" value = "Apply" id = "submitReimbursement" class="form-control btn btn-info"/>
 	<br>
 	<form accept-charset=utf-8 action="http://localhost:8080/Project1Reimbursement/html/EmployeeMainMenu.html" method="get">
 		<input type="submit" value="Back" class="form-control btn btn-info"/>
