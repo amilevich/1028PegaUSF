@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>employee home</title>
+
+<script>
+
+window.onload = function(){
+	getEmpInfo();
+	getReimInfo();
+}
+function getEmpInfo(){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let emp = JSON.parse(xhttp.responseText);
+			document.getElementById("id").innerHTML = "Logged in as:" + emp.id;
+		}
+	}
+	xhttp.open("POST", 'http://localhost:8080/project1app/Home.write', true);
+	xhttp.send();
+}
+function getReimInfo(){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let reim = JSON.parse(xhttp.responseText);
+			setReimValues(reim);
+		}
+	}
+	xhttp.open("POST", "http://localhost:8080/project1app/ViewPastTickets.write", true);
+	xhttp.send();
+}
+
+
+function setReimValues(reim){
+	document.getElementById("All_Reim").innerHTML = reim;
+}
+
+</script>
+</head>
+<body>
+
+<h2>Welcome <span id='id'></span></h2>
+<hr>
+
+<h4>All reimbursements</h4>
+<div id='All_Reim'>
+</div>
+<hr>
+
+<div>
+	<form action='AddReimbusementRequest.write' method='POST'>
+		<input name='description' type='text' value='description'/>
+		<input name='amount' type='text' value='amount'/>
+		<input name='type' type='text' value='type'/>
+		<input type="submit"  value="Submit"/>
+	</form>
+</div>
+
+
+
+
+</body>
+</html>

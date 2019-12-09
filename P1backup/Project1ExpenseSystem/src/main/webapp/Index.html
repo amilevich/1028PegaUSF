@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
+
+<script>
+
+window.onload = function(){
+	getEmpInfo();
+}
+
+function getEmpInfo(){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let emp = JSON.parse(xhttp.responseText);
+			setValues(emp);
+		}
+	}
+	xhttp.open("POST", 'http://localhost:8080/project1app/Home.write', true);
+	xhttp.send();
+}
+
+function setValues(emp){
+	document.getElementById("id").innerHTML = "employee's name is " + emp.id;
+	document.getElementById("password").innerHTML = "employee's type is " + emp.password;
+}
+
+</script>
 </head>
 <body>
+
+<div id='id'>
+</div>
+<div id='password'>
+</div>
 
 </body>
 </html>

@@ -9,8 +9,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import ExpenseSysDao.ReimbursementDaoImp;
-import ExpenseSysModels.Reimbursement;
+import expenseSysDao.ReimbursementDaoImp;
+import expenseSysModels.Reimbursement;
 
 public class ReimbursementDaoImpTest {
 

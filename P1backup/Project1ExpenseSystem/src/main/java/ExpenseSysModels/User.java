@@ -1,4 +1,4 @@
-package ExpenseSysModels;
+package expenseSysModels;
 
 public class User {
 
@@ -13,16 +13,16 @@ public class User {
 	public String getUserName() {
 		return userName;
 	}
-	public User(String userName, String password, String firstName, String lastName, String email) {
-		super();
+	public User(String userName, String password, String firstName, String lastName, String email, int role) {
+		//this.userID = userID;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.role = role; 
 	}
 	public User(int userID, String userName, String password, String firstName, String lastName, String email, int role) {
-		super();
 		this.userID = userID;
 		this.userName = userName;
 		this.password = password;
@@ -67,10 +67,10 @@ public class User {
 		this.email = email;
 	}
 	public int getRole() {
-		return this.role;
+		return role;
 	}
-	void setRole() {
-		
+	public void setRole(int r) {
+		this.role = r; 
 	}
 	
 }

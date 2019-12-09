@@ -7,8 +7,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import ExpenseSysDao.UsersDaoImp;
-import ExpenseSysModels.User;
+import expenseSysDao.UsersDaoImp;
+import expenseSysModels.User;
 
 
 public class UsersDaoImpTest {

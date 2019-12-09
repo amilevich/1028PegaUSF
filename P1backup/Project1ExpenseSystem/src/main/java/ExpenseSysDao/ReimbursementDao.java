@@ -1,8 +1,9 @@
-package ExpenseSysDao;
+package expenseSysDao;
+
 
 import java.util.ArrayList;
 
-import ExpenseSysModels.Reimbursement;
+import expenseSysModels.Reimbursement;
 
 public interface ReimbursementDao {
 
@@ -11,14 +12,19 @@ public interface ReimbursementDao {
 	
 	//READ
 	public Reimbursement selectReimbById(int id);
+	
+	
 	public ArrayList<Reimbursement> selectAllReimb();
+	
+	
 	public ArrayList<Reimbursement> selectAllEmpReimb(int id);
+	
 	
 	//UPDATE
 	public void updateReimb(Reimbursement r);
 	
 	//DELETE
 	public void deleteReimb(Reimbursement r);
-
-	ArrayList<Reimbursement> filterReimbByStatus(int status);
+	
+	public ArrayList<Reimbursement> filterReimbByStatus(int status);
 }

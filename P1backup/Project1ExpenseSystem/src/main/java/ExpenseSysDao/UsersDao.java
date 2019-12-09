@@ -1,8 +1,8 @@
-package ExpenseSysDao;
+package expenseSysDao;
 
 import java.util.ArrayList;
 
-import ExpenseSysModels.User;
+import expenseSysModels.User;
 
 public interface UsersDao {
 

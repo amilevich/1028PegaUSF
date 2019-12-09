@@ -1,9 +1,10 @@
-package ExpenseSysControllers;
+package expenseSysControllers;
 
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
-import ExpenseSysDao.ReimbursementDaoImp;
-import ExpenseSysModels.Reimbursement;
+
+import expenseSysDao.ReimbursementDaoImp;
+import expenseSysModels.Reimbursement;
 
 public class StatusController {
 

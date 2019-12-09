@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+window.onload = function(){
+	getManagerInfo();
+	getAllReim();
+}
+function getManagerInfo(){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let manager = JSON.parse(xhttp.responseText);
+			document.getElementById("id").innerHTML = "Logged in Manager: " + manager.id;
+		}
+	}
+	xhttp.open("POST", 'http://localhost:8080/project1app/Home.write', true);
+	xhttp.send();
+}
+
+function getAllReim(){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let reim = JSON.parse(xhttp.responseText);
+			setReimValues(reim);
+		}
+	}
+	xhttp.open("POST", "http://localhost:8080/project1app/ViewAllReimbursements.write", true);
+	xhttp.send();
+}
+
+function filter(x){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let reim = JSON.parse(xhttp.responseText);
+			setFilteredValues(reim);
+		}
+	}
+	xhttp.open("POST", "http://localhost:8080/project1app/FilterByStatus.write", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("status=" + x);
+}
+
+function setReimValues(reim){
+	document.getElementById("All_Reim").innerHTML = reim;
+}
+function setFilteredValues(reim){
+	document.getElementById("filtered").innerHTML = reim;
+}
+
+
+</script>
+</head>
+<body>
+
+<h2>Welcome <span id='id'></span></h2>
+<hr>
+
+<div id='All_Reim'>
+</div>
+<hr>
+
+<div>
+	<h4>Approve or deny Reimbursements</h4>
+	<form action='ApproveReimbursements.write' method='POST'>
+		<input name='reimID' type='text' value='reimID'/>
+		<input name='status' type='text' value='status'/>
+		<input type="submit"  value="Submit"/>
+	</form>
+</div>
+<hr>
+
+
+<h4>Filter by Status</h4>
+<button onclick="filter(2)">Denied</button></br>
+<button onclick="filter(1)">Approved</button></br>
+<button onclick="filter(0)">Pending</button></br>
+<div id='filtered'>
+</div>
+
+
+
+</body>
+</html>

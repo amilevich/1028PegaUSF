@@ -1,4 +1,4 @@
-package ExpenseSysDao;
+package expenseSysDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import ExpenseSysModels.User;
+import expenseSysModels.User;
 
 public class UsersDaoImp implements UsersDao{
 
@@ -25,7 +25,7 @@ public class UsersDaoImp implements UsersDao{
 	@Override
 	public void insertUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)){
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO Pets VALUES(?,?,?,?,?,?,?)");	//putting in a native SQL query 
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO Ers_Users VALUES(?,?,?,?,?,?,?)");	//putting in a native SQL query 
 			ps.setInt(1, u.getUserID());
 			ps.setString(2, u.getUserName()); 
 			ps.setString(3, u.getPassword()); 
@@ -103,8 +103,7 @@ public class UsersDaoImp implements UsersDao{
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				user = new User(rs.getInt("ers_user_id"), rs.getString("ers_username"), rs.getString("ers_password"),
-						rs.getString("user_first_name"), rs.getString("user_last_name"), rs.getString("user_email"), rs.getInt("user_role_id"));	
+				user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

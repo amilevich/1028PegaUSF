@@ -1,4 +1,5 @@
-package ExpenseSysModels;
+package expenseSysModels;
+
 
 public class Reimbursement {
 	int reimbID;
@@ -11,9 +12,8 @@ public class Reimbursement {
 	int status;
 	int type;
 	
-	public Reimbursement(int rID, double amt, java.sql.Date sub, java.sql.Date resd, String desc, int auth,
-			int resr, int sts, int typ) {
-		this.reimbID = rID;
+	public Reimbursement(int reimID, double amt, java.sql.Date sub, java.sql.Date resd, String desc, int auth, int resr, int sts, int typ) {
+		this.reimbID = reimID;
 		this.amount = amt;
 		this.submitted = sub;
 		this.resolved = resd;
@@ -23,9 +23,8 @@ public class Reimbursement {
 		this.status = sts;
 		this.type = typ;
 	}
-	public Reimbursement(double amt, java.sql.Date sub, java.sql.Date resd, String desc, int auth,
-			int resr, int sts, int typ) {
-		this.reimbID = 0;
+	
+	public Reimbursement( double amt, java.sql.Date sub, java.sql.Date resd, String desc, int auth, int resr, int sts, int typ) {
 		this.amount = amt;
 		this.submitted = sub;
 		this.resolved = resd;

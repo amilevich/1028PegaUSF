@@ -1,27 +1,30 @@
-package ExpenseSysControllers;
+package expenseSysControllers;
 
 import javax.servlet.http.HttpServletRequest;
-import ExpenseSysDao.UsersDaoImp;
-import ExpenseSysModels.User;
+import expenseSysDao.UsersDaoImp;
+import expenseSysModels.Employee;
+import expenseSysModels.FinanceManager;
+import expenseSysModels.User;
 
 public class LoginController {
 	
 	public static String Login(HttpServletRequest request) {
-		String userName = request.getParameter("userName");
-		String pass = request.getParameter("pass");
+		String userName = request.getParameter("id");
+		String password = request.getParameter("password");
 		
 		UsersDaoImp usersDaoImp = new UsersDaoImp();
 		User user = usersDaoImp.selectUserByUserName(userName);
-		//retrieving an existing record by name that the user provided on the login page and stored it into a pet object
 		
-		if(userName.contentEquals(user.getUserName()) && pass.equals(user.getPassword()) && user.getRole()==1) {
-			request.getSession().setAttribute("User",  user);	//setting the session to the current logged in user
-			return "/html/FinManHome.html";
-		} else if (userName.contentEquals(user.getUserName()) && pass.equals(user.getPassword())) {
-			request.getSession().setAttribute("User",  user);	//setting the session to the current logged in user
-			return "/html/EmpHome.html";
-		}
-		else return "/Login.html";
+		 if (userName.equals(user.getUserName()) && password.equals(user.getPassword()) && user.getRole()==1){
+			 	FinanceManager manager = new FinanceManager(user); 
+				request.getSession().setAttribute("role", "manager");
+				request.getSession().setAttribute("object", manager);
+				return "/ManagerHome.html";
+		 }else{
+			request.getSession().setAttribute("role", "employee");
+			Employee emp = new Employee(user);
+			request.getSession().setAttribute("object", emp);
+			return "/EmployeeHome.html";
+		 }
 	}
-
 }
