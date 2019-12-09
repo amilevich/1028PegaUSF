@@ -30,9 +30,9 @@ public class Email {
 	        return new PasswordAuthentication("larsonsadie@hotmail.com", "adoption99");
 	    }
 	});
-	public static void sendTempPass() {
+	public static String sendTempPass(String fName, String lName, String emails) {
 		tempPass = r.nextInt(10000);
-		emailTo = "larsonsadie@ucla.edu";
+		emailTo = emails;
 
 		prop.put("mail.smtp.auth", true);
 		prop.put("mail.smtp.starttls.enable", "true");
@@ -47,7 +47,7 @@ public class Email {
 
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo));
 			message.setSubject(sub);
-			String msg = "Your temporary password is: " + tempPass + "Log in at the following link http://localhost:9001/Project1Sadie/Login.html";
+			String msg = "Hello " + fName + " " + lName+ ", welcome  Your temporary password is: " + tempPass + " Log in at the following link http://localhost:9001/Project1Sadie/PasswordSetup.html";
 			msg += "\n If you have any questions please contact us at our help line: (800) 555-5555";
 
 			MimeBodyPart mbp = new MimeBodyPart();
@@ -62,5 +62,6 @@ public class Email {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return String.valueOf(tempPass);
 	}
 }

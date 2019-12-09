@@ -8,7 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+
 import com.example.dao.ERS_USERS_DAO;
+import com.example.main.pEncryption;
 import com.pega.models.ERS_USERS;
 
 public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
@@ -156,6 +160,29 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
+				String passCheck = "";
+//				try {
+//					pEncryption.dcipher = Cipher.getInstance("DES");
+//
+////					pEncryption.dcipher.init(Cipher.DECRYPT_MODE, pEncryption.key);
+//					System.out.println("this is password before decyption" + rs.getString("ERS_PASSWORD"));
+//					passCheck = pEncryption.decrypt(rs.getString("ERS_PASSWORD"));
+//					System.out.println("this is password after encyption" + passCheck);
+//				} catch (Exception e) {
+//					System.out.println("issue with password encryption");
+//					e.printStackTrace();
+//				}
+				
+				System.out.println(passCheck);
+
+//				System.out.println("id" + rs.getInt("ERS_USERS_ID"));
+//				System.out.println("username" + rs.getString("ERS_USERNAME"));
+//				System.out.println("p" + rs.getString("ERS_PASSWORD"));
+//				System.out.println("fn" + rs.getString("USER_FIRST_NAME"));
+//				System.out.println("ln" + rs.getString("USER_LAST_NAME"));
+//				System.out.println("em" + rs.getString("USER_EMAIL"));
+//				System.out.println("ur" + rs.getInt("USER_ROLE_ID_FK"));
+
 				user.add(new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
 						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
 						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK")));
@@ -169,33 +196,26 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 	}
 
 	@Override
-	public int updateUserById(ERS_USERS user) {
-
+	public int updateUser(ERS_USERS user) {
+		System.out.println("in update  dao");
+		System.out.println(user);
 		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
-
 			PreparedStatement ps = con.prepareStatement(
-					"UPDATE ERS_USERS ERS_USERNAME=?, ERS_PASSWORD=?, USER_FIRST_NAME=?, USER_LAST_NAME=?, USER_EMAIL=?, USER_ROLE_ID_FK=?, WHERE ERS_USERS_ID=? ");
-
-			ps.setInt(1, user.getERS_USERS_ID());
-			ps.setString(2, user.getERS_USERNAME());
-			ps.setString(3, user.getERS_PASSWORD());
-			ps.setString(4, user.getUSER_FIRST_NAME());
-			ps.setString(5, user.getUSER_LAST_NAME());
-			ps.setString(6, user.getUSER_EMAIL());
-			ps.setInt(7, user.getUSER_ROLE_ID_FK());
-
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
-						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
-						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK"));
-			}
+					"UPDATE ERS_USERS SET ERS_USERNAME=?, ERS_PASSWORD=?, USER_FIRST_NAME=?, USER_LAST_NAME=?, USER_EMAIL=?, USER_ROLE_ID_FK=? WHERE ERS_USERS_ID=?");
+			System.out.println("inside update");
+			ps.setInt(7, user.getERS_USERS_ID());
+			ps.setString(1, user.getERS_USERNAME());
+			ps.setString(2, user.getERS_PASSWORD());
+			ps.setString(3, user.getUSER_FIRST_NAME());
+			ps.setString(4, user.getUSER_LAST_NAME());
+			ps.setString(5, user.getUSER_EMAIL());
+			ps.setInt(6, user.getUSER_ROLE_ID_FK());
+			System.out.println("made it beofre execute");
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return 0;
 	}
 
