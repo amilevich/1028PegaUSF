@@ -23,7 +23,7 @@ form { accept-charset : utf-8; }
 <!-- /-->
 <div id="EmployeeUpdate.do" style="text-align:center" class="container">
 	<form method="POST" action="EmployeeUpdate.do" accept-charset=utf-8>
-		<p><input type="password" name="txtPasswordEdit" placeholder="Type password here"></p>
+		<p><input type="text" name="txtPasswordEdit" placeholder="Type password here"></p>
 		<p><input type="text" name="txtFirstNameEdit" placeholder="Type your first name here">
 		<input type="text" name="txtLastNameEdit" placeholder="Type your last name here"></p> 
 		<p><input type="text" name="txtEMailEdit" placeholder="Type your e-mail here"></p>
@@ -34,7 +34,39 @@ form { accept-charset : utf-8; }
 	<input type="submit" value="Cancel" id="ProfileToEmpMenuSubmit" class="form-control btn btn-info"/>
 </form>
 
-<script type="text/javascript" src="../js/EmployeeProfile.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("divSeeTables").addEventListener("click", function(){
+		if(toggle==false){
+			toggle = true;
+			document.getElementById("divHistoryViewer").innerHTML= "";
+		} else if(toggle){
+			toggle=false;
+			document.getElementById("divHistoryViewer").innerHTML= "";
+			getReimbursementInfo();
+		}
+	})
+	getReimbursementInfo();
+}
+
+function getReimbursementInfo(){
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			let users = JSON.parse(xhttp.responseText);
+			console.log(users);
+			setValues(users);
+		}
+	}
+	xhttp.open("GET", 'http://localhost:8080/Project1Reimbursement/html/EmployeeUpdate.do', true);
+	xhttp.send();
+}
+
+function setValues(users){
+	
+	document.getElementById("divHistoryViewer").append(table);
+}
+</script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>

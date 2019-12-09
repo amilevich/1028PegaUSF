@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import com.project1.dao.SystemDaoImpl;
 import com.project1.model.Reimbursement;
+import com.project1.model.SessionData;
 import com.project1.model.Users;
 public class LoginUsersController {
 
@@ -27,15 +28,17 @@ public class LoginUsersController {
 				//
 				List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 				reimbursements = sysImpl.selectReimbursementsByUsersId(users.getUsersId());
-				request.getSession().setAttribute("Reimbursements", reimbursements);
-				//
+				SessionData sessionData = new SessionData(users, reimbursements);
+				request.getSession().setAttribute("SessionData", sessionData);
+				
 				return "/html/EmployeeMainMenu.html";
 			} else {
 				//
 				List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 				reimbursements = sysImpl.selectAllReimbursements();
-				request.getSession().setAttribute("Reimbursements", reimbursements);
-				//
+				SessionData sessionData = new SessionData(users, reimbursements);
+				request.getSession().setAttribute("SessionData", sessionData);
+				
 				return "/html/ManagerMainMenu.html";
 			}
 			

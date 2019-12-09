@@ -18,25 +18,9 @@ form { accept-charset : utf-8; }
 	</div>
 </div>
 
-<div style="text-align:center" class="bodyList">
-		<!--
-		<form accept-charset=utf-8 method="POST" action="http://localhost:8080/Project1Reimbursement/html/EmpHistTable.do">
-			<input type="submit" value="See Active First" class="form-control btn btn-info"/>
-			<table id="EmpHistoryViewerTable" style="width:100%"></table>
-		</form>
-		/-->
-		<!-- Time Stamp Submitted/Resolved, typeOfTicket, Description, status, pictures /-->
-	 	<table style="width:100%">
-			<tr>
-				<th>$ Amount</th>
-				<th>Status</th>
-				<th>Type</th>
-				<th>Description</th>
-				<th>Addendum</th>
-				<th>Time Submitted</th>
-				<th>Time Resolved</th>
-			</tr>
-		</table>
+<div id="divSeeTables" style="text-align:center" class="bodyList">
+		<input type="submit" value="Toggle" class="form-control btn btn-info"/>
+		<div id="divHistoryViewer"></div>
 </div>
 <div style="text-align:center" class="container">
 	<form accept-charset=utf-8 action="http://localhost:8080/Project1Reimbursement/html/EmployeeMainMenu.html" method="get">
@@ -45,7 +29,18 @@ form { accept-charset : utf-8; }
 </div>
 <!--  /-->
 <script type="text/javascript">
+let toggle=false;
 window.onload = function(){
+	document.getElementById("divSeeTables").addEventListener("click", function(){
+		if(toggle==false){
+			toggle = true;
+			document.getElementById("divHistoryViewer").innerHTML= "";
+		} else if(toggle){
+			toggle=false;
+			document.getElementById("divHistoryViewer").innerHTML= "";
+			getReimbursementInfo();
+		}
+	})
 	getReimbursementInfo();
 }
 
@@ -53,48 +48,79 @@ function getReimbursementInfo(){
 	let xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function(){
 		if(xhttp.readyState == 4 && xhttp.status == 200){
-			let reimbursements = JSON.parse(xhttp.responseText);
-			setValues(reimbursements);
+			let data = JSON.parse(xhttp.responseText);
+			//console.log(reimbursements);
+			setValues(data.reimbursements);
 		}
 	}
 	xhttp.open("GET", 'http://localhost:8080/Project1Reimbursement/html/EmpHistTable.do', true);
 	xhttp.send();
 }
-function setValues(reimbursement){
-	document.getElementById("EmpHistoryViewerTable").innerHTML = makeEmployeeHistoryTable(document.getElementById("EmpHistoryViewerTable"), reimbursements);
-}
-function makeEmployeeHistoryTable(table, reimbursements){
-	for(i=0; i < reimbursements.results.length; i++){
-		row = getRowEmployeeHistoryTable(table, reimbursements[i]);
-		table.Rows.Add(row);
+
+function setValues(reimbursements){
+	//console.log("setValues ");
+	let table = document.createElement("table");
+	let tBody= 
+	`
+	<tr>
+	<th>Reimbursement ID</th>
+	<th>Employee ID</th>
+	<th>$ Amount</th>
+	<th>Type ID</th>
+	<th>Description</th>
+	<th>Receipt</th>
+	<th>Status ID</th>
+	<th>Date Submitted</th>
+	<th>Manager ID</th>
+	<th>Date Resolved</th>
+	</tr>
+	`
+	table.innerHTML+=tBody;
+	for(i=0; i<reimbursements.length; i++){
+		var statusString;
+		var typeString;
+		var dateSString;
+		var dateRString;
+		if(reimbursements[i].statusId==1){ 
+			statusString = "pending";
+		} else if(reimbursements[i].statusId==2){ 
+			statusString = "approved";
+		} else if(reimbursements[i].statusId==3){ 
+			statusString = "denied";
+		} else {
+			statusString = "error";
+		}
+		if(reimbursements[i].typeId==1){ 
+			typeString = "Lodging";
+		} else if(reimbursements[i].typeId==2){ 
+			typeString = "Travel";
+		} else if(reimbursements[i].typeId==3){ 
+			typeString = "Food";
+		} else if(reimbursements[i].typeId==4){ 
+			typeString = "Other";
+		} else {
+			typeString = "error";
+		}
+		dateSString = new Date(reimbursements[i].dateSubmitted);
+		dateRString = new Date(reimbursements[i].dateResolved);
+		let eachRow =
+		`
+		<tr>
+		<td>${reimbursements[i].id}</td>
+		<td>${reimbursements[i].employeeId}</td>
+		<td>${reimbursements[i].amount}</td>
+		<td>${typeString}</td>
+		<td>${reimbursements[i].description}</td>
+		<td>${reimbursements[i].receipt}</td>
+		<td>${statusString}</td>
+		<td>${dateSString}</td>
+		<td>${reimbursements[i].managerId}</td>
+		<td>${dateRString}</td>
+		</tr>
+		`
+		table.innerHTML+=eachRow;
 	}
-	return table.innerHTML;
-}
-function getRowEmployeeHistoryTable(table, reimbursement){
-	var row = new HtmlTableRow();
-	var cell0 = new HtmlTableCell(); cell0 = row.insertCell(0);
-	var cell1 = new HtmlTableCell(); cell1 = row.insertCell(1);
-	var cell2 = new HtmlTableCell(); cell2 = row.insertCell(2);
-	var cell3 = new HtmlTableCell(); cell3 = row.insertCell(3);
-	var cell4 = new HtmlTableCell(); cell4 = row.insertCell(4);
-	var cell5 = new HtmlTableCell(); cell5 = row.insertCell(5);
-	var cell6 = new HtmlTableCell(); cell6 = row.insertCell(6);
-	cell0.innerHTML = reimbursement.amount; // $ Amount
-	cell1.innerHTML = reimbursement.statusId; // Status
-	cell2.innerHTML = reimbursement.typeId; // Type
-	cell3.innerHTML = reimbursement.description; // Description
-	cell4.innerHTML = reimbursement.receipt; // Addendum"
-	cell5.innerHTML = reimbursement.dateSubmitted; // Time Submitted
-	cell6.innerHTML = reimbursement.dateResolved; // Time Resolved
-	row.Cells.Add(cell0);
-	row.Cells.Add(cell1);
-	row.Cells.Add(cell2);
-	row.Cells.Add(cell3);
-	row.Cells.Add(cell4);
-	row.Cells.Add(cell5);
-	row.Cells.Add(cell6);
-	
-	return row;
+	document.getElementById("divHistoryViewer").append(table);
 }
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>

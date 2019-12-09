@@ -151,4 +151,10 @@ public class Reimbursement {
 	public void setManagerId(int managerId) {
 		this.managerId = managerId;
 	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", dateSubmitted=" + dateSubmitted + ", dateResolved=" + dateResolved
+				+ ", description=" + description + ", receipt=" + receipt + ", employeeId=" + employeeId + ", managerId=" + managerId + ", statusId=" + statusId + ", typeId=" + typeId + "]";
+	}
 }

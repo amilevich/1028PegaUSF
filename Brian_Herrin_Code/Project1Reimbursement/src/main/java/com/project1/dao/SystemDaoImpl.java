@@ -106,9 +106,19 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 	}
 
 	@Override
-	public void updateReimbursement(Reimbursement r) {
-		// TODO Auto-generated method stub
-
+	public void updateReimbursement(Reimbursement obj) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			//int insertUpdate = 0;
+			PreparedStatement ps = conn.prepareStatement
+			("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVED=?,REIMB_STATUS_ID=? WHERE REIMB_ID=?");
+			ps.setDate(1,new Date(System.currentTimeMillis()));
+			ps.setInt(2,obj.getStatusId());
+			ps.setInt(3,obj.getId());
+			ps.executeUpdate();
+			// insertUpdate = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -120,7 +130,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				int id = rs.getInt("id");
+				int id = rs.getInt("REIMB_ID");
 				double amount = rs.getDouble("REIMB_AMOUNT");
 				Timestamp dateSubmitted = rs.getTimestamp("REIMB_SUBMITTED");
 				Timestamp dateResolved = rs.getTimestamp("REIMB_RESOLVED");
@@ -150,15 +160,14 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 	}
 
 	@Override
-	public void updateReimbursement(int id, int statid, int resolverid) {
-		System.out.println(" id " + id + "statid " + statid + "resolverid " + resolverid);
+	public void updateReimbursement(int resolved, int status, int id) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			// int insertUpdate = 0;
-			PreparedStatement ps = conn.prepareStatement(
-					"UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVER=?,REIMB_STATUS_ID=? WHERE REIMB_ID=?");
-			ps.setInt(1, resolverid);
-			ps.setInt(2, statid);
-			ps.setInt(3, id);
+			//int insertUpdate = 0;
+			PreparedStatement ps = conn.prepareStatement
+			("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVED=?,REIMB_STATUS_ID=? WHERE REIMB_ID=?");
+			ps.setDate(1,new Date(System.currentTimeMillis()));
+			ps.setInt(2,status);
+			ps.setInt(3,id);
 			ps.executeUpdate();
 			// insertUpdate = ps.executeUpdate();
 		} catch (SQLException e) {
@@ -402,7 +411,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				int id = rs.getInt("id");
+				int id = rs.getInt("REIMB_ID");
 				double amount = rs.getDouble("REIMB_AMOUNT");
 				Timestamp dateSubmitted = rs.getTimestamp("REIMB_SUBMITTED");
 				Timestamp dateResolved = rs.getTimestamp("REIMB_RESOLVED");
@@ -412,16 +421,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 				int managerId = rs.getInt("REIMB_RESOLVER");
 				int statusId = rs.getInt("REIMB_STATUS_ID");
 				int typeId = rs.getInt("REIMB_TYPE_ID");
-//					UserRoles role = null;
-//					if(roleId != 0){
-//						UserRolesImpl roleDAO = new UserRolesImpl();
-//						role = roleDAO.createRoleObj(roleId);
-//					}	
-//					if (users == null) {
-//						users= new Users(0,",",",",",",",",",",0);
-//					}
-				obj.add(new Reimbursement(id, amount, dateSubmitted, dateResolved, description, receipt, employeeId,
-						managerId, statusId, typeId));
+				obj.add(new Reimbursement(id, amount, dateSubmitted, dateResolved, description, receipt, employeeId, managerId, statusId, typeId));
 			}
 
 		} catch (SQLException e) {
