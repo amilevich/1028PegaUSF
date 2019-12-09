@@ -55,6 +55,7 @@ class style extends html{style(String a, String i, html ...c){super("style",a,i,
 class link extends html{link(String a, String i, html ...c){super("link",a,i,c);}}
 class meta extends html{meta(String a, String i, html ...c){super("meta",a,i,c);}}
 class label extends html{label(String a, String i, html ...c){super("label",a,i,c);}}
+class span extends html{span(String a, String i, html ...c){super("span",a,i,c);}}
 
 
 

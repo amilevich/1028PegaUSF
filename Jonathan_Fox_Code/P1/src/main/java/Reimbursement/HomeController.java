@@ -57,18 +57,71 @@ public class HomeController {
 		}
 
 		s = s + String.format("%s\n%s\n", new head("", "", new style("",
-				".yellow {background-color:#ffff66;} .red {background-color:red;} .green {background-color:#99ff66} .purple {background-color:#cc33ff} *{font-size: 26px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}"))
+				".yellow {background-color:#ffff66;} .red {background-color:red;} .green {background-color:#99ff66} .purple {background-color:#cc33ff} *{font-size: 26px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;} * {\r\n" + 
+				"    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\r\n" + 
+				"}\r\n" + 
+				"table {\r\n" + 
+				"    border-collapse: collapse;\r\n" + 
+				"    width: 100%;\r\n" + 
+				"  }\r\n" + 
+				"th,td {\r\n" + 
+				"    text-align: center;\r\n" + 
+				"    padding: 15px;\r\n" + 
+				"}\r\n" + 
+				"table, th, td {\r\n" + 
+				"    border: 1px solid black;\r\n" + 
+				"  }\r\n" + 
+				"tr:hover {\r\n" + 
+				"    background-color: #F5F5F5;    \r\n" + 
+				"}" +
+				"table td.shrink {\r\n" + 
+				"    white-space:nowrap\r\n" + 
+				"}" +
+				"            input[type=text], select {\r\n" + 
+				"                width: 79%;\r\n" + 
+				"                padding: 12px 20px;\r\n" + 
+				"                /* margin: 8px 0; */\r\n" + 
+				"                display: inline-block;\r\n" + 
+				"                border: 1px solid #ccc;\r\n" + 
+				"                border-radius: 4px;\r\n" + 
+				"                box-sizing: border-box;\r\n" + 
+				"            }\r\n" + 
+				"                input[type=number] {\r\n" + 
+				"                width: 62%;\r\n" + 
+				"                padding: 14px 20px;\r\n" + 
+				"                /* margin: 8px 0; */\r\n" + 
+				"                border: 1px solid #ccc;\r\n" + 
+				"                border-radius: 4px;\r\n" + 
+				"                cursor: pointer;\r\n" + 
+				"                }\r\n" + 
+				"                input[type=submit]:hover {\r\n" + 
+				"                background-color: #45A049;\r\n" + 
+				"                }\r\n" + 
+				"                div {\r\n" + 
+				"                border-radius: 5px;\r\n" + 
+				"                background-color: #F2F2F2;\r\n" + 
+				"                padding: 20px;\r\n" + 
+				"                height: 21px;\r\n" + 
+				"            }\r\n" + 
+				"                h1, h3 { \r\n" + 
+				"                    font-size: 30px; text-align: center;\r\n" + 
+				"                }\r\n" + 
+				"                button {\r\n" + 
+				"                    font-size: 30px;\r\n" + 
+				"                height: 61px;\r\n" + 
+				"                width: 178px;\r\n" + 
+				"                margin-top: 0px;\r\n" + 
+				"            }"))
 						.write(),
 				new body("", "", new title("", String.format("User: %s", u.getEmail())),
-						new h1("text-align=\"center\"", String.format("YOU ARE %s %s", u.getName()[0], u.getName()[1]),
-								new div("", (u.isAdvisor()) ? "ADVISOR" : "EMPLOYEE")),
+						new h1("text-align=\"center\"", String.format("%s %s", u.getName()[0], u.getName()[1]),
+								new div("border='0px'", "", new span("","", new label("",(u.isAdvisor()) ? "FINANCIAL MANAGER" : "EMPLOYEE"), new span("align='right'","", new form(String.format("method = \"POST\" action=\"%s\"", Rhylehian.incant(Rhylehian.WELCOME)),"",
+										new button("type='submit'","LOGOUT")))))),
 						new form(String.format("method = \"POST\" action = \"%s\"", Rhylehian.incant(Rhylehian.REGISTER_TICKET)), "REGISTER TICKET",
 								new div("", "", statusInputs),
 								new input("class = \"textsubmit\" type=\"number\" name=\"price\" step=.01 placeholder=\"How much did you spend in dollars?\"", ""),
 								new input("class = \"textsubmit\" type=\"text\" name = \"Description\" placeholder=\"description\"", ""),
 								new button("type=\"submit\"", "<i>SUBMIT!</i>")),
-						new form(String.format("method = \"POST\" action=\"%s\"", Rhylehian.incant(Rhylehian.WELCOME)),"",
-							new button("type='submit'","LOGOUT")),
 						new br("",""),
 						new table("border=1", "", tickets)).write());
 

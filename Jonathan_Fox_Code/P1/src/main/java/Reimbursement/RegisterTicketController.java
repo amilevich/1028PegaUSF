@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 public class RegisterTicketController {
 
-	public static void register(HttpServletRequest request, HttpServletResponse response) throws InstantiationException, IOException {
+	public static void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		DAO dao = (DAO)session.getAttribute("dao");
 		User u = (User)session.getAttribute("user");
@@ -25,7 +25,7 @@ public class RegisterTicketController {
 		}
 		
 		try{ t = new Ticket(u.getEmail(), Double.valueOf(price), description, Byte.valueOf(type), new Timestamp(System.currentTimeMillis())); }
-		catch(NumberFormatException e) {
+		catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect(Rhylehian.incant(Rhylehian.HOME));
 			return;
