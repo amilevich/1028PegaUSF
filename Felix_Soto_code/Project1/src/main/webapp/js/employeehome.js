@@ -73,10 +73,10 @@ function setValues(list) {
         // Status
         switch (list[r].status) {
         case "APPROVED":
-        	tdStatus.innerHTML = "Approved";
+        	tdStatus.innerHTML = "<span style='color:green'>Approved</span>";
             break;
         case "DENIED":
-        	tdStatus.innerHTML = "<span style='color:#FF0000'> Denied </span>";
+        	tdStatus.innerHTML = "<span style='color:red'>Denied</span>";
             break;
         case "PENDING":
         	tdStatus.innerHTML = "Pending";
