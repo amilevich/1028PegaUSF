@@ -6,13 +6,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/icon"> 
 <link rel="icon" href="img/favicon.ico" type="image/icon"> 
-<style>
-</style>
 </head>
+<style>
+body { background-color: #ccffb3 }
+form { accept-charset : utf-8 }
+</style>
 <body>
 
 <div class="bodyHeading">
-	<div class="jumbotron text-center">
+	<div style="background-color: #99ff66" class="jumbotron text-center">
 		<h3>Reimbursement Tickets Awaiting Approval:</h3>
 		<h5>
 		<span class="label label-success">Click a Ticket and click "Approve" or "Deny"</span>
@@ -29,12 +31,12 @@
 	<br>
 	<form accept-charset=utf-8 method="POST" action="ManTicketApprove.do" >
 		<input type="text" name="txtApproveReimbursement" placeholder="Type id to approve">
-		<input type="submit" value="Approve" class="btn-group-justified"/>
+		<input type="submit" value="Approve" class="btn btn-success"/>
 	</form>
 	<br>
 	<form accept-charset=utf-8 method="POST" action="ManTicketDeny.do" >
 		<input type="text" name="txtDenyReimbursement" placeholder="Type id to deny">
-		<input type="submit" value="Deny" class="btn-group-justified"/>
+		<input type="submit" value="Deny" class="btn btn-danger"/>
 	</form>
 </div>
 <div style="text-align:center" class="container">

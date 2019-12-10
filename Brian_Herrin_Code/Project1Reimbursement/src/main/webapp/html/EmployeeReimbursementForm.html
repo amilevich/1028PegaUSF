@@ -6,14 +6,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/icon"> 
 <link rel="icon" href="img/favicon.ico" type="image/icon"> 
-<style>
-
-</style>
 </head>
+<style>
+body { background-color: #ccffb3 }
+form { accept-charset : utf-8 }
+</style>
 <body>
 <!-- /-->
 <div class="bodyHeading">
-	<div class="jumbotron text-center">
+	<div style="background-color: #99ff66" class="jumbotron text-center">
 		<h3>Reimbursement Form</h3>
 		<h5>
 		<span class="label label-success">Please fill the form completely to ensure a timely response</span>
@@ -23,24 +24,38 @@
 
 <div style="text-align:center" class="container">
 	<form accept-charset=utf-8 name="ticketForm" method = "POST" action="http://localhost:8080/Project1Reimbursement/html/CreateReimbursement.do">
+		<div class="bg-dark text-white">Basic Type:</div>
+		<div class="custom-control custom-radio">
+			<input type="radio" id="customRadio1" name="radioTypes" value="1" class="custom-control-input">
+	  		<label class="custom-control-label" for="customRadio1">LODGING</label>
+		</div>
+		<div class="custom-control custom-radio">
+			<input type="radio" id="customRadio2" name="radioTypes" value="2" class="custom-control-input">
+	  		<label class="custom-control-label" for="customRadio2">TRAVEL</label>
+		</div>
+		<div class="custom-control custom-radio">
+			<input type="radio" id="customRadio3" name="radioTypes" value="3" class="custom-control-input">
+	  		<label class="custom-control-label" for="customRadio3">FOOD</label>
+		</div>
+		<div class="custom-control custom-radio">
+			<input type="radio" id="customRadio4" name="radioTypes" value="4" class="custom-control-input">
+	  		<label class="custom-control-label" for="customRadio4">OTHER</label>
+	  	</div>
+		<div class="bg-dark text-white">Requested Reimbursement $ Amount: </div>
 		<p>
-		Basic Type:
-		<input type="radio" name="radioTypes" value="1"> LODGING
-		<input type="radio" name="radioTypes" value="2"> TRAVEL 
-		<input type="radio" name="radioTypes" value="3"> FOOD
-		<input type="radio" name="radioTypes" value="4"> OTHER 
-		</p><p>
-		<input type="text" name="txtAmountQuery" placeholder="Type $ amount here"> Description:
-		</p><p>
-		<textarea name="ReimDescriptionText" cols="50" rows="5" placeholder="Type description here"></textarea>
+			<input type="text" name="txtAmountQuery" placeholder="Type $ amount here"> 
+		</p>
+		<div class="bg-dark text-white">Description:</div>
+		<p>
+			<textarea name="ReimDescriptionText" cols="50" rows="5" placeholder="Type description here"></textarea>
 		</p>
 		<input type = "submit" value = "Apply" class="form-control btn btn-info"/>
 	</form>
-	<form accept-charset=utf-8 name="upLoadBanner" method="POST" action="http://localhost:8080/Project1Reimbursement/html/GetReceipt.do">
-		Receipt:
-		<input name = "fileupload" type = "file" /> 
-	</form>
-	<br>
+		<p class="bg-dark text-white">Receipt:</p>
+		<form name="upLoadBanner" method="POST" action="http://localhost:8080/Project1Reimbursement/html/GetReceipt.do">
+			<input name = "fileupload" type = "file" /> 
+		</form>
+	
 	<form accept-charset=utf-8 action="http://localhost:8080/Project1Reimbursement/html/EmployeeMainMenu.html" method="get">
 		<input type="submit" value="Back" class="form-control btn btn-info"/>
 	</form>

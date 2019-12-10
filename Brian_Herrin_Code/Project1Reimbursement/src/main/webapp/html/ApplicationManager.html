@@ -6,14 +6,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/icon"> 
 <link rel="icon" href="img/favicon.ico" type="image/icon"> 
-<style>
-form { accept-charset : utf-8; }
-</style>
 </head>
+<style>
+body { background-color: #ccffb3 }
+form { accept-charset : utf-8 }
+</style>
 <body>
 
 <div class="bodyHeading">
-	<div class="jumbotron text-center">
+	<div style="background-color: #99ff66" class="jumbotron text-center">
 		<h3>Financial Manager Account Application Form</h3>
 		<h5>
 		<span class="label label-success">Tell us who you are!</span>
@@ -23,11 +24,11 @@ form { accept-charset : utf-8; }
 <!-- /-->
 <div id="divManApplication" style="text-align:center" class="container">
 	<form method="POST" action="http://localhost:8080/Project1Reimbursement/html/ManagerApply.do">
-		<input type="text" name="txtUsernameApply" placeholder="Type username here">
-		<input type="password" name="txtPasswordApply" placeholder="Type password here">
-		<input type="text" name="txtFirstNameApply" placeholder="Type your first name here"> 
-		<input type="text" name="txtLastNameApply" placeholder="Type your last name here"> 
-		<input type="text" name="txtEMailApply" placeholder="Type your e-mail here">
+		<p><span class="badge badge-dark">Create Username:</span><input type="text" name="txtUsernameApply" placeholder="Type username here"></p>
+		<p><span class="badge badge-dark">Create Password:</span><input type="password" name="txtPasswordApply" placeholder="Type password here"></p>
+		<p><span class="badge badge-dark">Create First Name:</span><input type="text" name="txtFirstNameApply" placeholder="Type your first name here"></p>
+		<p><span class="badge badge-dark">Create Last Name:</span><input type="text" name="txtLastNameApply" placeholder="Type your last name here"></p>
+		<p><span class="badge badge-dark">Create E-Mail:</span><input type="text" name="txtEMailApply" placeholder="Type your e-mail here"></p>
 		<input type = "submit" value = "Apply" class="form-control btn btn-info"/>
 	</form>
 </div>

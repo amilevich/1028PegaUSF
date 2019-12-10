@@ -5,30 +5,34 @@
 <title>Project 1 Employee Reimbursement System</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/icon">
-
 <link rel="icon" href="img/favicon.ico" type="image/icon"> 
 </head>
+<style>
+body { background-color: #ccffb3 }
+form { accept-charset : utf-8 }
+</style>
 <body>
+
 <!-- Running Tomcat, try selecting "Relaunch Tomcat v90 Server at localhost, then click the big green button with Index.html selected to start the webpage"/-->
 <div class="bodyHeading">
-	<div class="jumbotron text-center">
-		<h3>Project 1 Employee Reimbursement System</h3>
-		<h5><span class="label label-success">Welcome, Please Login:</span></h5>
+	<div style="background-image: url('img/money.jpg')" class="jumbotron text-center">
+		<h3 class="bg-dark text-white">Project 1 Employee Reimbursement System</h3>
+		<h5 class="bg-dark text-white"><span class="label label-success">Welcome, Please Login:</span></h5>
 	</div>
 </div>
 
 <div style="text-align:center" class="container">
 	<!--<form accept-charset=utf-8 action="http://localhost:8080/Project1Reimbursement/html/EmployeeMainMenu.html" method="get">/-->
 	<form method="POST" action="Login.do" accept-charset=utf-8>
-		<p><input type="text" name="txtUsernameQuery" placeholder="Type username here"></p>
-		<p><input type="password" name="txtPasswordQuery" placeholder="Type password here"></p>
+		<p><span class="badge badge-dark">Type Username:</span><input type="text" name="txtUsernameQuery" placeholder="Type username here"></p>
+		<p><span class="badge badge-dark">Type Password:</span><input type="password" name="txtPasswordQuery" placeholder="Type password here"></p>
 		<input type="submit" class="form-control btn btn-info" value="Log In"/>
 	</form>
 	<p>
 	<a href="http://localhost:8080/Project1Reimbursement/html/ApplicationEmployee.html">Need an account? Click here!</a> 
 	</p>
 	<p>
-	<a href="http://localhost:8080/Project1Reimbursement/html/ApplicationManager.html">Demo Financial Manager Login/Application</a> 
+	<a href="http://localhost:8080/Project1Reimbursement/html/ApplicationManager.html">Demo Financial Manager Application</a> 
 	</p>
 </div>
 

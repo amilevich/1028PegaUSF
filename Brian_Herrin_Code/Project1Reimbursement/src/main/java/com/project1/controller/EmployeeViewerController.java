@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project1.dao.SystemDaoImpl;
 import com.project1.model.Reimbursement;
 import com.project1.model.SessionData;
-import com.project1.model.Users;
+//import com.project1.model.Users;
 
 public class EmployeeViewerController {
 	public static String postEmpHistPage(HttpServletRequest request, HttpServletResponse response) {
@@ -21,7 +21,7 @@ public class EmployeeViewerController {
 		//System.out.println(data.getUser().toString());
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 		reimbursements = sysImpl.selectReimbursementsByUsersId(data.getUser().getUsersId());
-		
+		data.setReimbursements(reimbursements);
 		request.getSession().setAttribute("SessionData", data);
 		
 		return "/html/EmployeeHistoryViewer.html";
