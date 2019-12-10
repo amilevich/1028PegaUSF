@@ -17,13 +17,47 @@ public class RegistrationController {
 					new style("","* {\r\n" + 
 							"    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\r\n" + 
 							"}\r\n" + 
+							"body{\r\n" + 
+							"	background-image:url('https://i.redd.it/orfoia6fvsw21.png'); \r\n" + 
+							"	background-size:cover;\r\n" + 
+							"}\r\n" + 
+							"button{\r\n" + 
+							"	animation: blink 1s infinite;\r\n" + 
+							"	background-color:red;\r\n" + 
+							"	opacity:0.7;\r\n" + 
+							"}\r\n" + 
+							"@keyframes blink{\r\n" + 
+							"	from{\r\n" + 
+							"		opacity:0.2;\r\n" + 
+							"		color:lime;\r\n" + 
+							"	}\r\n" + 
+							"	to{\r\n" + 
+							"		opacity:0.7;\r\n" + 
+							"		color:white;\r\n" + 
+							"	}\r\n" + 
+							"	0%{\r\n" + 
+							"		opacity:0.2;\r\n" + 
+							"	}\r\n" + 
+							"	50%{\r\n" + 
+							"		opacity:0.6;\r\n" + 
+							"	}\r\n" + 
+							"	100%{\r\n" + 
+							"		opacity:0.8;\r\n" + 
+							"	}\r\n" + 
+							"}\r\n" + 
+							"\r\n" + 
 							"h2 {\r\n" + 
+							"	color:white;\r\n" + 
 							"    font-size: 80px;\r\n" + 
 							"    text-align: center;\r\n" + 
 							"    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\r\n" + 
 							"    margin-bottom: 0%;\r\n" + 
 							"    margin-top: 0%;\r\n" + 
 							"}\r\n" + 
+							"label{\r\n" + 
+							"	color:white;\r\n" + 
+							"}\r\n" + 
+							"\r\n" + 
 							"#submit {\r\n" + 
 							"    font-size: 200px;\r\n" + 
 							"    padding-top: 32%;\r\n" + 
@@ -41,6 +75,7 @@ public class RegistrationController {
 							"	padding:0%;\r\n" + 
 							"	font-size:60px;\r\n" + 
 							"    width: 90%;\r\n" + 
+							"	opacity:0.7;\r\n" + 
 							"}"),
 					new title("", "SLAVE REGISTRATION")),
 				new body("", "",

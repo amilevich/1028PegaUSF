@@ -9,15 +9,23 @@ import java.sql.SQLTimeoutException;
 import java.sql.Timestamp;
 import java.util.TreeMap;
 
+import org.apache.log4j.Logger;
+
 public class DAO {
 
     static{
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
+            //Class.forName("org.apache.log4j.Logger");
+            //System.out.printf("GOOD\n");
         } catch (Exception e) {
             e.printStackTrace();
+            //System.out.printf("NOT GOOD\n");
         }
     }
+    
+	//private static Logger log = Logger.getLogger(DAO.class);
+
 	
 	private static String url = "jdbc:oracle:thin:@muhdb.cvinpk5gjy3r.us-east-1.rds.amazonaws.com:1521:orcl";
 	private static String uname = "project1";
@@ -140,6 +148,7 @@ public class DAO {
 			
 			ps.setQueryTimeout(5);
 			ps.executeUpdate();
+			//log.info(String.format("User %s %s (%s) created.", u.getName()[0], u.getName()[1], u.getEmail()));
 			
 		}catch(SQLTimeoutException e) {
 			System.out.printf("%s\n", e.getMessage());	
@@ -150,6 +159,7 @@ public class DAO {
 			return false;
 		}
 
+		
 		return true;
 	}
 	
@@ -165,7 +175,8 @@ public class DAO {
 			ps.setTimestamp(7, t.getTime());
 			
 			ps.executeUpdate();
-		
+			//log.info(String.format("Ticket created by %s for $%.2f created.", t.getEmail(), t.getAmount()));
+			
 		} catch (SQLException e) {
 			System.out.printf("%s\n", e.getMessage());	
 			return false;
@@ -192,6 +203,8 @@ public class DAO {
 			
 			ps.setInt(2, id);
 			ps.executeUpdate();
+			//log.info(String.format("Ticket %d %s.", id, (approve)?"approved":"denied"));
+
 			
 		}catch (SQLException e) {
 			e.printStackTrace();

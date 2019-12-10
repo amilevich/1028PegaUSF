@@ -1,0 +1,5 @@
+INFO    2019-12-09 14:15:49,186 [main] Reimbursement.DAO  - User first last (TESTEMAILDONOTUSE@b.c) created.
+INFO    2019-12-09 14:15:49,287 [main] Reimbursement.DAO  - Ticket created by TESTEMAILDONOTUSE@b.c for $108.64 created.
+INFO    2019-12-09 14:15:49,391 [main] Reimbursement.DAO  - Ticket created by TESTEMAILDONOTUSE@b.c for $999999.00 created.
+INFO    2019-12-09 14:15:49,991 [main] Reimbursement.DAO  - Ticket 295 approved.
+INFO    2019-12-09 14:15:50,123 [main] Reimbursement.DAO  - Ticket 296 denied.

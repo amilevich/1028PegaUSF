@@ -20,11 +20,12 @@ public class Rhylehian {
 			"zhro" };
 	private static final String prefixes[] = {"c","f'","h'","mg","ng","na","nafl","nnn","ph'","y"};
 	private static final String suffixes[] = {"agl","nyth","og","or","oth","yar"};
+	private static final String endings[] = {"zhro", "fhtagn", "uaaah", "athg"};
 	
 	private static String word() {
 		Random r = new Random();
 				
-		return ((((r.nextInt()&0x7fffffff) % 100) < 30) ? prefixes[(r.nextInt()&0x7fffffff) % prefixes.length] : "")
+		return ((((r.nextInt()&0x7fffffff) % 100) < 25) ? prefixes[(r.nextInt()&0x7fffffff) % prefixes.length] : "")
 				+ words[(r.nextInt()&0x7fffffff) % words.length]
 				+ ((((r.nextInt()&0x7fffffff) % 100) < 15) ? suffixes[(r.nextInt()&0x7fffffff) % suffixes.length] : "");
 	}
@@ -34,7 +35,7 @@ public class Rhylehian {
 		
 		for(int i = 1; i < num; i++) s = String.format("%s_%s", s, word());
 		
-		return s + ".fhtagn";
+		return String.format("%s.%s", s, endings[(num%WELCOME)%4]);
 	}
 	
 	public static int interpret (String spell) { return spell.split("_").length; }

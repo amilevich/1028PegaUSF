@@ -37,7 +37,8 @@ public class RegisterUserController {
 			
 			u = new User(email, password, first_name, last_name, false);
 			
-			dao.storeUser(u);
+			if(dao.storeUser(u)) response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
+			else response.sendRedirect(Rhylehian.incant(Rhylehian.REGISTRATION));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,7 +52,6 @@ public class RegisterUserController {
 			return;
 		}
 
-		response.sendRedirect(Rhylehian.incant(Rhylehian.WELCOME));
 		return;
 	}
 }

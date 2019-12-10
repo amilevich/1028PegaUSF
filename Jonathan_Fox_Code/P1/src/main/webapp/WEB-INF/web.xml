@@ -27,6 +27,18 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MasterServlet</servlet-name>
+    <url-pattern>*.zhro</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MasterServlet</servlet-name>
     <url-pattern>*.fhtagn</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MasterServlet</servlet-name>
+    <url-pattern>*.athg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MasterServlet</servlet-name>
+    <url-pattern>*.uaaah</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -57,8 +57,18 @@ public class HomeController {
 		}
 
 		s = s + String.format("%s\n%s\n", new head("", "", new style("",
-				".yellow {background-color:#ffff66;} .red {background-color:red;} .green {background-color:#99ff66} .purple {background-color:#cc33ff} *{font-size: 26px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;} * {\r\n" + 
-				"    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\r\n" + 
+				".yellow {background-color:#ffff66;}\r\n" + 
+				".red {background-color:red;}\r\n" + 
+				".green {background-color:#99ff66}\r\n" + 
+				".purple {background-color:#cc33ff}\r\n" + 
+				"*{font-size: 26px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\r\n" + 
+				"}\r\n" + 
+				"body{\r\n" + 
+				"	background-image:url('http://christianbackgrounds.info/new_images/28/63255739-cthulhu-wallpapers.jpg');\r\n" + 
+				"	background-size:1920px 1080px;\r\n" + 
+				"}\r\n" + 
+				"input{\r\n" + 
+				"	opacity:0.7;\r\n" + 
 				"}\r\n" + 
 				"table {\r\n" + 
 				"    border-collapse: collapse;\r\n" + 
@@ -73,11 +83,9 @@ public class HomeController {
 				"  }\r\n" + 
 				"tr:hover {\r\n" + 
 				"    background-color: #F5F5F5;    \r\n" + 
-				"}" +
-				"table td.shrink {\r\n" + 
+				"}table td.shrink {\r\n" + 
 				"    white-space:nowrap\r\n" + 
-				"}" +
-				"            input[type=text], select {\r\n" + 
+				"}            input[type=text], select {\r\n" + 
 				"                width: 79%;\r\n" + 
 				"                padding: 12px 20px;\r\n" + 
 				"                /* margin: 8px 0; */\r\n" + 
