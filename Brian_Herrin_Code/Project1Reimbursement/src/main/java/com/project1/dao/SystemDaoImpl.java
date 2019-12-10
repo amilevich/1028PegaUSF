@@ -11,6 +11,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.project1.logger.LogFunc;
+//import com.project1.logger.LogFunc;
 //import com.project1.model.Employee;
 //import com.project1.model.Manager;
 import com.project1.model.Reimbursement;
@@ -45,7 +47,9 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setInt(7, r.getStatusId());
 			ps.setInt(8, r.getTypeId());
 			//System.out.println("insertReimbursement " + r);
+			LogFunc.log.info("Insert " + r.toString());
 			ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -116,6 +120,8 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setInt(3,obj.getId());
 			ps.executeUpdate();
 			// insertUpdate = ps.executeUpdate();
+			LogFunc.log.info("Update " + obj.toString());
+			//LogFunc.logger.info("Update: " + obj.getId() + " " + obj.getStatusId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -171,6 +177,8 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setInt(4,id);
 			ps.executeUpdate();
 			// insertUpdate = ps.executeUpdate();
+			LogFunc.log.info("Updated " + id + " Resolver: " + resolved + " Resolve Code:" + status);
+			//LogFunc.logger.info("Updated " + id + " Resolver: " + resolved + " Resolve Code:" + status);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -368,6 +376,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setInt(7, p.getRole());
 			// System.out.println(p);
 			ps.executeUpdate();
+			LogFunc.log.info("Insert " + p.toString());
 			// insertUpdate = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -386,6 +395,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setString(3, user.getLastName());
 			ps.setString(4, user.getEmail());
 			ps.executeUpdate();
+			LogFunc.log.info("Update " + user.toString());
 			// insertUpdate = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -441,6 +451,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setInt(2, 2);
 			ps.setInt(3, id);
 			ps.executeUpdate();
+			LogFunc.log.info("Approved " + id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -454,6 +465,7 @@ public class SystemDaoImpl implements ReimbursementDao, UsersDao {
 			ps.setInt(2, 3);
 			ps.setInt(3, id);
 			ps.executeUpdate();
+			LogFunc.log.info("Denied " + id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

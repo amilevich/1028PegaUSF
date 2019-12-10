@@ -1,0 +1,7 @@
+
+Insert Reimbursement [id=0, amount=45.0, dateSubmitted=null, dateResolved=null, description=It really works now, receipt=null, employeeId=7, managerId=0, statusId=1, typeId=3]
+Insert Reimbursement [id=0, amount=67.0, dateSubmitted=null, dateResolved=null, description=Likes to move, receipt=null, employeeId=7, managerId=0, statusId=1, typeId=2]
+Update Users [usersId=7, firstName=Brian, lastName=Smith, email=jSmith@disney.com, role=2, name=john, password=smith]
+Updated 66 Resolver: 3 Resolve Code:2
+Update Users [usersId=3, firstName=David, lastName=Banner, email=bruceb@harvard.edu, role=1, name=hulk, password=hulksmash]
+Updated 70 Resolver: 3 Resolve Code:3

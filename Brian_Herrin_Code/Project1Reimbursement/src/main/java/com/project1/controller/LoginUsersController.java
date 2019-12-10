@@ -48,7 +48,10 @@ public class LoginUsersController {
 	}
 
 	public static String Logout(HttpServletRequest request) {
-		
+		//
+		SessionData data = new SessionData();
+		request.getSession().setAttribute("SessionData", data);
+		//
 		return "/html/Index.html";
 	}
 }
