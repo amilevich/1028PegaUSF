@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="../css/home_user.css">
+<title>Reimbursement</title>
+</head>
+<body>
+<a align="right" href="http://localhost:8080/ERS/html/login.html">Sign Out</a>
+<!-- //    -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+<!--             <h2 class="text-center mb-5">Construction Agency</h2> -->
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="card border-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0 my-2">New ticket</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" method="POST" action="user_ticket.do">
+                                <div class="input-group mb-3">
+                                <div class="col-md-4 form-group">
+                                    <label for="inputAmount">Amount</label>
+                                    <input type="number" class="form-control" name="inputAmount"  id="inputAmount" placeholder="Amount" required>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="inputType">Type</label>
+							        <select class="form-control" id="inputType" name="inputType">
+								        <option>LODGING</option>
+								        <option>TRAVEL</option>
+								        <option>FOOD</option>
+								        <option>OTHER</option>
+							        </select>
+                                </div>                                
+<!--                                 <div class="col-md-4 form-group"> -->
+<!--                                     <label for="inputType">Receipt</label> -->
+<!-- 							        <div class="custom-file mb-3"> -->
+<!-- 							          <input type="file" class="custom-file-input" id="receiptFile" name="receiptFile"> -->
+<!-- 							          <label class="custom-file-label" for="customFile">Choose file</label> -->
+<!-- 							        </div>                          -->
+<!-- 							    </div>   -->
+							    </div>
+                                <div class="form-group">
+                                    <label for="textDescription">Description</label>
+                                    <textarea class="form-control" rows="3" id="textDescription" name="textDescription" required></textarea>
+                                </div>
+                        
+                                <div class="form-group">
+                                    <button type="reset" class="btn btn-success btn-lg float-right">Cancel</button>
+                                    <button type="submit" onclik = "getTickets()"  class="btn btn-success btn-lg float-right">Acept</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->
+<!--  //   -->
+<hr>   
+<h2>My tickets</h2>  
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for status.." title="Type in a status">
+<table id="myTable">
+  <thead class="header">
+	<tr>
+	    <th style="width:15%;">Name</th>
+	    <th style="width:15%;">Amount</th>
+	    <th style="width:15%;">Submit</th>
+	    <th style="width:15%;">Description</th>
+<!-- 	    <th hidden style="width:15%;">Receipt</th> -->
+	    <th style="width:15%;">Type</th>
+	    <th style="width:15%;">Status</th>  
+	</tr>    
+  </thead>
+  <tbody>
+  </tbody>
+</table>  
+  
+<script type="text/javascript" src="../js/home_user.js"></script> 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
