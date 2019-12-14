@@ -20,7 +20,7 @@ Servlets run in a servlet container, which handles the networking site (e.g. par
 	destroy() - terminates the servlet. (Only called once)
 
 	URL (Uniform Resource Locator) [http://website.com/login]
-	URI (Uniform Resource Identifier) [/login]
+	URI (Uniform Resource Identifier) [/login]6
 
 	3 Ways a Servlet can respond to a request:
 		1) Redirect - transferred to a different domain (outside the server)

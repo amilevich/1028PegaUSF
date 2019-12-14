@@ -1,0 +1,131 @@
+
+Self Notes for Pega
+
+Consider a business use case: 
+	Assistance request, Split into 4 stages:
+		Submission Stage: User (customer) requests a tow 
+		Validation Stage: CSR processes, approves or denies and notifies
+		Service Stage: States what the user can recieve 
+		Resolution Stage: Invoicing the customer for service. 
+	Most of these stages are processed within a time limit if CSR takes too 
+		long then the customer (user) is notified or CSR manager.
+
+
+Flood of keywords:
+	
+Direct Capture of Objectives: identifies and isolates the key functionality of the application
+	allowing IT and business personal to remain in syncy through the application developmetn life cycle.
+
+For each business need (e.g. purchasing a t-shirt), the process is modelled in a work-flow statement.
+Pega allows you to automate this via eliminating maunal desicions, dynamic routing, maintinaing data exhange to various system of records
+and applying deadlines thorught a case life cycle to reduce time to resolution.
+
+Pega has guardrails and bestpractices. 
+
+---------------------------------------------
+
+Pega customer service App: 
+	Built on Pega platform and more efficient for the company to use it than the full pega platform.
+	Reduces development time.
+
+Guardrails:
+	Built into Pega Platform, a guide of "best pracitices" 
+	Improves application quality
+
+Pega Cloud:
+	Pega's own cloud instance of their services ( faster to use than customer managed cloud services)
+	Optimise deployment for Pega applications
+
+-------------------------------------------
+
+Situational Layer Cake:
+Is the name of the approach to reuse application functions in different areas of your applications.
+
+A rule:
+	defines the behaviour of part of an application. RUles are saved in the Pega Rules database,
+		and the name acts as a unique key for storage and acess. 
+			e.g. Calculating tax: Product Tax = Product Cost * 0.075.
+
+A rule-type:
+	Acts as a template for creating a rule
+
+A Ruleset:
+	A group of rules.
+
+Ruleset Stack ( asequence of rulesets ) : 
+			       	[RuleSet]
+				[RuleSet]
+(common application RuleSet) Rule A , Product Tax, Rule B, Rule C, Approval rule
+
+i.e. pega applications are built on rules upon rules, as you go up the "cake" it gets more and more specific.
+
+No limit to the number of layers:
+				[RuleSet]
+(Ireland) IRE Approval rule, IRE Product Tax || Philadelphia New Data rule PHL Product Tax
+	Rule A , Rule B , Tule C, Product Tax , Approval rule
+
+				
+Each region will use different rules, you don't need to strictly use 
+
+Unique identifier:
+	rule name 
+	rule type 
+	rule set 
+	rule set version 
+	class 
+
+Development Studios:
+
+	Role-based authoring studio overview (known as workspace as well)
+	Enhance application development and productivity 
+		App Studio 
+		Dev Studio 
+		Admin Studio 
+		Prediction Studio 
+	Each studio consists of three areas:
+		A hader with various menus 
+		A navigation menu, contains "explorer"
+		A center space for configuring the application behaviour 
+
+Service level agreement - establishes DEADLINES for work completion. When a goal and deadline is established, Pega creates a SLA for you.
+
+Service level intervals: Start (beginning of step) --> Goal (occurs once) --> Deadline (occurs once) --> Passed Deadline (can repeat)
+			When the project is started-->How long it SHOULD  --> How long it MAY take   --> Past the deadline
+Goal and Deadline intervals begin at the start of the assignment, case or step 
+Goal and deadline intervals do not repeat compared to passed deadline
+
+Urgency is assigned by giving a case points at every Service level interval and case stage, urgency is anywhere between 0 - 100 , 
+Escalation actions (like send notifications, reassign and escalation flow) can be assigned depending on urgency level.
+
+SLA is a recommended best parctices.
+ 
+Parallel processes are actions that occcur on a case in the same time frame, i.e. setting up an employee's office and setting up an employee's login.
+
+Desicion tables allow you to route to different processes depending on whther a condition is met.
+
+Routing work	
+
+Approval 
+
+Cascading Approval 
+
+Authority matrix approval 
+
+px - identifies special properties, your application can read but not write to these properties.
+py - You can use these properties in your application
+pz - Suports internal system processing, the meaning of values may change with new product releases. Your application can read byt not write to these properties. 
+
+pyWorkPage stores all the data generated while creating and processing a case. pyWorkPage is a specific page on the clipboard. For example, pyWorkPage stores data such as the 
+case creation date or the case ID.
+
+When you open a child case, the clipboard also contains the page pyWorkCover. pyWorkCover contains the case data for the parent case. This enables you to copy data between the parent case and the child case.
+
+Cliboard stores pages. 4 categories:
+	User Pages: pages generated by users.
+	Data Pages: read-only data page (defined by data page rules), data from 3rd-party sources. (also persists through memory)
+	Linked Property Pages: contains read-only pages, created by linked properties
+	System Pega: descirbes current user sessions (i.e. active user and application)
+
+
+Data Transform: one option for copying and manipulating data. i.e. reusing billing address as a delivery address (rather than requesting info again).
+

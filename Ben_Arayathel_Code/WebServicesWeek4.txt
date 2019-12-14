@@ -12,6 +12,7 @@ REST - Representational State Transfer
 
 	HTTP	||	Request	||	message || Can only contain either a Head or a Body 
 	Web 	|| 	URL 	|| 	Version ||
+	
 -HTTP Response message 
 
 	||State Code|| Version || - Can also only contain Head or body 
@@ -33,8 +34,8 @@ RESTFUL API is a API that follows REST constraints
 2) Stateless - servers do not store any data about the latest HTTP requests
 3) Layerd System - client cannot tell whether it is connected to the original server or another one
 4) Client-Server - client/server are seperate entities 
-5)Cacheable - resource must declare themselves as cacheable
-6)OPTIONAL - Code on Demand. Able to send executable code to the original server or another srever.
+5) Cacheable - resource must declare themselves as cacheable
+6) OPTIONAL - Code on Demand. Able to send executable code to the original server or another srever.
 
 
 SOAP - Simple Object Access Protocol 
@@ -73,9 +74,9 @@ WSDL <--> Java ]
 
 
 
-	Tools		Exception Handling 		Contract 		Message			Atomicity 			Protocol	Security 
+	Tools		Exception Handling 	Contract 		Message			Atomicity 			Protocol	Security 
 
-SOAP	JAX-WS		Inbuilt				WSDL			XML		Can make SOAP messages atomic		any		any,allows for 
+SOAP	JAX-WS		Inbuilt			WSDL			XML		Can make SOAP messages atomic		any		any,allows for 
 	ApacheCXF																	any additional security 
 
-REST	tool-less	external resources		not contract bound 	any		not-atmoic,can be ACID compliant	HTTP		HTTPS	
+REST	tool-less	external resources	not contract bound 	any		not-atmoic,can be ACID compliant	HTTP		HTTPS	

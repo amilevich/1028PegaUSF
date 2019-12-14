@@ -1,0 +1,12 @@
+
+Contract-First : You write the WSDL document, then you write the application code to match it
+
+<service> element defines the service endpoint URL 
+
+DELETE is idempotent because we only consider the state of the system once the request has gone through, so the account is no longer in the server.
+	(OPTIONS , POST and HEAD are not idempotent)
+
+To update an attribute in a HTTP Session object in servlets? We use session.setAttributes(name,value)
+
+To get a session ID we use: session.getId()
+

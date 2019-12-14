@@ -1,0 +1,14 @@
+A control is used to 
+
+App studio cannot create parallel processes
+
+Clipbaord tool is debuggin and troubleshooting aid to view and edit property values that ovvured during case processing
+
+
+Flow rule defines a business process or part of a business process, it consists of 
+
+Classes are used to organise a set of rules into a hierachy and for reusability.
+
+pyWorkCase stores 
+
+Collect information requires contextual information
