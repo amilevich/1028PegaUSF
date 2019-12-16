@@ -1,0 +1,116 @@
+DCO - Direct Capture of Objectives
+	Allows business and IT personals to capture business requirements through a visual model.
+
+Guardrails - Pega's guide to best practises.
+	Increases applications REUSABILITY, EASE OF MAINTANCE and OPTIMAL PERFORMANCE.
+
+Pega Cloud (and customer managed cloud)
+	Pega cloud is optimised for Pega applications and results in faster deployment.
+	customer managed cloud allow you to leverage existing investments
+
+Pega Customer Service App
+	Built on the Pega platform. Faster and more efficient for the company to extend the Pega Customer Service App (rather than use Pega platform)
+
+Situational Layer Cake 
+	You can reused application functions in different areas of your application.
+
+Rule 
+	An object that defines the behaviour of part of an application and a single persistent instance of a class derived from the Rule-base class.
+	Rules are saved in the PegaRULES database and the name acts as an uniqure key for storage and access.
+
+Rule instance
+	A unique occurrence of a rule type (can be identifies by scope (class), version or circumstance).
+Rule identifies
+	Rule name, rule type, rule set, rule set version, class 
+Rule type 
+	The class a rule belongs to (and must be a concrete class derived from the Rule- base class.
+
+Ruleset 
+	Identifies, stores and manages the set of rules that define an application or a major portion of an application.
+
+Personal Ruleset
+	contains coies of rule instances ( that are used with checkout and check in features).
+
+Check In/ Checkout
+	allows developers to reserve a rule for editing without fear of confilt arising when more than one developer working on a rule.
+	
+
+Ruleset version
+	The format of the version follows NN-NN-NN (Major version -- Minor Version -- Patch version). Characterises the evolution of the ruleset.
+	Major version - significant changes to the ruleset, i.e. the addition of features or multiple rules
+	Minor version - smaller change to the ruleset, i.e. modifiying or changing a single rule
+
+Class
+	collection of rules organised into heirachies, where the position defines the "reusability" of the rule within the application. 
+
+@baseclass
+	top class, know as the ultimate parent class in the class heirarchy for any Pega aplication. All other classes are derived from this class
+	The standard rules in this class are available for every object in the Pega system.
+
+Portal 
+	provides the developer a viewpoint for the case-worker or case-manager by showing the appearance and functionaility available to them.
+
+Persistent object
+	An object instance that was saved from a requestor;s clipboard intto the PegaRULES database. 
+	Can be accessed and used by other requestors and remains in the database after the requestor session ends.
+
+Stage 
+	A stage is the first level of oranisation in your case type. It contains processes that users follow before moving forward with the case.
+
+Process
+	The path that a case follows as it is completed
+
+Step
+	The most basic level task that can be segmented, that an end-user or the application can complete.
+
+Data model
+	A collection of entities and attributes that describes the object modeled in an application ( and their relationship to each other)
+
+Page 
+	data structures that hold name-value pairs. Pages are stored in the system memory or in the database. Various tupes of pages are defined
+	in the systems, such as data pages are created when the data is referenced, named and unmabed pages, parameter pages, clipboard pages and so on. 
+
+Page List 
+	property mode that allows an embedded ordered array of pages.
+
+Single value
+	built in data types for lower level elements such as an integer, decimal or boolean values
+
+Value list 
+	property acts as a container for an ordered list of text values
+
+Property 
+	Defines the format and visual presentation of data in your application. Each property can be associated with a value and has a mode and type.
+Property mode
+	Defines the structure of the property, e.g. Single value or Page list.
+Property type
+	Defines the format and allowable charactes in the property values.
+
+Clipboard 
+	Temporary memory area on the server. Hierarchical structure, consisting of nodes known as pages, most of which have a name an associated class
+Clipboard Tool
+	Debuggin and troubleshootin aid for application developers. Lets an application developer examine a snapshot of the structure and contents
+	of his own clipboard and sometimes change these from his workstation browser. 
+pyWorkPage
+	represents current case being processed. This is reserved by Pega and cannot be reused for another property or embedded page.
+px 
+	identifies special properties, your application can read but not write to these properties
+py
+	properties can be read and wrote to and of course used within the application
+pz
+	supports internal system processing, can change with new product releases. Your application can read but not write ot these properties.
+embedded page
+	an embedded page is a clipboard page that is the child of another page
+4 categories in Pega
+	User Pages - contains pages created due to user actions. (
+	Data pages - persists pages in memory, used to cache data. (currency conversions) for use by one or more applications.
+	Linked Property PAges - read only pages created by linked properties.
+	System Pages - containes pages that descrive the current user session. (e.g. current time zone)
+
+Form 
+	displays information or collects input from users as the create update and resolve the case. (Case designer to define the asthetics of the form).
+
+Service level agreement:
+	
+
+
