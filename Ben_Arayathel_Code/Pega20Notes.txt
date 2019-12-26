@@ -1,0 +1,61 @@
+
+Record - a collective term that describes a rule or data instance. (rule is a particular instance of a rule type, which defines behavior) (data is a persisted piece of entity within Pega, such as a rule or field that is stored within a database)
+Ruleset - organised collection of ruletypes that keeps track of the evolution of rules via version edition. 
+
+Section 	
+	fundamental UI rule in Pega applications
+	organised into layouts, which ontains fields that are presented to the user in the view 
+
+Creating a section, specify:
+	LABEL - identifies the purpose of the section (also used to find an identifier for the record)
+	CLASS - identifies the scope of the section rule ( determines the availability and re-usability of the section)
+	RULESET and VERSION - identifies the ruleset and version that is associated with the record.
+
+3 ways to configure a section:
+	1) App Studio - configure a section through the User view (simple)
+	2) Dev studio - configure a section directly through the rules in the seciont (more options)
+	3) Design template - modify or expand on a previously existing Section (one can configue a section rule by adding layouts manually).
+
+
+Dynamic layout
+	Allows developers to create an User form with elements that will adapt to screen size, automatically.
+	Example of formats:
+		Default
+		Stacked
+		Inline
+		Inline-grid-double
+		Inline-grid-triple
+	(Changning the format automatically affects all sections 
+
+Repeating layouts
+	display a collection of data that belongs to a page list or a page group.
+	Configuration types
+		Grid layout
+		Tree layout
+		Tree Grid layout 
+		Repeating dynamic layout 
+		Column Repeat layout 
+		Tabbed Repeat layout 
+		(Data represented in a linear table is a repeat layout)
+
+Controls 
+	Allows you to specify a particular format for how a User can submit information (e.g. calendar, check box, even a button)
+	Can configure the presentation and add an action set as appropriate
+
+Skin rule
+	defines presentation formatting instructions for UI forms (akin to CSS)
+
+Responsive breakpoints
+	defines changes in behavior on different devices (Pega has system default repsonsive breakpoints). 
+
+Responsive UI
+	enables a layout to automatically adjust to rendering devices. Elements can be repositioned, resized or change visibility.
+
+Responsive table configuration (grids)
+	Require additional configurations. Allows you to specify the importance of a column/element when the UI is being resized.
+	Primary - unique identifier for the row. Each table must have one primary column, never ommited.
+	Secondary - important information, ommiting only if necessary.
+	Other - first to be omitted.
+Important to use responsive breakpounts and responsive table configurations as Pega will not know which columns to "disapear" when resizing
+
+

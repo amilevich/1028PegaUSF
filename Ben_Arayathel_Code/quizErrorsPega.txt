@@ -1,0 +1,20 @@
+A data page is declarative rule 
+
+For displaying information to the user, it's appropriate to use Section.
+Control would be ideal for when you want to recieve information form the user (e.g. button)
+
+BLOB: 	Flexible 
+	Unlimited storage 
+	High perfomance 
+	
+
+Business metrics is information on how the case was completed on the business logic side
+Process metrics measure how it was completed within Pega's system.
+
+Report Definitions:
+	retrieve records from a database
+	can be used to specify the data from each record that you want to include in the report
+
+User forms 
+	built with sections , inside of which you organise the UI elements with layouts. 
+

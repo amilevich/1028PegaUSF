@@ -102,7 +102,7 @@ pz
 embedded page
 	an embedded page is a clipboard page that is the child of another page
 4 categories in Pega
-	User Pages - contains pages created due to user actions. (
+	User Pages - contains pages created due to user actions. 
 	Data pages - persists pages in memory, used to cache data. (currency conversions) for use by one or more applications.
 	Linked Property PAges - read only pages created by linked properties.
 	System Pages - containes pages that descrive the current user session. (e.g. current time zone)

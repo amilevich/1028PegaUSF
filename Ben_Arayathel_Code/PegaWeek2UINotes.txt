@@ -1,0 +1,78 @@
+User form 
+	case-workers interact with an application and perform tasks through user forms.
+
+Section rules 
+	You build user forms with sections. Sections group information functionality by context and purpose. 
+	Inside a section, UI elements are oganised within with layouts.
+	created automatically when you create user views in the case life cycle (by default organised into a 
+
+Layouts
+	Contain rows and columns, defining a set of cells. A cell can be empty or contain various fields and controls.
+
+Controls
+	Ways of enforcing that the end user submits information of a particular format (e.g. radio button, calendar button)
+
+Sections use dynamimc layouts that arrange items in a flexible form, automatically adjusting to screen size. 
+	Dynamic layout - Organise a single set of fields in a general purpose layout 
+	Rpeating layout - Organises list, tables, and other repeating structures. Repeating layouts reference a page list or page group.
+	Repeating dynamic layout - 
+
+Action Set
+	
+
+Use design templates to configure section layouts. emplates:
+	provide a set of commonly used UI designs
+	make it easy to add UI elements to a section without manual layout configuration 
+	often use dynamic layouts
+	consist of one or more layouts and embedded sections 
+	enable you to logically gorup elements and reuse them in other layouts
+
+
+"Design a model and intent-driven UI"
+	provide users with info when they need it 
+	Align 
+
+guidelines for a positive user experience
+	Kepp the UI simple and obvious
+	Use common UI labels and elements
+
+Responsive UI
+	enables a layout to automatically adjust as the screen changes 
+
+Configuring a responsive table 
+	Primary - The unique identifier for the row. Each table must have one primary column 
+	Secondary - Important information with a significant effect on usability. Omitting information in a secondary column impacts
+			the ability tof the user to complet a task.
+	Other - Information with minimal impact on usability
+
+Event-action model 
+	When designing a dynamic UI, we use this. Cause and effect pair:
+	Property-based events - occur either when a data value changes or when a value meets specific criteria.
+	User-based events - occer due to an action on the end-users part. 
+
+Additional visibility options 
+	Reserve space when hidden: keeps the space surrounding a control open. This prevents the UI elements on the screen from repositioning when the 
+		visible content is displayer 
+	
+	Run visibility on condition on intent
+
+Skin
+	defines the responsibe behavior and formatiing, suc as colors, fonts, image and layouts used in Pega application
+	Defines the responsive breakpoints applied to dynamic layouts
+	breakpoints enable your application to work on various devices, such as tablets and mobile phones 
+	A skin applies formatting through the use of mixins and formats.
+
+Mixin
+	Defines a set of style attributes that can be reused in user interface elements. 
+	allos you to define efficient and clean style repetitions, and provide an easy way for you to update styling 
+	can either define a set of styles or inherit styles from another mixin.
+
+Format 
+	defines the styling of a specific UI component
+	A component is an element that you can style within the skin. For examople a layour or a control
+	
+General 	Modal dialogs, errors
+layouts	
+
+General practice:
+	At least one skin

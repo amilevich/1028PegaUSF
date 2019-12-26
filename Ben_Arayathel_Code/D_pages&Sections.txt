@@ -1,0 +1,57 @@
+
+----Data Page----
+Connector - Integration rule that allows the application to collect information from an external database
+
+Defining a Data Page - Below are all the details needed to define a data page 
+Previously known as declare page
+
+Data Page Scope - Defines how visible the data is within the application.
+	Thread scope - data is available within the case (used when the data page is related to a particular case)
+	Node scope - data is availalbe within the application ( accessible by all users of the application and other applications running on a given node)
+	Requester scope - data is available to the current user of the case. (share data pages for a given user sessions, associated with the loggen-in operator)
+
+
+Data Page Source - any source of data that an application uses, such as a connecotr. report definition. or lookup. Data sources are referenced in data pages.
+	Connector - populate data from external databases
+	Data transform - populate a data page from another page in memory 
+	Report definition - returns a list of data objects mapped in the application 
+	Lookup - Used to return a specific data object mapped in the application
+	Robotic automation
+	Robotic process automation 
+	Load activity - Specific situation where no other options are suitable.
+
+Structure of the Data page - you can use a sinple page to load a single record. You use a list if you want to load multuple records
+
+
+Refresh strategy -  Data pages are created and updated on demand. Refresh stratedy defines when the data is stale and needs to be reloaded.
+			page is never reloaded until referenced, refresh strategy options depend on the scope of the page.
+		"Reload if older than" - reload value of cars, older than a month 
+		"Do not reolad when [condition]" - reload asset prices at the end of the day
+		"Reload once per interaction" - make sure stock prices are up to date 
+
+
+Data page object type - When a data page is configured, under object type, choose the class that defines the data type of the page. (e.g. Dental Plan or Employee).
+
+
+----User view and Sections----
+
+User forms - allow end users to interact with the application and perform tasks. It's a way to show and collect information to the user.
+
+Sections- User forms are built using sections. 
+	  Groups information and functioanlity by context and purpose. Inside a section you orgaise UI elements with layouts. 
+	  Layouts contain rows and coumns, defining a set of cells.
+		Cells - can be empty or contain various controls or fields.
+
+Sections and Dynamic layouts 
+
+Dynamic layouts - general purpose layour used to organise a single set of fields. 
+			Supports responsive behavior on multiple devices, layout shifts its contents to wrap content on-screen.
+Repeating layouts - used to organise lists, tables and other repeating structures.
+
+Creating a section 
+	Label - Used to identify the purpose of the section. Generate an identifier for the record.
+	Class - class to which the record is applied. Class determines the availability and re-usability of the section.
+	Ruleset and Version - these contains the record. 
+
+	Creating a section with Design template allows consistent aesthetics throughout the application 
+	
