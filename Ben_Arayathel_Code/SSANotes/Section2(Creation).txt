@@ -1,0 +1,43 @@
+Senior System Architect 
+
+Section 2 - Application Development: Creating a Pega Application
+
+Application - a business solution that automates work flow in your organisation.
+		multiple applications can be run on your Pega system and an App
+		can be created through the New Application Wizard.
+
+Enterprise Class Structure (ECS) - It's a storage structure of your application 
+		elements, with the position defining the reusability of the element.
+		ECS allows us organisations to make applications that are reusable and 
+		adaptable to business needs.
+		Application -- Division -- Entreprise 
+		(Rules can be shared between application layers)
+
+ECS Layers:
+
+	(Reuse Layer)
+	Organization - contains assets that are used across the enterprise. An example 
+			being assets such as rules that dictate the business logic 
+			across the enterprise, e.g. Desicion tables, SLA and standard properties.
+	Division - the next level below organization (Org-Div-Unit) , contains assets division
+			wide, available to be used in any application. Assets may apply to a line
+			of business, region or brand.
+			(It's an optional layer, useful for large companies for managing assets)
+
+	(Application layer)
+	Pega Platform - built in assets necessary for processing cases and other needs. 
+			Also contains assets that the Pega Platform uses.
+	Framework - contains the most 'general' application, generally its assets are extended 
+			in the implementation level for specific business needs. 
+			(e.g. Request Approval -> Approving holidays)
+	Implementation - defines an application customised for a specific business need or division.
+			typically extends one or more framework layer.
+
+	Generally the Class name starts of with Organisation-Application-Class Group
+
+New Application Wizard - streamlines the creation of the application by creating the enterprise class structure for you.
+
+
+
+	
+	

@@ -1,0 +1,63 @@
+Section 3 - Creating a New Application Version 
+
+Application versioning - is a way of differentiating between current and past application configurations. 
+			It preserves previous versions of rulesets.
+
+Rule resolution - It's how Pega looks to find which rules is appropriate in a particular situation, it is 
+			limited to the current major version (i.e. 02-nn-nn does not have access to 01-mm-mm)
+
+To version an application you must version the application's ruleset.
+
+The 2 versioning methods offered by Pega are Skimming and Lock and Roll. 
+
+Lock and Roll 
+Concepts:
+	Ideal for small changes or patches.
+	You create a new empty ruleset version. Then you copy the changed rules into the new version.
+	The higher version overides previous versions of the rule instances.
+
+	NOTE: Minor and major version updates require application record and access group updates. Patches (usually) don't need any.
+
+Within applications:
+	Configure -> Application -> Structure -> RuleSet Stack
+	3 choices for updating application rule:
+		Do not update my application - update the patch version without chaning the application ruleset list. By default application rule lists 
+						only the major and minor version, so the patch update does not require a change to the application rule
+		Update my Application to include the new Ruleset version - when updating minor version or when the application rule lists the patch version.
+						(You may enter a new description for the application, if locked enter password).
+		Create a new version of my application - when you want to create a new version of the application rule. A new application description may 
+						be entered. (Also useful for when you want people to have access to more than one version of your application
+						e.g. phased roll-out or a test period)
+		
+	
+
+Skimming 
+Concepts:
+	Ideal for major or minor versioning.
+	You save the highest version of rule into a new, higher ruleset version. Useful for when changes follow a logical sequence.
+	NOTE: Skimming only copies over the major versions of the rules (e.g. only rules in 02- go to 03- , not 01- )
+	NOTE: After a skim you must update the 'Requires RuleSets and Versions prerequisites array in the RuleSet version rules and
+		Access group references to the major and minor versions.
+	Skim types:
+		Minor skim - rules are stored in a higher minor version of the ruleset version 
+		Major skim - rules are stored in a higher major ruleset version.
+	
+	Rule availibility states the avaibility of the rule during runtime. 
+	You can state the availability of a rule to decide if you want it present in the new rulestack. (carry forward)
+	Rule Availibility status 	Carried forward?				Justification
+	Yes				Yes					The rule is set to be carried forward
+	Blocked 			Yes					The rule is blocked, because blocked rules can be blocked in other rulesets 
+										(causes erros if requested during runtime)
+	Final 				Yes					A rule with the same 'key' cannot be made in another keyset, but can be versioned.
+	Withdrawn			No - major update, Yes - minor update	A rule that is withdrawn stops any other version of the rule being ran
+	No				No					No
+
+Within Applications:
+	
+
+Skimming is chosen over lock and roll for minor and major versioning because in the later you have 
+	to manually put in every rule that you reconfigured where as skimming automates this process. 
+
+
+
+	

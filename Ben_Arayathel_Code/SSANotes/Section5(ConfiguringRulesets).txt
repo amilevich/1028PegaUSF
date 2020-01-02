@@ -1,0 +1,39 @@
+Section 5 - Configuring Application RuleSets
+
+Rulesets - Manages and stores rule instances into versioned sets. 
+
+Ruleset list (ruleset stack) - dictates rule executution at run time. (governs the availability of rulesets to teh application for a given operator session).
+
+Application Ruleset - collection of rules that identify the components of an application.
+			You must be a member of an access group to work with an application ruleset.
+		
+Production rulesets - have at least one unlocked ruleset version in the production enviornment. Most common use of production rulesets is for delegated rules.
+			(Can be used in any situation where rulesets have to be updated in the production enviornment).
+
+Organisational rulesets- contains assets that can be reuesed across the oransiation, such as data structures.
+	
+
+Ruleset Validation modes:
+	
+	Application validation - A ruleset with AV has acces to all application wide rulesets (including the built-on application). Best practise 
+					to only allow one Application ruleset to have AV to aviod conflict issues.
+
+	Ruleset validation - A ruleset that only has access to rulesets that we have specified. (notation format is MyCoRules[ExtraRules]).
+				If your ruleset version does not have any prerequisite ruleset versions then you need to specify the vase product ruleset
+				"Pega-ProcessCommander".
+				
+	Use RV for rulesets that are designed to be used across multiple applications (e.g. organisational rulesets).
+	
+	Create applications for common rulesets. 
+	
+	Inculde unlocked AV rulesets in one application only. Doing so prevents AV rulesets from referrin to rules that may not 
+	exist in applications that do not contain the ruleset.
+	
+	Run the Validation tool after implementation of critical changes or milestones 
+	(e.g., changes to the app ruleset list or built-on application as well as changes made before lock/export).
+
+Checkout - allows developers to modify rulesets by creating a private copy of the rule that you can modify 
+
+Locking ruleset - lock and save buttons is a way to add or update rules in a locked ruleset. (Cannot update locked ruleset).
+
+Cannot checkout a rule if it has already been checked out or it is in a locked ruleset.

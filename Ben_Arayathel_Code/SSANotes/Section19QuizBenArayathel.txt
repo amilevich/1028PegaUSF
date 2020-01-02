@@ -1,0 +1,5 @@
+What decision structures would you consider to a set of conditions?
+
+What are the 3 basic comparison operators you can use?
+
+Which decision structure offers an easier way to configure a new comparison property type?
