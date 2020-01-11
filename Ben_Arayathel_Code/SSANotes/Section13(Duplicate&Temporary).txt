@@ -1,0 +1,12 @@
+Section 13 - Duplicate and Temporary cases
+
+Duplicate case - an open instance of your case type that match a set of conditions in another case instance. 
+
+Temporary case - A case that does not have a case ID and is only saved onto the clipboard, not a database.
+		(purpose is to save storage and system perfomance, e.g. when a user might be just viewing info rather than editing it).
+		You can persist a temporary cases by adding a Persist Case SmartShape to the process.
+
+
+Checking for duplicate cases:
+	Basic conditions - All basic conditions have to be met for Pega to check the weighted conditions.
+	Weighter conditions - By weighing each conditions and specifing a threshold we can specify how strictly we check for duplicate cases.

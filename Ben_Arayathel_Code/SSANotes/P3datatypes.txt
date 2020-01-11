@@ -1,0 +1,25 @@
+Candidate :
+	Employee ID
+	Name
+	Email
+	Password
+	Exam Times
+	Exam :	Type A : Attempts, Grade 	
+		Type B : Attempts, Grade
+
+Graders
+	Emails
+	Password
+	Exams accepted
+	Exams graded
+	Time of exams graded
+	Bonus
+
+Exam coordinators
+	Email
+	Password
+
+Programme manager
+	Email
+	Password
+	

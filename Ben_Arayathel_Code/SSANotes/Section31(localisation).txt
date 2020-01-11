@@ -1,0 +1,44 @@
+Section 31 -Supporting multiple languages in application
+
+Pega offers a way to meet localisation needs for work in different lanugages and time zones.
+
+form - displays and collects information from the user as the create, update and resolve cases in your application.
+		Use Case Designer to define the visual presentation of a form.
+
+locale - a standard code in the format of  aa_BB_CC, aa represents language and _BB or _BB_CC represetn country variant suffix.
+
+The 5 ways Pega allows localization within your app:
+	1) Currency 
+	2) Language
+	3) Time zone 
+	4) Time format 
+	5) Date format
+
+Localization wizard automates the many steps necessary to create a language-specific version of your application.
+	Identifies field values and text strings that are used in user interface rules. (Text Strings include labels, captions, Tool tips and instructions that 
+	appear in user-facing rules such as harness, section, list view, summary view, message and portal rules.)
+	
+The location wizard selects the necessary user interface rules, harness, section and navigation rules that are automatically configured to be selected for 
+	localisation. Other design considerations include using field values for labels and confirmation notes, using paragraph rules for text. 
+
+Designing an application for localisation 
+
+	Use field falues for labels and confirmation notes
+
+	Use paragraph rules for text 
+
+
+The advantage of using rulesets when localising an application in multiple languages is that the rulesets can be exported, translated and resued in different regions.
+	(e.g. Field value, paragraph and correspondance rulesets.)
+
+Localising an application 
+	
+	Design for localisation (Creating field value rules, pragraph rules and correspondence rules)
+
+	Install the language packs (if none are available, export the required fields using the Localisation wizard, have them translated and import your own custom translation pack).
+
+	Use Localisation wizard to translate application-specific rules
+
+	Verify localisation (Configure -> User Interface -> Application readiness -> Localization menu)
+
+	

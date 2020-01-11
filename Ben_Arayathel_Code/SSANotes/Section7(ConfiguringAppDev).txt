@@ -1,0 +1,16 @@
+Section 7 - Managing Application Development
+
+Branch - Is a container for rulesets that are being developed (usually in an enviornment where the application is being developed by multiple teams)
+
+Branch ruleset - is a ruleset that is based of another ruleset. Contains rules that are in active development in the assoicated branch.
+
+Benefits of branching:
+	Allows parallel development (2 or more development reams can configure an application). 
+	Rule development takes place within an isolated space without affecting functionality in the source rules.
+
+Configuring a branching rulest:
+	1)Create a team application
+	2) Create development branch(es) in the team application
+	3)Grant access to the team application 
+	4) Create or configure rules using the branch 
+	5) Merge each branch into the application rulesets when development is complete and stable.

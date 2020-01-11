@@ -1,0 +1,55 @@
+Section 33 - Keyed Data Pages
+
+Keyed data page - a list-structure data page. The keyed data page references a key that returns one or multiple instances matching that key. When the 
+			first reference of a keyed data page occurs, all the data stores the data page according to the data source configuration. 
+			When a data page receives a request late, the data is already on the data page and the system locates only the current instance by 
+			using the provided key from the request.
+
+Data page - used to cache data on demand to a clipboard page for use by one or more applications. A data page rule defines the source, scope, refresh strategy, 
+		editability and structure of the cached data. Data pages were previously known as declarative pages. 
+
+Purpose of keyed data page: reduces the number of server trips needed. The keyed data page will do one request to the database for information, subsequent information
+	is then cached into the memory via a preloaded data page. 
+
+
+Non-keyed data access - when a user submits a request for data in a Pega application, the data page interprets the requiest and makes a trip to the data source. 
+	The data source returns the requested data to the data page and the data is then available to the application. 
+	
+	Insurance plicy <-Auto populate-> Data Page <-> SOR (System of record)
+
+Keyed data access - When a keyed data page is referenced, a value is prvided for the key. The first time the data page is referenced, all the data is loaded 
+	according to the data source configuration and stored on the page despite providing a key. 
+	When another request to the data page with a different key is made, the products are already on the data page, system only needs to locate the correct 
+	instance on the page and no trip is necessary.
+
+Choosing a data page configuration:
+	Non-keyed data page configuration - few requests are expected before the data vecomes stale.. 
+	Keyed data page configuration - many requests are expected while the data in the server remains unchanged. 
+
+Keyed pages access is only avaailable when the list structure is selected because keys identify which item is retirieved in a list. For a single page, there
+	is no need for a key.
+
+A keyed data page acts as an alternative to 2 data pages. 
+
+Data Access Patterns 
+
+Provides simple mechanisms to manage data in a Pega platform app. 
+3 data access patterns:
+	System of record - provides access to data stored in another system/app. Data is always currents, always referenced from SOR. 
+	Snapshot - copies data into the case. Always references copied data, only current as of the time the app copied the data
+	Reference - use data that is not part of the data model for the application. Used to populate UI controls.
+
+
+SOR 
+	Data Access -> Refer to a data page option
+	The type of property must correspond to the structure of the data page (page or list).
+	A new data page is created on the first reference to the property.
+	Data is not stored in the property, but in the data page. the property only contains a reference to a data page.
+	Whenever a data page parameter is update, a new data page is created. The property then points to the new page. 
+
+Snapshot pattern 
+	Data Access -> Copy a data page option
+
+Reference 
+	Reference data directly without making it a part of the data model.
+

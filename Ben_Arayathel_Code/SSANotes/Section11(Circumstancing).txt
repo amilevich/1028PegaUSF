@@ -1,0 +1,27 @@
+Section 9 - Circumstancing rules
+
+Circumstancing rules - allows rule to be executed when a condtion is met. If no cicumstanced rule meet the conditions then the base rule is executed.
+
+Circumstance - an optional qualification avaialbe for supported rule types. based on an unqualified rule known as a base rule.
+
+Circumstancing - praciste of creating additional variabts of a rule based on specific circumstances, such as property value
+		Allows you to describe exception habvior with a set of targeted rules rather than one complex rule.
+		Each targeted rule configures behavior to address a specific exception. 
+
+Types of circumstancing conditions:
+	single value - single property needs to be satisfied 
+	Multiple value - multiple properties need to be satisfied.
+	Date property - is effective whenever the value of a date property satisfies the circumstancing condition. 
+	As-of date - after a certain date, the circumstanced rule effectively becomes the new base rule
+
+
+Configuring circumstancing
+	Circumstance template - Dictaes whate properties will be checked e.g. .country
+	Circumstance definition- will define what a property has to satisfy e.g. .country = "India"
+	Circumstance record - store the circumstance in the database, I think?
+
+If you place a base rule in a higher ruleset version you will bypass any older rule versions that are circumstanced.
+If you place a withdrawn status in a circumstanced rule, all previous versions of the rule with the same circumstanced rule will also be unavailable.
+	(Not rules that are base or have different circumstance).
+
+

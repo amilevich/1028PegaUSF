@@ -1,0 +1,37 @@
+Section 9 - Rule Resolution
+
+Rule resolution - Finds the most appropriate rule instance to apply in a situation.
+
+Rule resolution only applies to rule instances derived from the abstract Rule- base class. (e.g. Rule-Obj-CaseType) 
+
+Rule resolution provess 
+	1) Attempts to find rule within rule cache
+	2i) if found skips to step 3    2ii) if not found populate rule cache if not found
+	3)If rule is blocked or user does not have access return error 
+	4)else run rule
+
+Rule cache populated:
+	1)Choose rules with correct prupose 
+	2)Discard rules that are not available
+	3) Fuleter rulesets and versions user has access to 
+	4) Discard rules not in inheritance path 
+	5) Rank remaining rules 
+	6)Set rules cache
+
+
+Ranking rules 
+	Ranked by:
+		Class
+		Ruleset
+		Cicumstance
+		Circumstance Date
+		Date/Time Range
+		Version
+	
+Rule avaiability 
+	Available - Viewable, Editable, Copyable and Executable (also is carried foward while skimming)
+	Not available - Viewable,Editable,Copyable and not executable. (not carried forward while skimming)
+	Blocked - Viewable, Editable, Copyable and executable (will throw an error though and is carried foward while skimming)
+	Final - Viewable, not editable, not copyable and executable (carried foward during skimming)
+	Withdrawn - Viewable, editable, copyable and not executable (previous versions in the major version is also defined as unavailable, carried forwad on minor skims not major skims)
+

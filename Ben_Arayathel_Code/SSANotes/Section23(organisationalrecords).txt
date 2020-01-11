@@ -1,0 +1,26 @@
+Section 23 - Organizational Records
+
+Pega organisational structure is a 3-level hierachy.
+	Top level is - Organisation (Represents the whole company)
+	Middle level - Divisions (Categorised as business units such as region, brank or department)
+	Lowest level - Units (Represenets operators/personals, caseworkers, agents and customer service representatives.)
+
+You cannot have sub-organisation or sub-divisions, can have sub-units though
+
+
+
+			OurCo					Organization
+	|		  |		|
+	Sales		  IT	  	HR			Divison
+  |		|     |		|      |	     |
+NA		EU Internal Customer Training     Benefits
+		      |
+		   |     |
+		Hardware Software
+
+
+An operator is associated with a unit, divison and organisation. The operator ID record (also an organisation rule) stores the organisational structure of the operator
+
+A work queue is an orangisational rule but is not part of the organisational hierarchy. A work queue belongs to a unit, a division and an organisation.
+By default an operator can access work in the work queue to which the operator belongs. 
+

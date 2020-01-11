@@ -1,0 +1,23 @@
+
+
+Registration:
+	Exam coordinator - Schedule exam for Candidate (Open)
+
+
+Delivery
+	Automation  - (15 min prior) 	Send PDF via Email
+					Send word doc via Email
+					Cloud request instance sent
+
+Build (Pending Fulfilment)
+	Candidate - upload app instance to cloud instance before deadline 
+			Submit info to exam coordinator
+	
+Grading (Pending Qualification)
+	Automation - Exam routed to graders
+	Grader - logs in, automatically assigned exam
+	Grader - marks the application
+	
+Post Grading 
+	Automation - Email sent on whether they passed (CC PM and Coordinator)
+	Automation - Exam is routed back to Coordinator for final review. (Resolve)

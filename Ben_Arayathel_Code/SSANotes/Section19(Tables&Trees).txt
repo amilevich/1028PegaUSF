@@ -1,0 +1,29 @@
+Section 19 - Configuring Desicion tables and trees
+
+Desicioning is essential to enforcing business decisions. Pega offers decision tables and trees to do this.
+
+A decision rule can also automatically select a connctor to advance a case or route to worklists/work queue.
+Tables and trees allow you to make it more complex, rather than a simple yes/no decisioning.
+
+Descision tables:
+	Format is simlar to an excel table, simpler to understand.
+	Allows you to evaluate multiple conditions in unison (this is when you choose it over a when rule)
+	Delegated tables allow users to quickly adjust the table to meet business needs.
+
+Decision trees:
+	An alternative to a table to evalue a set of test conditions. 
+	tables evalueate against the same set of properties or doncitions, tress evaluate afainst different properties or conditions. 
+	For tress, a true comparison can lead to additional comparisons (if...then...else logic).
+	Contain condition branches -comparison value, comparison operator and an action. 
+	Branches can be nested.
+
+Testing with decisioning:
+	Test for Logic 
+		Creating a test page to make sure the logic of the decision structure is valid.
+	Test for Conflicts 
+		Test for condtions that contradict each other (e.g. a contradictory branching condition within a branch)
+	Test for completeness
+		For tables, there is an option to show all the values that are not being considered explicitly in the table.
+	
+
+

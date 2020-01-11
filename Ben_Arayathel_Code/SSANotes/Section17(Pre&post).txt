@@ -1,0 +1,24 @@
+Section 17- Introduction to flow action pre- and post-prcoessing
+
+Should be able to:
+
+Explain how pre- and post-processing configurations affect flow actions 
+Configure pre- and post-prcoessing actions for a flow action
+
+Pre-processing configuration:
+	Occurs at the start of a flow shape (at the arrow), when you want to complete the data transform or the activity before the flow action is pre
+	sented to the user. 
+	e.g. populate a form with default values, but once the user changes it, does not repopulate the form on a refresh 
+
+Post-processing configuration:
+	Occurs straight after a flow shape(at the beginning of the connector).
+	Performs the action after the flow action 
+	e.g. populating the shipping address with the personal address the user submitted.
+
+
+Stuff to consider:
+	Pega loads the flow action with the highest likelihood by default, so a pre-processing action on the flow action 
+	automatically executes when the user reaches an assignment.
+	
+	If a pre- or post-processing action applies to only one case type, then specialise the flow action for the case type,
+	instead of adding the pre- or post processing action.

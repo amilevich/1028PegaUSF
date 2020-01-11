@@ -1,0 +1,12 @@
+Section 25 - Field Values
+
+Property - defines the format and visual presentation of data in your application. Each property can be associated with a value and has a mode and tupe. The property 
+	mode, such as Single Value or Page List, difines the structure that is used to store the property value. The property type, such as Text or Date, defines the 
+	format and allowable charachters in the property value. 
+
+Field values provide an alternate method for defining allowed values for properties. Field values enable you to manage the list of allowed values separately from the property.
+	Managing the allows values seperately from the property enables you to reuse a single property.
+
+Example, we have the property name .pyStatusWork (case status). The list of allowed values for setting .pyStatusWork is defined used field values.
+
+Can localise field values.

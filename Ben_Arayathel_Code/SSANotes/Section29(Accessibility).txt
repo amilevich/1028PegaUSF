@@ -1,0 +1,58 @@
+Section 29 - Introduction to application accessibility 
+
+Allowing users that require additional assitance to navigate the UI. (Common accessibility device being a screen reader for the blind)
+
+WAI-ARIA : Web Accessibility Initiative - Accessibly Rch Internet Applications (Standard).
+
+Government regulations require application accessibility, WAI-ARIA is a technical specification that defines ways to make Web content and 
+	web applications more accessible to people with disabilities using accessibility roles 
+
+Accessiblity roles - specific attributes applieed to user interface elements. They enable communication between assistive devices and Pega 
+	application about UI elements.
+
+Standard ruleset accessibility options, without the PegaWAI rulesets:
+	
+	Configuration										Purpose
+Set tooltips on controls, buttons, links , icons and input fields		Announces control functions to users with a screen reader 
+
+Configure a high-contrast color scheme						Ensures the contrast is sufficient for users with vision limitations 
+
+Set the enter event when you set a click event on the control 			Enables keyboard controls for tabbing through the interface
+
+Inclue links with icons								Provide a visible description of the icon that an assistive device can be read to a user.
+
+Use a button or a link to dismiss an overlay					Provides a navigation element that an assistive device can descrive to a user 
+
+Mark a dynamic container as the main content area by default 			Provides the ability for users tabbing through a page to skip the main content (Enter key)
+
+Use a drop-down list of options instead of text entry (with predictable answers)Provides a visible lis tof options that an assistive device can read to a user
+
+
+All the previous rulesets can be configured without needing to use the accessibility ruleset.
+
+
+Accessibility Inspector
+	The tool in Pega allows you to identify and rectify accessibility issues with your application. 
+		The inspector has two main features that aid accessibility design.
+
+	1) You can preview what your app looks like to users of varying visual ability using Disability preview.
+		a) None
+		b) Achromatopsia (Absence of color)
+		c) Deuteranopia (Red Green confusion)
+		d) Protanopia  (Red Green confusion)
+		e) Tritanopia (Yellow Blue confusion)
+
+	2) You can audit your current applicaiton UI to identify configurations that may negatively impact application accessibility
+		a) Content - e.g., an icon is missing helper text of a label 
+		b) Structural e.g., the heading level hierarchy is out of order, which can potentially confuse screen readers. 
+		c) Interactivity - the skip to content navigation is missing on the harness ( preventing users from using the Enter key to navigate easily)
+		d) Compatibility - a tab group layout, which is deprecated, is used instead of a layout group.
+
+
+Implementing accessibility features for application users
+
+	Implement the PegaWAI ruleset 
+		Add and save the ruleset to the production rulesets
+		Select the Enable accessibility add-on check box
+
+	Identify accessibility issues with the Accessibility Inspector

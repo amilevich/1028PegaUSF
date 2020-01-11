@@ -1,0 +1,13 @@
+Section 21 - Cascading Approval 
+
+Configuring a series of approvals, achieved via "reporting structure" and "authority matrix"
+
+Cascading approval step:
+	Simplifies the configuration of multiple approvals, can be base on Authority matrix or Reporting structure. 
+
+Authority matrix 
+	Uses a decision table to identify each party in the approval process as well as the conditions that determine when each party must provide approval.
+
+Reporting Structure
+	Used to gather approval if they follow a strict heirachal structure.
+	

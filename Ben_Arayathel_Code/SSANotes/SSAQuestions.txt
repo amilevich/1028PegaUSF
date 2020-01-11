@@ -1,0 +1,52 @@
+How to remove rule versions (That are circumstanced) from being selected during rule resolution?
+
+Customer complains about long server responses, how do you resolve this issue? 
+
+When would you use a class group?
+
+How would you get a mashup to communicate with the external web application?
+
+Issue with an activity, which tool to use to debug it?
+
+A company is needing to complete multiple batch orders during peak season. How do you configure the background 
+
+You want to add a footer to a portal, what record do you modfiy?
+
+How would you ensure that only a manager has access to a flow action?
+
+Which 2 config can you use to include access groups in product rule?
+
+Difference between call and branch methods in an activity?
+
+What rules can you designate as relevant?
+
+When would you configure an authority matrix?
+
+When would you use a class join/ association rule?
+
+What does a rule cache do?
+
+
+Extra stuff I can't remember the exact questions:
+
+Circumstancing and rule resolution 
+
+Diagnostic tools ( Pega Analyser PAL, Pega Profiler, Database trace, etc.)
+
+External classes?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

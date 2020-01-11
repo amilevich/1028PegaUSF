@@ -1,0 +1,33 @@
+Section 15 - Configuring parallel processing 
+
+Parallel processing allows user to complete tasks independently of each other.
+
+Pega offers 3 different ways:
+	
+Split Join 
+	Allows you to call multiple indpenendent processes that operate in parallel. 
+	Main process continues after all the subprocesses are completed.
+	e.g. Completing a background check while also reconfiguring seating plan at an office
+	
+Split for each 
+	Same as split join
+	Except, Main process will carry on after each parallel task is completed
+	e.g. completing the interviews for all candidates 
+
+Spinoff 
+	A subprocess that can be completed in conjuction with the main process.
+	Does not have any dependecy on the main process, main process can be completed before the spinoff process
+
+
+Case Locking 
+	By default Pega prohibits more than one user to have access to one case instance. 
+	You can configure the cae to allow multiple users, enabling both to open the case. If both submit changes the first users changes is what is saved. 
+
+Locking in the case type hierachy 
+	Once you've conigrued a locking strategy in the top level case,  the strategy cascades down to the child cases. 
+	Recomended to only allow one user locking option, to preserve the integrity of child cases. 
+	
+If you want users to work on the top level classes while the child cases are open, you overdied the default setting that lock the parent case. 
+
+
+	

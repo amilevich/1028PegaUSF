@@ -1,0 +1,21 @@
+Section 27- User Portals
+
+User portal - application user's view into the application. Rule-Portal rule type governs the appearance and functionns of the portals that are available to the user.
+		Pega provides default user portals, each portal is customised to the needs of a specific type of user. 
+		e.g. case workers process cases, managers monitor cases.
+
+Harness - organises the structure of a portion of the user display. 
+		You use a harness to organise either a work form or a portal.
+
+4 standardd harnesses to organise the content of user forms:
+	New - supports the creation of new cases
+	Perform - Enables users to select a flow action to perform to complete an assignment.
+	Review - Presents an assignment in read-only mode, preventing data entry. 
+	Confirm - Presents a read-only confirmation of completion of an assignment if the next assignment is not performed by the user 
+
+Action area - Harnesses that allow users to select a flow action and complete an assignment contain an "action area".
+
+Screen layout - organises the elements of the browser winddow into a main content pane and smaller surrounding panes. 
+
+Navigation record - manages entries in a menu and the action performed when a user selects the menu item.
+			Navigation records are organised in the User interface category in the records explorer and the Create menu.
