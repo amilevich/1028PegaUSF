@@ -1,0 +1,15 @@
+2019-11-26 15:37:06 INFO  MainDriver:417 -  c. Creted an Account
+2019-11-26 15:37:36 INFO  MainDriver:417 -  c2 Creted an Account
+2019-11-26 15:37:44 INFO  MainDriver:428 -  c2 Created an Joint Account with  c. c2
+2019-11-26 15:38:09 INFO  MainDriver:448 -  e Creted an Account
+2019-11-26 15:38:15 INFO  MainDriver:461 -  s Creted an Account
+2019-11-26 15:38:23 INFO  MainDriver:192 -  e Logged in
+2019-11-26 15:38:40 INFO  MainDriver:225 -  e Approved  c.'s account
+2019-11-26 15:38:48 INFO  MainDriver:225 -  e Approved  c2's account
+2019-11-26 15:38:56 INFO  MainDriver:225 -  e Approved  c.'s account
+2019-11-26 15:39:11 INFO  MainDriver:118 -  c. Logged in
+2019-11-26 15:39:40 INFO  Account:632 - c. made a deposit of500.0
+2019-11-26 15:39:57 INFO  Account:669 - c. made a withdraw of250.0
+2019-11-26 15:40:37 INFO  Account:926 - c. made a transfer of250.0from their shared checking account to their checking account.
+2019-11-26 15:40:46 INFO  MainDriver:283 -  s Logged in
+2019-11-26 15:40:57 INFO  MainDriver:314 -  s Approved  c.'s account

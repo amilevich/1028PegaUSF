@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+#changeWidthAndHeight {
+	height: 30vh
+}
+
+.wrapper {
+	width: 75%;
+	height: 75vh;
+	align: right;
+	background-color: #2B3856;
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	margin-left: 30vh;
+	/*	margin-right :10vh;
+*/
+}
+
+.needs-validation {
+	margin-left: 35%;
+}
+
+#footerStyle {
+	color: white;
+	background-color: #2B3856;
+	font-size: 20px;
+}
+
+.info{
+	background-color: #2B3856;
+}

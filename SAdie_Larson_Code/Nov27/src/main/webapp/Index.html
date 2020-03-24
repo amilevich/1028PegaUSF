@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Travel Agency</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+	<div class="container-full">
+		<!-- Carousel Properties -->
+		<div id="carouselExampleCaptions" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-interval="3000">
+					<img
+						src="https://st-process-production.s3.amazonaws.com/e046bb6c-3dd0-4d92-be54-134802864556/fcf7bcb5-17a4-435f-88dd-3c2ae96a7585.jpg"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor">Go Out and Explore</h1>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img
+						src="https://external-preview.redd.it/7d33dKiZy0-xp-yAG1JVsyT6jjT6aLGrsInpzaMeTfE.jpg?auto=webp&s=9c84788c4eb07e932c0d977441c0f59de9ff087b"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor">See the World</h1>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="https://wallpaperplay.com/walls/full/c/6/b/195318.jpg"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor">Embrace a Culture</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h3>Revature Travel Agency &trade;</h3>
+			<h5>
+				<span class="label label-success"> Using the RESTful
+					Countries API</span> <br />
+				<h10>Examples: eg, col, es, au, bg, bd, br, bz, ca, ch, fj </h10>
+				<br /> <br />
+				<input type="text" id="countryId"
+					placeholder="Enter your country abbreviation" class="form-control" />
+				<input type="submit" id="countrySubmit"
+					class="form-control btn btn-info" />
+			</h5>
+			<br>
+			<div class="info">
+				<table class="table table-striped table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Country Name</th>
+							<th scope="col">Currency</th>
+							<th scope="col">Language</th>
+							<th scope="col">Capitol</th>
+							<th scope="col">Region</th>
+							<th scope="col">Call Code</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<h3 id="countryName"></h3>
+							</td>
+							<td>
+								<h3 id="countryCurrency"></h3>
+							</td>
+							<td>
+								<h3 id="countryLanguage"></h3>
+							</td>
+							<td>
+								<h3 id="countryCapitol"></h3>
+							</td>
+							<td>
+								<h3 id="countryRegion"></h3>
+							</td>
+							<td>
+								<h3 id="countryCallCode"></h3>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<div id="footer">
+		<h5 id="footerStyle">&copy; 2019 Revature Travel Agency</h5>
+	</div>
+	<script type="text/javascript" src="TravelAgency.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+
